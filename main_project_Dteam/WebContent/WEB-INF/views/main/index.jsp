@@ -19,7 +19,7 @@
 	          	</div>
             </div>
         </header>
-        <!-- dsadsafdsfsfdsa -->
+        <!-- dsads -->
         <!--  -->
         <section class="page-section bg-light" id="dietlog">
             <div class="container">
