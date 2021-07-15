@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sellerMap">
+	<select id="sellerInfo" parameterType="int" resultType="seller">
+		select sel_num, sel_name, sel_tel, sel_addr, sel_grade from seller
+		where sel_num=#{sel_num}
+	</select>
+
+
+</mapper>

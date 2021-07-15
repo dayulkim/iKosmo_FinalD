@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productMap">
+<select id="productDetail" parameterType="int" resultType="product">
+	select PRO_NUM, PRO_NAME, PRO_PRICE, PRO_DELIVERY,
+	PRO_PERIOD, PRO_THUMB, PRO_PHOTO, PRO_DETAIL, PRO_RDATE, SEL_NUM from product
+	where pro_num=#{pro_num}
+</select>
+
+
+</mapper>

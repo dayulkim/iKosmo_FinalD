@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 경로 확인 : ctrl 키 눌러서 이동해보기 -->
+	<typeAliases>
+		<typeAlias type="kr.co.kosmo.mvc.vo.SellerVO" alias="seller"/>
+		<typeAlias type="kr.co.kosmo.mvc.vo.ProductVO" alias="product"/>
+	
+	
+	</typeAliases>
+	<!-- Spring이 environments, environment, transactionManager, dataSource, 
+		mapper등을 자동적으로 관리해줌 -->
+
+</configuration>
+
+
+ 
