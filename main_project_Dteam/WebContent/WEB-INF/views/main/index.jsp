@@ -19,7 +19,7 @@
 	          	</div>
             </div>
         </header>
-        <!-- dsads -->
+        <!-- 2021-07-16 15:00 회의: 깃설정하기 -->
         <!--  -->
         <section class="page-section bg-light" id="dietlog">
             <div class="container">
