@@ -1,9 +1,13 @@
 package kr.co.kosmo.mvc.vo;
 
 public class ProductVO { // Alt Shift S
-	private int pro_num, pro_price, pro_delivery, pro_period, sel_num;
-	private String pro_name, pro_thumb, pro_photo, pro_detail, pro_rdate; // pro_detail(clob) => mapper에서 형변환 요함,,,
+	private int pro_num, pro_price, pro_discount, pro_delivery, pro_period, sel_num;
+	private String pro_name, pro_thumb, pro_photo, pro_detail, pro_rdate; // pro_detail(clob) => mapper에서 형변환 요하므로, varchar2로 변경
 	// private Date pro_rdate; // 자바식과 오라클식 date의 데이터 형식이 달라서 (=년월일 따로붙여줘야) String으로  받았습니다.
+	private int pro_sellprice; // mapper에서 pro_price * pro_discount 할인율을 계산한 할인 소비자 최종가격
+	// pro_discount (할인율) 컬럼 추가, 매퍼에서 판매가 = 소비자가(1- 할인율/100)
+
+
 
 	public int getPro_num() {
 		return pro_num;
@@ -19,6 +23,14 @@ public class ProductVO { // Alt Shift S
 
 	public void setPro_price(int pro_price) {
 		this.pro_price = pro_price;
+	}
+
+	public int getPro_discount() {
+		return pro_discount;
+	}
+
+	public void setPro_discount(int pro_discount) {
+		this.pro_discount = pro_discount;
 	}
 
 	public int getPro_delivery() {
@@ -83,6 +95,14 @@ public class ProductVO { // Alt Shift S
 
 	public void setPro_rdate(String pro_rdate) {
 		this.pro_rdate = pro_rdate;
+	}
+	
+	public int getPro_sellprice() {
+		return pro_sellprice;
+	}
+
+	public void setPro_sellprice(int pro_sellprice) {
+		this.pro_sellprice = pro_sellprice;
 	}
 
 }

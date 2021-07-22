@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+
+
+	<select id="reviewList" resultType="revo" parameterType="pvo">
+		select * from
+		(select rownum r_num, a.* from
+		(select * from review
+		<where>
+			<choose>
+				<when test="sortType1 == 0">
+					pro_num=#{pro_num} order by rev_rdate desc)
+				</when>
+				<when test="sortType1 == 1">
+					pro_num=#{pro_num} order by rev_star desc)
+				</when>
+			</choose>
+		</where>
+		a)
+		where r_num between #{start} and #{end}
+	</select>
+
+	<select id="totalCnt" resultType="int" parameterType="pvo">
+		select count(*) cnt from review where pro_num=#{pro_num}
+	</select>
+
+
+</mapper>
+
+

@@ -35,14 +35,16 @@ public class ProductController {
 
 	@RequestMapping("/productDetail") // 다율 상세페이지
 	public ModelAndView productDetailPage(HttpServletRequest request) {
-		int pro_num = 1;
-		// int pro_num = Integer.parseInt(request.getParameter("pro_num")); // null 처리 추가로 해야 함
+		// int pro_num = 1;
+		int pro_num = Integer.parseInt(request.getParameter("pro_num")); // null 처리 추가로 해야 함
 		ModelAndView mav = new ModelAndView();
 		ProductVO provo = pro_service.getProductOne(pro_num);
 		mav.addObject("provo", provo);
-		mav.setViewName("store/product_detail"); // jsp의 위치 주소,,.
+		mav.setViewName("store/product_detail_0717"); // jsp의 위치 주소,,.
+		// System.out.println(provo.getPro_name());
 		return mav;
 		// http://localhost/main_project_Dteam/productDetail
+		// http://localhost/main_project_Dteam/productDetail?pro_num=1
 	}
 	
 
