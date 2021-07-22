@@ -6,26 +6,30 @@
 
 
 
-	<select id="reviewList" resultType="revo" parameterType="pvo">
+	<select id="reviewList" resultType="revvo" parameterType="pvo">
 		select * from
 		(select rownum r_num, a.* from
 		(select * from review
 		<where>
 			<choose>
+
 				<when test="sortType1 == 0">
 					pro_num=#{pro_num} order by rev_rdate desc)
 				</when>
+
 				<when test="sortType1 == 1">
 					pro_num=#{pro_num} order by rev_star desc)
 				</when>
+
 			</choose>
 		</where>
-		a)
-		where r_num between #{start} and #{end}
+		a)where r_num between #{start} and #{end}
 	</select>
 
 	<select id="totalCnt" resultType="int" parameterType="pvo">
-		select count(*) cnt from review where pro_num=#{pro_num}
+
+		select
+		count(*) cnt from review where pro_num=#{pro_num}
 	</select>
 
 

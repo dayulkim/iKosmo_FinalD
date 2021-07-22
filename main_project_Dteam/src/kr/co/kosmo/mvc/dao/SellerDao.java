@@ -14,7 +14,7 @@ public class SellerDao {
 	
 	//¼¿·¯¹øÈ£ º° ¼¿·¯Á¤º¸
 	public SellerVO getSellerOne(int sel_num) {
-		return ss.selectOne("sellerMap.sellerInfo", sel_num);
+		return ss.selectOne("seller.sellerInfo", sel_num);
 	}
 	
 }

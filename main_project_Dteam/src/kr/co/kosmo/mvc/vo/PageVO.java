@@ -5,7 +5,7 @@ public class PageVO {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
 
-	private int mnum;
+
 	private int sortType1;
 	private int sortType2;
 	private int pro_num;
@@ -13,7 +13,7 @@ public class PageVO {
 	public PageVO() {
 
 	}
-
+	
 	public int getSortType1() {
 		return sortType1;
 	}
@@ -38,6 +38,8 @@ public class PageVO {
 		this.pro_num = pro_num;
 	}
 
+
+	
 	public PageVO(int total, int nowPage, int cntPerPage, int pro_num, int sortType1) {
 		this.nowPage = nowPage;
 		this.cntPerPage = cntPerPage;
@@ -49,6 +51,7 @@ public class PageVO {
 		memberStartEnd(nowPage, cntPerPage);
 	}
 
+
 	public PageVO(int total, int nowPage, int cntPerPage) {
 		this.nowPage = nowPage;
 		this.cntPerPage = cntPerPage;
@@ -57,6 +60,7 @@ public class PageVO {
 		memberStartEndPage(nowPage, cntPage);
 		memberStartEnd(nowPage, cntPerPage);
 	}
+
 
 	// 페이지 계산 메서드 ==================================================================
 	// 제일 마지막 페이지 계산
@@ -81,6 +85,8 @@ public class PageVO {
 		end = nowPage * cntPerPage;
 		start = end - cntPerPage + 1;
 	}
+
+	
 
 	public int getNowPage() {
 		return nowPage;
@@ -154,12 +160,8 @@ public class PageVO {
 		this.cntPage = cntPage;
 	}
 
-	public int getMnum() {
-		return mnum;
-	}
 
-	public void setMnum(int mnum) {
-		this.mnum = mnum;
-	}
+
+
 
 }

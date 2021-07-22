@@ -14,14 +14,12 @@
 }
 </style>
 <div class="top-element"></div>
-<div align="center">
+<div align="center" id="center">
 
-	<img alt="" src="resources/review/img/star.png" width="200">
-	<form action="reviewList" method="post" id="formTest">
+	<form action="productDetail" method="post" id="formTest">
 		<input type="hidden" name="pro_num" value="${paging.pro_num}">
-		
- <select id="sortType1" name="sortType1"
-			onchange="document.getElementById('formTest').submit()">
+
+		<select id="sortType1" name="sortType1" onchange="test();">
 			<option value="0">최신순</option>
 			<option value="1">별점순</option>
 
@@ -47,7 +45,8 @@
 					class="font-small"> 별점: <img alt=""
 						src="resources/review/img/${list.rev_star }.png" width="100">
 				</span><span style="text-align: right;" class="font-small">배송기간평: <img
-						alt="" src="resources/review/img/${list.rev_period }.png" width="100"></span></td>
+						alt="" src="resources/review/img/${list.rev_period }.png"
+						width="100"></span></td>
 
 			</tr>
 			<tr>
@@ -72,10 +71,11 @@
 
 
 <script>
-$(function () {
-});
-if(${paging.sortType1}===1){
-	$('#sortType1').val(1);    }
+	function test() {
+
+		document.getElementById('formTest').submit();
+
+	}
 
 
 

@@ -1,13 +1,24 @@
 package kr.co.kosmo.mvc.vo;
 
-public class ProductVO { // Alt Shift S
+public class ProductVO {
+//	create table product (
+//			pro_num number primary key, -- 상품번호
+//			pro_name varchar2(150) constraint product_pro_name_nn not null, -- 상품명
+//			pro_category varchar2(150), -- 상품 카테고리
+//			pro_price number constraint product_pro_price_nn not null, -- 상품가격
+//			pro_discount number default 0, -- 할인율 -- default : 0 -- mapper에서 판매가 = 소비자가(1- 할인율/100)
+//			pro_delivery number default 0, -- 배송비
+//			pro_period number default 2, -- 배송기간
+//			pro_thumb varchar2(300), -- 대표이미지
+//			pro_photo varchar2(300), -- 상품이미지
+//			pro_detail varchar2(1000),-- 상품정보
+//			pro_rdate date default sysdate, -- 상품등록일
+//			sel_num number, -- 업체번호
+//			constraint product_sel_num_fk foreign key(sel_num) references seller(sel_num)
+//			);-- 외래키로 업체 테이블 참조
 	private int pro_num, pro_price, pro_discount, pro_delivery, pro_period, sel_num;
-	private String pro_name, pro_thumb, pro_photo, pro_detail, pro_rdate; // pro_detail(clob) => mapper에서 형변환 요하므로, varchar2로 변경
-	// private Date pro_rdate; // 자바식과 오라클식 date의 데이터 형식이 달라서 (=년월일 따로붙여줘야) String으로  받았습니다.
-	private int pro_sellprice; // mapper에서 pro_price * pro_discount 할인율을 계산한 할인 소비자 최종가격
-	// pro_discount (할인율) 컬럼 추가, 매퍼에서 판매가 = 소비자가(1- 할인율/100)
-
-
+	private String pro_name, pro_category, pro_thumb, pro_photo, pro_detail, pro_rdate;
+	private int pro_sellprice; // mapper에서 pro_price * ((100-pro_discount)/100) = pro_sellprice
 
 	public int getPro_num() {
 		return pro_num;
@@ -31,6 +42,14 @@ public class ProductVO { // Alt Shift S
 
 	public void setPro_discount(int pro_discount) {
 		this.pro_discount = pro_discount;
+	}
+
+	public int getPro_sellprice() {
+		return pro_sellprice;
+	}
+
+	public void setPro_sellprice(int pro_sellprice) {
+		this.pro_sellprice = pro_sellprice;
 	}
 
 	public int getPro_delivery() {
@@ -65,6 +84,14 @@ public class ProductVO { // Alt Shift S
 		this.pro_name = pro_name;
 	}
 
+	public String getPro_category() {
+		return pro_category;
+	}
+
+	public void setPro_category(String pro_category) {
+		this.pro_category = pro_category;
+	}
+
 	public String getPro_thumb() {
 		return pro_thumb;
 	}
@@ -95,14 +122,6 @@ public class ProductVO { // Alt Shift S
 
 	public void setPro_rdate(String pro_rdate) {
 		this.pro_rdate = pro_rdate;
-	}
-	
-	public int getPro_sellprice() {
-		return pro_sellprice;
-	}
-
-	public void setPro_sellprice(int pro_sellprice) {
-		this.pro_sellprice = pro_sellprice;
 	}
 
 }
