@@ -10,7 +10,7 @@ import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Repository
-public class ReviewDao {
+public class ReviewDao { // ¿Ã¿Áøµ
 
 	@Autowired
 	private SqlSessionTemplate ss;

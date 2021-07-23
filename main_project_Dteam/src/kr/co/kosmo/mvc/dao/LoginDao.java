@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import kr.co.kosmo.mvc.vo.MemberVO;
 
 @Repository
-public class LoginDao implements LoginDaoInter {
-	
+public class LoginDao implements LoginDaoInter { // ¿À¿ø¼®
+
 	@Autowired
 	private SqlSessionTemplate ss;
 

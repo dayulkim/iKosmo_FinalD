@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import kr.co.kosmo.mvc.vo.MemberVO;
 
 @Repository
-public class MemberDao implements MemberDaoInter {
-	
+public class MemberDao implements MemberDaoInter { // 오원석
+
 	@Autowired
 	private SqlSessionTemplate ss;
 
@@ -18,7 +18,7 @@ public class MemberDao implements MemberDaoInter {
 		ss.insert("member.in", vo);
 		System.out.println("회원가입 성공");
 	}
-	
+
 	@Override
 	public int idchk(String id) {
 		System.out.println("아이디 중복확인");

@@ -24,7 +24,7 @@ import kr.co.kosmo.mvc.dao.ProductDao;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
 @Component
-public class Suggest {
+public class Suggest { // ¿Ã¿Áøµ
 
 	private Document doc;
 	private Element root;

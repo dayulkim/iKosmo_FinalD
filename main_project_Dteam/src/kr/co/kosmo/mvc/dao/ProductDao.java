@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
 @Repository
-public class ProductDao implements ProductDaoInter {
+public class ProductDao implements ProductDaoInter { // ±Ë¥Ÿ¿≤
 	@Autowired
 	private SqlSessionTemplate ss;
 
