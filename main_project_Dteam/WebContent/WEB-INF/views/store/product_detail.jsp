@@ -182,38 +182,38 @@
 
 
 
-
-				</div>
-				<div id="panel3" class="panel">문의</div>
-				<div id="panel4" class="panel">배송/환불</div>
-				<div id="panel5" class="panel">
-					<div class="footer">
-						<ul class="items">
-							<li><a href="product.html"> <img
-									src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-										68,930원 &nbsp 15% OFF</span> 시어서커 차렵이불 줄누비 여름이불 블루
-							</a></li>
-							<li><a href="product.html"> <img
-									src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-										68,930원 &nbsp 15% OFF</span> 다이아 고밀도 60수 순면 슈퍼싱글 퀸 차렵이불세트
-							</a></li>
-							<li><a href="product.html"> <img
-									src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-										68,930원 &nbsp 15% OFF</span> 대나무 뱀부 시어서커 차렵 사계절침구
-							</a></li>
-							<li><a href="product.html"> <img
-									src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-										68,930원 &nbsp 15% OFF</span> 해미 시어서커 리플 여름이불 그레이
-							</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
+			<div id="panel3" class="panel">문의
+				asdfasdfasdfasdfasdfs</div>
+			<div id="panel4" class="panel">배송/환불</div>
+			<div id="panel5" class="panel">
+				<div class="footer">
+					<ul class="items">
+						<li><a href="product.html"> <img
+								src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
+									68,930원 &nbsp 15% OFF</span> 시어서커 차렵이불 줄누비 여름이불 블루
+						</a></li>
+						<li><a href="product.html"> <img
+								src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
+									68,930원 &nbsp 15% OFF</span> 다이아 고밀도 60수 순면 슈퍼싱글 퀸 차렵이불세트
+						</a></li>
+						<li><a href="product.html"> <img
+								src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
+									68,930원 &nbsp 15% OFF</span> 대나무 뱀부 시어서커 차렵 사계절침구
+						</a></li>
+						<li><a href="product.html"> <img
+								src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
+									68,930원 &nbsp 15% OFF</span> 해미 시어서커 리플 여름이불 그레이
+						</a></li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
 	<script type="text/javascript">
-	
 		// 연아님 담당 Detail
 		$(document).ready(function() {
 
@@ -240,19 +240,18 @@
 					});
 
 		};
-		
+
 		// 세연님 담당 Seller Map 연동 -Ajax는 다율 작성
 		$.ajax({
-			type: "GET", // HTTP 요청방식
-			url: url, // 해당 url
-			data: data,
-			dataType: dataType, // data 타입
-			success: function(){ // HTTP 요청 성공 후 데이터 전송
+			type : "GET", // HTTP 요청방식
+			url : url, // 해당 url
+			data : data,
+			dataType : dataType, // data 타입
+			success : function() { // HTTP 요청 성공 후 데이터 전송
 				alert("판매자 정보 map 출력 성공");
 			},
-			error: function(){ // HTTP 요청 실패 후 데이터 전송
+			error : function() { // HTTP 요청 실패 후 데이터 전송
 				alert("판매자 정보 map 출력 실패");
 			}
 		})
 	</script>
-	

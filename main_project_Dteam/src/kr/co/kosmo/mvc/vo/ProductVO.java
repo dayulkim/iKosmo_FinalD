@@ -19,6 +19,15 @@ public class ProductVO {
 	private int pro_num, pro_price, pro_discount, pro_delivery, pro_period, sel_num;
 	private String pro_name, pro_category, pro_thumb, pro_photo, pro_detail, pro_rdate;
 	private int pro_sellprice; // mapper¿¡¼­ pro_price * ((100-pro_discount)/100) = pro_sellprice
+	private OrderListVO orderListVO;
+
+	public OrderListVO getOrderListVO() {
+		return orderListVO;
+	}
+
+	public void setOrderListVO(OrderListVO orderListVO) {
+		this.orderListVO = orderListVO;
+	}
 
 	public int getPro_num() {
 		return pro_num;
