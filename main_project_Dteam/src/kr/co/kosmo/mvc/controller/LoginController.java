@@ -11,7 +11,7 @@ import kr.co.kosmo.mvc.dao.LoginDaoInter;
 import kr.co.kosmo.mvc.vo.MemberVO;
 
 @Controller
-public class LoginController { // 로그인 컨트롤러
+public class LoginController { // 로그인 컨트롤러 수정
 	
 	@Autowired
 	private LoginDaoInter loginDaoInter;
