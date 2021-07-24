@@ -19,7 +19,7 @@ public class LoginController {
 	// 로그인페이지 이동
 	@RequestMapping(value="/login")
 	public String gologin() {
-		System.out.println("로그인 폼으로 이동!");
+		System.out.println("로그인 폼으로 이동");
 		return "login/loginform";
 	}
 	
