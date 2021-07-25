@@ -13,6 +13,8 @@ import kr.co.kosmo.mvc.vo.MemberVO;
 @Controller
 public class LoginController { // 로그인 컨트롤러 수정
 	
+	// Person B 작업내용
+	
 	@Autowired
 	private LoginDaoInter loginDaoInter;
 	
