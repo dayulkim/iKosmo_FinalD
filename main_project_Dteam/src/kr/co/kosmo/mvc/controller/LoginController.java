@@ -11,7 +11,7 @@ import kr.co.kosmo.mvc.dao.LoginDaoInter;
 import kr.co.kosmo.mvc.vo.MemberVO;
 
 @Controller
-public class LoginController {
+public class LoginController { // 오원석
 	
 	@Autowired
 	private LoginDaoInter loginDaoInter;
@@ -35,6 +35,7 @@ public class LoginController {
 			if (mvo != null) {
 				session.setAttribute("sessionID", mvo.getMem_id());
 				session.setAttribute("sessionNickname", mvo.getMem_nickname());
+				session.setAttribute("sessionNum", mvo.getMem_num());
 				msg = "환영합니다. " + mvo.getMem_nickname() + "님";
 				response.getWriter().print(msg);
 			} else if (mvo == null) {
@@ -51,6 +52,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("sessionID");
 		session.removeAttribute("sessionNickname");
+		session.removeAttribute("sessionNum");
 		return "redirect:/";
 	}
 

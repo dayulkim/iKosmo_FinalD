@@ -19,7 +19,7 @@ import kr.co.kosmo.mvc.vo.ReviewVO;
 import kr.co.kosmo.mvc.vo.SellerVO;
 
 @Controller // 컨트롤러 클래스로 설정
-public class ProductController {
+public class ProductController { // 김다율
 	
 	@Autowired // 필요한 오브젝트를 인젝션
 	private SellerService sellerService;
