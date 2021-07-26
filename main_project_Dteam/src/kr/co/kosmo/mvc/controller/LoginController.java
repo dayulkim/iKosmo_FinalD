@@ -13,6 +13,8 @@ import kr.co.kosmo.mvc.vo.MemberVO;
 @Controller
 public class LoginController { 
 	
+	// 세연님 작업 내용
+	
 	@Autowired
 	private LoginDaoInter loginDaoInter;
 	
