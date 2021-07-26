@@ -11,6 +11,7 @@
 		<typeAlias type="kr.co.kosmo.mvc.vo.ReviewVO" alias="revvo" /> <!-- 리뷰 -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.PageVO" alias="pvo" /> <!-- Page -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.OrderListVO" alias="ordvo" /> <!-- 주문내역 -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.SearchLogVO" alias="slogvo"/> <!-- 검색로그 -->
 
 	</typeAliases>
 	<!-- Spring이 environments, environment, transactionManager, dataSource, 

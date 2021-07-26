@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.kosmo.mvc.dao.ProductDao;
 import kr.co.kosmo.mvc.domain.Suggest;
+import kr.co.kosmo.mvc.service.SearchServiceInter;
 import kr.co.kosmo.mvc.vo.ProductVO;
+import kr.co.kosmo.mvc.vo.SearchLogVO;
 
 @Controller
 public class DefaultController {
@@ -20,6 +22,8 @@ public class DefaultController {
 	private ProductDao  prductDao;
 	@Autowired
 	private Suggest suggest;
+	@Autowired
+	private SearchServiceInter searchServiceInter;
 	
 	@RequestMapping("/")
 	public String homepage(Model m) {
@@ -29,6 +33,10 @@ public class DefaultController {
 		for(ProductVO vo : prolist) {
 			System.out.println(vo.getPro_name());
 		}
+		
+		// 인기검색어 관련 (영의)
+		List<SearchLogVO> top10Search = searchServiceInter.top10Search();
+		m.addAttribute("top10Search", top10Search);
 		
 		return "main/index";
 	}
