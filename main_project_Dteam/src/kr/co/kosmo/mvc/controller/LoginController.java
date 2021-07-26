@@ -35,6 +35,7 @@ public class LoginController { // 오원석
 			if (mvo != null) {
 				session.setAttribute("sessionID", mvo.getMem_id());
 				session.setAttribute("sessionNickname", mvo.getMem_nickname());
+				session.setAttribute("sessionNum", mvo.getMem_num());
 				msg = "환영합니다. " + mvo.getMem_nickname() + "님";
 				response.getWriter().print(msg);
 			} else if (mvo == null) {
@@ -51,6 +52,7 @@ public class LoginController { // 오원석
 	public String logout(HttpSession session) {
 		session.removeAttribute("sessionID");
 		session.removeAttribute("sessionNickname");
+		session.removeAttribute("sessionNum");
 		return "redirect:/";
 	}
 
