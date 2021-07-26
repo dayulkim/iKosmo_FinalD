@@ -1,12 +1,12 @@
-package kr.co.kosmo.mvc.dao;
+package kr.co.kosmo.mvc.service;
 
 import java.util.List;
 
 import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
-public interface ProductDaoInter { // 김다율
-
+public interface ProductServiceInter {
+	
 //	스토어  버튼
 	public List<ProductVO> productList();
 //	특정 카테고리 클릭시
@@ -29,5 +29,5 @@ public interface ProductDaoInter { // 김다율
 	public ProductVO productDetail(String pnum);
 // 디테일에서 상품 별점 불러오기
 	public String productStar(String pnum);
-
+	
 }

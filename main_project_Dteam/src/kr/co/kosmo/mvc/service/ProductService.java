@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 
 import kr.co.kosmo.mvc.dao.ProductDaoInter;
+import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
 @Service
-public class ProductService {
+public class ProductService implements ProductServiceInter{
 	@Autowired
 	private ProductDaoInter productDaoInter;
 
@@ -19,8 +20,60 @@ public class ProductService {
 		return productDaoInter.productList();
 	}
 
-	public ProductVO getProductOne(int pro_num) {
-		return productDaoInter.productDetail(pro_num);
+	@Override
+	public List<ProductVO> productList2(String category) {
+		
+		return productDaoInter.productList2(category);
 	}
+
+	@Override
+	public List<ProductVO> productOrder(String way, String merit, String category) {
+		
+		return productDaoInter.productOrder(way, merit, category);
+	}
+
+	@Override
+	public String totalProduct() {
+		
+		return productDaoInter.totalProduct();
+	}
+
+	@Override
+	public List<ProductVO> priceList(String range) {
+		
+		return productDaoInter.priceList(range);
+	}
+
+	@Override
+	public String totalScrap(String sid) {
+		return productDaoInter.totalScrap(sid);
+	}
+
+	@Override
+	public String totalCart(String sid) {
+		return productDaoInter.totalCart(sid);
+	}
+
+	@Override
+	public List<InterestVO> myProduct(String sid) {
+		return productDaoInter.myProduct(sid);
+	}
+
+	@Override
+	public List<InterestVO> theirProduct() {
+		return productDaoInter.theirProduct();
+	}
+
+	@Override
+	public ProductVO productDetail(String pnum) {
+		return productDaoInter.productDetail(pnum);
+	}
+
+	@Override
+	public String productStar(String pnum) {
+		return productDaoInter.productStar(pnum);
+	}
+
+
 
 }
