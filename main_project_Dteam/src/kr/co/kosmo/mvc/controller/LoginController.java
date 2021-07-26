@@ -11,14 +11,11 @@ import kr.co.kosmo.mvc.dao.LoginDaoInter;
 import kr.co.kosmo.mvc.vo.MemberVO;
 
 @Controller
-public class LoginController { // 로그인 컨트롤러 수정
-	
-	// 작업 내용을 합쳤습니다.
-	
-	// Person A 작업 내용
+public class LoginController { 
 
-	// Person B 작업내용
-
+	// 다율님 작업사항
+	// 세연님 작업 내용
+	// 머지했음
 	
 	@Autowired
 	private LoginDaoInter loginDaoInter;
