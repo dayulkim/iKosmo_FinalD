@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="in" parameterType="memvo">
+		insert into member values (member_seq.nextVal, #{mem_id}, #{mem_pwd},
+		#{mem_name},
+		#{mem_nickname}, #{mem_age}, #{mem_gender}, #{mem_birth}, #{mem_tel}, #{mem_addr},
+		'None', sysdate)
+	</insert>
+
+	<select id="login" parameterType="memvo" resultType="memvo">
+		select * from member where mem_id=#{mem_id} and mem_pwd=#{mem_pwd}
+	</select>
+
+	<select id="idchk" parameterType="String" resultType="int">
+		select COUNT(*) cnt from member where mem_id = #{mem_id}
+	</select>
+</mapper>

@@ -10,7 +10,7 @@ import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Repository
-public class ReviewDao {
+public class ReviewDao { // 이재영
 
 	@Autowired
 	private SqlSessionTemplate ss;
@@ -19,7 +19,6 @@ public class ReviewDao {
 //	public List<ReviewVO> getReviewList(int pro_num) {
 //		return ss.selectList("review.reviewlist", pro_num);
 //	}
-	
 	public int getTotalReviewCount(PageVO pvo) {
 		System.out.println("여기는 왔다");
 		return ss.selectOne("review.totalCnt", pvo);

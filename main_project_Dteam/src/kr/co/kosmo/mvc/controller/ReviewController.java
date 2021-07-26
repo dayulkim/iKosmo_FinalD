@@ -28,20 +28,27 @@ public class ReviewController {
 			PageVO pvo) {
 
 		pvo.setPro_num(pro_num);
-		System.out.println(pvo.getPro_num());
 		int total = reviewDao.getTotalReviewCount(pvo);
 
-		pvo = new PageVO(total, nowPage, cntPerPage, pro_num, sortType1);
+		pvo = new PageVO(total, nowPage, cntPerPage,pro_num, sortType1);
 		System.out.println("¼ÒÆ®"+pvo.getSortType1());
 		System.out.println("³Ñ¹ö"+pvo.getPro_num());
-
+		System.out.println("nowPage"+pvo.getNowPage());
+		System.out.println("cntPerPage"+pvo.getCntPerPage());
 		List<ReviewVO> list = reviewDao.getReviewList(pvo);
 		m.addAttribute("paging", pvo);
 		m.addAttribute("reviewList", list);
 
-		return "store/review_list";
+		return "review/review_list";
 	}
-	// http://localhost/main_project_Dteam/reviewList?pro_num=1
+	
+	@RequestMapping("/reviewForm")
+	public String reviewForm(Model m) {
+		System.out.println("¸®ºäÆû");
+		
+		
+		return "review/reviewform";
+	}
 
 }
 

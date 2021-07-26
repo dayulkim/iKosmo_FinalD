@@ -1,11 +1,11 @@
 package kr.co.kosmo.mvc.dao;
 
-import org.springframework.stereotype.Repository;
-
+import java.util.List;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
-@Repository
-public interface ProductDaoInter {
+public interface ProductDaoInter { // ±Ë¥Ÿ¿≤
+
+	public List<ProductVO> productList();
 
 	public ProductVO productDetail(int pro_num);
 

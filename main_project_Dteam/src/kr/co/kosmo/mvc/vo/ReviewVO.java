@@ -2,15 +2,14 @@ package kr.co.kosmo.mvc.vo;
 
 public class ReviewVO {
 //	REV_NUM	NUMBER
-//	REV_CONTENT	VARCHAR2(1000 BYTE)
-//	REV_PHOTO	VARCHAR2(500 BYTE)
+//	REV_CONTENT	CLOB
+//	REV_PHOTO	VARCHAR2(200 BYTE)
 //	REV_PERIOD	NUMBER
 //	REV_COLOR	NUMBER
 //	REV_STAR	NUMBER
 //	REV_RDATE	DATE
 //	MEM_NUM	NUMBER
-//	pro_NUM	NUMBER
-
+//	SEL_NUM	NUMBER
 	private int rev_num;
 	private String rev_content;
 	private String rev_photo;

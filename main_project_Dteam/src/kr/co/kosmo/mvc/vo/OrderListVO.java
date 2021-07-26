@@ -1,6 +1,12 @@
 package kr.co.kosmo.mvc.vo;
 
-public class OrdersVO {
+public class OrderListVO {
+
+//	ord_num number primary key, -- 구매내역 번호 -- PK
+//	mem_num number, -- 회원번호
+//	pro_num number, -- 상품번호
+//	ord_qty number, -- 수량
+//	ord_date date default sysdate, -- 구매일  -- default : sysdate
 
 	private int ord_num, mem_num, pro_num, ord_qty;
 	private String ord_date;
