@@ -10,6 +10,16 @@ public class OrderListVO {
 
 	private int ord_num, mem_num, pro_num, ord_qty;
 	private String ord_date;
+	
+	private ProductVO productVO;
+
+	public ProductVO getProductVO() {
+		return productVO;
+	}
+
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
+	}
 
 	public int getOrd_num() {
 		return ord_num;

@@ -311,6 +311,7 @@
 								<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
 							</tr>
 						</table>
+
 					</div>
 					<div id="panel5" class="panel">
 						<div class="footer">
@@ -443,7 +444,11 @@
 								map.setCenter(coords);
 							}
 						});
+<<<<<<< HEAD
+	</script>
+=======
 	</script>
 </body>
 
 </html>
+>>>>>>> 506aea9de7bda66d9fbe7b14649031dc5abc8ca8
