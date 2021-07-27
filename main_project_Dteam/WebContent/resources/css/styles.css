@@ -11405,3 +11405,41 @@ a.login-out-a {
 .top-element {
 	margin-top: 6rem;
 }
+
+
+/* 폰트 ================================================================== */
+	
+@font-face {
+	src: url("../fonts/NanumGothic-Regular.ttf");
+	font-family: "NanumGothic-Regular";
+}
+
+@font-face {
+	src: url("../fonts/NanumGothic-Bold.ttf");
+	font-family: "NanumGothic-Bold";
+}
+
+@font-face {
+	src: url("../fonts/NanumGothic-ExtraBold.ttf");
+	font-family: "NanumGothic-ExtraBold";
+}
+
+@font-face {
+	src: url("../fonts/NANUMSQUARE_0.ttf");
+	font-family: "NANUMSQUARE_0";
+}
+
+@font-face {
+	src: url("../fonts/NANUMSQUARE_ACL.ttf");
+	font-family: "NANUMSQUARE_ACL";
+}
+
+@font-face {
+	src: url("../fonts/NANUMSQUARE_ACR.ttf");
+	font-family: "NANUMSQUARE_ACR";
+}
+
+@font-face {
+	src: url("../fonts/NANUMSQUARE.ttf");
+	font-family: "NANUMSQUARE";
+}

@@ -20,7 +20,7 @@ public class LoginController {
 	@RequestMapping(value="/login")
 	public String gologin() {
 		System.out.println("로그인 폼으로 이동");
-		return "login/loginform";
+		return "member/login/login";
 	}
 	
 	
@@ -35,6 +35,7 @@ public class LoginController {
 			if (mvo != null) {
 				session.setAttribute("sessionID", mvo.getMem_id());
 				session.setAttribute("sessionNickname", mvo.getMem_nickname());
+				session.setAttribute("sessionNum", mvo.getMem_num());
 				msg = "환영합니다. " + mvo.getMem_nickname() + "님";
 				response.getWriter().print(msg);
 			} else if (mvo == null) {
@@ -51,6 +52,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("sessionID");
 		session.removeAttribute("sessionNickname");
+		session.removeAttribute("sessionNum");
 		return "redirect:/";
 	}
 
