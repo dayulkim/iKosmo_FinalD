@@ -4,10 +4,22 @@ package kr.co.kosmo.mvc.vo;
 
 public class InterestVO {
 
-	private int mem_num, pro_num;
-	private String int_time, pro_thumb;
+	private int mem_num, pro_num, sel_num;
+	private String int_time, pro_thumb, pro_photo;
 	
 	
+	public int getSel_num() {
+		return sel_num;
+	}
+	public void setSel_num(int sel_num) {
+		this.sel_num = sel_num;
+	}
+	public String getPro_photo() {
+		return pro_photo;
+	}
+	public void setPro_photo(String pro_photo) {
+		this.pro_photo = pro_photo;
+	}
 	public String getPro_thumb() {
 		return pro_thumb;
 	}

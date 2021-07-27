@@ -26,8 +26,8 @@ public interface ProductDaoInter { // 김다율
 // 최다 클릭상품 불러오기 
 	public List<InterestVO> theirProduct();
 // 상품 상세보기 페이지	
-	public ProductVO productDetail(String pnum);
+	public ProductVO productDetail(int pro_num);
 // 디테일에서 상품 별점 불러오기
-	public String productStar(String pnum);
+	public String productStar(int pro_num);
 
 }

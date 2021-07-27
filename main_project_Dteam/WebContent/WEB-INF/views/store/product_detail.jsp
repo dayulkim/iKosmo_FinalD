@@ -11,7 +11,7 @@
 <meta content="eCommerce HTML Template Free Download" name="description">
 
 <!-- Favicon -->
-<link href="resources/planb/img/favicon.ico" rel="icon">
+<link href="resources/assets/img/store/favicon.ico" rel="icon">
 
 <!-- Google Fonts -->
 <link
@@ -25,11 +25,11 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 	rel="stylesheet">
-<link href="resources/planb/lib/slick/slick.css" rel="stylesheet">
-<link href="resources/planb/lib/slick/slick-theme.css" rel="stylesheet">
+<link href="resources/lib/slick/slick.css" rel="stylesheet">
+<link href="resources/lib/slick/slick-theme.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="resources/planb/css/style.css" rel="stylesheet">
+<link href="resources/css/store/style.css" rel="stylesheet">
 
 </head>
 
@@ -49,21 +49,21 @@
 						<div class="row align-items-center">
 							<div class="col-md-5">
 								<div class="product-slider-single normal-slider">
-									<img src="resources/planb/store/${provo.pro_thumb}"
+									<img src="resources/assets/img/store/${provo.pro_thumb}"
 										alt="Product Image">
-									<c:forEach var="i" begin="1" end="4" step="1">
-										<img src="resources/planb/store/${plist[i]}"
+									<c:forEach var="i" items="${plist}">
+										<img src="resources/assets/img/store/${i}"
 											alt="Product Image">
 									</c:forEach>
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
-										<img src="resources/planb/store/${provo.pro_thumb}"
+										<img src="resources/assets/img/store/${provo.pro_thumb}"
 											alt="Product Image">
 									</div>
-									<c:forEach var="i" begin="1" end="4" step="1">
+									<c:forEach var="i" items="${plist}">
 										<div class="slider-nav-img">
-											<img src="resources/planb/store/${plist[i]}"
+											<img src="resources/assets/img/store/${i}"
 												alt="Product Image">
 										</div>
 									</c:forEach>
@@ -192,6 +192,7 @@
 
 
 				</div>
+			</div>
 			</div>
 			<!-- ÅÇ ½ÃÀÛ -->
 			<div id="product">
@@ -338,7 +339,7 @@
 			</div>
 			<!-- ÅÇ ³¡ -->
 		</div>
-	</div>
+	
 
 	<!-- Back to Top -->
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -347,11 +348,11 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/planb/lib/easing/easing.min.js"></script>
-	<script src="resources/planb/lib/slick/slick.min.js"></script>
+	<script src="resources/lib/easing/easing.min.js"></script>
+	<script src="resources/lib/slick/slick.min.js"></script>
 
 	<!-- Template Javascript -->
-	<script src="resources/planb/js/main.js"></script>
+	<script src="resources/js/store/main.js"></script>
 	<script type="text/javascript">
 		// ¿¬¾Æ´Ô ´ã´ç Detail
 		$(document).ready(function() {

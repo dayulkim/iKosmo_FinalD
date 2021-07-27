@@ -167,22 +167,22 @@
 
 	<!-- 최다 조회상품 불러오기 -->
 	<select id="theirclick" resultType="intvo">
-		select pro_thumb, pro_photo from product where pro_num in (select pro_num from (select rownum, aa.* from (select pro_num, count(nvl(pro_num,0)) from interest group by pro_num order by 2 desc)aa) where 6 > rownum)
+		select pro_num, pro_thumb, pro_photo, sel_num from product where pro_num in (select pro_num from (select rownum, aa.* from (select pro_num, count(nvl(pro_num,0)) from interest group by pro_num order by 2 desc)aa) where 6 > rownum)
 
 	</select>
 	<!--  상품 상세보기  -->
-	<select id="productdetail" parameterType="String" resultMap="bestlistMap">
+	<select id="productdetail" parameterType="int" resultMap="bestlistMap">
 		select p.pro_name pro_name, p.pro_discount pro_discount, p.pro_category pro_category, 
 		p.pro_thumb pro_thumb, p.pro_photo pro_photo,
 		p.pro_price pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
 		p.pro_review pro_review, p.pro_rdate pro_rdate, p.pro_delivery pro_delivery, p.pro_num
 		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num
 		sel_num, s.sel_name sel_name, s.sel_grade sel_grade
-		from product p, seller s where pro_num=#{pnum} and p.sel_num = s.sel_num 
+		from product p, seller s where pro_num=#{pro_num} and p.sel_num = s.sel_num 
 	</select>
 	
-	<!--  상품 상세보기  -->
-	<select id="productstar" parameterType="String" resultType="String">
-		select avg(nvl(rev_star,0)) rev_star from review where pro_num=#{pnum}
+	<!--  상품 상세보기 -별점  -->
+	<select id="productstar" parameterType="int" resultType="String">
+		select avg(nvl(rev_star,0)) rev_star from review where pro_num=#{pro_num}
 	</select>
 </mapper>

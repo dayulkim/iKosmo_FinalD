@@ -11,9 +11,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="">스토어</a></li>
+                        <li class="nav-item"><a class="nav-link" href="store">스토어</a></li>
                         <li class="nav-item"><a class="nav-link" href="">커뮤니티</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">마이페이지</a></li>                        
+                        <li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>                        
                     </ul>
                     <input type="text" class="nav-search-box" placeholder="통합검색">
                     <a href=""><img src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png" class="nav-search-button"></a>

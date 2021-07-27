@@ -20,7 +20,7 @@ public class LoginController { // 오원석
 	@RequestMapping(value="/login")
 	public String gologin() {
 		System.out.println("로그인 폼으로 이동");
-		return "login/loginform";
+		return "member/login/login";
 	}
 	
 	

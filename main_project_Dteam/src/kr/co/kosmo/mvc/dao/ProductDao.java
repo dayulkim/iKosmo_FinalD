@@ -83,16 +83,16 @@ public class ProductDao implements ProductDaoInter { // 김다율
 	
 // 상품 상세보기 페이지
 	@Override
-	public ProductVO productDetail(String pnum) {
-		System.out.println("Dao 에서 상품번호 : " + pnum);
-		return ss.selectOne("product.productdetail", pnum);
+	public ProductVO productDetail(int pro_num) {
+		System.out.println("Dao 에서 상품번호 : " + pro_num);
+		return ss.selectOne("product.productdetail", pro_num);
 	}
 	
 // 디테일에서 상품 별점 불러오기
 	@Override
-	public String productStar(String pnum) {
-		System.out.println("Dao 에서 상품번호 : " + pnum);
-		return ss.selectOne("product.productstar", pnum);
+	public String productStar(int pro_num) {
+		System.out.println("Dao 에서 상품번호 : " + pro_num);
+		return ss.selectOne("product.productstar", pro_num);
 	}
 	
 

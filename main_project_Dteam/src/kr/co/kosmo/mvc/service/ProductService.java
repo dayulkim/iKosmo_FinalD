@@ -65,13 +65,13 @@ public class ProductService implements ProductServiceInter{
 	}
 
 	@Override
-	public ProductVO productDetail(String pnum) {
-		return productDaoInter.productDetail(pnum);
+	public ProductVO productDetail(int pro_num) {
+		return productDaoInter.productDetail(pro_num);
 	}
 
 	@Override
-	public String productStar(String pnum) {
-		return productDaoInter.productStar(pnum);
+	public String productStar(int pro_num) {
+		return productDaoInter.productStar(pro_num);
 	}
 
 

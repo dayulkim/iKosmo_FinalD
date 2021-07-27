@@ -23,7 +23,7 @@ import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 import kr.co.kosmo.mvc.vo.SellerVO;
 
-//@Controller // 컨트롤러 클래스로 설정
+@Controller // 컨트롤러 클래스로 설정
 public class ProductController { // 김다율
 
 	@Autowired // 필요한 오브젝트를 인젝션
@@ -193,15 +193,16 @@ public class ProductController { // 김다율
 
 	// 상품 디테일 페이지 -김다율, 신연아
 	@RequestMapping("/detail")
-	public String interest(String pnum, Model m,
+	public String interest(Model m,
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") int nowPage,
 			@RequestParam(value = "cntPerPage", required = false, defaultValue = "5") int cntPerPage,
 			@RequestParam(value = "pro_num", required = false) int pro_num,
+			@RequestParam(value = "sel_num", required = false) int sel_num,
 			@RequestParam(value = "sortType1", required = false, defaultValue = "0", name = "sortType1") int sortType1,
 			PageVO pvo, HttpServletRequest request) {
 
 		// 해당 번호의 상품 정보 불러오기
-		ProductVO provo = productServiceInter.productDetail(pnum);
+		ProductVO provo = productServiceInter.productDetail(pro_num);
 		m.addAttribute("provo", provo);
 		System.out.println("상품명 :" + provo.getPro_name());
 		System.out.println("상품명 :" + provo.getPro_photo());
@@ -209,7 +210,7 @@ public class ProductController { // 김다율
 		String[] plist = provo.getPro_photo().split(",");
 		m.addAttribute("plist", plist);
 		// 리뷰 평점 불러오기
-		String st = productServiceInter.productStar(pnum);
+		String st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);
 
 		// 리뷰 탭  (페이징처리) - 이재영
@@ -224,8 +225,7 @@ public class ProductController { // 김다율
 		List<ReviewVO> list = reviewDao.getReviewList(pvo);
 
 		// 판매자 정보: 카카오 지도 API
-		// int sel_num = 1;
-		int sel_num = Integer.parseInt(request.getParameter("sel_num"));
+		//int sel_num = Integer.parseInt(request.getParameter(sel_num));
 		SellerVO vo = sellerService.getSellerOne(sel_num);
 		m.addAttribute("selvo", vo);
 

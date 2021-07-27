@@ -12,7 +12,7 @@
 <title>슬기로운 집콕생활</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon"
-	href="resources/resources/assets/favicon.ico" />
+	href="resources/assets/img/store/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
 	crossorigin="anonymous"></script>
@@ -23,20 +23,20 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="resources/css/styles.css" rel="stylesheet" />
-<link href="resources/css/shop_styles.css" rel="stylesheet" />
+<link href="resources/css/store/styles.css" rel="stylesheet" />
+<link href="resources/css/store/shop_styles.css" rel="stylesheet" />
 <!-- OwlCarousel -->
 <link rel="stylesheet"
-	href="resources/css/owlCarousel/owl.carousel.min.css">
+	href="resources/css/store/owlCarousel/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="resources/css/owlCarousel/owl.theme.default.min.css">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="resources/css/prettyPhoto.css" rel="stylesheet">
-<link href="resources/css/price-range.css" rel="stylesheet">
-<link href="resources/css/animate.css" rel="stylesheet">
-<link href="resources/css/main.css" rel="stylesheet">
-<link href="resources/css/responsive.css" rel="stylesheet">
+	href="resources/css/store/owlCarousel/owl.theme.default.min.css">
+<link href="resources/css/store/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/store/font-awesome.min.css" rel="stylesheet">
+<link href="resources/css/store/prettyPhoto.css" rel="stylesheet">
+<link href="resources/css/store/price-range.css" rel="stylesheet">
+<link href="resources/css/store/animate.css" rel="stylesheet">
+<link href="resources/css/store/main.css" rel="stylesheet">
+<link href="resources/css/store/responsive.css" rel="stylesheet">
 
 <!-- 정렬 방식 관련 CSS & JQuery 시작-->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -44,7 +44,7 @@
 <meta content="eCommerce HTML Template Free Download" name="description">
 
 <!-- Favicon -->
-<link href="resources/planb/img/favicon.ico" rel="icon">
+<link href="resources/assets/img/store/favicon.ico" rel="icon">
 
 <!-- Google Fonts -->
 <link
@@ -58,11 +58,11 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 	rel="stylesheet">
-<link href="resources/planb/lib/slick/slick.css" rel="stylesheet">
-<link href="resources/planb/lib/slick/slick-theme.css" rel="stylesheet">
+<link href="resources/lib/slick/slick.css" rel="stylesheet">
+<link href="resources/lib/slick/slick-theme.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="resources/planb/css/style.css" rel="stylesheet">
+<link href="resources/css/store/style.css" rel="stylesheet">
 <!-- 정렬 방식 관련 CSS & JQuery 끝-->
 <!-- 사이드배너 시작 -->
 <script type="text/javascript">
@@ -101,7 +101,6 @@
 		RefreshStaticMenu();
 	}
 </script>
-
 <style type="text/css">
 #STATICMENU {
 	margin: 0pt;
@@ -132,8 +131,8 @@ input {
 	padding: 10px; /* 내부여백 */
 	padding-left: 12px;
 	border: 2px solid #ddd;
-	background: url(./resources/planb/img/arrow_down_18dp.png) no-repeat
-		right 50%; /* 화살표 위치 */
+	background: url(./resources/assets/img/store/arrow_down_18dp.png)
+		no-repeat right 50%; /* 화살표 위치 */
 	background-size: 30px; /* 화살표 크기 */
 	border-radius: 8px;
 	box-sizing: border-box;
@@ -153,7 +152,8 @@ input {
 
 <!-- 사이드배너 끝 -->
 </head>
-<body onload="InitializeStaticMenu();"><br><br><br><br><br><br>
+<body onload="InitializeStaticMenu();">
+
 	<div id="STATICMENU">
 		<table>
 			<c:choose>
@@ -170,7 +170,7 @@ input {
 						<c:forEach var="listc" items="${my_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pnum=${listc.pro_num}"><img
+									href="detail?pro_num=${listc.pro_num}&sel_num=${listc.sel_num}"><img
 										src="resources/assets/img/store/${listc.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -190,7 +190,7 @@ input {
 						<c:forEach var="listm" items="${their_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pnum=${listm.pro_num}"><img
+									href="detail?pnum=${listm.pro_num}&sel_num=${listm.sel_num}"><img
 										src="resources/assets/img/store/${listm.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -200,107 +200,63 @@ input {
 			</c:choose>
 		</table>
 	</div>
-	<!-- Bottom Bar Start -->
-	<div class="bottom-bar">
-		<div class="container-fluid">
-			<div class="row align-items-center">
-				<div class="col-md-6">
-					<div class="search">
-						<input type="text" placeholder="Search">
-						<button>
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="user">
-						<c:choose>
-							<c:when test="${sessionID !=null}">
-								<a href="scraplist" class="btn wishlist"> <span><i
-										class="fa fa-heart"></i> (${cart_total})</span></a>
-							</c:when>
-							<c:otherwise>
-								<a href="login" class="btn wishlist"> <span><i
-										class="fa fa-heart"></i> (0)</span></a>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-							<c:when test="${sessionID !=null}">
-								<a href="cart" class="btn cart"> <span><i
-										class="fa fa-shopping-cart"></i> (${scrap_total})</span>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="login" class="btn cart"> <span><i
-										class="fa fa-shopping-cart"></i> (0)</span></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Bottom Bar End -->
-	<!-- 슬라이드 시작 -->
-	<div class="brand">
-		<div class="container-fluid">
-			<div class="brand-slider">
-				<div class="brand-item">
-					<img src="resources/assets/img/store/slide1.jpg" alt=""
-						style="width: 330px; height: 200px; margin-left: 20px">
-				</div>
-				<div class="brand-item">
-					<img src="resources/assets/img/store/slide1.jpg" alt=""
-						style="width: 330px; height: 200px; margin-left: 20px">
-				</div>
-				<div class="brand-item">
-					<img src="resources/assets/img/store/slide1.jpg" alt=""
-						style="width: 330px; height: 200px; margin-left: 20px">
-				</div>
-				<div class="brand-item">
-					<img src="resources/assets/img/store/slide1.jpg" alt=""
-						style="width: 330px; height: 200px; margin-left: 20px">
-				</div>
-				<div class="brand-item">
-					<img src="resources/assets/img/store/slide1.jpg" alt=""
-						style="width: 330px; height: 200px; margin-left: 20px">
-				</div>
-				<div class="brand-item">
-					<img src="resources/assets/img/store/slide1.jpg" alt=""
-						style="width: 330px; height: 200px; margin-left: 20px">
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 슬라이드 끝 -->
 	<section>
 		<div class="container">
-			<!--  정렬 버튼 시작 -->
-			 <!-- <form action="selection" method="get"> -->
-				<div align="right">
-					<select class="bo_w_select" id="way" name="way">
-						<option value="0" selected="selected">정렬기준</option>
-						<option value="1">최근등록순</option>
-						<option value="2">낮은가격</option>
-						<option value="3">높은가격</option>
-						<option value="4">리뷰많은순</option>
-						<option value="5">할인율순</option>
-					</select>
+			<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
+			<div class="bottom-bar">
+				<div class="user" align="left">
+					<c:choose>
+						<c:when test="${sessionID !=null}">
+							<a href="scraplist" class="btn wishlist"> <i
+								class="fa fa-heart"></i> (${cart_total})
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="login" class="btn wishlist"> <span><i
+									class="fa fa-heart"></i> (0)</span></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<br>
-				<div align="right">
-					<select class="bo_w_select" id="merit" name="merit">
-						<option value="0" selected="selected">선택사항</option>
-						<option value="1">배송비 무료</option>
-						<option value="2">빠른배송</option>
-						<option value="3">추천 업체</option>
-						<option value="4">대폭 할인</option>
-					</select>
+				<div class="user" align="left">
+					<c:choose>
+						<c:when test="${sessionID !=null}">
+							<a href="cart" class="btn wishlist"> <span><i
+									class="fa fa-shopping-cart"></i> (${scrap_total})</span>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="login" class="btn wishlist"> <span><i
+									class="fa fa-shopping-cart"></i> (0)</span></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<br>
-				<div align="right">
-					<input type="submit" value="검색" class="button" onclick="addcategory()">
-				</div>
+			</div>
+			<div align="right">
+				<select class="bo_w_select" id="way" name="way">
+					<option value="0" selected="selected">정렬기준</option>
+					<option value="1">최근등록순</option>
+					<option value="2">낮은가격</option>
+					<option value="3">높은가격</option>
+					<option value="4">리뷰많은순</option>
+					<option value="5">할인율순</option>
+				</select>
+			</div>
+			<br>
+			<div align="right">
+				<select class="bo_w_select" id="merit" name="merit">
+					<option value="0" selected="selected">선택사항</option>
+					<option value="1">배송비 무료</option>
+					<option value="2">빠른배송</option>
+					<option value="3">추천 업체</option>
+					<option value="4">대폭 할인</option>
+				</select>
+			</div>
+			<br>
+			<div align="right">
+				<input type="submit" value="검색" class="button"
+					onclick="addcategory()">
+			</div>
 			<!--  카테고리 시작 -->
 			<div class="row">
 				<div class="col-sm-3">
@@ -447,7 +403,8 @@ input {
 									<div class="choose">
 										<ul>
 											<li><a href="#"><i class="fa fa-plus-square"></i>스크랩하기</a></li>
-											<li><a href="detail?pnum=${listv.pro_num}"><i
+											<li><a
+												href="detail?pro_num=${listv.pro_num}&sel_num=${listv.sel_num}"><i
 													class="fa fa-plus-square"></i>상품 상세보기</a></li>
 											<li><a href="#"><i class="fa fa-plus-square"></i>이
 													상품이 포함된 집들이보기</a></li>
@@ -461,7 +418,6 @@ input {
 				</div>
 			</div>
 		</div>
-		</div>
 	</section>
 	<!-- Back to Top -->
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -469,44 +425,45 @@ input {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="resources/js/scripts.js"></script>
+	<script src="resources/js/store/scripts.js"></script>
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-	<script src="resources/js/jquery.min.js"></script>
-	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/jquery.scrollUp.min.js"></script>
-	<script src="resources/js/price-range.js"></script>
-	<script src="resources/js/jquery.prettyPhoto.js"></script>
-	<script src="resources/js/main.js"></script>
+	<script src="resources/js/store/jquery.min.js"></script>
+	<script src="resources/js/store/jquery.js"></script>
+	<script src="resources/js/store/bootstrap.min.js"></script>
+	<script src="resources/js/store/jquery.scrollUp.min.js"></script>
+	<script src="resources/js/store/price-range.js"></script>
+	<script src="resources/js/store/jquery.prettyPhoto.js"></script>
+	<script src="resources/js/store/main.js"></script>
 	<!-- 정렬 방식 관련 JQuery 시작-->
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/planb/lib/easing/easing.min.js"></script>
-	<script src="resources/planb/lib/slick/slick.min.js"></script>
+	<script src="resources/lib/easing/easing.min.js"></script>
+	<script src="resources/lib/slick/slick.min.js"></script>
 
 	<!-- Template Javascript -->
-	<script src="resources/planb/js/main.js"></script>
+	<script src="resources/js/store/main.js"></script>
 	<!-- 정렬 방식 관련 JQuery 끝-->
 	<script type="text/javascript">
-function addcategory() {
-	var category = getParameterByName("category");
-	console.log(category);
-	var way = document.getElementById("way").value;
-	var merit = document.getElementById("merit").value;
-	var param = "category="+category;
-		param += "&way="+way;
-		param += "&merit="+merit;
-	location.href = "selection?"+param;
-	
-}
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-</script>
+		function addcategory() {
+			var category = getParameterByName("category");
+			console.log(category);
+			var way = document.getElementById("way").value;
+			var merit = document.getElementById("merit").value;
+			var param = "category=" + category;
+			param += "&way=" + way;
+			param += "&merit=" + merit;
+			location.href = "selection?" + param;
+
+		}
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex
+					.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1]
+					.replace(/\+/g, " "));
+		}
+	</script>
 </body>
 </html>
