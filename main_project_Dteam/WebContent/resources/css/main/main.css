@@ -1,0 +1,108 @@
+/* 메인페이지 css ==================================================================*/
+
+/* 이미지 위에 마우스 올리면 확대 효과 */
+
+img.main_pro_thumb  {
+	transition: all 0.2s linear;
+}
+
+img.main_pro_thumb:hover  {
+	transform: scale(1.1);
+}	
+
+
+/* 메인페이지 캡션 css */
+
+.main-item .main-caption {
+  padding: 1rem;
+  text-align: left;
+  background-color: #fff;
+}
+
+p.main-caption-seller {
+	font-family: "NANUMSQUARE_ACR";
+	font-size: 12px;
+	font-weight: 500;
+	color: #999999;
+	line-height: 1;
+	margin-bottom: 0.5rem;
+}
+
+p.main-caption-name {
+	font-family: "NANUMSQUARE_ACR";
+	font-size: 14px;
+	font-weight: 600;
+	color: #555555;
+	line-height: 1.3;
+	margin-bottom: 0.5rem;
+}
+
+span.main-caption-discount {
+	color:#428bca; 
+	margin-right: 1rem;
+	font-weight: 600;
+}
+
+span.main-caption-price {
+	color:#111111; 
+	font-weight: 600;
+}
+
+/* 인기 키워드 상품 */
+img.keyword-item {
+	position: absolute; 
+	border-radius: 1rem; 
+	opacity: 0.8; 
+	filter: brightness(0.5);
+}
+
+h5.keyword-item {
+	color: #ffffff; 
+	text-shadow: 1px 1px 1px gray; 
+	font-family: "NanumGothic-Bold";
+}
+
+/* 베스트 상품 섹션*/
+
+a.main-best-li-a {
+	color: #555555; 
+	padding: 0.5rem 0.7rem;
+}
+
+.rank-badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  z-index: 10;
+}
+
+.rank-badge:empty {
+  display: none;
+}
+
+.btn .rank-badge {
+  position: relative;
+  top: -1px;
+}
+
+
+/* 이번 주 인기 집들이글 */
+p.main-best-hwarm {
+	margin-top: 0.5rem; 
+	margin-bottom: 1rem; 
+	font-size: 15px;
+}
+
+img.main-hwarm-img {
+	width: 2rem; 
+	height: 2rem; 
+	border-radius: 1rem; 
+	margin-right: 1rem;
+}
