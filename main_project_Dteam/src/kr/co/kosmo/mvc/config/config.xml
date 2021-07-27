@@ -13,6 +13,8 @@
 		<typeAlias type="kr.co.kosmo.mvc.vo.OrderListVO" alias="ordvo" /> <!-- 주문내역 -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.SearchLogVO" alias="slogvo"/> <!-- 검색로그 -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.InterestVO" alias="intvo"/> <!-- 조회 -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.HousewarmingVO" alias="houvo"/><!-- 집들이(개요) -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.HousedetailVO" alias="hwdvo"/><!-- 집들이(상세) -->
 	</typeAliases>
 	<!-- Spring이 environments, environment, transactionManager, dataSource, 
 		mapper등을 자동적으로 관리해줌 -->

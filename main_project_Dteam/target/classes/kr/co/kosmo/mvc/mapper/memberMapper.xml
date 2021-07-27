@@ -17,4 +17,13 @@
 	<select id="idchk" parameterType="String" resultType="int">
 		select COUNT(*) cnt from member where mem_id = #{mem_id}
 	</select>
+	
+	<!-- 홍영의: 회원번호를 바탕으로 회원 아이디 반환 받음 -->
+	<select id="getMemberID" parameterType="int" resultType="String">
+		select mem_id from member where mem_num=#{mem_num}
+	</select>
+	<!-- 홍영의: 회원번호를 바탕으로 회원 프로필 이미지 반환 받음 -->
+	<select id="getMemberProfile" parameterType="int" resultType="String">
+		select mem_profile from member where mem_num=#{mem_num}
+	</select>
 </mapper>

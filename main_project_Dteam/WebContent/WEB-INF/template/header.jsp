@@ -12,7 +12,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="store">스토어</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">커뮤니티</a></li>
+                        <li class="nav-item"><a class="nav-link" href="community">집들이</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">질문과 답변</a></li>
                         <li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>                        
                     </ul>
                     <input type="text" class="nav-search-box" placeholder="통합검색">

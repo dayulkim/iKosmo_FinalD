@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="housewarming">
+
+	<!--================================ 1) 집들이 입력 관련 mapper (홍영의) ================================ -->
+
+	<!-- 집들이글 개요 입력 -->
+	<insert id="insertHwarm" parameterType="houvo">
+		insert into housewarming
+		(hou_num, hou_name, hou_thumb, hou_type, hou_space, hou_how, hou_sector, hou_style, hou_period, hou_pay,
+		hou_tone, hou_rdate, mem_num)
+		values (housewarming_seq.nextVal, #{hou_name}, #{hou_thumb},
+		#{hou_type},#{hou_space},#{hou_how},#{hou_sector},#{hou_style},#{hou_period},#{hou_pay},
+		#{hou_tone},sysdate,#{mem_num})
+	</insert>
+
+	<!-- 집들이글 상세내용 입력 -->
+	<insert id="insertHousedetail" parameterType="hwdvo">
+		<selectKey keyProperty="hou_num" resultType="int"
+			order="BEFORE">
+			select housewarming_seq.currVal from dual
+		</selectKey>
+		<foreach collection="list" item="e" separator=" "
+			open="insert all" close="select * from dual">
+			into housedetail VALUES (#{hou_num},
+			'${e.hwd_content}','${e.hwd_photo}',
+			'${e.hwd_tag}')
+		</foreach>
+	</insert>
+
+	<!-- 팝업창에서 검색한 단어를 포함하는 상품 리스트 반환 -->
+	<select id="suggestProduct" parameterType="String" resultType="provo">
+		select pro_num, pro_name, pro_thumb from product
+		where (select replace(lower(pro_name),' ','') from dual) like '%'||#{pro_name}||'%' and 5 >= rownum
+		order by pro_review	desc
+	</select>
+
+	<!--================================ 2) 집들이 리스트 출력 관련 mapper (신규철) ================================ -->
+
+
+	<resultMap type="memvo" id="memvo">
+		<id property="mem_num" column="mem_num" javaType="int" />
+		<result column="mem_nickname" property="mem_nickname" />
+		<result column="mem_profile" property="mem_profile" />
+	</resultMap>
+
+	<resultMap type="houvo" id="houvo">
+		<id property="hou_num" column="hou_num" javaType="int" />
+		<result column="hou_name" property="hou_name" />
+		<result column="hou_content" property="hou_content" />
+		<result column="hou_thumb" property="hou_thumb" />
+		<result column="hou_photo" property="hou_photo" />
+		<result column="hou_rdate" property="hou_rdate" />
+		<result property="hou_num" column="hou_num" javaType="int" />
+		<result property="hou_type" column="hou_type" javaType="int" />
+		<result property="hou_space" column="hou_space" javaType="int" />
+		<result property="hou_how" column="hou_how" javaType="int" />
+		<result property="hou_style" column="hou_style" javaType="int" />
+		<result property="hou_period" column="hou_period"
+			javaType="int" />
+		<result property="hou_pay" column="hou_pay" javaType="int" />
+		<result property="hou_tone" column="hou_tone" javaType="int" />
+		<result property="hou_hit" column="hou_hit" javaType="int" />
+		<result property="hou_scrap" column="hou_scrap" javaType="int" />
+		<result property="mem_num" column="mem_num" javaType="int" />
+		<collection property="memvo" resultMap="memvo" />
+	</resultMap>
+
+
+	<select id="filter" resultMap="houvo" parameterType="hashmap">
+		select h.hou_num, h.hou_name, h.hou_thumb, h.hou_type, h.hou_space, h.hou_how,
+		h.hou_sector,
+		h.hou_style, h.hou_period, h.hou_pay, h.hou_tone, hou_rdate,
+		h.hou_hit, m.mem_num, m.mem_nickname, m.mem_profile
+		from housewarming h, member m
+		<where>
+			h.mem_num = m.mem_num
+			<choose>
+				<when test="hou_type == 1">
+					and hou_type = 1
+				</when>
+				<when test="hou_type == 2">
+					and hou_type = 2
+				</when>
+			</choose>
+			<choose>
+				<when test="hou_space == 1">
+					and hou_space between 10 and 19
+				</when>
+				<when test="hou_space == 2">
+					and hou_space between 20 and 29
+				</when>
+				<when test="hou_space == 3">
+					and hou_space between 30 and 39
+				</when>
+				<when test="hou_space == 4">
+					and hou_space between 40 and 49
+				</when>
+				<when test="hou_space == 5">
+					and hou_space >= 50
+				</when>
+			</choose>
+			<choose>
+				<when test="hou_pay == 1">
+					<!-- XML에서는 < 부등호를 TAG로 인식하기 때문에 Query안에 사용되고 있는 부등호가 문자열이라것을 의미하게 <![CDATA[ 
+						내용 ]]> "으로 감싸준다 -->            
+             <![CDATA[                         
+               and hou_pay < 100
+               ]]>
+				</when>
+				<when test="hou_pay == 2">
+					and hou_pay between 100 and 199
+				</when>
+				<when test="hou_pay == 3">
+					and hou_pay between 100 and 199
+				</when>
+				<when test="hou_pay == 4">
+					and hou_pay between 100 and 199
+				</when>
+				<when test="hou_pay == 5">
+					and hou_pay between 100 and 199
+				</when>
+				<when test="hou_pay == 6">
+					and hou_pay between 100 and 199
+				</when>
+				<when test="hou_pay == 7">
+					and hou_pay > 500
+				</when>
+			</choose>
+			<choose>
+				<when test="hhow == 1">
+					and hou_how = 1
+				</when>
+				<when test="hhow == 2">
+					and hou_how = 2
+				</when>
+				<when test="hhow == 3">
+					and hou_how = 3
+				</when>
+			</choose>
+			<choose>
+				<when test="hou_style == 1">
+					and hou_style = 1
+				</when>
+				<when test="hou_style == 2">
+					and hou_style = 2
+				</when>
+				<when test="hou_style == 3">
+					and hou_style = 3
+				</when>
+				<when test="hou_style == 4">
+					and hou_style = 4
+				</when>
+				<when test="hou_style == 5">
+					and hou_style = 5
+				</when>
+				<when test="hou_style == 6">
+					and hou_style = 6
+				</when>
+				<when test="hou_style == 7">
+					and hou_style = 7
+				</when>
+				<when test="hou_style == 8">
+					and hou_style = 8
+				</when>
+				<when test="hou_style == 9">
+					and hou_style = 9
+				</when>
+				<when test="hou_style == 10">
+					and hou_style = 10
+				</when>
+			</choose>
+			<choose>
+				<when test="hou_tone == 1">
+					and hou_tone = 1
+				</when>
+				<when test="hou_tone == 2">
+					and hou_tone = 2
+				</when>
+				<when test="hou_tone == 3">
+					and hou_tone = 3
+				</when>
+				<when test="hou_tone == 4">
+					and hou_tone = 4
+				</when>
+				<when test="hou_tone == 5">
+					and hou_tone = 5
+				</when>
+				<when test="hou_tone == 6">
+					and hou_tone = 6
+				</when>
+				<when test="hou_tone == 7">
+					and hou_tone = 7
+				</when>
+				<when test="hou_tone == 8">
+					and hou_tone = 8
+				</when>
+				<when test="hou_tone == 9">
+					and hou_tone = 9
+				</when>
+				<when test="hou_tone == 10">
+					and hou_tone = 10
+				</when>
+			</choose>
+		</where>
+		<choose>
+			<when test="hou_order == 1">
+				order by hou_rdate desc
+			</when>
+			<when test="hou_order == 2">
+				order by hou_hit desc
+			</when>
+			<when test="hou_order == 3">
+				order by hou_rdate asc
+			</when>
+			<otherwise>
+				order by hou_rdate desc
+			</otherwise>
+		</choose>
+	</select>
+
+	<!--================================ 3) 집들이 상세보기 관련 mapper (홍영의) ================================ -->
+
+	<!-- 집들이글의 개요 반환 -->
+	<select id="selectHwarm" parameterType="int" resultType="houvo">
+		select
+		hou_num, hou_name, hou_type, hou_space, hou_how, hou_sector,
+		hou_style, hou_period,
+		hou_pay, hou_tone, to_char(hou_rdate, 'yyyy"년
+		"mm"월 "dd"일"') "hou_rdate",
+		hou_hit, mem_num from housewarming where
+		hou_num = #{hou_num}
+	</select>
+
+	<!-- 집들이글의 상세정보 반환 -->
+	<select id="selectHousedetail" parameterType="int"
+		resultType="hwdvo">
+		select * from housedetail where hou_num = #{hou_num}
+	</select>
+
+	<!-- 태그된 상품들의 썸네일 사진 반환 -->
+	<select id="taggedProduct" parameterType="int"
+		resultType="String">
+		select pro_thumb from product where pro_num=#{pro_num}
+	</select>
+
+	<!-- 집들이글 좋아요 상태 반환 -->
+	<select id="hwarmLikeStatus" parameterType="hashmap"
+		resultType="int">
+		select count(*) cnt from hwarm_like where
+		hou_num=#{hou_num} and mem_num=#{mem_num}
+	</select>
+
+	<!-- 집들이글 좋아요 입력 -->
+	<insert id="insertHwarmLike" parameterType="hashmap">
+		insert into
+		hwarm_like values (#{hou_num},#{mem_num},sysdate)
+	</insert>
+
+	<!-- 집들이글 좋아요 취소 -->
+	<delete id="delHwarmLike" parameterType="hashmap">
+		delete from hwarm_like
+		where hou_num=#{hou_num} and mem_num=#{mem_num}
+	</delete>
+
+	<!-- 집들이글 스크랩 상태 반환 -->
+	<select id="hwarmScrapStatus" parameterType="hashmap"
+		resultType="int">
+		select count(*) cnt from scrap_house where
+		hou_num=#{hou_num} and mem_num=#{mem_num}
+	</select>
+
+	<!-- 집들이글 스크랩 입력 -->
+	<insert id="insertHwarmScrap" parameterType="hashmap">
+		insert into
+		scrap_house values (scrap_house_seq.nextVal, #{hou_num},#{mem_num})
+	</insert>
+
+	<!-- 집들이글 스크랩 취소 -->
+	<delete id="delHwarmScrap" parameterType="hashmap">
+		delete from scrap_house
+		where hou_num=#{hou_num} and mem_num=#{mem_num}
+	</delete>
+
+</mapper>

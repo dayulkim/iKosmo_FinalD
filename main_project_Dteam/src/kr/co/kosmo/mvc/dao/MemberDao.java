@@ -25,4 +25,16 @@ public class MemberDao implements MemberDaoInter { // 오원석
 		return ss.selectOne("member.idchk", id);
 	}
 
+	// 홍영의 : 집들이 부분에서 사용되는 코드 ---------------------------------
+	
+	@Override
+	public String getMemberID(int mem_num) {
+		return ss.selectOne("member.getMemberID", mem_num);
+	}
+
+	@Override
+	public String getMemberProfile(int mem_num) {
+		return ss.selectOne("member.getMemberProfile", mem_num);
+	}
+
 }

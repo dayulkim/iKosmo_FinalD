@@ -1,0 +1,361 @@
+@charset "UTF-8";
+/* 집들이 설문항목 css 시작----------------------- */
+
+input#hou_name {
+	border:none; 
+	font-size: 25px;
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	color: #1c1c1c;
+}
+
+div.hwrite_collapse_header {
+	height: 2rem;
+}
+
+a.hwrite_collapse_btn {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	outline: 0;	
+	font-size: 20px;
+    font-weight: 800;
+    background-color: transparent;
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	text-decoration: none;
+	color: #1c1c1c;
+}
+
+@media (min-width: 768px) {
+	.editor-section {
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 1.5rem;
+	    border-radius: 4px;
+	    border: 1px solid #dadce0;
+	    background-color: #fff;
+	    box-shadow: 0 2px 4px 0 rgba(234,235,239,.8);
+	    max-width: 900px;
+	    justify-content: center;
+	    padding: 2rem;
+	    text-align: center;
+	}		
+}
+
+@media (min-width: 768px) {
+	.editor-title-section {
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 3rem;
+	    border-bottom: 1px solid #dadce0;
+	    background-color: #fff;
+	    box-shadow: 0 2px 4px 0 rgba(234,235,239,.8);
+	    max-width: 900px;
+	    padding: 2rem;
+	}		
+}
+
+.editor-form-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
+    padding: 12px 0;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.editor-form-group__label{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0.03 0 auto;
+    margin-left: 5rem;
+    padding: 8px 0;
+    width: 80px;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 24px;
+    color: #292929;
+    word-break: keep-all;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.editor-form-group__content {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 0.8 0 0px;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+input:checked + label{
+    font-size: 14px;
+}
+
+.custom-radios div {
+	display: inline-block;
+}
+
+.custom-radios input[type="radio"] {
+	display: none;
+}
+
+.custom-radios input[type="radio"] + label {
+      color: #333;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+}
+
+
+
+.custom-radios input[type="radio"] + label span {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin: -1px 4px 0 0;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+        line-height: 44px;
+}
+
+.custom-radios input[type="radio"] + label img {
+        opacity: 0;
+        transition: all 0.3s ease;
+}
+
+.custom-radios input[type="radio"]:checked + label span img {
+	opacity: 1;
+}
+  
+.left-box {
+  width: 50%;
+}
+.right-box {
+  width: 50%;
+}
+
+.image-container {
+	position: relative;
+}
+
+.file-input-image {
+	position: absolute;
+	top: 50%;
+	left: 35%;
+}
+
+.file-input-button {
+	display: hidden;
+	src: "resources/assets/img/file_upload_button.png";
+	width: 60%;
+	position: absolute;
+	top: 40%;
+	left: 20%;
+}
+
+a.upload-file-btn {
+	margin-top: 1rem;
+    padding: 0;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: stretch;
+    justify-content: center;
+    color: #fff;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-radius: .5rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-decoration: none;
+}
+
+.upload-file-btn-span {
+    background: rgba(0,0,0,.15);
+    display: inline-block;
+    padding: .375rem .75rem;
+    color: rgba(255,255,255,1)!important;
+}
+
+.hwd_content_list {
+	border:none;
+	resize:none;
+	padding: 1rem;
+/* 	width: 25rem;  */
+/* 	height: 29rem;  */
+/* 	word-break: break-all; */
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.hwd_content_list:focus {
+	outline:none;
+}
+
+button.hwarm-submit-btn {
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+	border: 0;
+	outline: 0;	
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 1.2rem;
+	font-weight: 800;
+	color: #ffffff;
+	border-radius: 3rem;
+	background-color: #3b5998;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	margin-top: 2rem;
+}
+
+/* 집들이 팝업창 css */
+img.hwarm-search-button {	
+	width: 1.5rem;
+	margin-top: 0.8rem;
+	margin-left: 0.5rem;
+}
+input.hwarm-search-box {
+	width:80%;
+	height: 3rem;
+	border-radius: 3rem;
+	border: none;
+	background-color: #f5f5f5;
+	padding-left: 1.2rem;
+	padding-right: 0.9rem;
+	padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 0.9rem;
+	color: #777777;
+}
+
+input.hwarm-search-box:focus {
+	outline:none;
+}
+
+div.hwarm-search-div {
+	display: flex;
+	justify-content: center;
+}
+
+img.suggestIMG {
+	width: 4rem;
+	height: 4rem;
+}
+
+td.suggestProNameTd {
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 0.9rem;
+	font-weight: 600;
+	width: 16rem;
+	
+}
+
+a.suggestProNameA {
+	color: #555555;
+	text-decoration: none;
+}
+
+table.suggestTable {
+	margin: auto;
+	text-align: left;
+	vertical-align: center;
+	width: 18rem;
+	margin-top: 1rem;
+}
+
+/* 집들이글 상세보기 */
+
+div.sidebar {
+	position: fix;
+	top:0;
+	width: 25%;
+}
+
+.hwarm_info_table {
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 0.9rem;
+	color: #333333;
+}
+
+table.hwarm_info_table{
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+tr.hwarm_info_table {
+	height: 4rem;
+	padding-left: 0.5rem;
+}
+
+button.hwarm-cancle-btn {
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+	border: 0;
+	outline: 0;	
+	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 1rem;
+	font-weight: 400;
+	color: #ffffff;
+	border-radius: 0.4rem;
+	width: 3rem;
+	background-color: #999999;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+
+}
+/* 집들이 설문항목 css 끝 ----------------------- */
+
+
+/* 집들이글 상세보기 css */
+button.hdetail-btn {
+	color: #555555; 
+	font-size: 1.5rem; 
+	border-radius: 100%; 
+	width:3rem; 
+	height: 3rem; 
+	border: 0.5px solid #cccccc; 
+	background-color: #FFFFFF;
+	margin: 0.3rem;
+	display: inline-block;
+}
+
+img.tagged_pro_thumb:hover {
+	box-shadow: 1px 1px 2px grey;
+}
+
+/* 이번 주 인기 집들이글 */
+p.main-best-hwarm {
+	margin-top: 0.5rem; 
+	margin-bottom: 1rem; 
+	font-size: 15px;
+}
+
+img.main-hwarm-img {
+	width: 2rem; 
+	height: 2rem; 
+	border-radius: 1rem; 
+	margin-right: 1rem;
+}
