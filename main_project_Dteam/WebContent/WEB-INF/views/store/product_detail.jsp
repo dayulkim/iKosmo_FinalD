@@ -311,6 +311,7 @@
 								<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
 							</tr>
 						</table>
+
 					</div>
 					<div id="panel5" class="panel">
 						<div class="footer">
@@ -444,6 +445,4 @@
 							}
 						});
 	</script>
-</body>
 
-</html>

@@ -213,10 +213,10 @@ public class ProductController { // 김다율
 		String st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);
 
-		// 리뷰 탭  (페이징처리) - 이재영
 		pvo.setPro_num(pro_num);
 		int total = reviewDao.getTotalReviewCount(pvo);
 
+		// 페이징처리
 		pvo = new PageVO(total, nowPage, cntPerPage, pro_num, sortType1);
 		System.out.println("소트" + pvo.getSortType1());
 		System.out.println("넘버" + pvo.getPro_num());
