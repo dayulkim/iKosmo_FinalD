@@ -112,10 +112,10 @@
 				<li data-panel="panel2">리뷰</li>
 				<li data-panel="panel3">문의</li>
 				<li data-panel="panel4">배송/환불</li>
-				<li data-panel="panel5">추천</li>
+				<li data-panel="panel5">추천상품</li>
 			</ul>
 			<div id="panel1" class="panel active">
-				상품정보를 넣어주세요<br /> <img src="${provo.pro_detail }" alt="상세 이미지"
+				상품정보 이미지 <br /> <img src="${provo.pro_detail }" alt="상세 이미지"
 					width="50%" height="50%" align="center" border="0"> <br />
 			</div>
 			<div id="panel2" class="panel">
@@ -184,9 +184,57 @@
 
 				</div>
 			</div>
-			<div id="panel3" class="panel">문의
-				asdfasdfasdfasdfasdfs</div>
-			<div id="panel4" class="panel">배송/환불</div>
+			<div id="panel3" class="panel">
+				<h6>문의 (판매자 정보)</h6>
+				<br />
+				<div class="container">
+					<div class="text-center py-5">
+						<table style="text-align: left;" border="1">
+							<tr>
+								<td>업체명 :</td>
+								<td>&nbsp;&nbsp;${selvo.sel_name}</td>
+							</tr>
+							<tr>
+								<td>문의전화 :</td>
+								<td>&nbsp;&nbsp;${selvo.sel_tel}</td>
+							</tr>
+							<tr>
+								<td>주소 :</td>
+								<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
+							</tr>
+							<tr>
+								<td>등급 :</td>
+								<td>&nbsp;&nbsp;${selvo.sel_grade}</td>
+							</tr>
+						</table>
+
+					</div>
+					<input type="hidden" id="selname" value="${selvo.sel_name}">
+					<input type="hidden" id="addr" value="${selvo.sel_addr}">
+					<div id="map" style="width: 500px; height: 400px;"></div>
+					<br>
+				</div>
+			</div>
+			<div id="panel4" class="panel">
+				<h6>배송 및 환불에 관한 사항</h6>
+				<br />배송비는 ${provo.pro_delivery }원이며, 50,000원 이상 구매 시 무료입니다.<br />
+				예상 배송기간은 ${provo.pro_period }일 입니다. <br /> 환불에 관한 사항은 문의자에게 연락주세요.
+				<br /> <br />
+				<table style="text-align: left;" border="1">
+					<tr>
+						<td>업체명 :</td>
+						<td>&nbsp;&nbsp;${selvo.sel_name}</td>
+					</tr>
+					<tr>
+						<td>문의전화 :</td>
+						<td>&nbsp;&nbsp;${selvo.sel_tel}</td>
+					</tr>
+					<tr>
+						<td>주소 :</td>
+						<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
+					</tr>
+				</table>
+			</div>
 			<div id="panel5" class="panel">
 				<div class="footer">
 					<ul class="items">
@@ -254,4 +302,53 @@
 				alert("판매자 정보 map 출력 실패");
 			}
 		})
+	</script>
+	<!-- kakaomap api -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
+	<script>
+		// 세연님 담당 카카오지도 API
+		var container = document.getElementById('map'); //지도 표시 div
+
+		var options = {
+			center : new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
+			level : 3
+		//지도의 확대 레벨
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		var addr = document.getElementById('addr').value;
+		var selname = document.getElementById('selname').value;
+
+		geocoder
+				.addressSearch(
+						addr,
+						function(result, status) {
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y,
+										result[0].x);
+
+								// 결과값으로 받은 위치를 마커로 표시
+								var marker = new kakao.maps.Marker({
+									map : map,
+									position : coords
+								});
+
+								// 인포윈도우로 장소에 대한 설명을 표시		        
+								var infowindow = new kakao.maps.InfoWindow(
+										{
+											content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
+													+ selname + '</div>'
+										});
+								infowindow.open(map, marker);
+
+								// 지도의 중심을 결과값으로 받은 위치로 이동
+								map.setCenter(coords);
+							}
+						});
 	</script>

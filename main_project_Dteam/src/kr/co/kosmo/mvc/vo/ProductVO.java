@@ -17,8 +17,9 @@ public class ProductVO {
 //			constraint product_sel_num_fk foreign key(sel_num) references seller(sel_num)
 //			);-- 외래키로 업체 테이블 참조
 	private int pro_num, pro_price, pro_discount, pro_delivery, pro_period, sel_num;
-	private String pro_name, pro_category, pro_thumb, pro_photo, pro_detail, pro_rdate;
+	private String pro_category, pro_name, pro_thumb, pro_photo, pro_detail, pro_rdate;
 	private int pro_sellprice; // mapper에서 pro_price * ((100-pro_discount)/100) = pro_sellprice
+	
 	private OrderListVO orderListVO;
 
 	public OrderListVO getOrderListVO() {

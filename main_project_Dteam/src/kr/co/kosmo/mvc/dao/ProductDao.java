@@ -15,7 +15,6 @@ public class ProductDao implements ProductDaoInter { // ±Ë¥Ÿ¿≤
 
 	@Override
 	public List<ProductVO> productList() {
-
 		return ss.selectList("product.productList");
 
 	}

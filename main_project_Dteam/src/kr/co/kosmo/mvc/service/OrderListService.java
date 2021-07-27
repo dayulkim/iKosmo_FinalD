@@ -15,19 +15,7 @@ public class OrderListService {
 	@Autowired
 	private OrderListDaoInter orderListDaoInter;
 	
-//	public List<OrderListVO> orderList(int mem_num) {
-//		return orderListDaoInter.orderList(mem_num);
-//	}
-	
 	public List<OrderListVO> orderListii(int mem_num) {
 		return orderListDaoInter.orderListii(mem_num);
 	}
-
-//	public OrderListVO getOrderOne(int ord_num) {
-//		return orderListDaoInter.orderDetail(ord_num);
-//	}
-	
-	
-	
-
 }
