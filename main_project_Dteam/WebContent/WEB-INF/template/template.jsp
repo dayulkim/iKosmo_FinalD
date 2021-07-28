@@ -26,6 +26,8 @@
     <script src="resources/js/jquery/jquery-3.6.0.js"></script>
     <script src="resources/js/jquery/jquery-ui.js"></script>
     <script src="resources/js/jquery/jquery-1.11.1.min.js"></script>
+    <!-- js -->
+    <script src="resources/js/httpRequest.js"></script>
 </head>
 <body>
 <div id="page-top">
