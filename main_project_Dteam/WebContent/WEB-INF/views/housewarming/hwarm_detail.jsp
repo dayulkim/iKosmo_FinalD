@@ -42,7 +42,9 @@
 	                         	<!-- 태그된 상품 사진 -->
 	                         	<c:forEach var="pro_thumb" items="${e.hwd_tag_photo }" varStatus="i">
 	                         		<c:if test="${pro_thumb ne 'none'}">
-	                         			<img class="img-fluid rounded tagged_pro_thumb" src="${pro_thumb }" alt="..." style="width:20%;"/>
+	                         			<a href="">
+	                         				<img class="img-fluid rounded tagged_pro_thumb" src="resources/assets/img/product/${pro_thumb }" alt="..." style="width:20%;"/>
+	                         			</a>
 	                         		</c:if>
 	                         	</c:forEach>
 	                        </c:forEach>
