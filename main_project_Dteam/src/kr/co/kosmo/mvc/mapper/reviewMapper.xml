@@ -4,34 +4,67 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
-
-
-	<select id="reviewList" resultType="revvo" parameterType="pvo">
-		select * from
-		(select rownum r_num, a.* from
-		(select * from review
+	<!-- 페이징처리를 위한 선택한 물품번호 정보 받아오는 sql -->
+	<select parameterType="pvo" resultType="revvo" id="reviewList">
+		select * from(select rownum r_num, a.* from(select * from review
 		<where>
-			<choose>
-
-				<when test="sortType1 == 0">
-					pro_num=#{pro_num} order by rev_rdate desc)
-				</when>
-
-				<when test="sortType1 == 1">
-					pro_num=#{pro_num} order by rev_star desc)
-				</when>
-
-			</choose>
+			pro_num=#{pro_num}
+			<if test="sortType1 == 1">order by rev_star desc) </if>
+			<if test="sortType1 != 1">
+				<!-- sortType==0은 어짜피 최신순 정렬이라 제거함 -->
+				<choose>
+					<when test="sortType1 == 2">and REV_STAR=5 </when>
+					<when test="sortType1 == 3">and REV_STAR=4 </when>
+					<when test="sortType1 == 4">and REV_STAR=3 </when>
+					<when test="sortType1 == 5">and REV_STAR=2 </when>
+					<when test="sortType1 == 6">and REV_STAR=1 </when>
+				</choose>
+				order by REV_RDATE desc)
+			</if>
 		</where>
 		a)where r_num between #{start} and #{end}
 	</select>
-
-	<select id="totalCnt" resultType="int" parameterType="pvo">
-
-		select
-		count(*) cnt from review where pro_num=#{pro_num}
+	<!-- 페이징처리를 위한 선택한 물품번호 정보 받아오는 sql -->
+	<!-- 페이징처리를 위한 선택한 물품번호 갯수 받아오는 쿼리 -->
+	<select parameterType="pvo" resultType="int" id="totalCnt">
+		selectcount(*) cnt from review
+		<where>
+			pro_num=#{pro_num}
+			<if test="sortType1>1">
+				and REV_STAR=
+				<choose>
+					<when test="sortType1==2">5 </when>
+					<when test="sortType1==3">4 </when>
+					<when test="sortType1==4">3 </when>
+					<when test="sortType1==5">2 </when>
+					<when test="sortType1==6">1 </when>
+				</choose>
+			</if>
+		</where>
+		order by REV_RDATE desc
 	</select>
-
+	<!-- 페이징처리를 위한 선택한 물품번호 갯수 받아오는 쿼리 -->
+	<!-- 리뷰작성 Insert 쿼리 -->
+	<!-- 회원번호 상품번호 아직 미적용 -->
+	<!-- 회원번호 상품번호 아직 미적용 -->
+	<!-- 회원번호 상품번호 아직 미적용 -->
+	<select parameterType="revvo" id="addReview">insert into
+		reviewvalues(review_seq.nextVal,#{rev_content},#{rev_photo},#{rev_period},#{rev_color},#{rev_star},sysdate,1,1)
+	</select>
+	<!-- 회원번호 상품번호 아직 미적용 -->
+	<!-- 회원번호 상품번호 아직 미적용 -->
+	<!-- 회원번호 상품번호 아직 미적용 -->
+	<!-- 리뷰작성 Insert 쿼리 -->
+	<!-- 최근 제일 7일동안 리뷰가 제일 많은 상품 -->
+	<select parameterType="int" resultType="int" id="revRecommend">
+		select pro_num from(select pro_num, count(pro_num)from review
+		<where>
+			rev_rdate > (sysdate-7) group by pro_num order by
+			<if test="recommend==0">count(pro_num) </if>
+			<if test="recommend==1">avg(pro_num) </if>
+		</where>
+		desc )where rownum between 1 and 4
+	</select>
 
 </mapper>
 

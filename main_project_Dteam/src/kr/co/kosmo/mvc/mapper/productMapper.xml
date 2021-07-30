@@ -185,4 +185,14 @@
 	<select id="productstar" parameterType="int" resultType="String">
 		select avg(nvl(rev_star,0)) rev_star from review where pro_num=#{pro_num}
 	</select>
+	
+	<!-- 이재영: 서제스트용 -->
+	<select id="suggestProductList" resultType="provo">
+		select * from product
+	</select>
+
+	<!-- 이재영: 상춤 추천 -->
+	<select parameterType="int" id="recommendProduct" resultType="provo">
+		select pro_num,pro_name , PRO_THUMB from product where pro_num=${result} 
+	</select>
 </mapper>

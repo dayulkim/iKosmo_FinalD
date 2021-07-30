@@ -5,15 +5,17 @@ public class PageVO {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
 
-
 	private int sortType1;
 	private int sortType2;
 	private int pro_num;
 
+	// 정재윤: 검색과 관련된 property를 등록
+	private String searchType, searchValue;
+
 	public PageVO() {
 
 	}
-	
+
 	public int getSortType1() {
 		return sortType1;
 	}
@@ -38,8 +40,22 @@ public class PageVO {
 		this.pro_num = pro_num;
 	}
 
+	public String getSearchType() {
+		return searchType;
+	}
 
-	
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
+
 	public PageVO(int total, int nowPage, int cntPerPage, int pro_num, int sortType1) {
 		this.nowPage = nowPage;
 		this.cntPerPage = cntPerPage;
@@ -51,7 +67,6 @@ public class PageVO {
 		memberStartEnd(nowPage, cntPerPage);
 	}
 
-
 	public PageVO(int total, int nowPage, int cntPerPage) {
 		this.nowPage = nowPage;
 		this.cntPerPage = cntPerPage;
@@ -60,7 +75,6 @@ public class PageVO {
 		memberStartEndPage(nowPage, cntPage);
 		memberStartEnd(nowPage, cntPerPage);
 	}
-
 
 	// 페이지 계산 메서드 ==================================================================
 	// 제일 마지막 페이지 계산
@@ -85,8 +99,6 @@ public class PageVO {
 		end = nowPage * cntPerPage;
 		start = end - cntPerPage + 1;
 	}
-
-	
 
 	public int getNowPage() {
 		return nowPage;
@@ -160,8 +172,28 @@ public class PageVO {
 		this.cntPage = cntPage;
 	}
 
+	// 정재윤 ==================================================
+	// 검색을 위한 생성자 정의
+	public PageVO(int total, int nowPage, int cntPerPage, String searchType, String searchValue) {
+		this.nowPage = nowPage;
+		this.cntPerPage = cntPerPage;
+		this.total = total;
+		this.searchType = searchType;
+		this.searchValue = searchValue;
+		memberLastPage(total, cntPerPage);
+		memberStartEndPage(nowPage, cntPage);
+		memberStartEnd(nowPage, cntPerPage);
+	}
 
-
-
+	// 검색을 위한 생성자 정의
+	public PageVO(int total, int nowPage, int cntPerPage, String searchType) {
+		this.nowPage = nowPage;
+		this.cntPerPage = cntPerPage;
+		this.total = total;
+		this.searchType = searchType;
+		memberLastPage(total, cntPerPage);
+		memberStartEndPage(nowPage, cntPage);
+		memberStartEnd(nowPage, cntPerPage);
+	}
 
 }

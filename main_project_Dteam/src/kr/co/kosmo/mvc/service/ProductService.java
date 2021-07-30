@@ -73,6 +73,16 @@ public class ProductService implements ProductServiceInter{
 	public String productStar(int pro_num) {
 		return productDaoInter.productStar(pro_num);
 	}
+	
+	@Override
+	public List<ProductVO> suggestProductList() {
+		return productDaoInter.suggestProductList();
+	}
+
+	@Override
+	public ProductVO recommendPro(int result) {
+		return productDaoInter.recommendPro(result);
+	}
 
 
 

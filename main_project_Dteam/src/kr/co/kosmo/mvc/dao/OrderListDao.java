@@ -18,5 +18,9 @@ public class OrderListDao implements OrderListDaoInter { // ±Ë¥Ÿ¿≤
 	public List<OrderListVO> orderListii(int mem_num) {
 		return ss.selectList("orderList.orderListii", mem_num);
 	}
+	@Override
+	public List<Integer> ordRecommend() {
+				return ss.selectList("orderList.ordRecommend");
+	}
 
 }

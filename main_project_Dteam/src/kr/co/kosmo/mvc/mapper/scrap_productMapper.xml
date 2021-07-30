@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scarp_Product">
+	<select id="recommend" resultType="int">
+		select pro_num from (
+		select pro_num,count(pro_num) from (
+		select pro_num FROM SCRAP_PRODUCT ORDER BY scr_num DESC
+		) where rownum between 1 and 1000 group by pro_num
+		)
+		where rownum between 1 and 4
+	</select>
+
+</mapper>
