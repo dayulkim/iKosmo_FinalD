@@ -10,12 +10,18 @@ import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
 @Service
-public class OrderListService {
+public class OrderListService implements OrderListServiceInter {
 	
 	@Autowired
 	private OrderListDaoInter orderListDaoInter;
 	
+	@Override
 	public List<OrderListVO> orderListii(int mem_num) {
 		return orderListDaoInter.orderListii(mem_num);
+	}
+	
+	@Override
+	public List<Integer> ordRecommend(){
+		return orderListDaoInter.ordRecommend();
 	}
 }

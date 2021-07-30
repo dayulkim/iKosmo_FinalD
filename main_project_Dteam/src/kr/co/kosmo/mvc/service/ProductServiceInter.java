@@ -29,5 +29,10 @@ public interface ProductServiceInter {
 	public ProductVO productDetail(int pro_num);
 // 디테일에서 상품 별점 불러오기
 	public String productStar(int pro_num);
+// Suggest 상품 갯수 받아오기	
+	public List<ProductVO> suggestProductList();
+// 상품 추천
+	public ProductVO recommendPro(int result);
+
 	
 }

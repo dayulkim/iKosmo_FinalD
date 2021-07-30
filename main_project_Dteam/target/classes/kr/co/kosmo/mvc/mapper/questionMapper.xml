@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="question">
+  	<insert id="insertQuestion" parameterType="quevo">
+  		insert into question values(question_seq.nextVal , #{que_title}, #{que_content}, #{que_photo}, #{que_keyword}, sysdate ,#{mem_id},0,0)
+  	</insert>
+  	
+  	<select id="questionTotal" resultType="int">
+		select count(*) cnt from question
+	</select>
+	
+	<select id="myquestionTotal" parameterType="String" resultType="int">
+		select count(*) cnt from question where mem_id = #{mem_id}
+	</select>
+	
+	<select id="questionList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id, que_hit, que_ans
+		from question 
+		<choose>
+      	<when test="searchType == 0">
+      		order by que_num desc
+      	</when>
+      	<when test="searchType == 1">
+      		order by que_hit desc
+      	</when>
+      </choose>
+		) a ) where r_num between #{start} and #{end}
+	</select>
+	
+	<select id="myquestionList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id, que_hit, que_ans
+		from question where mem_id = #{searchType} order by que_num desc) a ) where r_num between #{start} and #{end}
+	</select>
+	
+	<insert id="insertAnswer" parameterType="ansvo">
+  		insert into answer values(answer_seq.nextVal , #{ans_content}, #{ans_photo}, sysdate, #{que_num}, #{ans_id})
+  	</insert>
+	
+	<select id="questionDetail"  parameterType="int" resultType="quevo">
+		select * from question where que_num = #{que_num}
+	</select>
+	
+	<resultMap type="quevo" id="questionview">
+		<id property="que_num" column="que_num" javaType="int"/>
+		<result property="que_title" column="que_title"/>
+		<result property="que_content" column="que_content"/>
+		<result property="que_photo" column="que_photo"/>
+		<result property="que_keyword" column="que_keyword"/>
+		<result property="que_rdate" column="que_rdate"/>
+		<result property="mem_id" column="mem_id"/>
+		<result column="que_hit" property="que_hit" javaType="int" />
+		<result column="que_ans" property="que_ans" javaType="int" />
+		<collection property="answer" javaType="java.util.List" 
+		ofType="ansvo" resultMap="questionResult"></collection>
+	</resultMap>
+
+	<resultMap type="ansvo" id="questionResult">
+		<result property="ans_num" column="ans_num" javaType="int"/>
+		<result property="ans_content" column="ans_content"/>
+		<result property="ans_photo" column="ans_photo"/>
+		<result property="ans_rdate" column="ans_rdate"/>
+		<result property="ans_id" column="ans_id"/>
+	</resultMap>
+
+	<select id="questionDetail2" parameterType="pvo" resultMap="questionview">
+	select * from ( select rownum r_num, a.* from 
+	( select q.que_num, q.que_title, q.que_content, q.que_photo, 
+	q.que_keyword, q.que_rdate, q.mem_id, q.que_hit, q.que_ans, a.ans_num, a.ans_content, 
+	a.ans_photo, a.ans_rdate, a.ans_id from answer a, question q 
+	where a.que_num = q.que_num and q.que_num = #{searchType} order by ans_num asc) a) 
+	where r_num between #{start} and #{end}
+	</select>
+	
+	<select id="answerTotal" parameterType="int" resultType="int">
+		select count(*) cnt from answer where que_num = #{searchType}
+	</select>
+	
+	
+	<select id="questionSearchKeyword" parameterType="String" resultType="int">
+		select count(*) cnt from question where que_keyword like #{key}
+	</select>
+	
+	<select id="questionSearchTitle_Content" parameterType="String" resultType="int">
+		select count(*) cnt from question where que_title like #{key} or que_content like #{key}
+	</select>
+	
+	<select id="questionSearchKeywordList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id ,que_hit, que_ans
+		from question where que_keyword like #{searchValue} 
+		<choose>
+      	<when test="searchType == 1">
+      		order by que_hit desc
+      	</when>
+      	<otherwise>
+      		order by que_num desc
+      	</otherwise>
+      </choose>
+		) a ) where r_num between #{start} and #{end}
+	</select>
+	
+	<select id="questionSearchTitle_ContentList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id ,que_hit, que_ans
+		from question where que_title like #{searchValue} or que_content like #{searchValue} 
+		<choose>
+      	<when test="searchType == 1">
+      		order by que_hit desc
+      	</when>
+      	<otherwise>
+      		order by que_num desc
+      	</otherwise>
+      </choose>
+		) a ) where r_num between #{start} and #{end}
+	</select>
+	
+	<update id="questionHit" parameterType="int">
+	update question set que_hit = que_hit + 1 where que_num = #{que_num} 
+	</update>
+	
+	<update id="questionAns" parameterType="int">
+	update question set que_ans = 1 where que_num = #{que_num}
+	</update>
+	
+	<select id="naquestionList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id, que_hit, que_ans
+		from question where que_ans = 0
+		<choose>
+      	<when test="searchType == 0">
+      		order by que_num desc
+      	</when>
+      	<when test="searchType == 1">
+      		order by que_hit desc
+      	</when>
+      </choose>
+		) a ) where r_num between #{start} and #{end}
+	</select>
+	
+	<select id="naquestionTotal" resultType="int">
+		select count(*) cnt from question where que_ans = 0
+	</select>
+	
+	<select id="naquestionSearchKeyword" parameterType="String" resultType="int">
+		select count(*) cnt from question where que_keyword like #{key} and que_ans = 0
+	</select>
+	
+	<select id="naquestionSearchTitle_Content" parameterType="String" resultType="int">
+		select count(*) cnt from question 
+		where (que_title like #{key} or que_content like #{key}) 
+		and que_ans = 0
+	</select>
+	
+	<select id="naquestionSearchKeywordList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id ,que_hit, que_ans
+		from question where que_keyword like #{searchValue} and que_ans = 0
+		<choose>
+      	<when test="searchType == 1">
+      		order by que_hit desc
+      	</when>
+      	<otherwise>
+      		order by que_num desc
+      	</otherwise>
+      </choose>
+		) a ) where r_num between #{start} and #{end}
+	</select>
+	
+	<select id="naquestionSearchTitle_ContentList"  parameterType="pvo" resultType="quevo">
+		select * from (
+		select rownum r_num, a.* from
+		( select que_num , que_title, substr(que_content, 1, 100) que_content , 
+		que_photo, que_keyword, que_rdate , mem_id ,que_hit, que_ans
+		from question where (que_title like #{searchValue} or que_content like #{searchValue})
+		and que_ans = 0
+		<choose>
+      	<when test="searchType == 1">
+      		order by que_hit desc
+      	</when>
+      	<otherwise>
+      		order by que_num desc
+      	</otherwise>
+      </choose>
+		) a ) where r_num between #{start} and #{end}
+	</select>
+  </mapper>

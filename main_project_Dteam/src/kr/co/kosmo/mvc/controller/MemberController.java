@@ -1,5 +1,7 @@
 package kr.co.kosmo.mvc.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,15 +11,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
+import kr.co.kosmo.mvc.service.ReviewServiceInter;
 import kr.co.kosmo.mvc.vo.MemberVO;
+import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberDaoInter memberDaoInter;
+	@Autowired
+	private ReviewServiceInter reviewServiceInter;
 	
 	// 회원가입 페이지로 이동
 	@RequestMapping(value="join")
@@ -57,6 +64,38 @@ public class MemberController {
 		}
 		m.addAttribute("msg", msg);
 		return "member/idchk";
+	}
+	
+//	맴버리뷰폼으로 이동
+	@RequestMapping("/reviewform")
+	public String reivewForm(Model m) {
+
+		return "member/form/reviewForm";
+	}
+//	리뷰인서트
+	@RequestMapping("/reviewinsert")
+	public String reviewInsert(ReviewVO revo, HttpServletRequest request, MultipartFile mfile) {
+
+		String r_path = request.getServletContext().getRealPath("/"); // 웹 상 절대경로
+		String img_path = "resources\\uploadFile\\review";
+
+		String oriFn = mfile.getOriginalFilename(); // 업로드할 때의 파일명을 가져옴
+		StringBuffer path = new StringBuffer();
+		path.append(r_path).append(img_path).append("\\").append(oriFn);
+		System.out.println("File FullPath: " + path);
+
+		// -- 파일 복사
+		File f = new File(path.toString());
+		try {
+			mfile.transferTo(f); // 임시저장소에 있는 파일을 File 객체로 옮기기
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		revo.setRev_photo(oriFn);
+		reviewServiceInter.addReview(revo);
+		System.out.println("fileNames: " + oriFn);
+
+		return "redirect:/mypage";
 	}
 
 }

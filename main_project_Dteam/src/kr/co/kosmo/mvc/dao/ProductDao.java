@@ -95,5 +95,17 @@ public class ProductDao implements ProductDaoInter { // 김다율
 		return ss.selectOne("product.productstar", pro_num);
 	}
 	
+// suggest 리스트를 위한 출력
+	@Override
+	public List<ProductVO> suggestProductList() {
+		return ss.selectList("product.suggestProductList");
+	}
+
+// 상품 추천
+	@Override
+	public ProductVO recommendPro(int result) {
+		return ss.selectOne("product.recommendProduct", result);
+	}
+	
 
 }

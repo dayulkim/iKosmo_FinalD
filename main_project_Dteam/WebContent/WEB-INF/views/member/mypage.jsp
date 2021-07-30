@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -242,6 +244,64 @@
 							aria-labelledby="account-nav">
 							<h4>내 질문과 답변</h4>
 							<p>내 질문과 답변 목록을 넣어주세요.</p>
+							
+							<div id="MyquestionList">
+								<table>
+									<c:forEach var="e" items="${list }" varStatus="i">
+										<tr>
+											<th rowspan="4" style="padding-top: 30px;">
+												<c:choose>
+													<c:when test="${imgList[i.index] eq 'noImage'}">
+														<img src="resources/images/no-image-icon.JPG" style="width: 120px; height: 100px; padding-right: 20px;">
+													</c:when>
+													<c:otherwise>
+														<img src="resources/uploadFile/${imgList[i.index] }" style="width: 120px; height: 100px; padding-right: 20px;">
+													</c:otherwise>
+												</c:choose>
+											</th>
+											<td style="padding-top: 30px;">
+												<h3>
+													<a href="questionDetail?que_num=${e.que_num }">
+													${e.que_title }
+													</a>
+												</h3> 
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<c:set var="keyword" value="${fn:split(e.que_keyword, ',')}"/>
+													<c:forEach var="i" items="${keyword }">
+														<a href="questionSearch?key=${i}">#${i}  </a>	
+													</c:forEach>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<p>${e.que_content }</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="td-right-align">
+												<span class="regdate">${e.que_rdate }</span>	
+												<span class="author"> / ${e.mem_id }</span>	
+											</td>
+										</tr>
+										<!-- 추가적인 내용물이 발생시 
+										
+										<tr>
+											<td>
+											</td>
+										</tr>
+										
+										-->
+									</c:forEach>
+								</table>
+							</div>
+							
+							<div style="height: 80px; padding-top: 20px;">
+							<%@include file="MyPageProcess.jsp" %>
+							</div>
+							
 						</div>
 					</div>
 				</div>

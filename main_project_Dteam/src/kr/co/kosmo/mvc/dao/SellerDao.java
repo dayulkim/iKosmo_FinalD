@@ -8,7 +8,7 @@ import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.SellerVO;
 
 @Repository
-public class SellerDao { // ±è¼¼¿¬
+public class SellerDao implements SellerDaoInter { // ±è¼¼¿¬
 	@Autowired
 	private SqlSessionTemplate ss;
 
