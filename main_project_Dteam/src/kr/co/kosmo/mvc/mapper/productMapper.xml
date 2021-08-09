@@ -152,4 +152,5 @@
 	<select parameterType="int" id="recommendProduct" resultType="provo">
 		select pro_num,pro_name , PRO_THUMB from product where pro_num=${result} 
 	</select>
+	
 </mapper>

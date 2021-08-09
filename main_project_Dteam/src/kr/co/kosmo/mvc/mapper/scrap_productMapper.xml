@@ -11,5 +11,21 @@
 		)
 		where rownum between 1 and 4
 	</select>
+	
+	<!-- 오원석 상품스크랩 -->
+	<select id="getlist" resultType="pvo">
+		select * from product
+	</select>
 
+	<insert id="scrap" parameterType="scrprovo">
+		insert into scrap_product values(SCRAP_SEQ.nextval, #{mem_num}, #{pro_num})
+	</insert>
+
+	<select id="scrapchk" parameterType="scrprovo" resultType="int">
+		select count(*) cnt from scrap_product where mem_num=#{mem_num} and pro_num=#{pro_num}
+	</select>
+
+	<delete id="scrapdel" parameterType="scrprovo">
+		delete from scrap_product where mem_num=#{mem_num} and pro_num=#{pro_num}
+	</delete>
 </mapper>
