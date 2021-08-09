@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kosmo.mvc.dao.HwarmDaoInter;
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
+import kr.co.kosmo.mvc.vo.HouseCommentVO;
 import kr.co.kosmo.mvc.vo.HousedetailVO;
 import kr.co.kosmo.mvc.vo.HousewarmingVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
@@ -214,6 +215,18 @@ public class HwarmService implements HwarmServiceInter {
 	public List<HousedetailVO> selectHousedetail(int hou_num) {
 		return hwarmDaoInter.selectHousedetail(hou_num);
 	}
+	
+	@Override
+	public List<HouseCommentVO> selectHouseComment(int hou_num) {
+		List<HouseCommentVO> hcm_list = hwarmDaoInter.selectHouseComment(hou_num); 
+		for (HouseCommentVO vo:hcm_list) {
+			String profile = memberDaoInter.getMemberProfile(vo.getMem_num());
+			vo.setMem_profile(profile);
+			String mem_id = memberDaoInter.getMemberID(vo.getMem_num());
+			vo.setMem_id(mem_id);
+		}
+		return hcm_list;
+	}
 
 	// 집들이글에 태그된 상품의 사진명을 불러오는 메서드
 	@Override
@@ -250,6 +263,33 @@ public class HwarmService implements HwarmServiceInter {
 	public void delHwarmScrap(Map<String, Integer> num_map) {
 		hwarmDaoInter.delHwarmScrap(num_map);
 	}
+	
+	@Override
+	public Map<String, String> insertHouseComment(int hou_num, int mem_num, int depth_num, int par_comm_numm, String comment) {
+		HouseCommentVO hcmvo = new HouseCommentVO();
+		hcmvo.setHou_num(hou_num);
+		hcmvo.setMem_num(mem_num);
+		hcmvo.setDepth_num(depth_num);
+		hcmvo.setPar_comm_numm(par_comm_numm);
+		hcmvo.setComm_content(comment);
+		hwarmDaoInter.insertHouseComment(hcmvo);
+		
+		String profile = memberDaoInter.getMemberProfile(mem_num);
+		String mem_id = memberDaoInter.getMemberID(mem_num);
+		int comm_num = hwarmDaoInter.commCurrVal();
+		
+		Map<String, String> mem_info = new HashMap<>();
+		mem_info.put("profile", profile);
+		mem_info.put("mem_id", mem_id);
+		mem_info.put("comm_num", String.valueOf(comm_num));
+		
+		return mem_info;
+	}
+	
+	@Override
+	public int commCurrVal() {
+		return hwarmDaoInter.commCurrVal();
+	}
 
 	// 신규철: 집들이글 리스트 ================================================
 	
@@ -263,6 +303,12 @@ public class HwarmService implements HwarmServiceInter {
 			String hstyle, String htone) {
 		return hwarmDaoInter.filter(horder, htype, hspace, hpay, hhow, hstyle, htone);
 	}
+
+
+
+
+
+
 
 	
 

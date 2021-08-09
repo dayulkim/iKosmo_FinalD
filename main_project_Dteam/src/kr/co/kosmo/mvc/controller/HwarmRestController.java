@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -104,7 +105,7 @@ public class HwarmRestController {
 		map.put("status", status);
 		// Map을 jsondata 형태로 변환
 		ObjectMapper mapper = new ObjectMapper();
-		String result = null;
+		String result = "";
 		try {
 			result = mapper.writeValueAsString(map);
 			System.out.println(result);
@@ -157,6 +158,28 @@ public class HwarmRestController {
 		// jsondata를 return
 		return result;
 	}
+	
+	@RequestMapping(value="/insertHouseComment", produces="application/json; charset=euc-kr")
+	public String insertHouseComment(int hou_num, String comment, int depth_num, HttpSession session,
+			@RequestParam(value = "par_comm_numm", required = false, defaultValue = "-1") int par_comm_numm) throws UnsupportedEncodingException {
+		int mem_num = 1; // 추후 삭제 필요
+//		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString()); // 추후 주석 해제 필요
+		String comment_decode = URLDecoder.decode(comment, "UTF-8");
+		// 댓글을 입력하고 댓글 작성자의 아이디와 프로필 이미지 정보가 담긴 Map을 반환 받음
+		Map<String, String> mem_info = hwarmServiceInter.insertHouseComment(hou_num, mem_num, depth_num, par_comm_numm, comment_decode);
+		// Map을 jsondata 형태로 변환
+		ObjectMapper mapper = new ObjectMapper();
+		String result = null;
+		try {
+			result = mapper.writeValueAsString(mem_info);
+			System.out.println(result);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		// jsondata를 return
+		return result;
+	}
+
 	
 
 }
