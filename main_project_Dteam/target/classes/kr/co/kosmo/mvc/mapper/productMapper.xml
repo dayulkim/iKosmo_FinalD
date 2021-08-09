@@ -41,50 +41,7 @@
 		</choose>
 		</if>
 		<if test="category != null">
-		<choose>
-			<when test="category == 0">
-				and p.pro_category = 0
-			</when>
-			<when test="category == 1">
-				and p.pro_category = 1
-			</when>
-			<when test="category == 2">
-				and p.pro_category = 2
-			</when>
-			<when test="category == 3">
-				and p.pro_category = 3
-			</when>
-			<when test="category == 4">
-				and p.pro_category = 4
-			</when>
-			<when test="category == 5">
-				and p.pro_category = 5
-			</when>
-			<when test="category == 6">
-				and p.pro_category = 6
-			</when>
-			<when test="category == 7">
-				and p.pro_category = 7
-			</when>
-			<when test="category == 8">
-				and p.pro_category = 8
-			</when>
-			<when test="category == 9">
-				and p.pro_category = 9
-			</when>
-			<when test="category == 10">
-				and p.pro_category = 10
-			</when>
-			<when test="category == 11">
-				and p.pro_category = 11
-			</when>
-			<when test="category == 12">
-				and p.pro_category = 12
-			</when>
-			<when test="category == 13">
-				and p.pro_category = 13
-			</when>
-		</choose>
+			and p.pro_category = #{category}
 		</if>
 		<if test="way != null">
 		<choose>

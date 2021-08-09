@@ -197,7 +197,6 @@ public class ProductController { // 김다율
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") int nowPage,
 			@RequestParam(value = "cntPerPage", required = false, defaultValue = "5") int cntPerPage,
 			@RequestParam(value = "pro_num", required = false) int pro_num,
-			@RequestParam(value = "sel_num", required = false) int sel_num,
 			@RequestParam(value = "sortType1", required = false, defaultValue = "0", name = "sortType1") int sortType1,
 			PageVO pvo, HttpServletRequest request) {
 
@@ -226,7 +225,7 @@ public class ProductController { // 김다율
 
 		// 판매자 정보: 카카오 지도 API
 		//int sel_num = Integer.parseInt(request.getParameter(sel_num));
-		SellerVO vo = sellerService.getSellerOne(sel_num);
+		SellerVO vo = sellerService.getSellerOne(provo.getSel_num());
 		m.addAttribute("selvo", vo);
 
 		m.addAttribute("provo", provo);
