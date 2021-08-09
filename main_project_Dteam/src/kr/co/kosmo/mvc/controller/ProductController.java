@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.kosmo.mvc.dao.ProductDaoInter;
 import kr.co.kosmo.mvc.dao.ReviewDao;
-import kr.co.kosmo.mvc.service.ProductService;
+import kr.co.kosmo.mvc.dao.Scrap_ProductDaoInter;
+
 import kr.co.kosmo.mvc.service.ProductServiceInter;
 import kr.co.kosmo.mvc.service.SellerService;
 import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
+import kr.co.kosmo.mvc.vo.Scrap_ProductVO;
 import kr.co.kosmo.mvc.vo.SellerVO;
 
 @Controller // 컨트롤러 클래스로 설정
@@ -34,6 +35,9 @@ public class ProductController { // 김다율
 
 	@Autowired
 	private ReviewDao reviewDao;
+	
+	@Autowired
+	private Scrap_ProductDaoInter scrap_ProductDaoInter;
 
 	// ----신연아 시작--------
 	// 메인화면의 스토어 버튼 클릭시 이동
@@ -237,5 +241,47 @@ public class ProductController { // 김다율
 
 	}
 	// ----------상세보기 - 김다율, 신연아 끝----------------
+	
+	// 오원석 상품스크랩
+	// 상품 스크랩
+	@RequestMapping(value="/productscrap")
+	public String productscrap(int pro_num, HttpSession session) {
+		Scrap_ProductVO svo = new Scrap_ProductVO();
+		int mem_num = (int) session.getAttribute("sessionNum");
+		svo.setMem_num(mem_num);
+		svo.setPro_num(pro_num);
+		scrap_ProductDaoInter.doscrap(svo);
+		return "redirect:/productform";
+	}
+	
+	// 스크랩 여부 확인 (추후 상세페이지로 이동)
+	@RequestMapping(value="/scrapchk")
+	public ModelAndView scrapcheck(int pro_num, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		Scrap_ProductVO svo = new Scrap_ProductVO();
+		int mem_num = (int) session.getAttribute("sessionNum");
+		svo.setMem_num(mem_num);
+		svo.setPro_num(pro_num);
+		int num = scrap_ProductDaoInter.countscrap(svo);
+		if (num == 1) {
+			System.out.println("이미 스크랩이 되어있다! 삭제버튼이 보이게 설정해야함");
+		} else {
+			System.out.println("스크랩이 되어있지 않다! 스크랩버튼이 보이게 설정해야함");
+		}
+		mav.setViewName("redirect:/productform");
+		return mav;
+	}
+	
+	// 스크랩 삭제
+	@RequestMapping(value="/scrapdel")
+	public String scrapdel(int pro_num, HttpSession session) {
+		int mem_num = (int) session.getAttribute("sessionNum");
+		Scrap_ProductVO svo = new Scrap_ProductVO();
+		svo.setMem_num(mem_num);
+		svo.setPro_num(pro_num);
+		scrap_ProductDaoInter.scrapdel(svo);
+		return "redirect:/productform";
+	}
+	// 오원석 상품 스크랩 끝
 
 }
