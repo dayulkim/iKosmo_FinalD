@@ -1,18 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>마이페이지</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="eCommerce HTML Template Free Download" name="keywords">
 <meta content="eCommerce HTML Template Free Download" name="description">
+<style>
+.layer_title {
+	text-align: center;
+}
 
+#mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	background-color: #000000;
+	display: none;
+}
+
+.layerpop {
+	overflow: auto;
+	position: absolute;
+	display: none;
+	z-index: 100;
+	border: 2px solid #ccc;
+	background: #fff;
+}
+
+.layerpop_area .layer_title {
+	padding: 10px 10px 10px 10px;
+	border: 0px solid #aaaaaa;
+	background: #f1f1f1;
+	color: #3eb0ce;
+	font-size: 1.3em;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.layerpop_area .layerpop_close {
+	width: 30px;
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.layerpop_area .content {
+	width: 95%;
+	margin: 2%;
+	color: #828282;
+}
+
+</style>
 <!-- Favicon -->
 <link href="resources/planb/img/favicon.ico" rel="icon">
 
@@ -144,6 +185,53 @@
 									<button class="btn">비밀번호 변경</button>
 								</div>
 							</div>
+							<br> <br>
+							<h4>내 추가 정보</h4>
+							<div class="row">
+								<div class="col-md-12"></div>
+								<div id="houseInfo_target">
+									<button class="house_info_add-btn">추가</button>
+									<c:forEach var="house_info" items="${house_info }">
+										<p>
+											<c:if test="${house_info.hinfo_type!='0' }">
+									집 : ${house_info.hinfo_type}
+									</c:if>
+											<c:if test="${house_info.hinfo_size!='0' }">
+									   &nbsp;${house_info.hinfo_size}
+									</c:if>
+											<c:if test="${house_info.hinfo_with!='0' }">
+									함께 : ${house_info.hinfo_with}
+									</c:if>
+											<c:if test="${house_info.hinfo_tend!='0' }">
+									성향 : ${house_info.hinfo_tend}
+									</c:if>
+										</p>
+										<p>
+											<c:if test="${house_info.hinfo_favour!='0' }">
+									선호도 : ${house_info.hinfo_type}
+									</c:if>
+											<c:if test="${house_info.hinfo_buytend!='0' }">
+									구매성향 : ${house_info.hinfo_buytend}
+									</c:if>
+											<c:if test="${house_info.hinfo_style!='0' }">
+									스타일 : ${house_info.hinfo_style}
+									</c:if>
+											<c:if test="${house_info.hinfo_activity!='0' }">
+									주 활동 : ${house_info.hinfo_activity}
+									</c:if>
+
+
+											<button class="house_info_del-btn"		value="${house_info.hinfo_num }">삭제</button>
+										</p>
+										<hr>
+
+									</c:forEach>
+								</div>
+								<div class="col-md-6"></div>
+								<br>
+								<div class="col-md-6"></div>
+								<div class="col-md-12"></div>
+							</div>
 						</div>
 						<div class="tab-pane fade" id="orders-tab" role="tabpanel"
 							aria-labelledby="orders-nav">
@@ -244,36 +332,34 @@
 							aria-labelledby="account-nav">
 							<h4>내 질문과 답변</h4>
 							<p>내 질문과 답변 목록을 넣어주세요.</p>
-							
+
 							<div id="MyquestionList">
 								<table>
 									<c:forEach var="e" items="${list }" varStatus="i">
 										<tr>
-											<th rowspan="4" style="padding-top: 30px;">
-												<c:choose>
+											<th rowspan="4" style="padding-top: 30px;"><c:choose>
 													<c:when test="${imgList[i.index] eq 'noImage'}">
-														<img src="resources/images/no-image-icon.JPG" style="width: 120px; height: 100px; padding-right: 20px;">
+														<img src="resources/images/no-image-icon.JPG"
+															style="width: 120px; height: 100px; padding-right: 20px;">
 													</c:when>
 													<c:otherwise>
-														<img src="resources/uploadFile/${imgList[i.index] }" style="width: 120px; height: 100px; padding-right: 20px;">
+														<img src="resources/uploadFile/${imgList[i.index] }"
+															style="width: 120px; height: 100px; padding-right: 20px;">
 													</c:otherwise>
-												</c:choose>
-											</th>
+												</c:choose></th>
 											<td style="padding-top: 30px;">
 												<h3>
 													<a href="questionDetail?que_num=${e.que_num }">
-													${e.que_title }
-													</a>
-												</h3> 
+														${e.que_title } </a>
+												</h3>
 											</td>
 										</tr>
 										<tr>
-											<td>
-												<c:set var="keyword" value="${fn:split(e.que_keyword, ',')}"/>
-													<c:forEach var="i" items="${keyword }">
-														<a href="questionSearch?key=${i}">#${i}  </a>	
-													</c:forEach>
-											</td>
+											<td><c:set var="keyword"
+													value="${fn:split(e.que_keyword, ',')}" /> <c:forEach
+													var="i" items="${keyword }">
+													<a href="questionSearch?key=${i}">#${i} </a>
+												</c:forEach></td>
 										</tr>
 										<tr>
 											<td>
@@ -281,10 +367,8 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="td-right-align">
-												<span class="regdate">${e.que_rdate }</span>	
-												<span class="author"> / ${e.mem_id }</span>	
-											</td>
+											<td class="td-right-align"><span class="regdate">${e.que_rdate }</span>
+												<span class="author"> / ${e.mem_id }</span></td>
 										</tr>
 										<!-- 추가적인 내용물이 발생시 
 										
@@ -297,16 +381,143 @@
 									</c:forEach>
 								</table>
 							</div>
-							
+
 							<div style="height: 80px; padding-top: 20px;">
-							<%@include file="MyPageProcess.jsp" %>
+								<%@include file="MyPageProcess.jsp"%>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="mask"></div>
+
+	<!--Popup Start -->
+	<div id="layerbox" class="layerpop" style="width: 55%; height: 80%;">
+		<article class="layerpop_area">
+
+
+			<a href="javascript:popupClose();" class="layerpop_close"
+				id="layerbox_close"><img alt="" src="resources/review/img/x.png"></a><br>
+			<div class="content">
+				<div id="body" align="center">
+
+					<form action="houseinfoinsert" method="post">
+						<div>
+							<div>
+								<ul>
+									<li>집의 형식</li>
+									<li><input type="radio" name="hinfo_type" value="원룸&오피스텔">원룸&오피스텔
+										<input type="radio" name="hinfo_type" value="아파트">아파트
+										<input type="radio" name="hinfo_type" value="빌라&연립">빌라&연립
+										<input type="radio" name="hinfo_type" value="단독주택">단독주택</li>
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>집의 크기</li>
+									<li><input type="radio" name="hinfo_size" value="10평미만">10평미만
+										<input type="radio" name="hinfo_size" value="10평대">10평대
+										<input type="radio" name="hinfo_size" value="20평대">20평대
+										<input type="radio" name="hinfo_size" value="30평대">30평대
+										<input type="radio" name="hinfo_size" value="40평 이상">40평
+										이상
+									<li>
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>구성원</li>
+									<li><input type="checkbox" id="hinfo_with"
+										name="hinfo_with" value="싱글라이프">싱글라이프 <input
+										type="checkbox" id="hinfo_with" name="hinfo_with" value="신혼부부">신혼부부
+										<input type="checkbox" id="hinfo_with" name="hinfo_with"
+										value="아기">아기 <input type="checkbox" id="hinfo_with"
+										name="hinfo_with" value="취학 자녀">취학 자녀 <input
+										type="checkbox" id="hinfo_with" name="hinfo_with"
+										value="성인 자녀">성인 자녀 <input type="checkbox"
+										id="hinfo_with" name="hinfo_with" value="부모님">부모님 <input
+										type="checkbox" id="hinfo_with" name="hinfo_with" value="반려동물">반려동물
+									
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>성향</li>
+									<li><input type="radio" name="hinfo_tend" value="미니멀리즘">미니멀리즘
+										<input type="radio" name="hinfo_tend" value="실용주의">실용주의
+										<input type="radio" name="hinfo_tend" value="맥시멀리즘">맥시멀리즘
+
+									
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>선호도</li>
+									<li><input type="checkbox" name="hinfo_favour" value="색상">색상
+										<input type="checkbox" name="hinfo_favour" value="디자인">디자인
+										<input type="checkbox" name="hinfo_favour" value="내구성">내구성<input
+										type="checkbox" name="hinfo_favour" value="안전">안전
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>구매성향</li>
+									<li><input type="checkbox" name="hinfo_buytend"
+										value="브랜드">브랜드 <input type="checkbox"
+										name="hinfo_buytend" value="트렌드">트렌드 <input
+										type="checkbox" name="hinfo_buytend" value="퀄리티">퀄리티<input
+										type="checkbox" name="hinfo_buytend" value="가성비">가성비
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>스타일</li>
+									<li><input type="checkbox" name="hinfo_style" value="모던">모던
+										<input type="checkbox" name="hinfo_style" value="미니멀&심플">미니멀&심플
+										<input type="checkbox" name="hinfo_style" value="내추럴&북유럽">내추럴&북유럽<input
+										type="checkbox" name="hinfo_style" value="빈티지&레트로">빈티지&레트로<input
+										type="checkbox" name="hinfo_style" value="클래식&앤틱">클래식&앤틱
+										<input type="checkbox" name="hinfo_style" value="프렌치&프로방스">프렌치&프로방스</li>
+									<li><input type="checkbox" name="hinfo_style"
+										value="러블리&로맨틱">러블리&로맨틱 <input type="checkbox"
+										name="hinfo_style" value="인더스트리얼">인더스트리얼<input
+										type="checkbox" name="hinfo_style" value="한국&아시아">한국&아시아<input
+										type="checkbox" name="hinfo_style" value="유니크&믹스매치">유니크&믹스매치
+										<input type="checkbox" name="hinfo_style" value="기타">기타</li>
+								</ul>
+								<hr>
+							</div>
+							<div>
+								<ul>
+									<li>주활동</li>
+									<li><input type="checkbox" name="hinfo_activity"
+										value="단순거주">단순거주 <input type="checkbox"
+										name="hinfo_activity" value="홈액션(운동,쿠킹)">홈액션(운동,쿠킹)<input
+										type="checkbox" name="hinfo_activity" value="홈워크(공부,사무)">홈워크(공부,사무)
+										<input type="checkbox" name="hinfo_activity"
+										value="문화생활(시청,게임)">홈문화(시청,게임)
+								</ul>
+								<hr>
+							</div>
+							<div>
+
+								<hr>
+							</div>
+							<input type="submit" value="완료">
+						</div>
+					</form>
+				</div>
+			</div>
+		</article>
 	</div>
 	<!-- My Account End -->
 
@@ -322,5 +533,61 @@
 
 	<!-- Template Javascript -->
 	<script src="resources/planb/js/main.js"></script>
+	<script>
+		$('.house_info_del-btn').click(function() {
+			var hinfo_num = $(this).val();
+			location.href = "houseinfo_del?hinfo_num=" + hinfo_num
+		});
+		$('.house_info_add-btn').click(function() {
+			popupOpen();
+			wrapWindowByMask();
+		});
+		
+		
+		
+
+		function wrapWindowByMask() {
+			//화면의 높이와 너비를 구한다.
+			var maskHeight = $(document).height();
+			var maskWidth = $(window).width();
+
+			//문서영역의 크기 
+			console.log("document 사이즈:" + $(document).width() + "*"
+					+ $(document).height());
+			//브라우저에서 문서가 보여지는 영역의 크기
+			console.log("window 사이즈:" + $(window).width() + "*"
+					+ $(window).height());
+
+			//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+			$('#mask').css({
+				'width' : maskWidth,
+				'height' : maskHeight
+			});
+			//애니메이션 효과
+			$('#mask').fadeTo("slow", 0.5);
+		}
+		function popupOpen() {
+			$('.layerpop').css("position", "absolute");
+
+			//영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+			$('.layerpop').css(
+					"top",
+					(($(window).height() - $('.layerpop').outerHeight()) / 2)
+							+ $(window).scrollTop());
+			$('.layerpop').css(
+					"left",
+					(($(window).width() - $('.layerpop').outerWidth()) / 2)
+							+ $(window).scrollLeft());
+			// 			$('.layerpop').draggable();
+			$('#layerbox').show();
+		}
+		function popupClose() {
+			$('#layerbox').hide();
+			$('#mask').hide();
+		}
+
+	</script>
+
+
 </body>
 </html>

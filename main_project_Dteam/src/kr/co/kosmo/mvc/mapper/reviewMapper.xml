@@ -59,7 +59,7 @@
 	<select parameterType="int" resultType="int" id="revRecommend">
 		select pro_num from(select pro_num, count(pro_num)from review
 		<where>
-			rev_rdate > (sysdate-7) group by pro_num order by
+			rev_rdate > (sysdate-30) group by pro_num order by
 			<if test="recommend==0">count(pro_num) </if>
 			<if test="recommend==1">avg(pro_num) </if>
 		</where>

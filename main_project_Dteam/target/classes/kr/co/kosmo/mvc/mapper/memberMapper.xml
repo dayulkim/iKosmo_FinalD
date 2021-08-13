@@ -26,4 +26,18 @@
 	<select id="getMemberProfile" parameterType="int" resultType="String">
 		select mem_profile from member where mem_num=#{mem_num}
 	</select>
+	<!-- 이재영: 회원집 정보를 받아서 넣음 -->
+	<insert id="addMemberHouseInfo" parameterType="hinvo">
+	insert into houseinfo values(houseinfo_seq.nextVal,'좽이',#{hinfo_type},#{hinfo_size},#{hinfo_with},#{hinfo_tend},#{hinfo_favour},#{hinfo_buytend},
+	#{hinfo_style},#{hinfo_activity},#{hinfo_visible},sysdate)
+	
+	</insert>
+	<select id="getMemberHouseInfo" parameterType="string" resultType="hinvo">
+	select * from houseinfo where  mem_id=#{mem_id} and hinfo_visible=0 order by hinfo_date desc
+	
+	</select>
+	<delete id="delMemberHouseInfo" parameterType="int">
+	update houseinfo set hinfo_visible=1 where hinfo_num=#{hinfo_num}
+	</delete>
+	
 </mapper>

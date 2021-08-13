@@ -176,10 +176,7 @@ public class ProductController { // ±Ë¥Ÿ¿≤
 		return "store/product_list";
 	}
 
-	@RequestMapping("/mypage")
-	public String myPage() {
-		return "store/mypage";
-	}
+
 
 	@RequestMapping("/cart")
 	public String cart() {
