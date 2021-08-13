@@ -22,7 +22,7 @@ public class MemberService implements MemberServiceInter {
 	@Override
 	public void addMemberHouseInfo(HouseInfoVO hinvo) {
 		hinvo.setMem_id("좽이");// 아이디테스트용 아이디연결후 삭제해야합니다
-		hinvo.setHinfo_type(Optional.ofNullable(hinvo.getHinfo_tend()).orElse("0"));
+		hinvo.setHinfo_type(Optional.ofNullable(hinvo.getHinfo_type()).orElse("0"));
 		hinvo.setHinfo_size(Optional.ofNullable(hinvo.getHinfo_size()).orElse("0"));
 		hinvo.setHinfo_with(Optional.ofNullable(hinvo.getHinfo_with()).orElse("0"));
 		hinvo.setHinfo_tend(Optional.ofNullable(hinvo.getHinfo_tend()).orElse("0"));
