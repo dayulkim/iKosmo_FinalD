@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,12 +36,14 @@ public class OrderListController { // 김다율
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
 	        @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
 	        HttpServletRequest request,
-	        PageVO pvo) {
+	        PageVO pvo, HttpSession session) {
 		System.out.println("전체 주문내역 컨트롤러 시작!");
 		// int mem_num = 1;
-		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		// int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		int mem_session = (int) session.getAttribute("sessionNum");
+		System.out.println("mem_session::::::::::::"+mem_session);
 		ModelAndView mav = new ModelAndView();
-		List<OrderListVO> ordvo = orderListServiceInter.orderListii(mem_num);
+		List<OrderListVO> ordvo = orderListServiceInter.orderListii(mem_session);
 		mav.addObject("ordvo", ordvo);
 		// mav.setViewName("order/orderList"); // jsp의 위치 주소,,.
 		
@@ -67,7 +70,7 @@ public class OrderListController { // 김다율
 	      
 	      // 모델에 PageVO 객체와 리스트 객체 담기
 	      mav.addObject("list", list);
-	      mav.addObject("imgList", imgList);
+	      mav.addObject("imgList", imgList); // 나머지는 service에 담고 여거 4개만 남겨두 되긩
 	      
 	mav.setViewName("member/mypage");
 	return mav;

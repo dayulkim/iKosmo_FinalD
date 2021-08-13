@@ -92,7 +92,7 @@
 							id="account-nav" data-toggle="pill" href="#account-tab"
 							role="tab"><i class="fa fa-tachometer-alt"></i>&nbsp;나의 질문/답변</a>
 						<a class="nav-link" id="orders-nav" data-toggle="pill"
-							href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>&nbsp;구매내역</a>
+							href="orderList" role="tab"><i class="fa fa-shopping-bag"></i>&nbsp;구매내역 href="orderList"#orders-tab</a>
 						<a class="nav-link" id="payment-nav" data-toggle="pill"
 							href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>&nbsp;나의
 							쿠폰함</a> <a class="nav-link" href="logout"><i
@@ -148,64 +148,8 @@
 						<div class="tab-pane fade" id="orders-tab" role="tabpanel"
 							aria-labelledby="orders-nav">
 							<div class="table-responsive">
-								<table class="table table-bordered">
-									<thead class="thead-dark">
-										<tr>
-											<th>주문번호</th>
-											<th>상품명</th>
-											<th>가격</th>
-											<th>구매수량</th>
-											<th>결제금액</th>
-											<th>구매일</th>
-											<th>배송상태</th>
-											<th>상품보기</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="list" items="${ordvo}">
-											<tr>
-												<td>${list.orderListVO.ord_num }</td>
-												<td>${list.pro_name }</td>
-												<td>${list.pro_sellprice }</td>
-												<td>${list.orderListVO.ord_qty }</td>
-												<td>${list.pro_sellprice * list.orderListVO.ord_qty }</td>
-												<td>${list.orderListVO.ord_date }</td>
-												<td>배송완료???????</td>
-												<td><button class="btn">상품보러가기</button></td>
-											</tr>
-										</c:forEach>
-										<tr>
-											<td>1</td>
-											<td>[35%할인] 아르테 4인 천연면피 소가죽 소파 +스툴 추가...</td>
-											<td>56,000원</td>
-											<td>구매수량</td>
-											<td>결제금액</td>
-											<td>2021-06-28</td>
-											<td>배송완료</td>
-											<td><button class="btn">상품보러가기</button></td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>[35%할인] 아르테 4인 천연면피 소가죽 소파 +스툴 추가...</td>
-											<td>56,000원</td>
-											<td>구매수량</td>
-											<td>결제금액</td>
-											<td>2021-06-28</td>
-											<td>배송완료</td>
-											<td><button class="btn">상품보러가기</button></td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>[35%할인] 아르테 4인 천연면피 소가죽 소파 +스툴 추가...</td>
-											<td>56,000원</td>
-											<td>구매수량</td>
-											<td>결제금액</td>
-											<td>2021-06-28</td>
-											<td>배송완료</td>
-											<td><button class="btn">상품보러가기</button></td>
-										</tr>
-									</tbody>
-								</table>
+								<%@include file="../order/orderList.jsp" %>
+								<%@include file="MyPageProcess.jsp" %>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="payment-tab" role="tabpanel"

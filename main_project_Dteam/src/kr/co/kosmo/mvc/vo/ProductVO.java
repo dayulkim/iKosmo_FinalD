@@ -5,8 +5,8 @@ public class ProductVO {
 	private int pro_num, pro_price, pro_delivery, pro_period, sel_num, pro_discount, pro_dprice, pro_total, pro_age, pro_review, pro_category;
 	private String pro_name, pro_thumb, pro_photo, pro_detail, sel_name, sel_grade, pro_rdate;
 	private SellerVO seller;
-	private OrderListVO orderListVO;
-
+	
+	private OrderListVO orderListVO; // provo 1개의 상품에 orderListVO N개의 주문 내역이 있으므로 1:N의 관계인 resultMap
 	
 	public OrderListVO getOrderListVO() {
 		return orderListVO;

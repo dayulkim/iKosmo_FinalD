@@ -3,8 +3,11 @@ package kr.co.kosmo.mvc.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,29 +15,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
+import kr.co.kosmo.mvc.service.OrderListServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
 import kr.co.kosmo.mvc.vo.MemberVO;
+import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Controller
 public class MemberController {
-	
+
 	@Autowired
 	private MemberDaoInter memberDaoInter;
 	@Autowired
 	private ReviewServiceInter reviewServiceInter;
-	
+	@Autowired
+	private OrderListServiceInter orderListServiceInter;
+
 	// 회원가입 페이지로 이동
-	@RequestMapping(value="join")
+	@RequestMapping(value = "join")
 	public String gojoin() {
 		System.out.println("회원가입 페이지 이동");
 		return "member/joinform";
 	}
-	
+
 	// 회원가입 시도
-	@PostMapping(value="joinprocess")
+	@PostMapping(value = "joinprocess")
 	public String join(HttpServletRequest request, MemberVO vo) {
 		System.out.println("입력 받은 이름 : " + request.getParameter("mem_name"));
 		System.out.println("입력 받은 아이디 : " + request.getParameter("mem_id"));
@@ -44,7 +52,7 @@ public class MemberController {
 		System.out.println("입력받은 성별 : " + request.getParameter("mem_gender"));
 		System.out.println("입력 받은 전화번호 : " + request.getParameter("mem_tel"));
 		System.out.println("입력 받은 주소 : " + request.getParameter("mem_addr"));
-		int birth_y = Integer.parseInt(request.getParameter("mem_birth").substring(0,4));
+		int birth_y = Integer.parseInt(request.getParameter("mem_birth").substring(0, 4));
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int age = year - birth_y + 1;
@@ -52,26 +60,34 @@ public class MemberController {
 		memberDaoInter.addmember(vo);
 		return "index";
 	}
-	
+
 	// 회원가입시 아이디 중복확인
-	@PostMapping(value="/idchk")
+	@PostMapping(value = "/idchk")
 	public String idchk(Model m, @RequestParam("mem_id") String id) {
 		System.out.println("입력받은 아이디 : " + id);
 		int cnt = memberDaoInter.idchk(id);
-		String msg ="이미 사용중인 아이디 입니다.";
-		if(cnt == 0) {
-			 msg ="사용 가능한 아이디 입니다.";
+		String msg = "이미 사용중인 아이디 입니다.";
+		if (cnt == 0) {
+			msg = "사용 가능한 아이디 입니다.";
 		}
 		m.addAttribute("msg", msg);
 		return "member/idchk";
 	}
-	
+
+	// mypage
+	@RequestMapping("/mypage")
+	public String myPage() {
+		return "member/mypage";
+	}
+
+
 //	맴버리뷰폼으로 이동
 	@RequestMapping("/reviewform")
 	public String reivewForm(Model m) {
 
 		return "member/form/reviewForm";
 	}
+
 //	리뷰인서트
 	@RequestMapping("/reviewinsert")
 	public String reviewInsert(ReviewVO revo, HttpServletRequest request, MultipartFile mfile) {
