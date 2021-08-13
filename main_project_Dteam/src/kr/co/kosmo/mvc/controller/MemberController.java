@@ -118,6 +118,7 @@ public class MemberController {
 		System.out.println("하우스 buytend" + hinvo.getHinfo_buytend());
 		System.out.println("하우스 style" + hinvo.getHinfo_style());
 		System.out.println("하우스 activity" + hinvo.getHinfo_activity());
+
 		memberServiceInter.addMemberHouseInfo(hinvo);
 		return "redirect:/mypage";
 	}
@@ -127,6 +128,7 @@ public class MemberController {
 	public String myPage(Model m) {
 		List<HouseInfoVO> house_Info = memberServiceInter.getMemberHouseInfo("좽이");
 		m.addAttribute("house_info", house_Info);
+		
 		return "member/mypage";
 	}
 
