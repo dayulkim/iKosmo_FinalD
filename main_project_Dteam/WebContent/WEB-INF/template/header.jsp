@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- 
- <style>
+	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<style>
 .layout-navigation-search__list {
 	position: absolute;
 	top: 70%;
@@ -22,32 +23,58 @@
 	width: 22em;
 }
 </style>
-   
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="resources/assets/img/logo_sweethome.png" alt="..." /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="store">스토어</a></li>
-                        <li class="nav-item"><a class="nav-link" href="community">집들이</a></li>
-                        <li class="nav-item"><a class="nav-link" href="questionList">질문과 답변</a></li>
-                        <li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>                        
-                    </ul>
-<!--                     <input type="text" class="nav-search-box" placeholder="통합검색"> -->
-					<input type="text" name="word" id="word" class="nav-search-box"
-						placeholder="통합검색" onkeydown="startSuggest();">
-					<div id="view" class="layout-navigation-search__list element"></div>
-                    <a href=""><img src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png" class="nav-search-button"></a>
-                    <div class="login-out-btn"><a href="" class="login-out-a">로그인</a></div>
-                </div>
-            </div>
-        </nav>
-        
+
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+	<div class="container">
+		<a class="navbar-brand" href="#page-top"><img
+			src="resources/assets/img/logo_sweethome.png" alt="..." /></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			Menu <i class="fas fa-bars ms-1"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+				<li class="nav-item"><a class="nav-link" href="store">스토어</a></li>
+				<li class="nav-item"><a class="nav-link" href="community">집들이</a></li>
+				<li class="nav-item"><a class="nav-link" href="questionList">질문과
+						답변</a></li>
+				<li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>
+			</ul>
+			<!--                     <input type="text" class="nav-search-box" placeholder="통합검색"> -->
+			<input type="text" name="word" id="word" class="nav-search-box"
+				placeholder="통합검색" onkeydown="startSuggest();">
+			<div id="view" class="layout-navigation-search__list element"></div>
+			<img id="srchBtn" src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png" class="nav-search-button">
+			<c:choose>
+				<c:when test="${sessionScope.sessionID == null}">
+					<div class="login-out-btn">
+						<a href="login" class="login-out-a">로그인</a>
+					</div>
+				</c:when>
+				<c:when test="${sessionScope.sessionID != null}">
+                    반갑습니다. ${sessionScope.sessionNickname}님
+                        
+					<div class="login-out-btn">
+						<a href="logout" class="login-out-a">나가기</a>
+					</div>
+					</h1>
+				</c:when>
+			</c:choose>
+		</div>
+	</div>
+</nav>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#srchBtn').on('click', function(){
+			var key = $('#word').val();
+			console.log("key ::"+key);
+			location.href = 'srchRes?key='+key;
+		});
+	});
+</script> 
 <script>
 	var lastkey = ''; //최종키
 	var check = false;//검색 체크 상태
@@ -110,7 +137,8 @@
 					+ i
 					+ ")'>"
 					+ "<img src='resources/review/img/category_" + category
-					+ ".png' width='50;'>"+category+"번 카테고리 사진나올예정"  
+					+ ".png' width='50;'>"
+					+ category + "번 카테고리 사진나올예정"
 			htmlTxt += "</li>"
 		}
 		htmlTxt += "</ul>";
@@ -132,4 +160,3 @@
 
 	}
 </script>
-        

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friends">
+	<!-- 김세연 친구 매퍼 -->
+	
+	<!-- 친구 신청  -->
+	<insert id="request" parameterType="hashmap">
+		insert into friends values
+		(friends_seq.nextVal,#{mem_num},#{req_mem_num},0,sysdate,'')
+	</insert>
+
+	<!-- 친구 수락 : 상태값 수정 -->
+	<update id="accept" parameterType="hashmap">
+		update friends set req_stat = 1, acc_date = sysdate 
+		where mem_num = #{mem_num} and req_mem_num = #{req_mem_num} 
+		or mem_num = #{req_mem_num} and req_mem_num = #{mem_num}
+	</update>
+	
+	<!-- 친구 신청 취소 : 내역삭제 -->
+	<delete id="delete" parameterType="hashmap">
+		delete from friends 
+		where mem_num = #{mem_num} and req_mem_num = #{req_mem_num}
+	</delete>
+	
+	<!-- 친구 해제 -->
+	<update id="unfollow" parameterType="hashmap">
+		update friends set req_stat = 2, acc_date = sysdate 
+		where mem_num = #{mem_num} and req_mem_num = #{req_mem_num} or 
+		mem_num = #{req_mem_num} and req_mem_num = #{mem_num}
+	</update>
+	
+	<!-- 회원별 친구 목록 -->
+	<resultMap type="frivo" id="friendResultMap">
+		<id property="fol_num" column="fol_num" javaType="int"/>
+		<result property="mem_num" column="mem_num" javaType="int"/>
+		<result property="req_mem_num" column="req_mem_num" javaType="int"/>
+		<result property="req_date" column="req_date"/>
+		<result property="acc_date" column="acc_date"/>
+		<association property="memvo" javaType="memvo">
+			<id property="mem_num" column="mem_num"/>
+			<result property="mem_name" column="mem_name"/>
+			<result property="mem_nickname" column="mem_nickname"/>
+		</association>
+	</resultMap>
+	<select id="friList" parameterType="int" resultType="frivo">
+		select f.fol_num, f.mem_num, f.req_mem_num, f.req_date, f.acc_date, 
+		m.mem_name, m.mem_nickname 
+		from friends f, member m  where f.req_mem_num = m.mem_num 
+		and f.req_stat = 1 and f.mem_num = #{mem_num}
+	</select>
+	
+	<!-- 친구관계상태값 가져오기 -->
+	<select id="req_stat" parameterType="hashmap" resultType="frivo">
+		select mem_num,req_mem_num,req_stat from friends where mem_num = #{mem_num} 
+		and req_mem_num = #{req_mem_num} or mem_num = #{req_mem_num} and req_mem_num = #{mem_num}
+	</select>
+
+	
+	<!-- 테스트용 리스트 -->
+	<select id="friends_list" parameterType="int" resultType="memvo">
+		select * from member where mem_num !=#{mem_num}
+	</select>
+
+	
+
+</mapper>

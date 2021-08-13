@@ -109,6 +109,10 @@
                         	<div class="card-header-right" style="width: 70%; float: right;">
                         		<p style="line-height: 40%; font-size: 1.5rem; margin-left: 0.8rem; margin-top:1rem;">${hwarm.mem_id }</p>
                         		<p style="line-height: 100%; font-size: 0.8rem; margin-left: 0.8rem;">${hwarm.hou_rdate } </p>
+                        		<p style="line-height: 80%; font-size: 1rem; margin-left: 0.8rem;">
+                        		<input type="button" value="친구" id="friend_Btn"></p>
+                        		<p id="fri_stat" style="line-height: 80%; font-size: 1rem; margin-left: 0.8rem;"></p>
+                        		<input type="hidden" value="${hwarm.mem_num}" id="req_mem_num">
                         	</div>
                        	</div>
                        	<!-- 스크랩, 좋아요, 공유 버튼 -->
@@ -281,6 +285,69 @@
       			}
       		})
      	});
+     	
+     	// 김세연 추가 : 친구 상태표시, 관계수정 버튼
+     	var req_mem_num = $('#req_mem_num').val();
+     	// DOM 로딩이 완료되면 해당 조회자의 로그인 상태, 관계상태를 받아와서 표시해 준다.
+        $(document).ready(function() {
+        	$.ajaxSetup({cache: false}); // ajax에서는 캐시가 문제이므로 기존 캐시를 지워줌
+        	$.ajax({
+        		url:"crrFriStat?req_mem_num="+req_mem_num,
+        		// 성공하면 data를 받아오고 실패하면 error를 날리는 콜백함수.
+        		type: 'get',
+        		success: function(result) {
+        			console.log(result);
+        			if(result.login=='yes') { // 로그인된 상태일 때만 아래 내용 적용===========================
+        				if(result.status == 1) { // 양쪽 요청내역 없음
+          					$('#fri_stat').text(": 신청가능"); // 상태값 표시
+          				} else if(result.status == 2) { // 상대방이 신청중인 경우
+          					$('#fri_stat').text(": 수락 전"); 
+          				} else if(result.status == 3){ // 친구신청 후 상대방이 수락하기 전
+          					$('#fri_stat').text(": 신청 중");
+          				} else { // 이미 친구상태일 때
+          					$('#fri_stat').text(": 친구사이");
+          				}
+        			}
+        		},
+        		error: function(e) {
+        			console.log("error:"+e);
+        		}
+        	})
+
+        });
+		
+        var req_mem_num = $('#req_mem_num').val();
+        // 친구 버튼을 누르면 Ajax와 RESTful API로 친구상태 달라지게 하기
+      	$('#friend_Btn').click(function(){
+      		//$.ajaxSetup({cache: false});
+      		$.ajax({
+      			url:"clickFriend?req_mem_num="+req_mem_num,
+      			type: 'get',
+      			// 성공하면 jsondata를 받아온다.
+      			success: function(result) {
+      				if(result.login=='no') { // 로그인 안 된 상태인 경우 ===========================
+      					alert('로그인 후 신청 할 수 있습니다.');
+      				} else if (result.login =='yes') { // 로그인 상태인 경우 =========================
+          				if(result.status == 1) { // 내역이 없어서 신규 인서트, 친구신청중
+          					alert("친구신청 접수 되었습니다.");
+          					$('#fri_stat').text(": 신청 중"); // 상태값 표시
+          				} else if(result.status == 2) { // 상대방이 신청한 후라서 수락한 경우
+          					alert("상대방의 신청내역이 있어 친구사이가 되었습니다.");
+          					$('#fri_stat').text(": 친구 사이"); // 상태값 표시
+          				} else if(result.status == 3){ // 친구신청 후 상대방이 수락하기 전 취소
+          					alert("친구신청이 취소 되었습니다.");
+          					$('#fri_stat').text(": 신청 취소");
+          				} else { // 이미 친구상태일 때 친구사이 해제
+          					alert("친구사이가 해제 되었습니다.");
+          					$('#fri_stat').text(": 친구 해제");
+          				}
+      				}
+      			},
+      			error: function(e) {
+      				console.log("error:"+e);
+      			}
+      		})
+      	});
 
 
         </script>

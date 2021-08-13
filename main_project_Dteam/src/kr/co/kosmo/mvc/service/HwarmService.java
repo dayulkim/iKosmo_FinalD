@@ -202,6 +202,8 @@ public class HwarmService implements HwarmServiceInter {
 			hwarm_map.put("hou_tone", "#000000");
 			break;
 		}
+		// 김세연 : 친구추가 기능 위해  추가함  :: 회원 번호 담기
+		hwarm_map.put("mem_num", hwvo.getMem_num());
 		// 회원 아이디 담기
 		hwarm_map.put("mem_id", memberDaoInter.getMemberID(hwvo.getMem_num()));
 		// 회원 프로필 담기
