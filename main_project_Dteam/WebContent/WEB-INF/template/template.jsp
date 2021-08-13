@@ -18,9 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="resources/css/styles.css" rel="stylesheet" />
+     <link href="resources/css/theme.css" rel="stylesheet" />
+     <link href="resources/css/theme.min.css" rel="stylesheet" />
     <!-- OwlCarousel -->
     <link rel="stylesheet" href="resources/css/owlCarousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="resources/css/owlCarousel/owl.theme.default.min.css">
+
 	<!-- jquery -->
     <script src="resources/js/jquery/jquery.min.js"></script>
     <script src="resources/js/jquery/jquery-3.6.0.js"></script>
@@ -28,6 +31,8 @@
     <script src="resources/js/jquery/jquery-1.11.1.min.js"></script>
     <!-- js -->
     <script src="resources/js/httpRequest.js"></script>
+    <script src="resources/js/theme.js"></script>
+    <script src="resources/js/theme.min.js"></script>
 </head>
 <body>
 <div id="page-top">
