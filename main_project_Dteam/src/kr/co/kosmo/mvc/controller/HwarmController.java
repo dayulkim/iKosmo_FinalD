@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.service.HwarmServiceInter;
+import kr.co.kosmo.mvc.vo.HouseCommentVO;
 import kr.co.kosmo.mvc.vo.HousedetailVO;
 import kr.co.kosmo.mvc.vo.HousewarmingVO;
 
@@ -116,6 +117,9 @@ public class HwarmController {
 		// 집들이글 상세 내용 전달
 		List<HousedetailVO> hwd_list = hwarmServiceInter.selectHousedetail(hou_num);
 		mav.addObject("hdetail", hwd_list);
+		// 집들이 댓글 리스트 전달
+		List<HouseCommentVO> hcm_list = hwarmServiceInter.selectHouseComment(hou_num);
+		mav.addObject("hcomment", hcm_list);
 		// 태그된 상품의 이미지들을 전송
 		for (HousedetailVO hdvo : hwd_list) {
 			String hwd_tag = hdvo.getHwd_tag();
@@ -135,6 +139,8 @@ public class HwarmController {
 		mav.setViewName("housewarming/hwarm_detail");
 		return mav;
 	}
+	
+
 
 
 

@@ -54,41 +54,44 @@
                     <section class="mb-5">
                         <div class="card bg-light">
                             <div class="card-body">
-                                <!-- Comment form-->
-                                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
-                                <!-- Comment with nested comments-->
-                                <div class="d-flex mb-4">
-                                    <!-- Parent comment-->
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                        <!-- Child comment 1-->
-                                        <div class="d-flex mt-4">
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">Commenter Name</div>
-                                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                            </div>
-                                        </div>
-                                        <!-- Child comment 2-->
-                                        <div class="d-flex mt-4">
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">Commenter Name</div>
-                                                When you put money directly to a problem, it makes a good headline.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single comment-->
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                                    </div>
-                                </div>
+                                <!-- 댓글 입력창 -->
+                                <form class="mb-4">
+                                	<textarea id="comment_textarea" class="form-control" rows="3" placeholder="댓글을 남겨보세요." style="resize: none;"></textarea>
+                                </form>
+                                <button id="comm_input_btn" style="width: 100%; border-radius: 1rem; border: none; height: 3rem; background-color: #b2d8d8; margin-bottom: 2rem;">등록</button> 
+                                <!-- 댓글 목록 -->
+                                <div id="comment_list" style="word-wrap: break-word;">
+                                	<c:forEach var="comment" items="${hcomment }">
+                                		<c:if test="${comment.depth_num == 0}">
+	                                		<!-- 부모 댓글 -->
+			                                <div class="parent_comment d-flex" id="${comment.comm_num }" style="margin-top: 2rem;">
+			                                    <div class="flex-shrink-0"><img class="rounded-circle" style="width: 3rem;" src="resources/uploadFile/profile/${comment.mem_profile }" alt="..." /></div>
+			                                    <div class="ms-3">
+			                                        <div class="fw-bold">
+			                                        	<span>${comment.mem_id }
+			                                        		<span class="float-end">
+																	&nbsp;&nbsp;<span><a class="reply" style="color: #428bca; text-decoration: none;"><i class="fas fa-reply"></i> Reply</a></span>
+															</span>
+			                                        	</span>
+			                                        </div>
+			                                        ${comment.comm_content }
+			                                    </div>
+			                                </div>
+		                                </c:if>
+		                                <c:if test="${comment.depth_num == 1}">
+		                                	<!-- 자식 댓글 -->
+		                        	        <div class="child_comment" style="margin-left: 4rem;">
+		                                        <div class="d-flex mt-4">
+		                                            <div class="flex-shrink-0"><img class="rounded-circle" style="width: 3rem;" src="resources/uploadFile/profile/${comment.mem_profile }" alt="..." /></div>
+		                                            <div class="ms-3">
+		                                                <div class="fw-bold">${comment.mem_id }</div><!-- 자식 댓글 작성자 아이디 -->
+		                                               ${comment.comm_content }
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </c:if>
+                                	</c:forEach>
+	                            </div>
                             </div>
                         </div>
                     </section>
@@ -118,6 +121,8 @@
                 </div>
             </div>
         </div>
+        
+        
         <script>
         // 여러 메서드에서 공통적으로 사용하는 집들이 번호
         var hou_num = $('#hou_num').val();
@@ -199,5 +204,83 @@
       			}
       		})
       	});
+     	
+     	// 댓글 등록 버튼
+     	$('#comm_input_btn').click(function(){
+     		comment = $('#comment_textarea').val();
+     		console.log("댓글: "+comment);
+     		$.ajaxSetup({cache: false}); // ajax에서는 캐시가 문제이므로 기존 캐시를 지워줌
+      		$.ajax({
+      			url:"insertHouseComment",
+      			data: {hou_num:hou_num, comment:encodeURIComponent(comment), depth_num:0},
+	            type:'POST',
+      			// 성공하면 jsondata를 받아온다.
+      			success: function(result) {
+      				console.log(result);
+      				var comment_html = "";
+      				comment_html += "<div class=\"parent_comment d-flex\" id=\""+parseInt(result.comm_num)+"\" style=\"margin-top: 2rem;\">"
+      				comment_html += "<div class=\"flex-shrink-0\">"
+   					comment_html += "<img class=\"rounded-circle\" src=\"resources/uploadFile/profile/"+result.profile+"\" style=\"width: 3rem;\"/></div>" 
+      				comment_html += "<div class=\"ms-3\">"
+    				comment_html += "<div class=\"fw-bold\"><span>"+result.mem_id // 부모 댓글 작성자 아이디
+    				comment_html += "<span class=\"float-end\">&nbsp;&nbsp;<span><a class=\"reply\" style=\"color: #428bca; text-decoration: none;\">"
+    				comment_html += "<i class=\"fas fa-reply\"></i> Reply</a></span></span></span></div>"
+    				comment_html += comment // 부모 댓글 내용
+    				comment_html += "</div></div>" 		
+					$('#comment_list').append(comment_html); // 새로운 댓글 붙이기
+    				$('#comment_textarea').val(''); // textarea 비우기 
+      			},
+      			error: function(e) {
+      				console.log("error:"+e);
+      			}
+      		})
+     	});
+     	
+     	// 댓글 reply 버튼을 눌렀을 때 답글 입력창 띄우기
+     	$(document).on("click", ".reply", function(){
+     		var reply_html = '<div class="input-group mb-3" style="margin-top: 1rem;">'
+     		reply_html += '<input type="text" class="form-control">';
+     		reply_html += '<button class="btn btn-outline-secondary reply_btn" type="button" style="border-radius: 0rem; border: 0.5px solid #999999;">등록</button></div>';
+     		$(this).parent().parent().parent().parent().parent().parent().after(reply_html);
+     		
+     	});
+     	
+     	// reply 등록 버튼을 누르면 자식 댓글 등록하기
+     	$(document).on("click", ".reply_btn", function(){
+			reply = $(this).siblings('input[type=text]').val(); // 답글 내용 받아오기
+			index = $('.parent_comment').index($(this).parent().prev('div')); // 현재가 몇 번째 부모 댓글인지 인덱스 파악
+			last_index = $('.parent_comment').index($('.parent_comment').last()); // 가장 마지막 부모 댓글의 인덱스 
+			console.log(index + ':' +last_index)
+			par_comm_numm = $(this).parent().prev('div').attr('id'); // 부모 댓글의 comm_num
+			console.log(par_comm_numm);
+			reply_box = $(this).parent(); // 답글 박스
+			$.ajaxSetup({cache: false}); // ajax에서는 캐시가 문제이므로 기존 캐시를 지워줌
+      		$.ajax({
+      			url:"insertHouseComment",
+      			data: {hou_num:hou_num, comment:encodeURIComponent(reply), depth_num:1, par_comm_numm: par_comm_numm},
+	            type:'POST',
+      			// 성공하면 jsondata를 받아온다.
+      			success: function(result) {
+      				console.log(result);
+      				var comment_html = "<div class=\"child_comment\" style=\"margin-left: 4rem;\">";
+      				comment_html += "<div class=\"d-flex mt-4\">";
+      				comment_html += "<div class=\"flex-shrink-0\">"; 
+    				comment_html += "<img class=\"rounded-circle\" style=\"width: 3rem;\" src=\"resources/uploadFile/profile/"+result.profile+"\"/></div>";
+    				comment_html += "<div class=\"ms-3\"><div class=\"fw-bold\">"+result.mem_id+"</div>";
+    				comment_html += reply
+    				comment_html += "</div></div></div>"
+    				if (index==last_index) {
+    					$('#comment_list').append(comment_html); // 마지막 부모 댓글 뒤에 자식 댓글 추가
+    				} else {
+    					$('.parent_comment').eq(index+1).before(comment_html); // 다음 부모 댓글 요소 앞에 자식 댓글 추가
+    				}
+   					reply_box.remove(); // 답글 등록이 되면 답글 박스 닫기
+      			},
+      			error: function(e) {
+      				console.log("error:"+e);
+      			}
+      		})
+     	});
+
 
         </script>

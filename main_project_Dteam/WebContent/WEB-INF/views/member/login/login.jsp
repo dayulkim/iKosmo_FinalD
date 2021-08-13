@@ -44,7 +44,7 @@
                                     	
                                         <h1 class="h4 text-gray-900 mb-4">슬기로운 집콕생활</h1>
                                     </div>
-                                    <form class="user">
+                                    <div class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="mem_id" name="mem_id"
@@ -63,7 +63,7 @@
                                         <button class="btn btn-primary btn-user btn-block" id="loginBtn" name="loginBtn" onclick="login()">
                                             	로그인
                                         </button>
-                                    </form>
+                                    </div>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">비밀번호 찾기</a>

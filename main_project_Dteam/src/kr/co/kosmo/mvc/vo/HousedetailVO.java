@@ -3,6 +3,7 @@ package kr.co.kosmo.mvc.vo;
 import java.util.List;
 
 public class HousedetailVO {
+	private int idx; // 집들이 내용 순서
 	private int hou_num; // 집들이 번호
 	private String hwd_content; // 집들이 내용
 	private String hwd_photo; // 집들이 이미지
@@ -10,6 +11,12 @@ public class HousedetailVO {
 	private List<String> hwd_tag_photo; // 태그된 상품의 사진 리스트
 
 	
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 	public int getHou_num() {
 		return hou_num;
 	}

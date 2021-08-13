@@ -30,7 +30,44 @@
 
 <!-- Template Stylesheet -->
 <link href="resources/css/store/style.css" rel="stylesheet">
+<!-- 탭 기능 시작 -->
+<style type="text/css">
+.tabs {
+	margin: 0;
+	padding: 0;
+}
 
+.tabs li {
+	list-style-type: none;
+	display: inline-block;
+	background: #c7c7c7;
+	padding: 3px 10px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.tabs li:hover {
+	color: #fff;
+	background: #5294de;
+}
+
+.tabs li.active {
+	color: #fff;
+	background: #5294de;
+}
+
+.panel {
+	display: none;
+	background: #fff;
+	border: 1px solid #c7c7c7;
+	padding: 30px;
+}
+
+.panel.active {
+	display: block;
+}
+</style>
+<!-- 탭 기능 끝 -->
 </head>
 
 <body>
@@ -381,20 +418,6 @@
 					});
 
 		};
-
-		// 세연님 담당 Seller Map 연동 -Ajax는 다율 작성
-		$.ajax({
-			type : "GET", // HTTP 요청방식
-			url : url, // 해당 url
-			data : data,
-			dataType : dataType, // data 타입
-			success : function() { // HTTP 요청 성공 후 데이터 전송
-				alert("판매자 정보 map 출력 성공");
-			},
-			error : function() { // HTTP 요청 실패 후 데이터 전송
-				alert("판매자 정보 map 출력 실패");
-			}
-		})
 	</script>
 	<!-- kakaomap api -->
 	<script type="text/javascript"

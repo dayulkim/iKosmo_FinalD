@@ -15,10 +15,14 @@
 		<typeAlias type="kr.co.kosmo.mvc.vo.InterestVO" alias="intvo"/> <!-- 조회 -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.HousewarmingVO" alias="houvo"/><!-- 집들이(개요) -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.HousedetailVO" alias="hwdvo"/><!-- 집들이(상세) -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.HouseCommentVO" alias="hcmvo"/><!-- 집들이(댓글) -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.QuestionVO" alias="quevo"/><!-- 질문 -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.AnswerVO" alias="ansvo"/><!-- 답변 -->
-		<typeAlias type="kr.co.kosmo.mvc.vo.Scrap_ProductVO" alias="srcprovo"/><!-- 상품스크랩 -->
-		<typeAlias type="kr.co.kosmo.mvc.vo.HouseInfoVO" alias="hinvo"/><!-- 집정보 -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.Scrap_ProductVO" alias="scrprovo"/><!-- 상품스크랩 -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.Scrap_HousewarmingVO" alias="srchouvo"/><!-- 집들이스크랩 -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.Scrap_QnaVO" alias="srcquevo"/><!-- 질문과답변스크랩 -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.CartVO" alias="cvo"/><!-- 장바구니  -->
+
 	</typeAliases>
 	<!-- Spring이 environments, environment, transactionManager, dataSource, 
 		mapper등을 자동적으로 관리해줌 -->

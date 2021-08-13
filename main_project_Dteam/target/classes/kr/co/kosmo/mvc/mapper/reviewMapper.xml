@@ -27,7 +27,7 @@
 	<!-- 페이징처리를 위한 선택한 물품번호 정보 받아오는 sql -->
 	<!-- 페이징처리를 위한 선택한 물품번호 갯수 받아오는 쿼리 -->
 	<select parameterType="pvo" resultType="int" id="totalCnt">
-		selectcount(*) cnt from review
+		select count(*) cnt from review
 		<where>
 			pro_num=#{pro_num}
 			<if test="sortType1>1">

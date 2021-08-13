@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+<insert id="in" parameterType="cvo">
+	insert into cart values(CART_SEQ.nextval,#{mem_num},#{pro_num},#{car_qty})
+</insert>
+
+<select id="getlist" parameterType="int" resultMap="CartMap">
+	select p.pro_num,p.pro_name, p.pro_price, p.pro_thumb, c.car_num, c.car_qty from product p, cart c where c.mem_num = #{mem_num} and p.pro_num = c.pro_num order by c.car_num 
+</select>
+
+<delete id="delcart" parameterType="cvo">
+	delete from cart where mem_num = #{mem_num} and car_num = #{car_num}
+</delete>
+
+<resultMap type="cvo" id="CartMap">
+	<id column="car_num" property="car_num"/>
+	<result column="mem_num" property="mem_num"/>
+	<result column="pro_num" property="pro_num"/>
+	<result column="car_qty" property="car_qty"/>
+	<collection property="productVO" javaType="pvo">
+		<id column="pro_num" property="pro_num"/>
+		<result column="pro_name" property="pro_name"/>
+		<result column="pro_price" property="pro_price"/>
+		<result column="pro_period" property="pro_period"/>
+		<result column="pro_thumb" property="pro_thumb"/>
+		<result column="pro_photo" property="pro_photo"/>
+		<result column="pro_detail" property="pro_detail"/>
+		<result column="pro_date" property="pro_date"/>
+		<result column="sel_num" property="sel_num"/>
+	</collection>
+</resultMap>
+</mapper>
