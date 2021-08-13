@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 
 <style>
 /
@@ -97,11 +92,11 @@
 	border-color: #2e6da4;
 }
 /* 파일 업로드 css  */
-.layer_title {
+.layer_title-review {
 	text-align: center;
 }
 
-#mask {
+#mask-review {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -110,7 +105,7 @@
 	display: none;
 }
 
-.layerpop {
+.layerpop-review {
 	overflow: auto;
 	position: absolute;
 	display: none;
@@ -119,7 +114,7 @@
 	background: #fff;
 }
 
-.layerpop_area .layer_title {
+.layerpop_area-review .layer_title-review {
 	padding: 10px 10px 10px 10px;
 	border: 0px solid #aaaaaa;
 	background: #f1f1f1;
@@ -129,7 +124,7 @@
 	line-height: 24px;
 }
 
-.layerpop_area .layerpop_close {
+.layerpop_area-review .layerpop_close-review {
 	width: 30px;
 	display: block;
 	position: absolute;
@@ -137,7 +132,7 @@
 	right: 10px;
 }
 
-.layerpop_area .content {
+.layerpop_area-review .content-review {
 	width: 95%;
 	margin: 2%;
 	color: #828282;
@@ -216,26 +211,25 @@
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-</head>
+
 
 
 
 <body>
-<p>${keyword },${category }</p>
-	<button onClick="javascript:goDetail('테스트');">팝업</button>
+
 
 	<!-- 팝업뜰때 배경 -->
-	<div id="mask"></div>
+	<div id="mask-review"></div>
 
 	<!--Popup Start -->
-	<div id="layerbox" class="layerpop" style="width: 55%; height: 80%;">
-		<article class="layerpop_area">
-			<div class="layer_title">상품평</div>
+	<div id="layerbox-review" class="layerpop-review" style="width: 55%; height: 80%;">
+		<article class="layerpop_area-review">
+			<div class="layer_title-review">상품평</div>
 
-			<a href="javascript:popupClose();" class="layerpop_close"
-				id="layerbox_close"><img alt="" src="resources/review/img/x.png"></a><br>
-			<div class="content">
-				<div id="body" align="center">
+			<a href="javascript:popupCloseReview();" class="layerpop_close-review"
+				id="layerbox_close-review"><img alt="" src="resources/review/img/x.png"></a><br>
+			<div class="content-review">
+				<div id="body-review" align="center">
 
 					<form action="reviewinsert" method="post"
 						enctype="multipart/form-data">
@@ -350,8 +344,12 @@
 		</article>
 	</div>
 	<script>
+	$('#review-add-btn').click(function() {
+		popupOpenReview();
+		wrapWindowByMaskReview();
+	});
 		// 	LayerPopUp 스크립트구역--------------------------------------------------------------------------
-		function wrapWindowByMask() {
+		function wrapWindowByMaskReview() {
 			//화면의 높이와 너비를 구한다.
 			var maskHeight = $(document).height();
 			var maskWidth = $(window).width();
@@ -364,55 +362,37 @@
 					+ $(window).height());
 
 			//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-			$('#mask').css({
+			$('#mask-review').css({
 				'width' : maskWidth,
 				'height' : maskHeight
 			});
 			//애니메이션 효과
-			$('#mask').fadeTo("slow", 0.5);
+			$('#mask-review').fadeTo("slow", 0.5);
 		}
-		function popupOpen() {
-			$('.layerpop').css("position", "absolute");
+		function popupOpenReview() {
+			$('.layerpop-review').css("position", "absolute");
 
 			//영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-			$('.layerpop').css(
+			$('.layerpop-review').css(
 					"top",
-					(($(window).height() - $('.layerpop').outerHeight()) / 2)
+					(($(window).height() - $('.layerpop-review').outerHeight()) / 2)
 							+ $(window).scrollTop());
-			$('.layerpop').css(
+			$('.layerpop-review').css(
 					"left",
-					(($(window).width() - $('.layerpop').outerWidth()) / 2)
+					(($(window).width() - $('.layerpop-review').outerWidth()) / 2)
 							+ $(window).scrollLeft());
 			// 			$('.layerpop').draggable();
-			$('#layerbox').show();
+			$('#layerbox-review').show();
 		}
 
-		function popupClose() {
-			$('#layerbox').hide();
-			$('#mask').hide();
+		function popupCloseReview() {
+			$('#layerbox-review').hide();
+			$('#mask-review').hide();
 		}
 
-		function goDetail() {
-			/*팝업 오픈전 별도의 작업이 있을경우 구현*/
-			popupOpen(); //레이어 팝업창 오픈 
-			wrapWindowByMask(); //화면 마스크 효과 
-		}
+
 		//	 	LayerPopUp 스크립트구역--------------------------------------------------------------------------
 
-		// 파일업로드----------------------------------------------------------------------------------------------
-// 		function addFile() {
-// 			var code = parseInt(document.getElementById("code").value, "10");
-// 			console.log(code);
-// 			var html = "";
-// 			for (var i = 0; i < code; i++) {
-// 				html += "<input type=\"file\" name=\"mfile\" id=\"mfile\" accept=\".jpg\,.gif\"><br>";
-
-// 			}
-// 			document.getElementById("uploadtarget").innerHTML = html;
-// 		}
-
-		//파일업로드----------------------------------------------------------------------------------------------
-		
 		
 		
 		//별점----------------------------------------------------------------------------------------------------
@@ -462,25 +442,6 @@ function autoFinder(category) {
 		//별점----------------------------------------------------------------------------------------------------
 	</script>
 
-
-
-	<!-- let beforeScrollPosition = 0; -->
-	<!-- let popupOpenType = false; -->
-
-	<!-- window.addEventListener('scroll', function() { -->
-	<!-- 	const htmlEl = document.getElementsByTagName('html')[0]; -->
-
-	<!-- 	if(popupOpenType) { -->
-	<!--   	htmlEl.scrollTop = beforeScrollPosition; -->
-	<!--   } else { -->
-	<!--   	beforeScrollPosition = htmlEl.scrollTop; -->
-	<!--   } -->
-	<!-- }); -->
-
-	<!-- document.getElementsByTagName('button')[0].addEventListener('click', function() { -->
-	<!-- 	document.getElementById('popup').style.display = 'block'; -->
-	<!--   popupOpenType = true; -->
-	<!-- }); -->
 	<script type="text/javascript">
 $(document).ready(function(){
 	   var fileTarget = $('.filebox .upload-hidden');
@@ -530,6 +491,3 @@ $(document).ready(function(){
 	    });
 	});
 </script>
-
-</body>
-</html>

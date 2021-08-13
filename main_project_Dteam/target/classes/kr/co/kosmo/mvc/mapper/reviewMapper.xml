@@ -49,7 +49,7 @@
 	<!-- 회원번호 상품번호 아직 미적용 -->
 	<!-- 회원번호 상품번호 아직 미적용 -->
 	<select parameterType="revvo" id="addReview">insert into
-		reviewvalues(review_seq.nextVal,#{rev_content},#{rev_photo},#{rev_period},#{rev_color},#{rev_star},sysdate,1,1)
+		review values(review_seq.nextVal,#{rev_content},#{rev_photo},#{rev_period},#{rev_color},#{rev_star},sysdate,1,1)
 	</select>
 	<!-- 회원번호 상품번호 아직 미적용 -->
 	<!-- 회원번호 상품번호 아직 미적용 -->
