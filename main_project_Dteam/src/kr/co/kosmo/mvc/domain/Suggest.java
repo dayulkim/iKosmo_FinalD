@@ -40,7 +40,7 @@ public class Suggest {
 		SAXBuilder sb = new SAXBuilder();
 
 		File path = new File(
-				"D:\\ikosmo\\Final_Git_Dteam\\iKosmo_FinalD\\main_project_Dteam\\WebContent\\resources\\suggest\\suggest.xml");
+				"C:\\Users\\kosmo_02\\git\\iKosmo_FinalD\\main_project_Dteam\\WebContent\\resources\\suggest\\suggest.xml");
 
 		path.delete();
 		List<ProductVO> titleList = productServiceInter.suggestProductList();
