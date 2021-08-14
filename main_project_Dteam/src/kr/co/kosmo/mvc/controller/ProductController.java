@@ -14,9 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.ReviewDao;
 import kr.co.kosmo.mvc.dao.Scrap_ProductDaoInter;
-
+import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.ProductServiceInter;
 import kr.co.kosmo.mvc.service.SellerService;
+import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
@@ -38,6 +39,9 @@ public class ProductController { // 김다율
 	
 	@Autowired
 	private Scrap_ProductDaoInter scrap_ProductDaoInter;
+	
+	@Autowired
+	private FriendsServiceInter friendsServiceInter;
 
 	// ----신연아 시작--------
 	// 메인화면의 스토어 버튼 클릭시 이동
@@ -181,7 +185,12 @@ public class ProductController { // 김다율
 	}
 
 	@RequestMapping("/mypage")
-	public String myPage() {
+	public String myPage(Model m, HttpSession session) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		System.out.println("sessionNum ::"+mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
+		//System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
+		m.addAttribute("frilist", list);
 		return "store/mypage";
 	}
 

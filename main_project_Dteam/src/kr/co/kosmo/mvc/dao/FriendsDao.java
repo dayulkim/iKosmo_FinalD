@@ -29,6 +29,8 @@ public class FriendsDao implements FriendsDaoInter{
 	// 내친구목록 가져오기 (stat=1)
 	@Override
 	public List<FriendsVO> friendsList(int mem_num) {
+		List<FriendsVO> list = ss.selectList("friends.friList", mem_num);
+		
 		return ss.selectList("friends.friList", mem_num);
 	}
 	// 나에게 친구요청한 리스트 가져오기
@@ -40,14 +42,7 @@ public class FriendsDao implements FriendsDaoInter{
 	// 두 회원간 상태값 가져오기
 	@Override
 	public List<FriendsVO> fri_req_stat(Map<String, Integer> num_map) {
-		System.out.println("fri_req_stat dao*********************************");
-		System.out.println("mem_num ::"+num_map.get("mem_num"));
 		List<FriendsVO> list = ss.selectList("friends.req_stat", num_map);
-		for(FriendsVO e : list) {
-			System.out.println("1 회원번호::"+e.getMem_num());
-			System.out.println("2 상대번호::"+e.getReq_mem_num());
-			System.out.println("3 db상태값::"+e.getReq_stat());
-		}
 		return list;
 	}
 

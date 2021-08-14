@@ -32,24 +32,27 @@
 	</update>
 	
 	<!-- 회원별 친구 목록 -->
+	<resultMap type="memvo" id="memvo">
+		<id property="mem_num" column="mem_num" javaType="int"/>
+		<result property="mem_name" column="mem_name"/>
+		<result property="mem_nickname" column="mem_nickname"/>
+	</resultMap>
+	
 	<resultMap type="frivo" id="friendResultMap">
 		<id property="fol_num" column="fol_num" javaType="int"/>
 		<result property="mem_num" column="mem_num" javaType="int"/>
 		<result property="req_mem_num" column="req_mem_num" javaType="int"/>
+		<result property="req_stat" column="req_stat"/>
 		<result property="req_date" column="req_date"/>
 		<result property="acc_date" column="acc_date"/>
-		<association property="memvo" javaType="memvo">
-			<id property="mem_num" column="mem_num"/>
-			<result property="mem_name" column="mem_name"/>
-			<result property="mem_nickname" column="mem_nickname"/>
-		</association>
+		<collection property="memvo" resultMap="memvo"/>
 	</resultMap>
 	<!-- 친구상태인 목록 -->
 	<select id="friList" parameterType="int" resultType="frivo">
-		select m.mem_name, m.mem_nickname, f.req_mem_num,f.req_stat,f.req_date  
+		select m.mem_name, m.mem_nickname, f.req_mem_num,f.req_stat,f.req_date,acc_date   
 		from member m, friends f  
 		where f.req_mem_num = m.mem_num and req_stat = 1   
-		and f.mem_num=41
+		and f.mem_num= #{mem_num}
 	</select>
 	
 	<!-- 친구요청 받은 목록 -->

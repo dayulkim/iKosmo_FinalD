@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +75,8 @@
 							role="tab"><i class="fa fa-tachometer-alt"></i>&nbsp;나의 질문/답변</a>
 						<a class="nav-link" id="orders-nav" data-toggle="pill"
 							href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>&nbsp;구매내역</a>
+						<a class="nav-link" id="friends-nav" data-toggle="pill"
+							href="#friends-tab" role="tab"><i class="fa fa-shopping-bag"></i>&nbsp;친구목록</a>
 						<a class="nav-link" id="payment-nav" data-toggle="pill"
 							href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>&nbsp;나의
 							쿠폰함</a> <a class="nav-link" href="logout"><i
@@ -168,6 +172,37 @@
 								</table>
 							</div>
 						</div>
+						<!-- 친구목록 테스트 -->
+						<div class="tab-pane fade" id="friends-tab" role="tabpanel"
+							aria-labelledby="friends-nav">
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									<thead class="thead-dark">
+										<tr>
+											<th>번호</th>
+											<th>이름</th>
+											<th>닉네임</th>
+											<th>신청일</th>
+											<th>수락일</th>
+											<th>수정</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="e" items="${frilist}" varStatus="status">
+										<tr>
+											<td>${status.count}</td>
+											<td>${e.memvo.mem_name}</td>
+											<td>${e.memvo.mem_nickname}</td>
+											<td>${e.req_date}</td>
+											<td>${e.acc_date}</td>
+											<td><button class="btn">친구해제</button></td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- 친구목록 테스트 end -->
 						<div class="tab-pane fade" id="payment-tab" role="tabpanel"
 							aria-labelledby="payment-nav">
 							<h4>나의 쿠폰함</h4>
