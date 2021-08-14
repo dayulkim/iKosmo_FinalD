@@ -25,7 +25,6 @@ public class FreindsRestController {
 	// 관계 상태값
 	@RequestMapping(value="/crrFriStat", produces="application/json; charset=euc-kr")
 	public String crrStatus(int req_mem_num, HttpSession session) {
-		System.out.println("rest_controller :: crrFriStat 실행!!!!");
 		String login = null;
 		int status = 0;
 		Object sessionNum = session.getAttribute("sessionNum");
@@ -37,8 +36,6 @@ public class FreindsRestController {
 			num_map.put("mem_num", Integer.parseInt(sessionNum.toString()));
 			num_map.put("req_mem_num", req_mem_num);
 			
-			System.out.println("mem_num ::"+num_map.get("mem_num"));
-			System.out.println("req_mem_num ::"+req_mem_num);
 			// 현재 요청상태 DB에서 불러오기
 			List<FriendsVO> volist = service.getReq_stat(num_map);
 			// 요청상태에 따라 status값 지정
@@ -87,8 +84,6 @@ public class FreindsRestController {
 			Map<String, Integer> num_map = new HashMap<String, Integer>();
 			num_map.put("mem_num", (int)session.getAttribute("sessionNum"));
 			num_map.put("req_mem_num", req_mem_num);
-			System.out.println("mem_num ::"+(int)session.getAttribute("sessionNum"));
-			System.out.println("req ::"+req_mem_num);
 			
 			// 현재 요청상태 DB에서 불러오기
 			List<FriendsVO> volist = service.getReq_stat(num_map);
@@ -96,27 +91,22 @@ public class FreindsRestController {
 			// 요청내역이 없는 경우
 			if (volist.size() == 0) {
 				service.request_friend(num_map);
-				System.out.println("status 1 실행");
 				status = 1; // 신규신청 상태
 			}
 			else {
 				// 요청내역이 쌍방으로 있는 경우 (이미 친구 상태)
 				if(volist.size() > 1) {
 					service.unfollow(num_map);
-					status = 4; // 친구 해제
-					System.out.println("status 4 실행");
-					
+					status = 4; // 친구 해제					
 				// 요청내역이 한쪽만 있는 경우
 				}else {
 					// 내 요청내역만 있는 경우
 					if (volist.get(0).getReq_mem_num() == req_mem_num) {
 						service.delete_request(num_map);
 						status = 3; // 신청취소(요청내용 삭제)
-						System.out.println("status 3 실행");
 					}else { // 상대방 요청내역만 있는 경우
 						service.accept_friend(num_map);
 						status = 2; // 신청수락
-						System.out.println("status 2 실행");
 					}
 				}
 			}

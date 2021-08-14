@@ -26,11 +26,17 @@ public class FriendsDao implements FriendsDaoInter{
 	public void acceptFriend(Map<String, Integer> num_map) {
 		ss.update("friends.accept", num_map);
 	}
-	// 친구목록 가져오기
+	// 내친구목록 가져오기 (stat=1)
 	@Override
-	public List<MemberVO> memberlist(int mem_num) {
-		return ss.selectList("friends.friends_list", mem_num);
+	public List<FriendsVO> friendsList(int mem_num) {
+		return ss.selectList("friends.friList", mem_num);
 	}
+	// 나에게 친구요청한 리스트 가져오기
+	@Override
+	public List<FriendsVO> friendsWtList(int mem_num){
+		return ss.selectList("friends.friWtList", mem_num);
+	}
+	
 	// 두 회원간 상태값 가져오기
 	@Override
 	public List<FriendsVO> fri_req_stat(Map<String, Integer> num_map) {

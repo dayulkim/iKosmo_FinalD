@@ -44,25 +44,29 @@
 			<result property="mem_nickname" column="mem_nickname"/>
 		</association>
 	</resultMap>
+	<!-- 친구상태인 목록 -->
 	<select id="friList" parameterType="int" resultType="frivo">
-		select f.fol_num, f.mem_num, f.req_mem_num, f.req_date, f.acc_date, 
-		m.mem_name, m.mem_nickname 
-		from friends f, member m  where f.req_mem_num = m.mem_num 
-		and f.req_stat = 1 and f.mem_num = #{mem_num}
+		select m.mem_name, m.mem_nickname, f.req_mem_num,f.req_stat,f.req_date  
+		from member m, friends f  
+		where f.req_mem_num = m.mem_num and req_stat = 1   
+		and f.mem_num=41
 	</select>
+	
+	<!-- 친구요청 받은 목록 -->
+	<select id="friWtList" parameterType="int" resultType="frivo">
+		select m.mem_name, m.mem_nickname, f.mem_num,f.req_stat,f.req_date 
+		from member m, friends f 
+		where f.mem_num = m.mem_num 
+		and req_stat = 0 
+		and f.req_mem_num= #{mem_num}
+	</select>
+	
+	
 	
 	<!-- 친구관계상태값 가져오기 -->
 	<select id="req_stat" parameterType="hashmap" resultType="frivo">
 		select mem_num,req_mem_num,req_stat from friends where mem_num = #{mem_num} 
 		and req_mem_num = #{req_mem_num} or mem_num = #{req_mem_num} and req_mem_num = #{mem_num}
 	</select>
-
-	
-	<!-- 테스트용 리스트 -->
-	<select id="friends_list" parameterType="int" resultType="memvo">
-		select * from member where mem_num !=#{mem_num}
-	</select>
-
-	
 
 </mapper>

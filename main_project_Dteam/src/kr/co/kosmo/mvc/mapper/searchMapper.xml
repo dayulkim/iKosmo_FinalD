@@ -72,7 +72,7 @@
 	<select id="houList" parameterType="String" resultMap="houList_resultmap">
 		select h.hou_num,h.hou_name,h.hou_thumb,h.hou_hit,h.hou_scrap,h.mem_num,
 		m.mem_nickname from housewarming h, housedetail d, member m 
-		where h.hou_name || d.hwd_content like '%'||#{key}||'%' 
+		where h.hou_name or d.hwd_content like '%'||#{key}||'%' 
 		and h.hou_num = d.hou_num and h.mem_num = m.mem_num
 	</select>
 	

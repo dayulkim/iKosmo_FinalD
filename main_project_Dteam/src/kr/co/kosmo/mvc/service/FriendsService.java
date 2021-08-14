@@ -23,8 +23,8 @@ public class FriendsService implements FriendsServiceInter{
 	private FriendsDaoInter friendsDaoInter;
 
 	@Override
-	public List<MemberVO> getFriednsList(int mem_num) {
-		return friendsDaoInter.memberlist(mem_num);
+	public List<FriendsVO> getFriednsList(int mem_num) {
+		return friendsDaoInter.friendsList(mem_num);
 	}
 
 	@Override
@@ -52,6 +52,11 @@ public class FriendsService implements FriendsServiceInter{
 	@Override
 	public void unfollow(Map<String, Integer> num_map) {
 		friendsDaoInter.unfollow(num_map);
+	}
+
+	@Override
+	public List<FriendsVO> getFriWtList(int mem_num) {
+		return friendsDaoInter.friendsWtList(mem_num);
 	}
 	
 

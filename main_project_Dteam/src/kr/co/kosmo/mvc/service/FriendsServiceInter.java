@@ -14,7 +14,9 @@ public interface FriendsServiceInter {
 	
 	//김세연 친구 기능 관련
 	// 친구목록 불러오기
-	public List<MemberVO> getFriednsList(int mem_num);
+	public List<FriendsVO> getFriednsList(int mem_num);
+	// 나에게 친구요청한 리스트 가져오기
+	public List<FriendsVO> getFriWtList(int mem_num);
 	// 대상자간 요청상태값 가져오기
 	public List<FriendsVO> getReq_stat(Map<String, Integer> num_map);
 	// 친구 요청 하기
