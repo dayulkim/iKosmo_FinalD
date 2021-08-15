@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,20 @@ public class OrderListController { // 김다율
 	@Autowired
 	private QuestionServiceInter questionServiceInter;
 	
+	@RequestMapping("/anypage")
+	public String anypage(HttpSession session, Model m) {
+		System.out.println("전체 주문내역 컨트롤러 시작!");
+		// int mem_num = 1;
+		// int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		int mem_session = (int) session.getAttribute("sessionNum");
+		System.out.println("mem_session::::::::::::"+mem_session);
+		ModelAndView mav = new ModelAndView();
+		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
+		m.addAttribute("ordvo", ordvo);
+		// mav.setViewName("order/orderList"); // jsp의 위치 주소,,.
+		return "order/anypage";
+	}
+	
 	@RequestMapping("/orderList") // 개인의 전체 주문내역 출력
 	public ModelAndView orderList(
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
@@ -43,7 +58,7 @@ public class OrderListController { // 김다율
 		int mem_session = (int) session.getAttribute("sessionNum");
 		System.out.println("mem_session::::::::::::"+mem_session);
 		ModelAndView mav = new ModelAndView();
-		List<OrderListVO> ordvo = orderListServiceInter.orderListii(mem_session);
+		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
 		mav.addObject("ordvo", ordvo);
 		// mav.setViewName("order/orderList"); // jsp의 위치 주소,,.
 		
@@ -82,7 +97,7 @@ public class OrderListController { // 김다율
 //		// int mem_num = 1;
 //		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 //		ModelAndView mav = new ModelAndView();
-//		List<OrderListVO> ordvo = orderListService.orderListii(mem_num);
+//		List<OrderListVO> ordvo = orderListService.orderList(mem_num);
 //		mav.addObject("ordvo", ordvo);
 //		// mav.setViewName("order/orderList"); // jsp의 위치 주소,,.
 //		mav.setViewName("member/mypage");

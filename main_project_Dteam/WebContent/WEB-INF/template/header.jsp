@@ -40,7 +40,11 @@
 				<li class="nav-item"><a class="nav-link" href="community">집들이</a></li>
 				<li class="nav-item"><a class="nav-link" href="questionList">질문과
 						답변</a></li>
-				<li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.sessionID != null}">
+						<li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>
+					</c:when>
+				</c:choose>
 			</ul>
 			<!--                     <input type="text" class="nav-search-box" placeholder="통합검색"> -->
 			<input type="text" name="word" id="word" class="nav-search-box"
@@ -58,11 +62,11 @@
 				<c:when test="${sessionScope.sessionID != null}">
 					반갑습니다. ${sessionScope.sessionNickname}님
 						<a href=""><img
-							src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png"
-							class="nav-search-button"></a>
-						<div class="login-out-btn">
-							<a href="logout" class="login-out-a">나가기</a>
-						</div>
+						src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png"
+						class="nav-search-button"></a>
+					<div class="login-out-btn">
+						<a href="logout" class="login-out-a">나가기</a>
+					</div>
 					</h1>
 				</c:when>
 			</c:choose>

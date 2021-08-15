@@ -10,7 +10,7 @@
 		ord_num=#{ord_num} and pro_num=#{pro_num}
 	</select>
 
-	<select id="orderListii" parameterType="int"
+	<select id="orderList" parameterType="int"
 		resultMap="ProductOrderMap">
 		select o.ord_num, p.pro_num, p.pro_name, p.pro_price,
 		p.pro_discount, (p.PRO_PRICE*(100-pro_discount)/100) as pro_dprice,

@@ -92,7 +92,8 @@
 							id="account-nav" data-toggle="pill" href="#account-tab"
 							role="tab"><i class="fa fa-tachometer-alt"></i>&nbsp;나의 질문/답변</a>
 						<a class="nav-link" id="orders-nav" data-toggle="pill"
-							href="orderList" role="tab"><i class="fa fa-shopping-bag"></i>&nbsp;구매내역 href="orderList"#orders-tab</a>
+							href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>&nbsp;구매내역 href="orderList"#orders-tab</a>
+						<input type="button" id='goBtn' name='goBtn' value='anypage 이동' onclick="location='/main_project_Dteam/anypage'">
 						<a class="nav-link" id="payment-nav" data-toggle="pill"
 							href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>&nbsp;나의
 							쿠폰함</a> <a class="nav-link" href="logout"><i
@@ -148,8 +149,8 @@
 						<div class="tab-pane fade" id="orders-tab" role="tabpanel"
 							aria-labelledby="orders-nav">
 							<div class="table-responsive">
-								<%@include file="../order/orderList.jsp" %>
-								<%@include file="MyPageProcess.jsp" %>
+								<%-- <%@include file="../order/orderList.jsp" %> --%>
+								<%-- <%@include file="MyPageProcess.jsp" %> --%>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="payment-tab" role="tabpanel"

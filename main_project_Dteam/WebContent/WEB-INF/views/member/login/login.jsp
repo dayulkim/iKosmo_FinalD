@@ -48,11 +48,11 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="mem_id" name="mem_id"
-                                                placeholder="아이디를 입력해주세요" required="required">
+                                                placeholder="아이디를 입력해주세요" required="required" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="mem_pwd" name="mem_pwd" placeholder="비밀번호" required="required">
+                                                id="mem_pwd" name="mem_pwd" placeholder="비밀번호" required="required" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
