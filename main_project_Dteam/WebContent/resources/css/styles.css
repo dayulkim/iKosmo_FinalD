@@ -11440,6 +11440,11 @@ a.login-out-a {
 }
 
 @font-face {
+	src: url("../fonts/NANUMSQUAREROUNDR.TTF");
+	font-family: "NANUMSQUAREROUNDR";
+}
+
+@font-face {
 	src: url("../fonts/NANUMSQUARE.ttf");
 	font-family: "NANUMSQUARE";
 }

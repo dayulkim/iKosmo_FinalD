@@ -43,7 +43,7 @@
 						placeholder="통합검색" onkeydown="startSuggest();">
 					<div id="view" class="layout-navigation-search__list element"></div>
                     <a href=""><img src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png" class="nav-search-button"></a>
-                    <div class="login-out-btn"><a href="" class="login-out-a">로그인</a></div>
+                    <div class="login-out-btn"><a href="login" class="login-out-a">로그인</a></div>
                 </div>
             </div>
         </nav>

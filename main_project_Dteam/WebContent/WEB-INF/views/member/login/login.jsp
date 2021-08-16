@@ -115,7 +115,7 @@ function res() {
 				document.getElementById("mem_id").focus();
 			} else {
 				alert(txt);
-				location="/sweethome/";
+				location="/";
 			}
 		} else {
 			console.log("½ÇÆÐ");

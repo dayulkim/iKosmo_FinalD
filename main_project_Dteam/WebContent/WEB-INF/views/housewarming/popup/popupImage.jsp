@@ -15,6 +15,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="./resources/css/styles.css" rel="stylesheet" />
     <link href="./resources/css/housewarming/housewarming.css" rel="stylesheet" />
+    <link href="./resources/css/theme.css" rel="stylesheet" />
+    <link href="./resources/css/theme.min.css" rel="stylesheet" />
     <!-- OwlCarousel -->
     <link rel="stylesheet" href="resources/css/owlCarousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="resources/css/owlCarousel/owl.theme.default.min.css">
@@ -56,10 +58,9 @@
 			
 	
 		</div>
-		<hr>
-		<div class="row">
-			<a href="javascript:sendValue()">저장하기</a>
-<!-- 			<button type="submit" class="hwarm-submit-btn">저장하기</button> -->
+		<!-- 저장하기 버튼 -->
+		<div class="d-flex justify-content-end">
+			<button type="button" id="saveBtn" class="btn btn-outline-primary d-block w-25" style="margin-right: 3rem;">저장하기</button>
 		</div>
 	</form>
     <!-- Bootstrap core JS-->
@@ -88,7 +89,7 @@
 	            	var html= "";
 	            	for(var i in data) {
 						html += "<table class=\"table suggestTable\"><tr>";
-						html += '<td><img class="suggestIMG" src="./resources/assets/img/product/'+data[i].pro_thumb+'"></td>';
+						html += '<td width="30%"><img class="suggestIMG" src="./resources/assets/img/product/'+data[i].pro_thumb+'"></td>';
 						html += "<td class=\"suggestProNameTd\"><a href=\"javascript:selectItem('"
 						html += data[i].pro_num;		
 						html += "','"
@@ -108,9 +109,9 @@
     	console.log(num);
     	console.log(name);
 		var selectedHTML = "";
-		selectedHTML += "<table class=\"table suggestTable\"><tr><td>";
+		selectedHTML += "<table class=\"table suggestTable\"><tr><td width=\"0.1%\">";
 		selectedHTML += "<input type=\"hidden\" class=\"selectedProNum\" value="+num+"></td>"
-		selectedHTML += "<td>"+name+"</td>";
+		selectedHTML += "<td class=\"suggestProNameTd\">"+name+"</td>";
 		selectedHTML += "<td><button type=\"submit\" class=\"hwarm-cancle-btn\" onclick=\"deleteItem(this.parentNode.parentNode.parentNode.parentNode)\">삭제</button></td></tr></table>"
 		$('#hwarmSelectedItem').append(selectedHTML);
     }
@@ -135,13 +136,12 @@
     }
     
     // 부모창으로 태그된 상품의 번호를 전달
-    function sendValue() {
+    $('#saveBtn').click(function(){
     	console.log($('.selectedProNum').length);
 		var pro_num_list = "";
 		$('.selectedProNum').each(function(index,item){
 			if (index == $('.selectedProNum').length-1) {
 				pro_num_list += item.value;
-				
 			} else {
 				pro_num_list += item.value;
 				pro_num_list += "-";
@@ -150,7 +150,7 @@
 		});
    		opener.document.getElementsByClassName('hwd_tag')[order].value = pro_num_list;
     	self.close();
-    }
+    })
     
 
     </script>
