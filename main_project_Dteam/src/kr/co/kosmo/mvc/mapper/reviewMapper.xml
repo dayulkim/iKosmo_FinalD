@@ -66,6 +66,28 @@
 		desc )where rownum between 1 and 4
 	</select>
 
+
+	<!-- 상세보기 페이지 리뷰탭2 -->
+	<resultMap type="revvo" id="rMap">
+		<result property="rev_content" column="rev_content" />
+		<result property="rev_star" column="rev_star" />
+		<result property="rev_color" column="rev_color" />
+		<result property="rev_period" column="rev_period"/>
+		<result property="rev_photo" column="rev_photo" />
+		<result property="rev_rdate" column="rev_rdate" />
+		<result property="mem_num" column="mem_num" />
+		<result property="pro_num" column="pro_num" />
+		<association property="member" javaType="memvo">
+			<id property="mem_num" column="mem_num"  />
+			<result property="mem_id" column="mem_id" />
+			<result property="mem_profile" column="mem_profile" />
+		</association>
+	</resultMap>
+	<select id="reviewTab" resultMap="rMap">
+		select r.rev_content,
+		r.rev_star, r.rev_color, r.rev_period, r.rev_photo, r.rev_rdate,
+		rpad(substr(m.mem_id, 1, 3),6,'*') mem_id, m.mem_profile from review
+		r, member m where pro_num =#{pro_num} and r.mem_num = m.mem_num
+	</select>
+
 </mapper>
-
-
