@@ -184,22 +184,8 @@ public class ProductController { // ±Ë¥Ÿ¿≤
 		return "store/product_list";
 	}
 
-	@RequestMapping("/mypage")
-	public String myPage(Model m, HttpSession session) {
-		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-		System.out.println("sessionNum ::"+mem_num);
-		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
-		//System.out.println("¿Ã∏ß ::"+list.get(0).getMemvo().getMem_name());
-		m.addAttribute("frilist", list);
-		List<FriendsVO> wtlist = friendsServiceInter.getFriWtList(mem_num);
-		m.addAttribute("wtlist", wtlist);
-		return "store/mypage";
-	}
 
-	@RequestMapping("/cart")
-	public String cart() {
-		return "store/cart";
-	}
+
 
 	@RequestMapping("/scraplist")
 	public String scrapList() {

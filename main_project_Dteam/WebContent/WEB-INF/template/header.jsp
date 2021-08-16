@@ -74,8 +74,7 @@
 			location.href = 'srchRes?key='+key;
 		});
 	});
-</script> 
-<script>
+	
 	var lastkey = ''; //최종키
 	var check = false;//검색 체크 상태
 	var loopkey = false; //루프상태
