@@ -191,6 +191,8 @@ public class ProductController { // ±Ë¥Ÿ¿≤
 		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
 		//System.out.println("¿Ã∏ß ::"+list.get(0).getMemvo().getMem_name());
 		m.addAttribute("frilist", list);
+		List<FriendsVO> wtlist = friendsServiceInter.getFriWtList(mem_num);
+		m.addAttribute("wtlist", wtlist);
 		return "store/mypage";
 	}
 

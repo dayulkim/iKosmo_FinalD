@@ -176,6 +176,7 @@
 						<div class="tab-pane fade" id="friends-tab" role="tabpanel"
 							aria-labelledby="friends-nav">
 							<div class="table-responsive">
+								<h4>친구 목록</h4>
 								<table class="table table-bordered">
 									<thead class="thead-dark">
 										<tr>
@@ -200,8 +201,33 @@
 										</c:forEach>
 									</tbody>
 								</table>
+								<h4>친구 대기 목록</h4>
+								<table class="table table-bordered">
+									<thead class="thead-dark">
+										<tr>
+											<th>번호</th>
+											<th>이름</th>
+											<th>닉네임</th>
+											<th>신청일</th>
+											<th>수정</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="e" items="${wtlist}" varStatus="status">
+										<tr>
+											<td>${status.count}</td>
+											<td>${e.memvo.mem_name}</td>
+											<td>${e.memvo.mem_nickname}</td>
+											<td>${e.req_date}</td>											
+											<td><button class="btn">친구수락</button></td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							</div>
 						</div>
+						
+						
 						<!-- 친구목록 테스트 end -->
 						<div class="tab-pane fade" id="payment-tab" role="tabpanel"
 							aria-labelledby="payment-nav">

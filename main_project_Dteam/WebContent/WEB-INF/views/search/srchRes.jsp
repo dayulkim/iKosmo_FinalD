@@ -139,7 +139,7 @@
 		<!-- ÅÇ ÄÁÅÙÃ÷ ¿µ¿ª ³¡ -->
 	</div>
 </section>
-<a id="MOVE_TOP_BTN" href="#"><img src='resources/assets/img/back-to-top-icon.png'></a>
+<a id="MOVE_TOP_BTN" href="#"><img src='https://icon-library.com/images/back-to-top-icon-png/back-to-top-icon-png-8.jpg' style='width:50px; height:auto;'></a>
 </div>
 
 
@@ -208,7 +208,7 @@
 			$("#MOVE_TOP_BTN").click(function() {
 				$('html, body').animate({
 					scrollTop : 0
-				}, 200);
+				}, 150);
 				return false;
 			});
 		});
