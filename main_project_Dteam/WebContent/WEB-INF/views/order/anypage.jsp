@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>anypage</title>
+</head>
+<body>
 <div>
 	<table class="table table-bordered">
 									<thead class="thead-dark">
@@ -41,6 +48,11 @@
 											<td><button class="productBtn">상품보러가기</button></td>
 											<td><button class="reviewBtn">리뷰쓰러가기</button></td>
 										</tr>
+										<tr>
+										<td colspan=9><%@include file="../member/MyPageProcess.jsp" %></td>
+										</tr>
 									</tbody>
 								</table>
 </div>
+</body>
+</html>

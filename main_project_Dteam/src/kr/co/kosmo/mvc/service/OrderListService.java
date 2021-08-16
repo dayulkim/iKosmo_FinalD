@@ -16,8 +16,8 @@ public class OrderListService implements OrderListServiceInter {
 	private OrderListDaoInter orderListDaoInter;
 	
 	@Override
-	public List<OrderListVO> orderListii(int mem_num) {
-		return orderListDaoInter.orderListii(mem_num);
+	public List<OrderListVO> orderList(int mem_num) {
+		return orderListDaoInter.orderList(mem_num);
 	}
 	
 	@Override
