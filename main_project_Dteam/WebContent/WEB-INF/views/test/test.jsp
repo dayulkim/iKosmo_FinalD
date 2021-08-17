@@ -46,7 +46,7 @@
 			$.ajax({
 				type : 'post',
 // 				url : "http://ec2-52-78-30-125.ap-northeast-2.compute.amazonaws.com:9000/service/similarityJsonP",
- 				url : "http://192.168.35.53:9000/service/similarityJsonP?category=closet",
+ 				url : "http://192.168.35.53:9000/service/similarityJsonP?category=lighting",
 				processData : false,
 				contentType : false,
 				data : formData,
@@ -55,7 +55,7 @@
 					console.log(e.data)
 					if (e.data!=='None'){
 						for(let i=0;i<e.data.length;i++){
-					
+							
 							document.getElementById("picture"+i).src='resources/data/lighting/'+e.data[i]
 						}
 					
