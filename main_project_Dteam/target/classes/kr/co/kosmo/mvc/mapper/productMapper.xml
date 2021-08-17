@@ -78,6 +78,7 @@
 <result property="pro_rdate" column="pro_rdate"/>
 <result property="pro_dprice" column="pro_dprice"/>
 <result property="pro_age" column="pro_age" javaType="int"/>
+<result property="pro_detail" column="pro_detail"/>
 <association property="seller" javaType="selvo">
 <id property="sel_num" column="sel_num" javaType="int"/>
 <result property="sel_name" column="sel_name"/>
@@ -133,7 +134,7 @@
 		p.pro_thumb pro_thumb, p.pro_photo pro_photo,
 		p.pro_price pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
 		p.pro_review pro_review, p.pro_rdate pro_rdate, p.pro_delivery pro_delivery, p.pro_num
-		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num
+		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.pro_detail, p.sel_num
 		sel_num, s.sel_name sel_name, s.sel_grade sel_grade
 		from product p, seller s where pro_num=#{pro_num} and p.sel_num = s.sel_num 
 	</select>

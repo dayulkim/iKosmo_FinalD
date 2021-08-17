@@ -42,7 +42,6 @@
 						답변</a></li>
 				<li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>
 			</ul>
-			<!--                     <input type="text" class="nav-search-box" placeholder="통합검색"> -->
 			<input type="text" name="word" id="word" class="nav-search-box"
 				placeholder="통합검색" onkeydown="startSuggest();">
 			<div id="view" class="layout-navigation-search__list element"></div>
@@ -54,12 +53,10 @@
 					</div>
 				</c:when>
 				<c:when test="${sessionScope.sessionID != null}">
-                    반갑습니다. ${sessionScope.sessionNickname}님
-                        
+                    <span style="font-family: NANUMSQUARE; font-size: 0.95rem; color: #777777; margin-left: 1rem;">반갑습니다. ${sessionScope.sessionNickname}님</span>
 					<div class="login-out-btn">
-						<a href="logout" class="login-out-a">나가기</a>
+						<a href="logout" class="login-out-a">로그아웃</a>
 					</div>
-					</h1>
 				</c:when>
 			</c:choose>
 		</div>

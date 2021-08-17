@@ -30,6 +30,7 @@
 
 <!-- Template Stylesheet -->
 <link href="resources/css/store/style.css" rel="stylesheet">
+<link href="resources/css/store/main.css" rel="stylesheet">
 <!-- 탭 기능 시작 -->
 <style type="text/css">
 .tabs {
@@ -66,6 +67,10 @@
 .panel.active {
 	display: block;
 }
+
+#unit {
+float:left;
+}
 </style>
 <!-- 탭 기능 끝 -->
 </head>
@@ -78,44 +83,36 @@
 	<br>
 	<br>
 	<!-- Product Detail Start -->
-	<div class="product-detail">
-		<div class="container-fluid">
+	<div class="product-detail" style="margin-left: auto; margin-right: auto;">
+		<div class="container-fluid" style="margin-left: auto; margin-right: auto;">
 			<div class="row">
-				<div class="col-lg-8">
+				<div class="col-lg-8" style="margin-left: auto; margin-right: auto;">
 					<div class="product-detail-top">
-						<div class="row align-items-center">
-							<div class="col-md-5">
+						<div class="row">
+							<div style="width:50%">
 								<div class="product-slider-single normal-slider">
 									<img src="${provo.pro_thumb}"
 										alt="Product Image">
 									<c:forEach var="i" items="${plist}">
-										<img src="resources/assets/img/store/${i}"
-											alt="Product Image">
+										<img src="${i}" alt="Product Image">
 									</c:forEach>
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
-										<img src="resources/assets/img/store/${provo.pro_thumb}"
+										<img src="${provo.pro_thumb}"
 											alt="Product Image">
 									</div>
 									<c:forEach var="i" items="${plist}">
 										<div class="slider-nav-img">
-											<img src="resources/assets/img/store/${i}"
+											<img src="${i}"
 												alt="Product Image">
 										</div>
 									</c:forEach>
 
 								</div>
 							</div>
-							<div class="col-md-7"
-								style="line-height: 200%; color: #747474; font-size: 5px">
-								<div class="product-content">
+								<div class="product-content" style="padding: 0; width:50%; padding-left: 2rem;">
 									<div class="title">
-										<div>
-											<a href="wishlist.html" class="btn wishlist"> <i
-												class="fa fa-heart"></i>
-											</a>
-										</div>
 										<br>
 										<c:set var="num0" value="0" />
 										<c:set var="num1" value="1" />
@@ -177,12 +174,12 @@
 										</c:choose>
 
 									</div>
-									<div class="price">${provo.pro_name}</div>
+									<h3>${provo.pro_name}</h3>
 									<div id="star_result">
 										<c:forEach var="i" begin="1" end="5" step="1">
 											<c:choose>
 												<c:when test="${i <= pro_star }">
-													<a class="ratting"><i class="fa fa-star"></i></a>
+													<i class="fa fa-star" style="color: #F15F5F"></i>
 												</c:when>
 												<c:otherwise>
 													<i class="fa fa-star"></i>
@@ -208,31 +205,30 @@
 										수량:&nbsp;
 										<div class="qty">
 											<button class="btn-minus">
-												&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-minus"></i>
+												&nbsp;<i class="fa fa-minus"></i>
 											</button>
 											<input type="text" value="1">
 											<button class="btn-plus">
-												&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i>
+												&nbsp;<i class="fa fa-plus"></i>
 											</button>
 										</div>
 									</div>
 									<br>
 									<div class="action">
-										<a class="btn" href="#"><i class="fa fa-shopping-cart"></i>장바구니에
-											담기</a> <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>즉시
-											구매</a>
+										<button type="button" class="btn btn-outline-info"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;장바구니</button>
+										<button type="button" class="btn btn-outline-info"><i class="fa fa-shopping-bag"></i>&nbsp;&nbsp;즉시 구매</button>
+										<button type="button" class="btn btn-outline-info"><i class="fas fa-bookmark"></i>&nbsp;&nbsp;스크랩</button>
 									</div>
 								</div>
-							</div>
 						</div>
 					</div>
 
 
 				</div>
 			</div>
-			</div>
+
 			<!-- 탭 시작 -->
-			<div id="product">
+			<div id="product" style="width: 70%; margin-left: auto; margin-right: auto;">
 				<div id="contents">
 					<ul class="tabs">
 						<li class="active" data-panel="panel1">상품정보</li>
@@ -242,92 +238,68 @@
 						<li data-panel="panel5">추천상품</li>
 					</ul>
 					<div id="panel1" class="panel active">
-						상품정보 이미지 <br /> <img src="${provo.pro_detail }" alt="상세 이미지"
-							width="50%" height="50%" align="center" border="0"> <br />
+						<c:forEach var="i" items="${dlist}">
+								<img src="${i}"	alt="상세 이미지" style="margin-left: auto; margin-right: auto;"><br/>
+						</c:forEach>
 					</div>
 					<div id="panel2" class="panel">
-						<div align="center" id="testcenter">
+                        <div style="width: 90px" align="right">
+                                        <select>
+                                            <option selected>등록순</option>
+                                            <option>추천순</option>
+                                        </select>
+                                    </div><hr>
+                         <c:forEach var="list" items="${rList}">
+                                            <div><img src="resources/assets/img/store/${list.member.mem_profile}" style="width: 2.6rem; border-radius: 10rem; float:left; margin-top: 8px; margin-right: 14px; margin-left: 12px"></div><div style="line-height: 200%; font-size: 12px"> by ${list.member.mem_id} &nbsp;<span>(${list.rev_rdate})</span></div>
+                                             <div id="star_result" style="font-size: 10px; margin-bottom: 5px">
+												<c:forEach varStatus="i" begin="1" end="5" step="1">
+                                 <c:choose>
+                                    <c:when test="${i.count <= list.rev_star }">
+                                       <i class="fa fa-star" style="color: #F15F5F"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                       <i class="fa fa-star"></i>
+                                    </c:otherwise>
+                                 </c:choose>
+                              </c:forEach>
+										    </div>
+										    <div style="font-size: 12px">
+										    [배송]
+										    <c:if test="${list.rev_period eq 0}"><span>느려요</span></c:if> 
+										    <c:if test="${list.rev_period eq 1}"><span>적당해요</span></c:if>
+										    <c:if test="${list.rev_period eq 2}"><span>빨라요</span></c:if>   
+										    &nbsp;&nbsp; 
+										    [칼라] 
+										    <c:if test="${list.rev_color eq 0}"><span>화면보다 어두워요</span></c:if> 
+										    <c:if test="${list.rev_color eq 1}"><span>화면과 같아요</span></c:if>
+										    <c:if test="${list.rev_color eq 2}"><span>화면보다 밝아요</span></c:if>   
+										    </div>
+										    <br>
+                                            <p  style="font-size: 13px">
+                                               ${list.rev_content}
+                                            </p>
+                                            <img src="resources/assets/img/store/${list.rev_photo}" style="width: 90px; border-radius: 5px; margin-bottom: 8px; margin-right: 12px; margin-left: 12px">
+                                            <p  style="font-size: 13px">
+                                                1개의 댓글이 있습니다.
+                                            </p><hr>
+                           </c:forEach>
+							
+</div>
 
-							<!-- 					<form action="productDetail" method="post" id="formTest"> -->
-							<%-- 						<input type="hidden" name="pro_num" value="${paging.pro_num}"> --%>
-
-							<!-- 					<input type="hidden" name="sortType1" id="sortType1" 	value="aa()">  -->
-							<select id="sortType1" name="sortType1" onchange="test()">
-								<option value="0">최신순</option>
-								<option value="1">별점순</option>
-
-							</select>
-							<!-- 					</form> -->
-
-							<c:forEach var="list" items="${reviewList}">
-								<table id="review-table">
-									<tr>
-										<td rowspan="3"><img alt=""
-											src="resources/review/reviewImages/${list.rev_photo }"
-											width="200"></td>
-										<td>
-											<p>내용 : ${list.rev_content }</p>
-										</td>
-									</tr>
-									<tr>
-										<td><span style="text-align: left; padding-left: 24px;"
-											class="font-small"> 별점: <img alt=""
-												src="resources/review/img/${list.rev_star }.png" width="100">
-										</span><span style="text-align: right;" class="font-small">배송기간평:
-												<img alt=""
-												src="resources/review/img/${list.rev_period }.png"
-												width="100">
-										</span></td>
-									</tr>
-									<tr>
-										<td><span style="text-align: left;" class="font-small">
-												색상평:<img alt=""
-												src="resources/review/img/${list.rev_color}.png" width="100">
-										</span><span class="font-small" style="text-align: right;">
-												등록일: ${list.rev_rdate }</span></td>
-									</tr>
-									<tr>
-										<td colspan="3"><hr></td>
-									</tr>
-								</table>
-							</c:forEach>
-							<%@include file="reviewPageProcess.jsp"%>
-
-
-
-
-						</div>
-					</div>
 					<div id="panel3" class="panel">
-						<h6>문의 (판매자 정보)</h6>
-						<br />
-						<div class="container">
-							<div class="text-center py-5">
-								<table style="text-align: left;" border="1">
-									<tr>
-										<td>업체명 :</td>
-										<td>&nbsp;&nbsp;${selvo.sel_name}</td>
-									</tr>
-									<tr>
-										<td>문의전화 :</td>
-										<td>&nbsp;&nbsp;${selvo.sel_tel}</td>
-									</tr>
-									<tr>
-										<td>주소 :</td>
-										<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
-									</tr>
-									<tr>
-										<td>등급 :</td>
-										<td>&nbsp;&nbsp;${selvo.sel_grade}</td>
-									</tr>
-								</table>
-
-							</div>
-							<input type="hidden" id="selname" value="${selvo.sel_name}">
-							<input type="hidden" id="addr" value="${selvo.sel_addr}">
-							<div id="map" style="width: 500px; height: 400px;"></div>
-							<br>
-						</div>
+						<h5 align="center">Contact Details...</h5>
+						<hr>
+						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-child" style="color: #F15F5F"></i></div><div>our company<br><font color="#000000">${selvo.sel_name}</font></div><hr style="width: 400px" size="11px"> 
+						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-phone" style="color: #F15F5F"></i></div><div>call us<br><font color="#000000">${selvo.sel_tel}</font></div><hr style="width: 400px" size="11px">
+						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-envelope" style="color: #F15F5F"></i></div><div>email us<br><font color="#000000">hotline@gmail.com</font></div><hr style="width: 400px" size="11px">
+						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-microchip" style="color: #F15F5F"></i></div><div>our grade<br><font color="#000000">${selvo.sel_grade}&nbsp;등급</font></div><hr style="width: 400px" size="11px">
+						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-map-marker" style="color: #F15F5F"></i></div><div>find us<br><font color="#000000">${selvo.sel_addr}</font></div>
+						<input
+							type="hidden" id="selname" value="${selvo.sel_name}"> 
+							<input
+							type="hidden" id="addr" value="${selvo.sel_addr}">
+						<div id="map" style="width: 500px; height: 400px;"></div><hr style="width: 400px" size="11px">
+						<br>
 					</div>
 					<div id="panel4" class="panel">
 						<h6>배송 및 환불에 관한 사항</h6>
@@ -350,7 +322,7 @@
 						</table>
 
 					</div>
-					<div id="panel5" class="panel">
+					<!--<div id="panel5" class="panel">
 						<div class="footer">
 							<ul class="items">
 								<li><a href="product.html"> <img
@@ -377,8 +349,9 @@
 			</div>
 			<!-- 탭 끝 -->
 		</div>
-	
-
+	</div>
+	</div>
+	</div>
 	<!-- Back to Top -->
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -468,4 +441,3 @@
 							}
 						});
 	</script>
-

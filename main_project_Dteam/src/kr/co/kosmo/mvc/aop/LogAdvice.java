@@ -19,23 +19,31 @@ public class LogAdvice {
 	@Autowired
 	private LogServiceInter logServiceInter;
 
-	@Before("execution(* kr.co.kosmo.mvc.controller.*.search(..))")
-	public void insertLogout(JoinPoint jp) {
+	@Before("execution(* kr.co.kosmo.mvc.controller.*.getSrchList(..))")
+	public void searchLog(JoinPoint jp) {
+		
 		SearchLogVO vo = new SearchLogVO();
 		Object[] fd = jp.getArgs();
+		
 		if(fd[0] instanceof String) {
 			vo.setSlog_word((String)fd[0]);
 		}
+		
 		if(fd[1] instanceof HttpSession) {
 			HttpSession session = (HttpSession) fd[1];
-//			vo.setSlog_idn(session.getAttribute("sessionID").toString());
-			vo.setSlog_idn("test");
+			if (session.getAttribute("sessionID") == null) {
+				vo.setSlog_idn("non-member");
+			} else {
+				vo.setSlog_idn(session.getAttribute("sessionID").toString());
+			}			
 		}
+		
 		if(fd[2] instanceof HttpServletRequest) {
 			HttpServletRequest request = (HttpServletRequest) fd[2];
 			vo.setSlog_reip(request.getRemoteAddr());
 			vo.setSlog_agent(request.getHeader("User-Agent"));
 		}
+		
 		logServiceInter.insertSearchLog(vo);
 	}
 }

@@ -103,10 +103,25 @@ public class HwarmService implements HwarmServiceInter {
 		// type - 1:원룸 / 2:투룸
 		switch (hwvo.getHou_type()) {
 		case 1:
-			hwarm_map.put("hou_type", "원룸");
+			hwarm_map.put("hou_type", "아파트");
 			break;
 		case 2:
-			hwarm_map.put("hou_type", "투룸");
+			hwarm_map.put("hou_type", "원룸&오피스텔");
+			break;
+		case 3:
+			hwarm_map.put("hou_type", "빌라&연립");
+			break;
+		case 4:
+			hwarm_map.put("hou_type", "단독주택");
+			break;
+		case 5:
+			hwarm_map.put("hou_type", "사무공간");
+			break;
+		case 6:
+			hwarm_map.put("hou_type", "상업공간");
+			break;
+		case 7:
+			hwarm_map.put("hou_type", "기타");
 			break;
 		}
 		// how -    1:셀프 / 2:반셀프 / 3:전문가
@@ -139,34 +154,37 @@ public class HwarmService implements HwarmServiceInter {
 		// style -  1:모던 / 2:미니멀&심플 / 3:내추럴&북유럽 / 4:빈티지&레트로 / 5:클래식&앤틱
 		switch (hwvo.getHou_style()) {
 		case 1:
-			hwarm_map.put("hou_style", "모던");
+			hwarm_map.put("hou_style", "내추럴");
 			break;
 		case 2:
-			hwarm_map.put("hou_style", "미니멀&심플");
+			hwarm_map.put("hou_style", "모던");
 			break;
 		case 3:
-			hwarm_map.put("hou_style", "내추럴&북유럽");
+			hwarm_map.put("hou_style", "미니멀&심플");
 			break;
 		case 4:
 			hwarm_map.put("hou_style", "빈티지&레트로");
 			break;
 		case 5:
-			hwarm_map.put("hou_style", "클래식&앤틱");
+			hwarm_map.put("hou_style", "북유럽");
 			break;
 		case 6:
-			hwarm_map.put("hou_style", "프렌치&프로방스");
+			hwarm_map.put("hou_style", "유니크&믹스매치");
 			break;
 		case 7:
 			hwarm_map.put("hou_style", "러블리&로맨틱");
 			break;
 		case 8:
-			hwarm_map.put("hou_style", "인더스트리얼");
+			hwarm_map.put("hou_style", "클래식&앤틱");
 			break;
 		case 9:
-			hwarm_map.put("hou_style", "한국&아시아");
+			hwarm_map.put("hou_style", "프렌치&프로방스");
 			break;
 		case 10:
-			hwarm_map.put("hou_style", "유니크&믹스매치");
+			hwarm_map.put("hou_style", "한국&아시아");
+			break;
+		case 11:
+			hwarm_map.put("hou_style", "인더스트리얼");
 			break;
 		}
 		// 컬러톤
