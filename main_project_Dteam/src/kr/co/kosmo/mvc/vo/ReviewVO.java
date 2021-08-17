@@ -19,6 +19,15 @@ public class ReviewVO {
 	private String rev_rdate;
 	private int mem_num;
 	private int pro_num;
+	private MemberVO member;
+
+	public MemberVO getMember() {
+		return member;
+	}
+
+	public void setMember(MemberVO member) {
+		this.member = member;
+	}
 
 	public int getRev_num() {
 		return rev_num;
