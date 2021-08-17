@@ -171,7 +171,7 @@ input {
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
 									href="detail?pro_num=${listc.pro_num}&sel_num=${listc.sel_num}"><img
-										src="resources/assets/img/store/${listc.pro_thumb}" alt=""
+										src="${listc.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
 						</c:forEach>
@@ -191,7 +191,7 @@ input {
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
 									href="detail?pnum=${listm.pro_num}&sel_num=${listm.sel_num}"><img
-										src="resources/assets/img/store/${listm.pro_thumb}" alt=""
+										src="${listm.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
 						</c:forEach>
@@ -281,7 +281,7 @@ input {
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=2">홈데코/조명</a>
+											<a href="theme?category=2">장식/소품</a>
 										</h4>
 									</div>
 								</div>
@@ -302,14 +302,14 @@ input {
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=5">생활</a>
+											<a href="theme?category=5">생활용품</a>
 										</h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=6">주방</a>
+											<a href="theme?category=6">주방용품</a>
 										</h4>
 									</div>
 								</div>
@@ -323,14 +323,14 @@ input {
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=8">DIY/공구</a>
+											<a href="theme?category=8">공구/DIY</a>
 										</h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=9">시공/서비스</a>
+											<a href="theme?category=9">조명</a>
 										</h4>
 									</div>
 								</div>
@@ -344,21 +344,14 @@ input {
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=11">캠핑</a>
+											<a href="theme?category=11">실내운동</a>
 										</h4>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a href="theme?category=12">홈트레이닝</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=13">유아/아동</a>
+											<a href="theme?category=12">유아/아동</a>
 										</h4>
 									</div>
 								</div>
@@ -376,7 +369,7 @@ input {
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="resources/assets/img/store/${listv.pro_thumb}"
+												<img src="${listv.pro_thumb}"
 													alt="" style="width: 250px; height: 250px;">
 												<p>
 													<c:set var="days" value="7" />

@@ -86,7 +86,7 @@
 						<div class="row align-items-center">
 							<div class="col-md-5">
 								<div class="product-slider-single normal-slider">
-									<img src="resources/assets/img/store/${provo.pro_thumb}"
+									<img src="${provo.pro_thumb}"
 										alt="Product Image">
 									<c:forEach var="i" items="${plist}">
 										<img src="resources/assets/img/store/${i}"
