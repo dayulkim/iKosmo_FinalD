@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.kosmo.mvc.vo.InterestVO;
+import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.SellerVO;
 
@@ -71,14 +71,14 @@ public class ProductDao implements ProductDaoInter { // 김다율
 	
 // 최근 조회상품 불러오기 
 	@Override
-	public List<InterestVO> myProduct(String sid) {
+	public List<AdminHitVO> myProduct(String sid) {
 		System.out.println("아이디 : " + sid);
 		return ss.selectList("product.myclick",sid);
 	}
 	
 // 최다 클릭상품 불러오기 
 	@Override
-	public List<InterestVO> theirProduct() {
+	public List<AdminHitVO> theirProduct() {
 		return ss.selectList("product.theirclick");
 	}
 	

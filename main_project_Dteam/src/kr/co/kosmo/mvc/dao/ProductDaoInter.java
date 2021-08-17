@@ -2,9 +2,9 @@ package kr.co.kosmo.mvc.dao;
 
 import java.util.List;
 
-import kr.co.kosmo.mvc.vo.InterestVO;
+import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
-import kr.co.kosmo.mvc.vo.SellerVO;
+
 
 public interface ProductDaoInter { // 김다율
 
@@ -23,9 +23,9 @@ public interface ProductDaoInter { // 김다율
 // 카트 총 갯수	
 	public String totalCart(String sid);	
 // 최근 조회상품 불러오기 
-	public List<InterestVO> myProduct(String sid);
+	public List<AdminHitVO> myProduct(String sid);
 // 최다 클릭상품 불러오기 
-	public List<InterestVO> theirProduct();
+	public List<AdminHitVO> theirProduct();
 // 상품 상세보기 페이지	
 	public ProductVO productDetail(int pro_num);
 // 디테일에서 상품 별점 불러오기

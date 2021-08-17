@@ -138,7 +138,7 @@ input {
 						<c:forEach var="listc" items="${my_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pro_num=${listc.pro_num}&sel_num=${listc.sel_num}"><img
+									href="detail?pro_num=${listc.pro_num}"><img
 										src="resources/assets/img/store/${listc.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -158,7 +158,7 @@ input {
 						<c:forEach var="listm" items="${their_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pnum=${listm.pro_num}&sel_num=${listm.sel_num}"><img
+									href="detail?pnum=${listm.pro_num}"><img
 										src="resources/assets/img/store/${listm.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>

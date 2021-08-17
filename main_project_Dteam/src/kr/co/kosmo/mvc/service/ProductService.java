@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import kr.co.kosmo.mvc.dao.ProductDaoInter;
-import kr.co.kosmo.mvc.vo.InterestVO;
+import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 
 @Service
@@ -55,12 +55,12 @@ public class ProductService implements ProductServiceInter{
 	}
 
 	@Override
-	public List<InterestVO> myProduct(String sid) {
+	public List<AdminHitVO> myProduct(String sid) {
 		return productDaoInter.myProduct(sid);
 	}
 
 	@Override
-	public List<InterestVO> theirProduct() {
+	public List<AdminHitVO> theirProduct() {
 		return productDaoInter.theirProduct();
 	}
 

@@ -120,6 +120,10 @@ public class LogAdvice {
 	            vo.setMem_id(id);
 	         }
 	      }
+	      SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+	      Date time = new Date();
+	      String ctime = format1.format(time);
+	      vo.setInt_time(ctime);
 	      // 상품번호와 아이디를 담은 vo를 인자로 하여 insert 메서드 실행
 	      logServiceInter.productHitLog(vo);
 	   }

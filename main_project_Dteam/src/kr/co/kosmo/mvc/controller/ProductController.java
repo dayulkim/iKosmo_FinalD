@@ -18,8 +18,8 @@ import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.ProductServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
 import kr.co.kosmo.mvc.service.SellerService;
+import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.FriendsVO;
-import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
@@ -34,9 +34,6 @@ public class ProductController { // 김다율
 
 	@Autowired
 	private ProductServiceInter productServiceInter;
-
-	@Autowired
-	private ReviewDao reviewDao;
 
 	@Autowired
 	private Scrap_ProductDaoInter scrap_ProductDaoInter;
@@ -69,8 +66,9 @@ public class ProductController { // 김다율
 			String total_num3 = productServiceInter.totalCart(sid);
 			m.addAttribute("cart_total", total_num3);
 			// 최근 조회상품 불러오기 (사이드 배너)
-			List<InterestVO> mylist = productServiceInter.myProduct(sid);
+			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
+			System.out.println("최다클릭 리스트: " + mylist);
 			// sessionID 존재 x
 		} else {
 			// 상품 총 갯수
@@ -85,7 +83,7 @@ public class ProductController { // 김다율
 			}
 			m.addAttribute("list", list);
 			// 최다 클릭상품 불러오기 (사이드 배너)
-			List<InterestVO> theirlist = productServiceInter.theirProduct();
+			List<AdminHitVO> theirlist = productServiceInter.theirProduct();
 			m.addAttribute("their_list", theirlist);
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
@@ -115,7 +113,7 @@ public class ProductController { // 김다율
 			String total_num3 = productServiceInter.totalCart(sid);
 			m.addAttribute("cart_total", total_num3);
 			// 최근 조회상품 불러오기 (사이드 배너)
-			List<InterestVO> mylist = productServiceInter.myProduct(sid);
+			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
 			// sessionID 존재 x
 		} else {
@@ -132,7 +130,7 @@ public class ProductController { // 김다율
 				System.out.println(list.get(i).getSel_name());
 			}
 			// 최다 클릭상품 불러오기 (사이드 배너)
-			List<InterestVO> theirlist = productServiceInter.theirProduct();
+			List<AdminHitVO> theirlist = productServiceInter.theirProduct();
 			m.addAttribute("their_list", theirlist);
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
@@ -166,7 +164,7 @@ public class ProductController { // 김다율
 			String total_num3 = productServiceInter.totalCart(sid);
 			m.addAttribute("cart_total", total_num3);
 			// 최근 조회상품 불러오기 (사이드 배너)
-			List<InterestVO> mylist = productServiceInter.myProduct(sid);
+			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
 			// sessionID 존재 x
 		} else {
@@ -181,7 +179,7 @@ public class ProductController { // 김다율
 			}
 			m.addAttribute("list", list);
 			// 최다 클릭상품 불러오기 (사이드 배너)
-			List<InterestVO> theirlist = productServiceInter.theirProduct();
+			List<AdminHitVO> theirlist = productServiceInter.theirProduct();
 			m.addAttribute("their_list", theirlist);
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
