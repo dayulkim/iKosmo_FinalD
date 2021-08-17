@@ -110,15 +110,6 @@ public class MemberController {
 
 	@PostMapping("/houseinfoinsert")
 	public String houseInfoInsert(HouseInfoVO hinvo) {
-		System.out.println("하우스 type" + hinvo.getHinfo_type());
-		System.out.println("하우스 size" + hinvo.getHinfo_size());
-		System.out.println("하우스 with" + hinvo.getHinfo_with());
-		System.out.println("하우스 tend" + hinvo.getHinfo_tend());
-		System.out.println("하우스 favour" + hinvo.getHinfo_favour());
-		System.out.println("하우스 buytend" + hinvo.getHinfo_buytend());
-		System.out.println("하우스 style" + hinvo.getHinfo_style());
-		System.out.println("하우스 activity" + hinvo.getHinfo_activity());
-
 		memberServiceInter.addMemberHouseInfo(hinvo);
 		return "redirect:/mypage";
 	}

@@ -48,29 +48,29 @@ public class DefaultController {
 		for (ProductVO vo : prolist) {
 			System.out.println(vo.getPro_name());
 		}
-		// 추천상품 (재영)
-//		List<Integer> oderRecommend = orderListServiceInter.ordRecommend();
-//		List<Integer> revRecommend = reviewServiceInter.revRecommend(0);
-//		List<Integer> revStarRecommend = reviewServiceInter.revRecommend(1);
-//		List<Integer> scr_proRecommend = scrap_ProductServiceInter.scrap_ProRecommend();
-//
-//		List<int[]> result = oderRecommend.stream()
-//				.flatMap(i -> revRecommend.stream()
-//						.flatMap(j -> revStarRecommend.stream()
-//								.flatMap(k -> scr_proRecommend.stream()
-//										.filter(t -> i != j && j != k && k != t && t != j && t != i && i != k)
-//										.map(t -> new int[] { i, j, k, t }))))
-//				.limit(1).collect(toList());
-//		List<ProductVO> provo = new ArrayList<>();
-//		int[] sendResult = result.get(0);
-//
-//		int sendResultLength = sendResult.length;
-//
-//		for (int i = 0; i < sendResultLength; i++) {
-//			provo.add(productServiceInter.recommendPro(sendResult[i]));
-//		}
-//		
-//		m.addAttribute("recommend", provo);
+//		 추천상품 (재영)
+		List<Integer> oderRecommend = orderListServiceInter.ordRecommend();
+		List<Integer> revRecommend = reviewServiceInter.revRecommend(0);
+		List<Integer> revStarRecommend = reviewServiceInter.revRecommend(1);
+		List<Integer> scr_proRecommend = scrap_ProductServiceInter.scrap_ProRecommend();
+
+		List<int[]> result = oderRecommend.stream()
+				.flatMap(i -> revRecommend.stream()
+						.flatMap(j -> revStarRecommend.stream()
+								.flatMap(k -> scr_proRecommend.stream()
+										.filter(t -> i != j && j != k && k != t && t != j && t != i && i != k)
+										.map(t -> new int[] { i, j, k, t }))))
+				.limit(1).collect(toList());
+		List<ProductVO> provo = new ArrayList<>();
+		int[] sendResult = result.get(0);
+
+		int sendResultLength = sendResult.length;
+
+		for (int i = 0; i < sendResultLength; i++) {
+			provo.add(productServiceInter.recommendPro(sendResult[i]));
+		}
+		
+		m.addAttribute("recommend", provo);
 
 		// 인기검색어 관련 (영의)
 		List<SearchLogVO> top10Search = searchServiceInter.top10Search();
@@ -83,7 +83,6 @@ public class DefaultController {
 //	public String login() {
 //		return "member/login/login";
 //	}
-
 
 	@GetMapping("/suggest")
 	public String suggestAction(Model m, String key) {
@@ -100,5 +99,10 @@ public class DefaultController {
 			m.addAttribute("list", arr.toJSONString(suggests));
 		}
 		return "main/suggest/suggest";
+	}
+
+	@GetMapping("/test")
+	public String testMethod() {
+		return "test/test";
 	}
 }
