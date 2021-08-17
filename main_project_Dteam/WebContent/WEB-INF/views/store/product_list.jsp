@@ -168,171 +168,170 @@ input {
 			</c:choose>
 		</table>
 	</div>
-<section>
-	<div class="container">
-				<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
-				<div class="bottom-bar" id="unit">
-					<div class="user" align="left">
-						<c:choose>
-							<c:when test="${sessionID !=null}">
-								<a href="scraplist" class="btn wishlist"> <i
-									class="fa fa-heart"></i> (${cart_total})
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="login" class="btn wishlist"> <span><i
-										class="fa fa-heart"></i> (0)</span></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<br>
-					<div class="user" align="left">
-						<c:choose>
-							<c:when test="${sessionID !=null}">
-								<a href="cart" class="btn wishlist"> <span><i
-										class="fa fa-shopping-cart"></i> (${scrap_total})</span>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="login" class="btn wishlist"> <span><i
-										class="fa fa-shopping-cart"></i> (0)</span></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
-				<div align="right">
-					<select class="bo_w_select" id="way" name="way">
-						<option value="0" selected="selected">정렬기준</option>
-						<option value="1">최근등록순</option>
-						<option value="2">낮은가격</option>
-						<option value="3">높은가격</option>
-						<option value="4">리뷰많은순</option>
-						<option value="5">할인율순</option>
-					</select>
+	<section>
+		<div class="container">
+			<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
+			<div class="bottom-bar" id="unit">
+				<div class="user" align="left">
+					<c:choose>
+						<c:when test="${sessionID !=null}">
+							<a href="scraplist" class="btn wishlist"> <i
+								class="fa fa-heart"></i> (${cart_total})
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="login" class="btn wishlist"> <span><i
+									class="fa fa-heart"></i> (0)</span></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<br>
-				<div align="right">
-					<select class="bo_w_select" id="merit" name="merit">
-						<option value="0" selected="selected">선택사항</option>
-						<option value="1">배송비 무료</option>
-						<option value="2">빠른배송</option>
-						<option value="3">추천 업체</option>
-						<option value="4">대폭 할인</option>
-					</select>
+				<div class="user" align="left">
+					<c:choose>
+						<c:when test="${sessionID !=null}">
+							<a href="cart" class="btn wishlist"> <span><i
+									class="fa fa-shopping-cart"></i> (${scrap_total})</span>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="login" class="btn wishlist"> <span><i
+									class="fa fa-shopping-cart"></i> (0)</span></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<br>
-				<div align="right">
-					<input type="submit" value="검색" class="button"
-						onclick="addcategory()">
-				</div>
-				<!--  카테고리 시작 -->
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="left-sidebar">
-							<h2>카테고리</h2>
-							<div class="panel-group category-products" id="accordian">
-								<!--category-productsr-->
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=0">가구</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=1">패브릭</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=2">홈데코/조명</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=3">가전</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=4">수납/정리</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=5">생활</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=6">주방</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=7">생필품</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=8">DIY/공구</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=9">시공/서비스</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=10">반려동물</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=11">캠핑</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=12">홈트레이닝</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=13">유아/아동</a>
-										</h4>
-									</div>
+			</div>
+			<div align="right">
+				<select class="bo_w_select" id="way" name="way">
+					<option value="0" selected="selected">정렬기준</option>
+					<option value="1">최근등록순</option>
+					<option value="2">낮은가격</option>
+					<option value="3">높은가격</option>
+					<option value="4">리뷰많은순</option>
+					<option value="5">할인율순</option>
+				</select>
+			</div>
+			<br>
+			<div align="right">
+				<select class="bo_w_select" id="merit" name="merit">
+					<option value="0" selected="selected">선택사항</option>
+					<option value="1">배송비 무료</option>
+					<option value="2">빠른배송</option>
+					<option value="3">추천 업체</option>
+					<option value="4">대폭 할인</option>
+				</select>
+			</div>
+			<br>
+			<div align="right">
+				<input type="submit" value="검색" class="button"
+					onclick="addcategory()">
+			</div>
+			<!--  카테고리 시작 -->
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>카테고리</h2>
+						<div class="panel-group category-products" id="accordian">
+							<!--category-productsr-->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=0">가구</a>
+									</h4>
 								</div>
 							</div>
-							<!--/category-products-->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=1">패브릭</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=2">홈데코/조명</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=3">가전</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=4">수납/정리</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=5">생활</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=6">주방</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=7">생필품</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=8">DIY/공구</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=9">시공/서비스</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=10">반려동물</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=11">캠핑</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=12">홈트레이닝</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=13">유아/아동</a>
+									</h4>
+								</div>
+							</div>
 						</div>
+						<!--/category-products-->
 					</div>
 				</div>
 				<div class="col-sm-9 padding-right">
@@ -369,15 +368,25 @@ input {
 												${listv.pro_review}개</font>
 										</div>
 									</div>
+									<div class="choose">
+										<ul>
+											<li><a href="#"><i class="fa fa-plus-square"></i>스크랩하기</a></li>
+											<li><a
+												href="detail?pro_num=${listv.pro_num}"><i
+													class="fa fa-plus-square"></i>상품 상세보기</a></li>
+											<li><a href="#"><i class="fa fa-plus-square"></i>이
+													상품이 포함된 집들이보기</a></li>
+										</ul>
+									</div>
 								</div>
-								</div>
-							</c:forEach>
-						</div>
-						<!--features_items-->
+							</div>
+						</c:forEach>
 					</div>
+					<!--features_items-->
 				</div>
-		
-		</section>
+			</div>
+		</div>
+	</section>
 	<!-- Back to Top -->
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 	<!-- Bootstrap core JS-->
