@@ -200,6 +200,7 @@ public class ProductController { // 김다율
 	@RequestMapping("/detail")
 	public String interest(Model m, 
 			@RequestParam(value = "pro_num", required = false) int pro_num,
+			HttpSession session,
 			HttpServletRequest request) {
 
 		// 해당 번호의 상품 정보 불러오기
