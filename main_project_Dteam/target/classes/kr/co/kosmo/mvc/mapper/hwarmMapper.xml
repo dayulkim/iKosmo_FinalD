@@ -22,9 +22,9 @@
 			order="BEFORE">
 			select housewarming_seq.currVal from dual
 		</selectKey>
-		<foreach collection="list" item="e" separator=" "
+		<foreach collection="list" item="e" separator=" " index="idx"
 			open="insert all" close="select * from dual">
-			into housedetail VALUES (#{hou_num},
+			into housedetail VALUES ((#{idx}+1), #{hou_num},
 			'${e.hwd_content}','${e.hwd_photo}',
 			'${e.hwd_tag}')
 		</foreach>
@@ -240,6 +240,13 @@
 		select * from housedetail where hou_num = #{hou_num}
 	</select>
 
+	<!-- 집들이글의 댓글 반환 -->
+	<select id="selectHouseComment" parameterType="int" resultType="hcmvo">
+		select comm_num, comm_content, mem_num, par_comm_numm, depth_num, reg_date from house_comment 
+		where hou_num=#{hou_num} 
+		order by par_comm_numm, depth_num, reg_date
+	</select>
+
 	<!-- 태그된 상품들의 썸네일 사진 반환 -->
 	<select id="taggedProduct" parameterType="int"
 		resultType="String">
@@ -283,5 +290,25 @@
 		delete from scrap_house
 		where hou_num=#{hou_num} and mem_num=#{mem_num}
 	</delete>
+	
+	<!-- 집들이글 댓글 입력 -->
+	<insert id="insertHouseComment" parameterType="hcmvo">
+		insert into house_comment 
+		(comm_num, hou_num, mem_num, depth_num, par_comm_numm, comm_content, reg_date) values 
+		(house_comment_seq.nextVal, #{hou_num}, #{mem_num}, #{depth_num}, 
+		<choose>
+			<when test="par_comm_numm == -1">
+				house_comment_seq.nextVal,#{comm_content},sysdate)
+			</when>
+			<when test="par_comm_numm >= 0">
+				#{par_comm_numm},#{comm_content},sysdate)
+			</when>
+		</choose>
+	</insert>
+	
+	<!-- 집들이글 댓글 현재 시퀀스 조회 -->
+	<select id="commCurrVal" resultType="int">
+		select house_comment_seq.currVal from dual
+	</select>
 
 </mapper>

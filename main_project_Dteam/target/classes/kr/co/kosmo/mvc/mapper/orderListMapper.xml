@@ -14,7 +14,7 @@
 		resultMap="ProductOrderMap">
 		select o.ord_num, p.pro_num, p.pro_name, p.pro_price,
 		p.pro_discount, (p.PRO_PRICE*(100-pro_discount)/100) as pro_dprice,
-		p.pro_delivery, o.ord_qty, o.ord_date from orderlist o, product p
+		p.pro_delivery, p.pro_thumb, o.ord_qty, o.ord_date from orderlist o, product p
 		where o.pro_num = p.pro_num and o.mem_num = #{mem_num} order by
 		o.ord_date desc
 	</select>
@@ -34,13 +34,13 @@
 		<result column="pro_detail" property="pro_detail" />
 		<result column="pro_rdate" property="pro_rdate" />
 		<result column="pro_dprice" property="pro_dprice" />
-		<collection property="orderListVO" javaType="ordvo">
+		<association property="orderListVO" javaType="ordvo">
 			<id column="ord_num" property="ord_num" />
 			<result column="mem_num" property="mem_num" />
 			<result column="pro_num" property="pro_num" />
 			<result column="ord_qty" property="ord_qty" />
 			<result column="ord_date" property="ord_date" />
-		</collection>
+		</association>
 	</resultMap>
 	
 	<!-- 이재영: 최근 일주일에 가장 많이 주문한 상품 추천 -->

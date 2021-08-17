@@ -28,7 +28,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 	<div class="container">
 		<a class="navbar-brand" href="#page-top"><img
-			src="resources/assets/img/logo_sweethome.png" alt="..." /></a>
+			src="resources/assets/img/logo_homes.jpg" alt="..." /></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -50,20 +50,15 @@
 			<input type="text" name="word" id="word" class="nav-search-box"
 				placeholder="통합검색" onkeydown="startSuggest();">
 			<div id="view" class="layout-navigation-search__list element"></div>
+			<img id="srchBtn" src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png" class="nav-search-button">
 			<c:choose>
 				<c:when test="${sessionScope.sessionID == null}">
-					<a href=""><img
-						src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png"
-						class="nav-search-button"></a>
 					<div class="login-out-btn">
 						<a href="login" class="login-out-a">로그인</a>
 					</div>
 				</c:when>
 				<c:when test="${sessionScope.sessionID != null}">
-					반갑습니다. ${sessionScope.sessionNickname}님
-						<a href=""><img
-						src="//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png"
-						class="nav-search-button"></a>
+                    반갑습니다. ${sessionScope.sessionNickname}님
 					<div class="login-out-btn">
 						<a href="logout" class="login-out-a">나가기</a>
 					</div>
@@ -73,8 +68,16 @@
 		</div>
 	</div>
 </nav>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+	$(document).ready(function(){
+		$('#srchBtn').on('click', function(){
+			var key = $('#word').val();
+			console.log("key ::"+key);
+			location.href = 'srchRes?key='+key;
+		});
+	});
+	
 	var lastkey = ''; //최종키
 	var check = false;//검색 체크 상태
 	var loopkey = false; //루프상태

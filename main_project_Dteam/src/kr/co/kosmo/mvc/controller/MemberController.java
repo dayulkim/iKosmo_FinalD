@@ -2,6 +2,7 @@ package kr.co.kosmo.mvc.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,11 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.kosmo.mvc.dao.CartDaoInter;
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
+import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
+import kr.co.kosmo.mvc.service.QuestionServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
+import kr.co.kosmo.mvc.vo.CartVO;
+import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.MemberVO;
 import kr.co.kosmo.mvc.vo.OrderListVO;
+import kr.co.kosmo.mvc.vo.PageVO;
+import kr.co.kosmo.mvc.vo.QuestionVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Controller
@@ -32,7 +40,11 @@ public class MemberController {
 	@Autowired
 	private ReviewServiceInter reviewServiceInter;
 	@Autowired
+	private CartDaoInter cartDaoInter;
+	@Autowired // 필요한 오브젝트를 인젝션
 	private OrderListServiceInter orderListServiceInter;
+	@Autowired
+	private FriendsServiceInter friendsServiceInter;
 
 	// 회원가입 페이지로 이동
 	@RequestMapping(value = "join")
@@ -74,13 +86,6 @@ public class MemberController {
 		return "member/idchk";
 	}
 
-	// mypage
-	@RequestMapping("/mypage")
-	public String myPage() {
-		return "member/mypage";
-	}
-
-
 //	맴버리뷰폼으로 이동
 	@RequestMapping("/reviewform")
 	public String reivewForm(Model m) {
@@ -114,4 +119,72 @@ public class MemberController {
 		return "redirect:/mypage";
 	}
 
+	@RequestMapping(value = "mypage")
+	public String mypage() {
+		System.out.println("mypage 이동");
+		return "mypage/mypage";
+	}
+
+	@RequestMapping(value = "survey")
+	public String survey() {
+		System.out.println("survey 이동");
+		return "mypage/survey";
+	}
+
+	@RequestMapping(value = "cart")
+	public String cart2(HttpSession session, Model m) {
+//		System.out.println("cart 이동");
+//		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+//		List<CartVO> list = cartDaoInter.getlist(mem_num);
+//		m.addAttribute("clist",list);
+		return "mypage/cart";
+	}
+
+	@RequestMapping("/orders") // 개인의 전체 주문내역 출력
+	public ModelAndView orderList(@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
+			HttpServletRequest request, PageVO pvo, HttpSession session) {
+		System.out.println("전체 주문내역 컨트롤러 시작!");
+		// int mem_num = 1;
+		// int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		int mem_session = (int) session.getAttribute("sessionNum");
+		System.out.println("mem_session::::::::::::" + mem_session);
+		ModelAndView mav = new ModelAndView();
+		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
+		mav.addObject("ordvo", ordvo);
+		mav.setViewName("mypage/orders");
+		return mav;
+	}
+
+	@RequestMapping(value = "friends_queue")
+	public String friends_queue(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriWtList(mem_num);
+		m.addAttribute("memvo", memvo);
+		m.addAttribute("frilist", list);
+		return "mypage/friends_queue";
+	}
+
+	@RequestMapping(value = "friends_list")
+	public String friends_list(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
+		m.addAttribute("memvo", memvo);
+		m.addAttribute("frilist", list);
+		return "mypage/friends_list";
+	}
+
+	@RequestMapping(value = "myqna")
+	public String myqna() {
+		System.out.println("myqna 이동");
+		return "mypage/myqna";
+	}
+
+	@RequestMapping(value = "scrapbook")
+	public String scrapbook() {
+		System.out.println("scrapbook 이동");
+		return "mypage/scrapbook";
+	}
 }

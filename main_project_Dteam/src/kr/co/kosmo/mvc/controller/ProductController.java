@@ -14,9 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.ReviewDao;
 import kr.co.kosmo.mvc.dao.Scrap_ProductDaoInter;
-
+import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.ProductServiceInter;
 import kr.co.kosmo.mvc.service.SellerService;
+import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
@@ -38,6 +39,9 @@ public class ProductController { // 김다율
 	
 	@Autowired
 	private Scrap_ProductDaoInter scrap_ProductDaoInter;
+	
+	@Autowired
+	private FriendsServiceInter friendsServiceInter;
 
 	// ----신연아 시작--------
 	// 메인화면의 스토어 버튼 클릭시 이동
@@ -178,11 +182,6 @@ public class ProductController { // 김다율
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
 		return "store/product_list";
-	}
-
-	@RequestMapping("/cart")
-	public String cart() {
-		return "store/cart";
 	}
 
 	@RequestMapping("/scraplist")

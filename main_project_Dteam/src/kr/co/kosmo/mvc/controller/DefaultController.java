@@ -48,7 +48,8 @@ public class DefaultController {
 		for (ProductVO vo : prolist) {
 			System.out.println(vo.getPro_name());
 		}
-//		// 추천상품 (재영)
+		
+		// 추천상품 (재영)
 //		List<Integer> oderRecommend = orderListServiceInter.ordRecommend();
 //		List<Integer> revRecommend = reviewServiceInter.revRecommend(0);
 //		List<Integer> revStarRecommend = reviewServiceInter.revRecommend(1);

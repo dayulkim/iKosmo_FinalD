@@ -95,6 +95,7 @@
 <script src="resources/js/scripts.js"></script>
 <script src="resources/js/httpRequest.js"></script>
 <script src="resources/js/https.js"></script>
+<script src="resources/js/httpRequest.js"></script>
 <script>
 function login() {
 	myRequest();
