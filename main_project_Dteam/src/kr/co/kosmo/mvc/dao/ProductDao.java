@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.kosmo.mvc.vo.InterestVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
+import kr.co.kosmo.mvc.vo.SellerVO;
 
 @Repository
 public class ProductDao implements ProductDaoInter { // 김다율
@@ -90,7 +91,7 @@ public class ProductDao implements ProductDaoInter { // 김다율
 	
 // 디테일에서 상품 별점 불러오기
 	@Override
-	public String productStar(int pro_num) {
+	public long productStar(int pro_num) {
 		System.out.println("Dao 에서 상품번호 : " + pro_num);
 		return ss.selectOne("product.productstar", pro_num);
 	}
@@ -106,6 +107,7 @@ public class ProductDao implements ProductDaoInter { // 김다율
 	public ProductVO recommendPro(int result) {
 		return ss.selectOne("product.recommendProduct", result);
 	}
+
 	
 
 }

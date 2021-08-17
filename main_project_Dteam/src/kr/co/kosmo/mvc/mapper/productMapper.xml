@@ -139,7 +139,7 @@
 	</select>
 	
 	<!--  상품 상세보기 -별점  -->
-	<select id="productstar" parameterType="int" resultType="String">
+	<select id="productstar" parameterType="int" resultType="long">
 		select avg(nvl(rev_star,0)) rev_star from review where pro_num=#{pro_num}
 	</select>
 	

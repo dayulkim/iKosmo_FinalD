@@ -1,43 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>슬기로운 집콕생활</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon"
-	href="resources/assets/img/store/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="resources/css/store/styles.css" rel="stylesheet" />
-<link href="resources/css/store/shop_styles.css" rel="stylesheet" />
-<!-- OwlCarousel -->
-<link rel="stylesheet"
-	href="resources/css/store/owlCarousel/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="resources/css/store/owlCarousel/owl.theme.default.min.css">
-<link href="resources/css/store/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/store/font-awesome.min.css" rel="stylesheet">
-<link href="resources/css/store/prettyPhoto.css" rel="stylesheet">
-<link href="resources/css/store/price-range.css" rel="stylesheet">
-<link href="resources/css/store/animate.css" rel="stylesheet">
+<!--  <link href="resources/css/store/bootstrap.min.css" rel="stylesheet">-->
 <link href="resources/css/store/main.css" rel="stylesheet">
-<link href="resources/css/store/responsive.css" rel="stylesheet">
-
 <!-- 정렬 방식 관련 CSS & JQuery 시작-->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="eCommerce HTML Template Free Download" name="keywords">
@@ -102,6 +67,10 @@
 	}
 </script>
 <style type="text/css">
+#unit {
+float:left;
+}
+
 #STATICMENU {
 	margin: 0pt;
 	padding: 0pt;
@@ -151,10 +120,9 @@ input {
 
 
 <!-- 사이드배너 끝 -->
-</head>
-<body onload="InitializeStaticMenu();">
 
-	<div id="STATICMENU">
+<body onload="InitializeStaticMenu();">
+	  <div id="STATICMENU">
 		<table>
 			<c:choose>
 				<c:when test="${sessionID !=null}">
@@ -200,10 +168,10 @@ input {
 			</c:choose>
 		</table>
 	</div>
+<section>
 	<div class="container">
-		<section>
 				<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
-				<div class="bottom-bar">
+				<div class="bottom-bar" id="unit">
 					<div class="user" align="left">
 						<c:choose>
 							<c:when test="${sessionID !=null}">
@@ -366,59 +334,50 @@ input {
 							<!--/category-products-->
 						</div>
 					</div>
-					<div class="col-sm-9 padding-right">
-						<div class="features_items">
-							<!--features_items-->
-							<h4 class="title text-center">Total ${pro_total}개</h4>
-							<br> <br>
-							<c:forEach var="listv" items="${list}">
-								<div class="col-sm-4">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="resources/assets/img/store/${listv.pro_thumb}"
-													alt="" style="width: 250px; height: 250px;">
-												<p>
-													<c:set var="days" value="7" />
-													<c:choose>
-														<c:when test="${listv.pro_age le days}">
-															<img src="resources/assets/img/store/new.jpg" alt=""
-																style="width: 26px; height: 13px;">
-														</c:when>
-													</c:choose>
-													[${listv.seller.sel_name}] <img
-														src="resources/assets/img/store/grade${listv.seller.sel_grade}.jpg"
-														alt="" style="width: 12.5px; height: 13px;"><br>
-													${listv.pro_name}....
-												</p>
-												<h2>
-													<del>${listv.pro_price}원</del>
-													&nbsp;&nbsp;<b>${listv.pro_dprice}원&nbsp; </b>(${listv.pro_discount}%
-													할인)
-												</h2>
-												<font size="1" color="#F361A6">리뷰 -
-													${listv.pro_review}개</font>
-											</div>
-										</div>
-										<div class="choose">
-											<ul>
-												<li><a href="#"><i class="fa fa-plus-square"></i>스크랩하기</a></li>
-												<li><a
-													href="detail?pro_num=${listv.pro_num}"><i
-														class="fa fa-plus-square"></i>상품 상세보기</a></li>
-												<li><a href="#"><i class="fa fa-plus-square"></i>이
-														상품이 포함된 집들이보기</a></li>
-											</ul>
+				</div>
+				<div class="col-sm-9 padding-right">
+					<div class="features_items">
+						<!--features_items-->
+						<h4 class="title text-center">Total ${pro_total}개</h4>
+						<br> <br>
+						<c:forEach var="listv" items="${list}">
+							<div class="col-sm-4" id="unit">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="resources/assets/img/store/${listv.pro_thumb}"
+												alt="" style="width: 250px; height: 250px;">
+											<p>
+												<c:set var="days" value="7" />
+												<c:choose>
+													<c:when test="${listv.pro_age le days}">
+														<img src="resources/assets/img/store/new.jpg" alt=""
+															style="width: 26px; height: 13px;">
+													</c:when>
+												</c:choose>
+												[${listv.seller.sel_name}] <img
+													src="resources/assets/img/store/grade${listv.seller.sel_grade}.jpg"
+													alt="" style="width: 12.5px; height: 13px;"><br>
+												${listv.pro_name}....
+											</p>
+											<h2>
+												<del>${listv.pro_price}원</del>
+												&nbsp;&nbsp;<b>${listv.pro_dprice}원&nbsp; </b>(${listv.pro_discount}%
+												할인)
+											</h2>
+											<font size="1" color="#F361A6">리뷰 -
+												${listv.pro_review}개</font>
 										</div>
 									</div>
+								</div>
 								</div>
 							</c:forEach>
 						</div>
 						<!--features_items-->
 					</div>
 				</div>
+		
 		</section>
-	</div>
 	<!-- Back to Top -->
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 	<!-- Bootstrap core JS-->
@@ -465,5 +424,4 @@ input {
 					.replace(/\+/g, " "));
 		}
 	</script>
-</body>
-</html>
+
