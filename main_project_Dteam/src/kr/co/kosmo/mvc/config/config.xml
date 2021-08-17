@@ -23,6 +23,8 @@
 		<typeAlias type="kr.co.kosmo.mvc.vo.Scrap_QnaVO" alias="srcquevo"/><!-- 질문과답변스크랩 -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.CartVO" alias="cvo"/><!-- 장바구니  -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.FriendsVO" alias="frivo"/><!-- 장바구니  -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.QuestionLogVO" alias="quelogvo"/>
+		<typeAlias type="kr.co.kosmo.mvc.vo.QuestionWordCloudVO" alias="quewcvo"/>
 	</typeAliases>
 	<!-- Spring이 environments, environment, transactionManager, dataSource, 
 		mapper등을 자동적으로 관리해줌 -->

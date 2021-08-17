@@ -1,0 +1,97 @@
+{
+  "name": "drift-zoom",
+  "version": "1.4.4",
+  "description": "Easily add \"zoom on hover\" functionality to your site's images. Lightweight, no-dependency JavaScript.",
+  "contributors": [
+    "Frederick Fogerty <frederick.fogerty@gmail.com> (https://github.com/frederickfogerty)",
+    "Sherwin Heydarbeygi <sherwin@imgix.com> (https://github.com/sherwinski)"
+  ],
+  "main": "lib/Drift.js",
+  "module": "es/Drift.js",
+  "jsnext:main": "es/Drift.js",
+  "scripts": {
+    "build": "npm run clean && run-p build:css:** build:js:**",
+    "build:serial": "npm run clean && run-s build:css:** build:js:**",
+    "build:css:dev": "mkdir -p dist && cp src/css/drift-basic.css dist/",
+    "build:css:prod": "mkdir -p dist && postcss src/css/drift-basic.css > dist/drift-basic.min.css",
+    "build:js:dist:prod": "webpack --env build && cp dist/Drift.min.js dist/Drift.js",
+    "build:js:lib:commonjs": "cross-env BABEL_ENV=commonjs babel src/js --out-dir lib --source-maps",
+    "build:js:lib:es": "cross-env BABEL_ENV=es babel src/js --out-dir es --source-maps",
+    "build:watch": "webpack --progress --color --watch --env dev",
+    "clean": "rimraf lib es dist",
+    "dev": "npm run build:watch",
+    "format:check": "prettier --list-different \"{src,test}/**/*.js\"",
+    "format": "prettier --write \"{src,test}/**/*.js\"",
+    "lint": "eslint \"{src,test}/**/*.js\"",
+    "release": "npm run build && git add dist src/js/Drift.js && standard-version -a",
+    "start": "npm run dev",
+    "test:watch": "karma start config/karma/karma-local.config.js",
+    "test:local": "karma start config/karma/karma-local.config.js --singleRun",
+    "test:ci": "karma start config/karma/karma-ci.config.js --singleRun",
+    "test": "npm run test:local"
+  },
+  "files": [
+    "lib",
+    "es",
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imgix/drift.git"
+  },
+  "keywords": [
+    "javascript",
+    "zoom",
+    "hover"
+  ],
+  "author": "imgix",
+  "license": "BSD-2",
+  "bugs": {
+    "url": "https://github.com/imgix/drift/issues"
+  },
+  "homepage": "https://github.com/imgix/drift",
+  "devDependencies": {
+    "@babel/cli": "7.13.16",
+    "@babel/core": "7.14.2",
+    "@babel/plugin-proposal-class-properties": "7.13.0",
+    "@babel/preset-env": "7.14.2",
+    "babel-eslint": "10.1.0",
+    "babel-loader": "8.2.2",
+    "babel-preset-env": "7.0.0-beta.3",
+    "chai": "4.3.4",
+    "closure-webpack-plugin": "2.5.0",
+    "cross-env": "7.0.3",
+    "cssnano": "4.1.11",
+    "cssnano-preset-advanced": "4.0.8",
+    "eslint": "7.23.0",
+    "eslint-config-google": "0.14.0",
+    "eslint-config-prettier": "8.1.0",
+    "google-closure-compiler": "20210302.0.0",
+    "google-closure-compiler-js": "20200719.0.0",
+    "jasmine-core": "3.7.1",
+    "karma": "6.3.2",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-firefox-launcher": "2.1.0",
+    "karma-jasmine": "4.0.1",
+    "karma-webpack": "4.0.2",
+    "npm-run-all": "4.1.5",
+    "postcss": "8.2.8",
+    "postcss-cli": "8.3.1",
+    "prettier": "2.2.1",
+    "rimraf": "3.0.2",
+    "standard-version": "9.1.1",
+    "webpack": "4.46.0",
+    "webpack-cli": "4.6.0",
+    "yargs": "16.2.0"
+  },
+  "browserslist": [
+    "ie 11",
+    "last 2 edge versions",
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 iOS versions",
+    "last 2 Android versions"
+  ]
+}
