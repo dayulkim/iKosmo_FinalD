@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
@@ -20,17 +21,15 @@
 	<div>
 		<button id="btn-upload">파일 업로드</button>
 	</div>
-	<div>
-		<img alt="" src="" id="picture0"></div>
-		<div >
-			<img alt="" src="" id="picture1"></div>
-			<div>
-				<img alt="" src="" id="picture2">
-			</div>
-</body>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+	<div id="test">
+		</div>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="resources/js/jquery/jquery.min.js"></script>
+    <script src="resources/js/jquery/jquery-3.6.0.js"></script>
+    <script src="resources/js/jquery/jquery-ui.js"></script>
+    <script src="resources/js/jquery/jquery-1.11.1.min.js"></script>
+
+
 <script>
 	$(function() {
 
@@ -46,17 +45,20 @@
 			$.ajax({
 				type : 'post',
 // 				url : "http://ec2-52-78-30-125.ap-northeast-2.compute.amazonaws.com:9000/service/similarityJsonP",
- 				url : "http://192.168.35.53:9000/service/similarityJsonP?category=lighting",
+ 				url : "http://192.168.35.53:9000/service/similarityJsonP?category=closet",
 				processData : false,
 				contentType : false,
 				data : formData,
 
 				success : function(e) {
 					console.log(e.data)
+					
 					if (e.data!=='None'){
 						for(let i=0;i<e.data.length;i++){
-							
-							document.getElementById("picture"+i).src='resources/data/lighting/'+e.data[i]
+							var picture="";
+							 picture+="<img alt='' src='resources/data/closet/"+e.data[i]+"' id='"+picture[i]+"' style='width:200px;'>"
+							$("#test").append(picture);
+						
 						}
 					
 					}
@@ -73,4 +75,5 @@
 		});
 	});
 </script>
+</body>
 </html>
