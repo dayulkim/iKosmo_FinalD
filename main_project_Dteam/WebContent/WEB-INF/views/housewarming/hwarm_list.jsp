@@ -97,6 +97,11 @@ select {
 
          <li><input type="submit" onclick="getParameter()" value="검색하기"
             class="button"></li>
+         <li>
+			<button type="button" id="hwarm_write_btn" class="btn btn-primary rounded-pill" style="margin-left: 6rem;">
+				집들이글 작성하기
+			</button>
+         </li>
 
       </ul>
    </form>
@@ -173,6 +178,11 @@ select {
 		let color = $('select#hou_tone option[value='+hou_tone+']').css("background-color");
 		$('select#hou_tone').css("background-color", color);
    });
+   
+   // 집들이글 작성하기 버튼을 누르면 집들이글 작성페이지로 가도록 함
+   $('#hwarm_write_btn').click(function(){
+	   $(location).attr("href","hwarm_write")
+   })
    
 
 

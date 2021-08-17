@@ -18,8 +18,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="resources/css/styles.css" rel="stylesheet" />
-     <link href="resources/css/theme.css" rel="stylesheet" />
-     <link href="resources/css/theme.min.css" rel="stylesheet" />
+
+    <link href="resources/css/theme.css" rel="stylesheet" />
+    <link href="resources/css/theme.min.css" rel="stylesheet" />
+
     <!-- OwlCarousel -->
     <link rel="stylesheet" href="resources/css/owlCarousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="resources/css/owlCarousel/owl.theme.default.min.css">

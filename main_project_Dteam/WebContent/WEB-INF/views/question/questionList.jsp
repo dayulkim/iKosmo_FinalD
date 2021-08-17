@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <style>
 #searching, #searching1, #searching2, #searching3 { 
 		width: 200px; /* 원하는 너비설정 */ 
@@ -86,6 +87,23 @@
   	color: #FF8000;
   }
   
+  
+  <!-- 워드클라우드 진행용 -->
+  
+  body {
+         font-family:"Lucida Grande","Droid Sans",Arial,Helvetica,sans-serif;
+         }
+        .legend {
+             border: 1px solid #555555;
+              border-radius: 5px 5px 5px 5px;
+              font-size: 0.8em;
+              margin: 10px;
+               padding: 10px;
+         }
+        .bld {
+              font-weight: bold;
+         }
+  
 </style>
 
 	<link rel="stylesheet" href="//static.fmkorea.com/modules/board/skins/sketchbook5_elkha/css/board.css?c=1625228155" type="text/css" media="all" />
@@ -107,12 +125,12 @@
     <link rel="stylesheet" media="screen" href="https://static.ohou.se/assets/v3/questions/index-ea34be3df938c51181a985989be56659c97304fd499eef3e8d1c632533eeb23a.css" />
     <script src="https://static.ohou.se/assets/v3/questions/index-e89779dc7777925af0dce2ea756e6d45ccc1095cecc242eb97f8d6f4a1dde0cc.js"></script>
 
-
 <main role="main" id="root">
 <div id="questions-index-page">
   <section id="questions-header">
     <div class="container">
       <div class="questions-header__title">
+      	<br><br><br>
         <h1 class="text-heading-1 text-black bold">
           질문과 답변
         </h1>
@@ -127,7 +145,7 @@
 		          <div class="questions-header__form__wrap row">
 		            <div class="questions-header__form__search col">
 		              <span class="icon icon-etc-find-sm-gray-dark search" style="left: 15px; top: 40%;"></span>
-						<input type="text" id="key" name="key" required="required" placeholder="제목/타이틀, 키워드를 검색해보세요!" style="width:460px; height: 40px;">
+						<input type="text" id="key" name="key" required="required" placeholder="제목/타이틀, 키워드를 검색해보세요!" style="width:455px; height: 40px;">
 						<select id="searching" name="search">
 							<option value="0">키워드</option>
 							<option value="1">제목 + 내용</option>
@@ -138,6 +156,19 @@
 			</form>      
 			
 			<div class="faq-content">
+					<br>
+					<c:choose>
+						<c:when test="${mkeylist eq null}">
+							<c:forEach var="i" items="${keylist}">
+								<a href="naquestionList?key=${i }">#${i }</a> &nbsp;
+							</c:forEach>	
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="i" items="${mkeylist}">
+								<a href="naquestionList?key=${i }">#${i }</a> &nbsp;
+							</c:forEach>	
+						</c:otherwise>
+					</c:choose>
 					  <button class="question" id="que-1">
 					  <span id="que-1-toggle">+</span>
 					  <span>키워드 검색</span>
@@ -202,7 +233,7 @@
 		          <div class="questions-header__form__wrap row">
 		            <div class="questions-header__form__search col">
 		              <span class="icon icon-etc-find-sm-gray-dark search" style="left: 15px; top: 40%;"></span>
-						<input type="text" id="key" name="key" required="required" placeholder="제목/타이틀, 키워드를 검색해보세요!" style="width:460px; height: 40px;">
+						<input type="text" id="key" name="key" required="required" placeholder="제목/타이틀, 키워드를 검색해보세요!" style="width:455px; height: 40px;">
 						<select id="searching" name="search">
 							<option value="0">키워드</option>
 							<option value="1">제목 + 내용</option>
@@ -213,6 +244,19 @@
 			</form>      
 			
 			<div class="faq-content">
+						<br>
+						<c:choose>
+						<c:when test="${mkeylist eq null}">
+							<c:forEach var="i" items="${keylist}">
+								<a href="questionList?key=${i }">#${i }</a> &nbsp;
+							</c:forEach>	
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="i" items="${mkeylist}">
+								<a href="questionSearch?key=${i }">#${i }</a> &nbsp;
+							</c:forEach>	
+						</c:otherwise>
+					</c:choose>
 					  <button class="question" id="que-1">
 					  <span id="que-1-toggle">+</span>
 					  <span>키워드 검색</span>
@@ -227,31 +271,31 @@
 						<tr>
 							<th>
 								<p style="margin: 0;">일반</p><br>
-								<a href="questionSearch?key=리모델링/수리">#리모델링/수리</a> &nbsp; 
-								<a href="questionSearch?key=견적">#견적</a> &nbsp;
-								<a href="questionSearch?key=업체추천">#업체추천</a> &nbsp; 
-								<a href="questionSearch?key=셀프인테리어">#셀프인테리어</a> &nbsp; 
+								<a href="questionList?key=리모델링/수리">#리모델링/수리</a> &nbsp; 
+								<a href="questionList?key=견적">#견적</a> &nbsp;
+								<a href="questionList?key=업체추천">#업체추천</a> &nbsp; 
+								<a href="questionList?key=셀프인테리어">#셀프인테리어</a> &nbsp; 
 								<br>
-								<a href="questionSearch?key=신혼">#신혼</a>&nbsp;
-								<a href="questionSearch?key=리폼">#리폼</a> &nbsp; 
-								<a href="questionSearch?key=디자인추천">#디자인추천</a> &nbsp; 
+								<a href="questionList?key=신혼">#신혼</a>&nbsp;
+								<a href="questionList?key=리폼">#리폼</a> &nbsp; 
+								<a href="questionList?key=디자인추천">#디자인추천</a> &nbsp; 
 								<hr>
 							</th>
 						</tr>
 						<tr>
 							<th>
 								<p style="margin: 0;">가구</p><br>
-								<a href="questionSearch?key=가구배치/이동">#가구배치/이동</a> &nbsp; 
-								<a href="questionSearch?key=수전/싱크대">#수전/싱크대</a> &nbsp;
-								<a href="questionSearch?key=냉장고">#냉장고</a> &nbsp; 
-								<a href="questionSearch?key=소파">#소파</a> &nbsp;
-								<a href="questionSearch?key=식탁">#식탁</a> &nbsp; 
+								<a href="questionList?key=가구배치/이동">#가구배치/이동</a> &nbsp; 
+								<a href="questionList?key=수전/싱크대">#수전/싱크대</a> &nbsp;
+								<a href="questionList?key=냉장고">#냉장고</a> &nbsp; 
+								<a href="questionList?key=소파">#소파</a> &nbsp;
+								<a href="questionList?key=식탁">#식탁</a> &nbsp; 
 								<br>
-								<a href="questionSearch?key=침대">#침대</a> &nbsp;
-								<a href="questionSearch?key=에어컨">#에어컨</a> &nbsp; 
-								<a href="questionSearch?key=TV">#TV</a> &nbsp;
-								<a href="questionSearch?key=유리">#유리</a>&nbsp;
-								<a href="questionSearch?key=기타가구">#기타가구</a> &nbsp; 
+								<a href="questionList?key=침대">#침대</a> &nbsp;
+								<a href="questionList?key=에어컨">#에어컨</a> &nbsp; 
+								<a href="questionList?key=TV">#TV</a> &nbsp;
+								<a href="questionList?key=유리">#유리</a>&nbsp;
+								<a href="questionList?key=기타가구">#기타가구</a> &nbsp; 
 								<hr>
 							</th>
 						</tr>
@@ -272,13 +316,7 @@
 					</div>
 		</c:otherwise>
 	</c:choose>
-
-			<div class="questions-header__keywords row">
-		        <input id="questions-header__keywords__toggle" class="questions-header__keywords__toggle" type="checkbox">
-		      </div>
-		    </div>
 		  </section>
-  
   				<div class="fm_best_widget _bd_pc">
 					<section id="questions-notice-list" class="container">
 						
@@ -328,7 +366,10 @@
 							</c:otherwise>
 						</c:choose>
 						
-						
+	
+           <div id="wordcloud" align="center" >
+           </div>
+		
 						<table>
 							<c:forEach var="e" items="${list }" varStatus="i">
 								<tr>
@@ -368,7 +409,7 @@
 											<a href="naquestionList?key=${i}">#${i}</a>	
 										</c:when>
 										<c:otherwise>
-											<a href="questionSearch?key=${i}">#${i}</a>	
+											<a href="questionList?key=${i}">#${i}</a>	
 										</c:otherwise>
 									</c:choose>
 										
@@ -477,6 +518,10 @@
 </div>
 </main>
 
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
+
 
 <script charset="euc-kr">
 	// qeustion 클래스를 가진 버튼이 여러개 사용될때 (지금을 1개만 사용중)
@@ -495,11 +540,6 @@
   }
 
   items.forEach(item => item.addEventListener('click', openCloseAnswer));
-  
-  function sort(){
-	  const sort = $('#searching1').val();
-	  window.location.href = "questionList?sort=" + sort;
-  }
   
   function anssort(){
 	  const sort = $('#searching3').val();
@@ -528,9 +568,56 @@
 		for(var i = 0; i< klist.length; i++){
 			console.log(vlist[i] + ":" + klist[i])
 		}
-		window.location.href = "questionSearch?key=" + vlist[0] + sortv;
-		
+		if(vlist[0] == null){
+			window.location.href = "questionList?sort="+ sort;
+		}else{
+			window.location.href = "questionList?key=" + vlist[0] + sortv;
+		}
   }
-</script>
+  
+
+	var wordcloudlist = $.ajax({
+		type: "GET",
+	    url: "quesearchwordcloud",
+	    dataType: "json",
+	    contentType: "application/json; charset:UTF-8", 
+	    async: false
+		}).responseText; 
+	
+	var x = JSON.parse(wordcloudlist);
+	console.log("Json데이터 ",x)
+ 
+
+ var color = d3.scale.linear() //선형적인 스케일로 표준화를 시킨다.
+         .domain([0,1,2,3,4,5,6,10,15,20,100])//데이터의 범위, 입력 크기
+         .range([0.50]);//표시할 범위, 출력 크기
+         //ex)"#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"
+         
+ d3.layout.cloud().size([600, 300]) //[width,height]
+         .words(x)
+         .rotate(0)
+         .fontSize(function(d) { return d.mount; })
+         .on("end", draw)
+         .start();
+ 
+ function draw(words) {
+     d3.select("#wordcloud").append("svg")//wordcloud 테이블에 svg를 붙이고
+             .attr("width", 650)
+             .attr("height", 350)
+             .attr("class", "wordcloud")
+             .append("g")
+             .attr("transform", "translate(320,170)")
+             .selectAll("text")
+             .data(words)
+             .enter().append("text")
+             .style("font-size", function(d) { return d.mount + "px"; })
+             .style("fill", function(d, i) { return color(i); })
+             .attr("transform", function(d) {
+                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+             })
+             .text(function(d) { return d.subject; });
+ }
+ 
+</script>       
 
 

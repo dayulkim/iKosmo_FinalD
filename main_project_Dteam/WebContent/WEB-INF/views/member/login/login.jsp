@@ -94,7 +94,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="resources/js/https.js"></script>
-<script type="text/javascript">
+<script src="resources/js/httpRequest.js"></script>
+<script>
 function login() {
 	myRequest();
 	var idv = document.getElementById("mem_id").value;
@@ -115,7 +116,7 @@ function res() {
 				document.getElementById("mem_id").focus();
 			} else {
 				alert(txt);
-				location="/sweethome/";
+				location="/main_project_Dteam/";
 			}
 		} else {
 			console.log("½ÇÆÐ");

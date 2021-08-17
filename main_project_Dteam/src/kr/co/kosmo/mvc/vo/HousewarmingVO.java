@@ -33,7 +33,14 @@ public class HousewarmingVO {
 	private MemberVO memvo; // MemberVO
 	private List<HousedetailVO> hwdvoList; // 상세내용 리스트
 	private List<HouseCommentVO> hcmvoList; // 집들이 댓글 리스트
+	private HousedetailVO houdvo; // 김세연 : 검색결과 용
 	
+	public HousedetailVO getHoudvo() {
+		return houdvo;
+	}
+	public void setHoudvo(HousedetailVO houdvo) {
+		this.houdvo = houdvo;
+	}
 	public int getHou_num() {
 		return hou_num;
 	}

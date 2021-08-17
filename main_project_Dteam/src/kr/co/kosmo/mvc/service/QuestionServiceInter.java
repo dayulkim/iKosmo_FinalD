@@ -13,9 +13,6 @@ public interface QuestionServiceInter {
 	@Transactional
 	public void addAnswer(AnswerVO ansvo , int que_num);
 	
-//	public void addAnswer(AnswerVO ansvo);
-//	public void questionAns(int que_num);
-	
 	public void addQuestion(QuestionVO quevo);
 	
 	public int totalQuestionList();
@@ -48,4 +45,5 @@ public interface QuestionServiceInter {
 	public List<QuestionVO> SearchNaKeywordList(PageVO pvo);
 	public List<QuestionVO> SearchNaTitle_Content(PageVO pvo);
 	
+	public List<String> imgList(List<QuestionVO> list);
 }

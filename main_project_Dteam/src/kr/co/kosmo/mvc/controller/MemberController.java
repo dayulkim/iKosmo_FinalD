@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.kosmo.mvc.dao.MemberDaoInter;
+import kr.co.kosmo.mvc.dao.CartDaoInter;
+
 import kr.co.kosmo.mvc.service.MemberServiceInter;
-import kr.co.kosmo.mvc.service.ReviewServiceInter;
+
 import kr.co.kosmo.mvc.vo.HouseInfoVO;
+
+import kr.co.kosmo.mvc.service.FriendsServiceInter;
+import kr.co.kosmo.mvc.service.ReviewServiceInter;
+import kr.co.kosmo.mvc.vo.CartVO;
+import kr.co.kosmo.mvc.vo.FriendsVO;
+
 import kr.co.kosmo.mvc.vo.MemberVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
@@ -28,6 +37,11 @@ public class MemberController {
 	private MemberServiceInter memberServiceInter;
 	@Autowired
 	private ReviewServiceInter reviewServiceInter;
+
+	@Autowired
+	private CartDaoInter cartDaoInter;
+	@Autowired
+	private FriendsServiceInter friendsServiceInter;
 
 	// 회원가입 페이지로 이동
 	@RequestMapping(value = "join")
@@ -102,6 +116,73 @@ public class MemberController {
 		return "redirect:/mypage";
 	}
 
+	@RequestMapping(value = "survey")
+	public String survey() {
+		System.out.println("survey 이동");
+		return "mypage/survey";
+	}
+
+	@RequestMapping(value = "cart")
+	public String cart2(HttpSession session, Model m) {
+//		System.out.println("cart 이동");
+//		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+//		List<CartVO> list = cartDaoInter.getlist(mem_num);
+//		m.addAttribute("clist",list);
+		return "mypage/cart";
+	}
+
+	@RequestMapping(value = "orders")
+	public String orders() {
+		System.out.println("orders 이동");
+		return "mypage/orders";
+	}
+
+	@RequestMapping(value = "friends_queue")
+	public String friends_queue(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriWtList(mem_num);
+		m.addAttribute("memvo", memvo);
+		m.addAttribute("frilist", list);
+		return "mypage/friends_queue";
+	}
+
+	@RequestMapping(value = "friends_list")
+	public String friends_list(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
+		m.addAttribute("memvo", memvo);
+		m.addAttribute("frilist", list);
+		return "mypage/friends_list";
+	}
+
+	@RequestMapping(value = "myqna")
+	public String myqna() {
+		System.out.println("myqna 이동");
+		return "mypage/myqna";
+	}
+
+	@RequestMapping(value = "scrapbook")
+	public String scrapbook() {
+		System.out.println("scrapbook 이동");
+		return "mypage/scrapbook";
+	}
+
+	/*
+	 * <<<<<<< HEAD
+	 * 
+	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
+	 * { int mem_num =
+	 * Integer.parseInt(session.getAttribute("sessionNum").toString());
+	 * System.out.println("sessionNum ::"+mem_num); List<FriendsVO> list =
+	 * friendsServiceInter.getFriednsList(mem_num);
+	 * //System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
+	 * m.addAttribute("frilist", list); List<FriendsVO> wtlist =
+	 * friendsServiceInter.getFriWtList(mem_num); m.addAttribute("wtlist", wtlist);
+	 * return "store/mypage"; } ======= >>>>>>> all_merged_0810
+	 */
+
 	@RequestMapping("/houseinfoform")
 	public String houstInfoForm() {
 
@@ -119,7 +200,7 @@ public class MemberController {
 	public String myPage(Model m) {
 		List<HouseInfoVO> house_Info = memberServiceInter.getMemberHouseInfo("좽이");
 		m.addAttribute("house_info", house_Info);
-		
+
 		return "member/mypage";
 	}
 

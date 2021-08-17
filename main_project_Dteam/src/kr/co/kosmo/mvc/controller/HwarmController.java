@@ -70,7 +70,7 @@ public class HwarmController {
 			MultipartFile[] imgfile, String[] hwd_content_list) {
 		
 		// 추후 삭제 필요 =============================================================================================
-		session.setAttribute("sessionNum", 1);
+		// session.setAttribute("sessionNum", 1);
 
 		// HousewarmingVO값 셋팅 (
 		houvo.setMem_num(Integer.parseInt(session.getAttribute("sessionNum").toString()));// 회원번호
@@ -108,7 +108,7 @@ public class HwarmController {
 	public ModelAndView hwarm_detail(int hou_num, HttpSession session) {
 		
 		// 추후 삭제 필요 =============================================================================================
-		session.setAttribute("sessionNum", 1);
+		//session.setAttribute("sessionNum", 1);
 
 		// ModelAndView 생성
 		ModelAndView mav = new ModelAndView();

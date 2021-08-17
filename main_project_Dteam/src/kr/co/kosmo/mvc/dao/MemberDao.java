@@ -39,6 +39,7 @@ public class MemberDao implements MemberDaoInter { // 오원석
 	public String getMemberProfile(int mem_num) {
 		return ss.selectOne("member.getMemberProfile", mem_num);
 	}
+
 	// 재영  : 회원 집 정보 받는 코드 ---------------------------------
 	@Override
 	public void addMemberHouseInfo(HouseInfoVO hinvo) {
@@ -54,5 +55,12 @@ public class MemberDao implements MemberDaoInter { // 오원석
 	public void delMemberHouseInfo(int hinfo_num) {
 		ss.delete("member.delMemberHouseInfo",hinfo_num);
 	}
+
+	// 김세연 : 마이페이지, 친구목록에서 사용되는 코드 --------------------------
+	@Override
+	public MemberVO getMemberInfo(int mem_num) {
+		return ss.selectOne("member.getMemberName", mem_num);
+	}
+
 
 }

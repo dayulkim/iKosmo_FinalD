@@ -7,5 +7,74 @@
 	<select id="top10Search" resultType="slogvo">
 		select * from (select slog_word, count(*) search_cnt from searchLog  where 7 >= (sysdate-searchlog.slog_time) group by slog_word order by search_cnt desc) where 11 > rownum
 	</select>
+	
+	<!-- 검색결과 resultMap -->
+	<resultMap type="proVO" id="productList_resultmap">
+		<id property="pro_num" column="pro_num" javaType="int"/>
+		<result property="pro_name" column="pro_name"/>
+		<result property="pro_category" column="pro_category" javaType="int"/>
+		<result property="pro_price" column="pro_price" javaType="int"/>
+		<result property="pro_discount" column="pro_discount" javaType="int"/>
+		<result property="pro_dprice" column="pro_dprice"/>
+		<result property="pro_thumb" column="pro_thumb"/>
+		<result property="sel_num" column="sel_num" javaType="int"/>
+		<result property="pro_review" column="pro_review" javaType="int"/>
+		<association property="seller" javaType="selvo">
+			<id property="sel_num" column="sel_num" javaType="int"/>
+			<result property="sel_name" column="sel_name"/>
+			<result property="sel_grade" column="sel_grade" javaType="int"/>
+		</association>
+	</resultMap>
+	
+	<!-- 검색결과 상품 -->
+	<select id="productList" parameterType="String" resultMap="productList_resultmap">
+		select p.pro_name, p.pro_category, p.pro_price, p.pro_discount, 
+		p.pro_price*(1 - p.pro_discount/100) pro_dprice, 
+		p.pro_thumb, p.sel_num, s.sel_name, s.sel_grade from product p, seller s 
+		where p.sel_num = s.sel_num and pro_name like '%'||#{key}||'%'
+	</select>
+	
+	<!-- 검색결과  질문 -->
+	<select id="queList" parameterType="String" resultType="queVO">
+		select que_num,que_title,que_content,que_photo,que_keyword,que_rdate,mem_id, 
+		que_hit, que_ans from question 
+		where que_title || que_content || que_keyword like '%'||#{key}||'%'
+	</select>
+	
+	<!-- 검색결과 집들이 -->
+	<resultMap type="houVO" id="houList_resultmap">
+		<id property="hou_num" column="hou_num" javaType="int"/>
+		<result property="hou_name" column="hou_name"/>
+		<result property="hou_thumb" column="hou_thumb"/>
+		<result property="hou_type" column="hou_type" javaType="int"/>
+		<result property="hou_space" column="hou_space" javaType="int"/>
+		<result property="hou_how" column="hou_how" javaType="int"/>
+		<result property="hou_sector" column="hou_sector" javaType="int"/>
+		<result property="hou_style" column="hou_style" javaType="int"/>
+		<result property="hou_period" column="hou_period" javaType="int"/>
+		<result property="hou_pay" column="hou_pay" javaType="int"/>
+		<result property="hou_tone" column="hou_tone" javaType="int"/>
+		<result property="hou_rdate" column="hou_rdate"/>
+		<result property="hou_hit" column="hou_hit" javaType="int"/>
+		<result property="hou_scrap" column="hou_scrap" javaType="int"/>
+		<result property="hou_like" column="hou_like" javaType="int"/>
+		<result property="mem_num" column="mem_num" javaType="int"/>
+		<association property="houdvo" javaType="hwdvo">
+			<result property="hou_num" column="hou_num" javaType="int"/>
+			<result property="hou_content" column="hou_content"/>
+		</association>
+		<association property="memvo" javaType="memvo">
+			<id property="mem_num" column="mem_num" javaType="int"/>
+			<result property="mem_nickname" column="mem_nickname"/>
+		</association>
+	</resultMap>
+	
+	<select id="houList" parameterType="String" resultMap="houList_resultmap">
+		select h.hou_num,h.hou_name,h.hou_thumb,h.hou_hit,h.hou_scrap,h.mem_num,
+		m.mem_nickname from housewarming h, housedetail d, member m 
+		where h.hou_name || d.hwd_content like '%'||#{key}||'%' 
+		and h.hou_num = d.hou_num and h.mem_num = m.mem_num
+	</select>
+	
 
 </mapper>

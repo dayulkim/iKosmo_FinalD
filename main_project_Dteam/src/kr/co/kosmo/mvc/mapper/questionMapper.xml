@@ -6,7 +6,9 @@
   
   <mapper namespace="question">
   	<insert id="insertQuestion" parameterType="quevo">
-  		insert into question values(question_seq.nextVal , #{que_title}, #{que_content}, #{que_photo}, #{que_keyword}, sysdate ,#{mem_id},0,0)
+  		insert into question values(question_seq.nextVal , 
+  		#{que_title}, #{que_content}, #{que_photo}, 
+  		#{que_keyword}, sysdate ,#{mem_id},0,0)
   	</insert>
   	
   	<select id="questionTotal" resultType="int">

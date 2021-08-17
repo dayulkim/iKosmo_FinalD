@@ -170,7 +170,7 @@ input:checked + label{
 	left: 20%;
 }
 
-a.upload-file-btn {
+a.upload-file-btn, a.tag-btn {
 	margin-top: 1rem;
     padding: 0;
     overflow: hidden;
@@ -266,10 +266,8 @@ img.suggestIMG {
 
 td.suggestProNameTd {
 	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	font-size: 0.9rem;
-	font-weight: 600;
-	width: 16rem;
-	
+	font-size: 0.8rem;
+	font-weight: 400;
 }
 
 a.suggestProNameA {
