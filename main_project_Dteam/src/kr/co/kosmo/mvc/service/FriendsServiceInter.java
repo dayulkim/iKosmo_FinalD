@@ -27,4 +27,6 @@ public interface FriendsServiceInter {
 	public void delete_request(Map<String, Integer> num_map);
 	// 친구상태 해제
 	public void unfollow(Map<String, Integer> num_map);
+	// 로그인한 회원 정보 가져오기
+	public MemberVO getMemberInfo(int mem_num);
 }

@@ -126,5 +126,39 @@ public class FreindsRestController {
 		}
 		return result;
 	}
+	
+	
+	@RequestMapping(value="/unfollow")
+	public String unfollow(int req_mem_num, HttpSession session) {
+		String result = null;
+		int sessionNum = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		Map<String, Integer> num_map = new HashMap<String, Integer>();
+		num_map.put("mem_num", sessionNum);
+		num_map.put("req_mem_num", req_mem_num);
+		try {
+			service.unfollow(num_map);
+			result = "success";
+		}catch (Exception e) {
+			System.out.println("친구해제 중 에러발생");
+			result = "error";
+		}
+		return result;
+	}
+	@RequestMapping(value="/accFriend")
+	public String accFriend(int req_mem_num, HttpSession session) {
+		String result = null;
+		int sessionNum = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		Map<String, Integer> num_map = new HashMap<String, Integer>();
+		num_map.put("mem_num", sessionNum);
+		num_map.put("req_mem_num", req_mem_num);
+		try {
+			service.accept_friend(num_map);
+			result = "success";
+		}catch (Exception e) {
+			System.out.println("친구수락 중 에러발생");
+			result = "error";
+		}
+		return result;
+	}
 
 }

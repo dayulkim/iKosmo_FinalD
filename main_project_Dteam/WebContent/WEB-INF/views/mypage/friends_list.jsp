@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Body-->
     
       <!-- Page Title-->
@@ -24,9 +25,9 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><img class="rounded-circle" src="resources/uploadFile/profile/iu.jpg" alt="Susan Gardner"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
-                    <h3 class="fs-base mb-0">이지은</h3><span class="text-accent fs-sm">iu_leejieun</span>
+                    <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
                 </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="fas fa-user-circle"></i>&nbsp;&nbsp;마이페이지 메뉴</a>
               </div>
@@ -66,45 +67,19 @@
 			<section class="col-lg-8">
 				<div class="row">
 					<!-- Horizontal layout: Picture on the left + rounded picture + solid round socials -->
+					<c:forEach var="list" items="${frilist}">
 					<div class="d-flex align-items-start col-6">
-					  <img class="d-inline-block rounded" width="96" src="resources/uploadFile/profile/iu.jpg" alt="Jonathan Doe"/>
+					  <img class="d-inline-block rounded" width="96" height="96" src="${list.memvo.mem_profile}" alt="${list.memvo.mem_id}"/>
 					  <div class="ps-3">
-					    <h6 class="pt-1 mb-1">Jonathan Doe</h6>
-					    <p class="fs-sm text-muted">CEO, Co-founder at Company Ltd.</p>
-					    <a class="btn-social bs-facebook rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-facebook"></i>
-					    </a>
-					    <a class="btn-social bs-twitter rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-twitter"></i>
-					    </a>
-					    <a class="btn-social bs-linkedin rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-linkedin"></i>
-					    </a>
-					    <a class="btn-social bs-google rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-google"></i>
-					    </a>
+					    <span class="pt-1 mb-1">${list.memvo.mem_name}</span>
+					    <i class="fas fa-chevron-circle-right"></i>
+					    <span class="fs-sm text-muted">${list.memvo.mem_nickname}</span>
+					    <p class="text-accent fs-sm">${list.memvo.mem_id}</p>					    
+					    <button type="button" class="unfolBtn btn btn-success btn-shadow rounded-pill" id="unfollowBtn">친구해제</button>
+					    <input id="req_mem_num" type="hidden" value="${list.req_mem_num}">		
 					  </div>
 					</div>
-					<!-- Horizontal layout: Picture on the left + rounded picture + solid round socials -->
-					<div class="d-flex align-items-start col-6">
-					  <img class="d-inline-block rounded" width="96" src="resources/uploadFile/profile/iu.jpg" alt="Jonathan Doe"/>
-					  <div class="ps-3">
-					    <h6 class="pt-1 mb-1">Jonathan Doe</h6>
-					    <p class="fs-sm text-muted">CEO, Co-founder at Company Ltd.</p>
-					    <a class="btn-social bs-facebook rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-facebook"></i>
-					    </a>
-					    <a class="btn-social bs-twitter rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-twitter"></i>
-					    </a>
-					    <a class="btn-social bs-linkedin rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-linkedin"></i>
-					    </a>
-					    <a class="btn-social bs-google rounded-circle bs-sm me-2 mb-2" href="#">
-					      <i class="ci-google"></i>
-					    </a>
-					  </div>
-					</div>
+					</c:forEach>					
 					
 				</div>
          	</section>
@@ -120,3 +95,30 @@
     <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <script>
+    
+ 	// 친구해제을 누르면 Ajax와 RESTful API로 친구상태 달라지게 하기
+  	$('.unfolBtn').click(function(){
+  		var req_mem_num = $(this).siblings('input').val();
+  		$.ajax({
+  			url:"unfollow?req_mem_num="+req_mem_num,
+  			type: 'get',
+  			// 성공하면 jsondata를 받아온다.
+  			success: function(result) {
+  				console.log("AJAX result ::"+result);
+  				if(result == "success") { // 친구해제 성공 ===========================
+  					alert('친구해제가 정상적으로 처리 되었습니다.');
+  					location.reload(); // 페이지 새로 고침
+  				} else { // 정상적으로 처리되지 않은 경우 =========================
+  					alert('친구해제 처리 중 내부 에러가 발생하였습니다.');
+  					location.reload(); // 페이지 새로 고침
+  				}
+  			},
+  			error: function(e) {
+  				console.log("error:"+e);
+  				alert('친구해제 처리 중 ajax 에러가 발생하였습니다.');
+  				location.reload(); // 페이지 새로 고침
+  			}
+  		})
+  	});
+    </script>

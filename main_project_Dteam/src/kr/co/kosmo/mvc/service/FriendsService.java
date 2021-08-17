@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.kosmo.mvc.dao.FriendsDaoInter;
+import kr.co.kosmo.mvc.dao.MemberDaoInter;
 import kr.co.kosmo.mvc.dao.SearchDaoInter;
 import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.HousewarmingVO;
@@ -21,6 +22,8 @@ public class FriendsService implements FriendsServiceInter{
 	
 	@Autowired
 	private FriendsDaoInter friendsDaoInter;
+	@Autowired
+	private MemberDaoInter memberDaoInter;
 
 	@Override
 	public List<FriendsVO> getFriednsList(int mem_num) {
@@ -57,6 +60,11 @@ public class FriendsService implements FriendsServiceInter{
 	@Override
 	public void unfollow(Map<String, Integer> num_map) {
 		friendsDaoInter.unfollow(num_map);
+	}
+
+	@Override
+	public MemberVO getMemberInfo(int mem_num) {
+		return memberDaoInter.getMemberInfo(mem_num);
 	}
 
 

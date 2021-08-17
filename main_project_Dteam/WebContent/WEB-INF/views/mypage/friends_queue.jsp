@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Body-->
     
       <!-- Page Title-->
@@ -24,9 +25,9 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><img class="rounded-circle" src="resources/uploadFile/profile/iu.jpg" alt="Susan Gardner"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
-                    <h3 class="fs-base mb-0">이지은</h3><span class="text-accent fs-sm">iu_leejieun</span>
+                    <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
                 </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="fas fa-user-circle"></i>&nbsp;&nbsp;마이페이지 메뉴</a>
               </div>
@@ -66,43 +67,27 @@
 			<section class="col-lg-8">
 				<div class="row">
 					<!-- 친구 신청 회원 -->
+					<c:forEach var="list" items="${frilist}">
 					<div class="card text-center border-0 shadow m-3" style="width: 28%">
 					  <div class="card-body">
-					    <img class="d-inline-block rounded-circle mb-3" width="96" src="resources/uploadFile/profile/iu.jpg" alt="Richard Williams"/>
-					    <h6 class="pt-1 mb-1">이지은</h6>
-					    <p class="fs-sm text-muted">내추럴, 빈티지&레트로</p>
+					    <img class="d-inline-block rounded-circle mb-3" width="96" src="${list.memvo.mem_profile}" alt="${list.memvo.mem_id}"/>
+					    <h6 class="pt-1 mb-1">${list.memvo.mem_name}</h6>
+					    <p class="fs-sm text-muted">${list.memvo.mem_nickname}</p>
 					    <ul class="fs-sm list-unstyled mb-4">
 					      <li class="mb-0">
-					        <i class="fas fa-home"></i>
-					        <a class="nav-link-style" href="tel:00331697720">서울특별시 노원구</a>
+					        <i class="fas fa-user-friends"></i>
+					        <a class="nav-link-style">${list.memvo.mem_id}</a>
 					      </li>
 					      <li class="mb-0">
-					        <i class="fas fa-user-friends"></i>
-					        <a class="nav-link-style" href="mailto:r.williams@example.com">싱글라이프</a>
+					        <i class="fas fa-hourglass-end"></i>
+					        <a class="nav-link-style">${list.req_date}</a>
 					      </li>
 					    </ul>
-					    <button type="button" class="btn btn-success btn-shadow rounded-pill">수락하기</button>
+					    <button type="button" class="acceptBtn btn btn-success btn-shadow rounded-pill">수락하기</button>
+					    <input id="req_mem_num" type="hidden" value="${list.mem_num}">
 					  </div>
 					</div>
-					<!-- 친구 신청 회원 -->
-					<div class="card text-center border-0 shadow m-3" style="width: 28%">
-					  <div class="card-body">
-					    <img class="d-inline-block rounded-circle mb-3" width="96" src="resources/uploadFile/profile/iu.jpg" alt="Richard Williams"/>
-					    <h6 class="pt-1 mb-1">이지은</h6>
-					    <p class="fs-sm text-muted">내추럴, 빈티지&레트로</p>
-					    <ul class="fs-sm list-unstyled mb-4">
-					      <li class="mb-0">
-					        <i class="fas fa-home"></i>
-					        <a class="nav-link-style" href="tel:00331697720">서울특별시 노원구</a>
-					      </li>
-					      <li class="mb-0">
-					        <i class="fas fa-user-friends"></i>
-					        <a class="nav-link-style" href="mailto:r.williams@example.com">싱글라이프</a>
-					      </li>
-					    </ul>
-					    <button type="button" class="btn btn-success btn-shadow rounded-pill">수락하기</button>
-					  </div>
-					</div>
+					</c:forEach>
 					<!-- 친구 신청 회원 -->
 					<div class="card text-center border-0 shadow m-3" style="width: 28%">
 					  <div class="card-body">
@@ -156,3 +141,29 @@
     <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <script>
+    // 수락신청을 누르면 Ajax와 RESTful API로 친구상태 달라지게 하기
+  	$('.acceptBtn').click(function(){
+  		var req_mem_num = $(this).siblings('input').val();
+  		$.ajax({
+  			url:"accFriend?req_mem_num="+req_mem_num,
+  			type: 'get',
+  			// 성공하면 jsondata를 받아온다.
+  			success: function(result) {
+  				console.log("AJAX result ::"+result);
+  				if(result == "success") { // 친구수락 성공 ===========================
+  					alert('친구사이가 되었습니다.');
+  					location.reload(); // 페이지 새로 고침
+  				} else { // 정상적으로 처리되지 않은 경우 =========================
+  					alert('친구사이 처리 중 내부 에러가 발생하였습니다.');
+  					location.reload(); // 페이지 새로 고침
+  				}
+  			},
+  			error: function(e) {
+  				console.log("error:"+e);
+  				alert('친구사이 처리 중 ajax 에러가 발생하였습니다.');
+  				location.reload(); // 페이지 새로 고침
+  			}
+  		})
+  	});
+    </script>

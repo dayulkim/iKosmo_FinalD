@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kosmo.mvc.dao.CartDaoInter;
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
+import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
 import kr.co.kosmo.mvc.vo.CartVO;
 import kr.co.kosmo.mvc.vo.FriendsVO;
@@ -33,6 +34,8 @@ public class MemberController {
 	private ReviewServiceInter reviewServiceInter;
 	@Autowired
 	private CartDaoInter cartDaoInter;
+	@Autowired
+	private FriendsServiceInter friendsServiceInter;
 	
 	// 회원가입 페이지로 이동
 	@RequestMapping(value="join")
@@ -134,14 +137,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="friends_queue")
-	public String friends_queue() {
-		System.out.println("friends_queue 이동");
+	public String friends_queue(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriWtList(mem_num);
+		m.addAttribute("memvo", memvo);
+		m.addAttribute("frilist", list);
 		return "mypage/friends_queue";
 	}
 	
 	@RequestMapping(value="friends_list")
-	public String friends_list() {
-		System.out.println("friends_list 이동");
+	public String friends_list(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
+		m.addAttribute("memvo", memvo);
+		m.addAttribute("frilist", list);
 		return "mypage/friends_list";
 	}
 	

@@ -41,13 +41,16 @@
 		<result property="acc_date" column="acc_date"/>
 		<association property="memvo" javaType="memvo">
 			<id property="mem_num" column="mem_num" javaType="int"/>
+			<result property="mem_id" column="mem_id"/>
 			<result property="mem_name" column="mem_name"/>
 			<result property="mem_nickname" column="mem_nickname"/>
+			<result property="mem_profile" column="mem_profile"/>
 		</association>
 	</resultMap>
 	<!-- 친구상태인 목록 -->
 	<select id="friList" parameterType="int" resultMap="friendResultMap">
-		select m.mem_name, m.mem_nickname, f.req_mem_num,f.req_stat,f.req_date,acc_date   
+		select m.mem_id,m.mem_name, m.mem_nickname, m.mem_profile, 
+		f.req_mem_num,f.req_stat,f.req_date,acc_date   
 		from member m, friends f  
 		where f.req_mem_num = m.mem_num and req_stat = 1   
 		and f.mem_num= #{mem_num}
@@ -55,7 +58,8 @@
 	
 	<!-- 친구요청 받은 목록 -->
 	<select id="friWtList" parameterType="int" resultMap="friendResultMap">
-		select m.mem_name, m.mem_nickname, f.mem_num,f.req_stat,f.req_date 
+		select m.mem_id,m.mem_name,m.mem_nickname,m.mem_profile, 
+		f.mem_num,f.req_stat,f.req_date 
 		from member m, friends f 
 		where f.mem_num = m.mem_num 
 		and req_stat = 0 
