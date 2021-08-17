@@ -226,7 +226,7 @@
 		<article class="layerpop_area-review">
 			<div class="layer_title-review">상품평</div>
 
-			<a href="javascript:popupCloseReview();" class="layerpop_close-review"
+			<a href="#" class="layerpop_close-review"
 				id="layerbox_close-review"><img alt="" src="resources/review/img/x.png"></a><br>
 			<div class="content-review">
 				<div id="body-review" align="center">
@@ -237,13 +237,6 @@
 						<%-- 							 ${pro_num}넘 자리 --%>
 						<div id="reviewForm">
 							<table>
-
-								<!-- 								<tr> -->
-								<!-- 									<td><input type="text" placeholder="제목을 입력하세요" id="rtitle" -->
-								<!-- 										name="rtitle" -->
-								<!-- 										class="u-border-black u-border-no-left u-border-no-right u-border-no-top u-input-1" -->
-								<!-- 										required="required"></td> -->
-								<!-- 								</tr> -->
 
 								<tr>
 									<td><textarea placeholder="내용을 입력하세요" id="rev_content"
@@ -348,6 +341,10 @@
 		popupOpenReview();
 		wrapWindowByMaskReview();
 	});
+	$('#layerbox_close-review').click(function() {
+		$('#layerbox-review').hide();
+		$('#mask-review').hide();
+	});
 		// 	LayerPopUp 스크립트구역--------------------------------------------------------------------------
 		function wrapWindowByMaskReview() {
 			//화면의 높이와 너비를 구한다.
@@ -385,10 +382,6 @@
 			$('#layerbox-review').show();
 		}
 
-		function popupCloseReview() {
-			$('#layerbox-review').hide();
-			$('#mask-review').hide();
-		}
 
 
 		//	 	LayerPopUp 스크립트구역--------------------------------------------------------------------------
@@ -412,9 +405,9 @@ function autoFinder(category) {
 			}
 // 			console.log("2:"+defined); //div span ->event.currentTarget 
 // 			console.log("3:"+star_score); // span타겟 title 숫자(수치) ->event.target.title
-// 			console.log("4:"+star_box); //star-box0 div
-// 			console.log("5:"+star_target); //star_target0 div
-// 			console.log("6:"+event.target.className); // span 클래스의 star star_right on 지목
+// 			console.log("4:"+star_box); //star-box0 div (어느 위치의 별점 div인지)
+// 			console.log("5:"+star_target); //star_target0 -div  평점div
+// 			console.log("6:"+event.target.className); // span 클래스의 star star-one 지목
 
 		});
 		};

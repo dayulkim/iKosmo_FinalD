@@ -58,7 +58,7 @@
 	<article class="layerpop_area">
 
 		<div class="layer_title">집 정보 추가</div>
-		<a href="javascript:popupClose();" class="layerpop_close"
+		<a href="#" class="layerpop_close"
 			id="layerbox_close"><img alt="" src="resources/review/img/x.png"></a><br>
 		<div class="content">
 			<div id="body" align="center">
@@ -361,6 +361,11 @@
 		popupOpen();
 		wrapWindowByMask();
 	});
+	
+	$('#layerbox_close').click(function() {
+		$('#layerbox').hide();
+		$('#mask').hide();
+	});
 	// 	LayerPopUp 스크립트구역--------------------------------------------------------------------------
 	function wrapWindowByMask() {
 		//화면의 높이와 너비를 구한다.
@@ -398,9 +403,5 @@
 		$('#layerbox').show();
 	}
 
-	function popupClose() {
-		$('#layerbox').hide();
-		$('#mask').hide();
-	}
 </script>
 
