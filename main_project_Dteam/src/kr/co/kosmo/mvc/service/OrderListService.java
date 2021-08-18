@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.kosmo.mvc.dao.OrderListDaoInter;
 import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
+import kr.co.kosmo.mvc.vo.PurchaseVO;
 
 @Service
 public class OrderListService implements OrderListServiceInter {
@@ -24,4 +25,11 @@ public class OrderListService implements OrderListServiceInter {
 	public List<Integer> ordRecommend(){
 		return orderListDaoInter.ordRecommend();
 	}
+
+	@Override
+	public PurchaseVO purchaseOrderlist() {
+		return orderListDaoInter.purchaseOrderlist();
+	}
+	
+	
 }

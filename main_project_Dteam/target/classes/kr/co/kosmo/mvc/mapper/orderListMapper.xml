@@ -19,7 +19,7 @@
 		o.ord_date desc
 	</select>
 
-	<!-- provo 1개의 상품에 orderListVO N개의 주문 내역이 있으므로 1:N의 관계인 resultMap -->
+	<!-- 김다율 : provo 1개의 상품에 orderListVO N개의 주문 내역이 있으므로 1:N의 관계인 resultMap -->
 	<resultMap type="provo" id="ProductOrderMap">
 		<id column="pro_num" property="pro_num" />
 		<result column="pro_price" property="pro_price" />
@@ -44,6 +44,28 @@
 		</association>
 	</resultMap>
 	
+	<!-- 김다율 : purchaseVO 1:N orderlistVO 니까 resultMap: purchaseVO 안에 orderlistVO gettersetter가 담겨야 함. -->
+	<resultMap type="purvo" id="PurchaseOrderMap">
+		<id column="pur_num" property="pur_num" />
+		<result column="mem_num" property="mem_num" />
+		<result column="pur_date" property="pur_date" />
+		<result column="rec_name" property="rec_name" />
+		<result column="rec_tel" property="rec_tel" />
+		<result column="rec_addr" property="rec_addr" />
+		<result column="rec_card" property="rec_card" />
+		<result column="rec_cardnum" property="rec_cardnum" />
+		<collection property="ordvo_list" javaType="java.util.List">
+			<id column="ord_num" property="ord_num" />
+			<result column="pro_num" property="pro_num" />
+			<result column="ord_qty" property="ord_qty" />
+			<result column="mem_num" property="mem_num" />
+			<result column="pur_num" property="pur_num" />
+			<result column="ord_date" property="ord_date" />
+		</collection>
+	</resultMap>
+	<select id="purchaseOrderlist" resultType="purvo">
+		select * from purchase
+	</select>
 	<!-- 이재영: 최근 일주일에 가장 많이 주문한 상품 추천 -->
 	<select resultType="int" id="ordRecommend">
 		select pro_num from(select pro_num from orderlist where ord_date > (sysdate-30) 

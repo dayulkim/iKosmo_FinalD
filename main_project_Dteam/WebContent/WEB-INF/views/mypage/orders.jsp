@@ -69,15 +69,16 @@
 				<div class="accordion" id="accordionExample">
 				
 				  <!-- Item -->
-				  <c:forEach var="list" items="${ordvo}">
+				  <c:forEach var="purlist" items="${purvo}">
 				  
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingOne">
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">备概郴开 # ${list.orderListVO.ord_date }</button>
+				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">备概郴开 # ${purlist.orderListVO.ord_date }</button>
 				    </h2>
 				    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				         
+				         <c:forEach var="list" items="${ordvo}">
+				         <c:if test="${list.pur_num } == ${purlist.pur_num }">
 					    	<!-- Item-->
 				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
 				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${list.pro_thumb }" alt="Product"></a>
@@ -93,7 +94,8 @@
 				                	
 				              </div>
 				            </div>
-				            
+				            </c:if>
+				            </c:forEach>
 				            <!-- Item-->
 	
 					    </div>

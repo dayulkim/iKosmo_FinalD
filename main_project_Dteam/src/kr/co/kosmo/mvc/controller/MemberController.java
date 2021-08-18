@@ -34,7 +34,7 @@ import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.MemberVO;
 import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.PageVO;
-
+import kr.co.kosmo.mvc.vo.PurchaseVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Controller
@@ -103,9 +103,9 @@ public class MemberController {
 
 //	리뷰인서트
 	@RequestMapping("/reviewinsert")
-	public String reviewInsert(HttpSession session,HttpServletRequest request, MultipartFile mfile,ReviewVO revo) {
-		
-		int mem_num=Integer.parseInt(session.getAttribute("sessionNum").toString());
+	public String reviewInsert(HttpSession session, HttpServletRequest request, MultipartFile mfile, ReviewVO revo) {
+
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
 		String r_path = request.getServletContext().getRealPath("/"); // 웹 상 절대경로
 		String img_path = "resources\\uploadFile\\review";
 
@@ -159,8 +159,9 @@ public class MemberController {
 		System.out.println("mem_session::::::::::::" + mem_session);
 		ModelAndView mav = new ModelAndView();
 		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
-		
+		PurchaseVO purvo = orderListServiceInter.purchaseOrderlist();
 		mav.addObject("ordvo", ordvo);
+		mav.addObject("purvo", purvo);
 		mav.setViewName("mypage/orders");
 		return mav;
 
@@ -198,19 +199,17 @@ public class MemberController {
 		return "mypage/scrapbook";
 	}
 
-	/*
-	 * 
-	 * 
-	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
-	 * { int mem_num =
-	 * Integer.parseInt(session.getAttribute("sessionNum").toString());
-	 * System.out.println("sessionNum ::"+mem_num); List<FriendsVO> list =
-	 * friendsServiceInter.getFriednsList(mem_num);
-	 * //System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
-	 * m.addAttribute("frilist", list); List<FriendsVO> wtlist =
-	 * friendsServiceInter.getFriWtList(mem_num); m.addAttribute("wtlist", wtlist);
-	 * return "store/mypage"; }
-	 */
+	@RequestMapping("/mypage")
+	public String myPage(Model m, HttpSession session) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		System.out.println("sessionNum ::" + mem_num);
+		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
+		// System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
+		m.addAttribute("frilist", list);
+		List<FriendsVO> wtlist = friendsServiceInter.getFriWtList(mem_num);
+		m.addAttribute("wtlist", wtlist);
+		return "mypage/mypage";
+	}
 
 	@PostMapping("/houseinfoinsert")
 	public String houseInfoInsert(HttpSession session, HouseInfoVO hinvo) {

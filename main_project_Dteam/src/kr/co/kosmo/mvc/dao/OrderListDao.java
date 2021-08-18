@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
+import kr.co.kosmo.mvc.vo.PurchaseVO;
 
 @Repository
 public class OrderListDao implements OrderListDaoInter { // ±Ë¥Ÿ¿≤
@@ -18,9 +19,21 @@ public class OrderListDao implements OrderListDaoInter { // ±Ë¥Ÿ¿≤
 	public List<OrderListVO> orderList(int mem_num) {
 		return ss.selectList("orderList.orderList", mem_num);
 	}
+	
+	@Override
+	public PurchaseVO purchaseOrderlist() {
+		
+		return ss.selectOne("orderList.purchaseOrderlist");
+	}
+	
 	@Override
 	public List<Integer> ordRecommend() {
-				return ss.selectList("orderList.ordRecommend");
+		return ss.selectList("orderList.ordRecommend");
 	}
+
+
+
+
+
 
 }
