@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.kosmo.mvc.vo.HouseCommentVO;
 import kr.co.kosmo.mvc.vo.HousedetailVO;
 import kr.co.kosmo.mvc.vo.HousewarmingVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
@@ -18,7 +19,7 @@ public class HwarmDao implements HwarmDaoInter {
 	@Autowired
 	private SqlSessionTemplate ss;
 
-	//
+	// 홍영의 : 집들이글 작성 및 상세보기 =================================================
 	@Override
 	public void insertHwarm(HousewarmingVO houvo) {
 		ss.insert("housewarming.insertHwarm", houvo);
@@ -42,6 +43,11 @@ public class HwarmDao implements HwarmDaoInter {
 	@Override
 	public List<HousedetailVO> selectHousedetail(int hou_num) {
 		return ss.selectList("housewarming.selectHousedetail", hou_num);
+	}
+	
+	@Override
+	public List<HouseCommentVO> selectHouseComment(int hou_num) {
+		return ss.selectList("housewarming.selectHouseComment", hou_num);
 	}
 
 	@Override
@@ -78,6 +84,16 @@ public class HwarmDao implements HwarmDaoInter {
 	public void delHwarmScrap(Map<String, Integer> num_map) {
 		ss.delete("housewarming.delHwarmScrap", num_map);
 	}
+	
+	@Override
+	public void insertHouseComment(HouseCommentVO hcmvo) {
+		ss.insert("housewarming.insertHouseComment", hcmvo);
+	}
+	
+	@Override
+	public int commCurrVal() {
+		return ss.selectOne("housewarming.commCurrVal");
+	}
 
 	// 신규철: 집들이 리스트 =========================================================================
 	@Override
@@ -105,5 +121,11 @@ public class HwarmDao implements HwarmDaoInter {
 		 */
 		return ss.selectList("housewarming.filter", map);
 	}
+
+
+
+
+
+
 
 }

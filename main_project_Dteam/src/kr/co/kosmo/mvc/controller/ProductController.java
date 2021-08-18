@@ -14,10 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.ReviewDao;
 import kr.co.kosmo.mvc.dao.Scrap_ProductDaoInter;
-
+import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.ProductServiceInter;
+import kr.co.kosmo.mvc.service.ReviewServiceInter;
 import kr.co.kosmo.mvc.service.SellerService;
-import kr.co.kosmo.mvc.vo.InterestVO;
+import kr.co.kosmo.mvc.vo.AdminHitVO;
+import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
@@ -34,10 +36,13 @@ public class ProductController { // 김다율
 	private ProductServiceInter productServiceInter;
 
 	@Autowired
-	private ReviewDao reviewDao;
+	private Scrap_ProductDaoInter scrap_ProductDaoInter;
 	
 	@Autowired
-	private Scrap_ProductDaoInter scrap_ProductDaoInter;
+	private FriendsServiceInter friendsServiceInter;
+	
+	@Autowired
+	private ReviewServiceInter reviewServiceInter;
 
 	// ----신연아 시작--------
 	// 메인화면의 스토어 버튼 클릭시 이동
@@ -61,8 +66,9 @@ public class ProductController { // 김다율
 			String total_num3 = productServiceInter.totalCart(sid);
 			m.addAttribute("cart_total", total_num3);
 			// 최근 조회상품 불러오기 (사이드 배너)
-			List<InterestVO> mylist = productServiceInter.myProduct(sid);
+			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
+			System.out.println("최다클릭 리스트: " + mylist);
 			// sessionID 존재 x
 		} else {
 			// 상품 총 갯수
@@ -77,7 +83,7 @@ public class ProductController { // 김다율
 			}
 			m.addAttribute("list", list);
 			// 최다 클릭상품 불러오기 (사이드 배너)
-			List<InterestVO> theirlist = productServiceInter.theirProduct();
+			List<AdminHitVO> theirlist = productServiceInter.theirProduct();
 			m.addAttribute("their_list", theirlist);
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
@@ -107,7 +113,7 @@ public class ProductController { // 김다율
 			String total_num3 = productServiceInter.totalCart(sid);
 			m.addAttribute("cart_total", total_num3);
 			// 최근 조회상품 불러오기 (사이드 배너)
-			List<InterestVO> mylist = productServiceInter.myProduct(sid);
+			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
 			// sessionID 존재 x
 		} else {
@@ -124,7 +130,7 @@ public class ProductController { // 김다율
 				System.out.println(list.get(i).getSel_name());
 			}
 			// 최다 클릭상품 불러오기 (사이드 배너)
-			List<InterestVO> theirlist = productServiceInter.theirProduct();
+			List<AdminHitVO> theirlist = productServiceInter.theirProduct();
 			m.addAttribute("their_list", theirlist);
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
@@ -158,7 +164,7 @@ public class ProductController { // 김다율
 			String total_num3 = productServiceInter.totalCart(sid);
 			m.addAttribute("cart_total", total_num3);
 			// 최근 조회상품 불러오기 (사이드 배너)
-			List<InterestVO> mylist = productServiceInter.myProduct(sid);
+			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
 			// sessionID 존재 x
 		} else {
@@ -173,16 +179,11 @@ public class ProductController { // 김다율
 			}
 			m.addAttribute("list", list);
 			// 최다 클릭상품 불러오기 (사이드 배너)
-			List<InterestVO> theirlist = productServiceInter.theirProduct();
+			List<AdminHitVO> theirlist = productServiceInter.theirProduct();
 			m.addAttribute("their_list", theirlist);
 			System.out.println("최다클릭 리스트: " + theirlist);
 		}
 		return "store/product_list";
-	}
-
-	@RequestMapping("/cart")
-	public String cart() {
-		return "store/cart";
 	}
 
 	@RequestMapping("/scraplist")
@@ -192,12 +193,10 @@ public class ProductController { // 김다율
 
 	// 상품 디테일 페이지 -김다율, 신연아
 	@RequestMapping("/detail")
-	public String interest(Model m,
-			@RequestParam(value = "nowPage", required = false, defaultValue = "1") int nowPage,
-			@RequestParam(value = "cntPerPage", required = false, defaultValue = "5") int cntPerPage,
+	public String interest(Model m, 
 			@RequestParam(value = "pro_num", required = false) int pro_num,
-			@RequestParam(value = "sortType1", required = false, defaultValue = "0", name = "sortType1") int sortType1,
-			PageVO pvo, HttpServletRequest request) {
+			HttpSession session,
+			HttpServletRequest request) {
 
 		// 해당 번호의 상품 정보 불러오기
 		ProductVO provo = productServiceInter.productDetail(pro_num);
@@ -208,37 +207,34 @@ public class ProductController { // 김다율
 		String[] plist = provo.getPro_photo().split(",");
 		m.addAttribute("plist", plist);
 		// 리뷰 평점 불러오기
-		String st = productServiceInter.productStar(pro_num);
+		long st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);
 
-		pvo.setPro_num(pro_num);
-		int total = reviewDao.getTotalReviewCount(pvo);
-
-		// 페이징처리
-		pvo = new PageVO(total, nowPage, cntPerPage, pro_num, sortType1);
-		System.out.println("소트" + pvo.getSortType1());
-		System.out.println("넘버" + pvo.getPro_num());
-		System.out.println("nowPage" + pvo.getNowPage());
-		System.out.println("cntPerPage" + pvo.getCntPerPage());
-		List<ReviewVO> list = reviewDao.getReviewList(pvo);
-
 		// 판매자 정보: 카카오 지도 API
-		//int sel_num = Integer.parseInt(request.getParameter(sel_num));
+		// int sel_num = Integer.parseInt(request.getParameter(sel_num));
 		SellerVO vo = sellerService.getSellerOne(provo.getSel_num());
 		m.addAttribute("selvo", vo);
 
-		m.addAttribute("provo", provo);
-		m.addAttribute("paging", pvo);
-		m.addAttribute("reviewList", list);
-
+		
+		// 리뷰탭 2
+		List<ReviewVO> rlist = reviewServiceInter.reviewTab(pro_num);
+		System.out.println("리뷰 목록 :" + rlist);
+		m.addAttribute("rList", rlist);
+		for (int i = 0; i < rlist.size(); i++) {
+			System.out.println("리뷰리스트의 멤버아이디:" + rlist.get(i).getMember().getMem_id());
+		}
+		for (int i = 0; i < rlist.size(); i++) {
+			System.out.println("리뷰리스트의 별점:" + rlist.get(i).getRev_star());
+		}
+		
 		return "store/product_detail";
 
 	}
 	// ----------상세보기 - 김다율, 신연아 끝----------------
-	
+
 	// 오원석 상품스크랩
 	// 상품 스크랩
-	@RequestMapping(value="/productscrap")
+	@RequestMapping(value = "/productscrap")
 	public String productscrap(int pro_num, HttpSession session) {
 		Scrap_ProductVO svo = new Scrap_ProductVO();
 		int mem_num = (int) session.getAttribute("sessionNum");
@@ -247,9 +243,9 @@ public class ProductController { // 김다율
 		scrap_ProductDaoInter.doscrap(svo);
 		return "redirect:/productform";
 	}
-	
+
 	// 스크랩 여부 확인 (추후 상세페이지로 이동)
-	@RequestMapping(value="/scrapchk")
+	@RequestMapping(value = "/scrapchk")
 	public ModelAndView scrapcheck(int pro_num, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Scrap_ProductVO svo = new Scrap_ProductVO();
@@ -265,9 +261,9 @@ public class ProductController { // 김다율
 		mav.setViewName("redirect:/productform");
 		return mav;
 	}
-	
+
 	// 스크랩 삭제
-	@RequestMapping(value="/scrapdel")
+	@RequestMapping(value = "/scrapdel")
 	public String scrapdel(int pro_num, HttpSession session) {
 		int mem_num = (int) session.getAttribute("sessionNum");
 		Scrap_ProductVO svo = new Scrap_ProductVO();
@@ -276,6 +272,5 @@ public class ProductController { // 김다율
 		scrap_ProductDaoInter.scrapdel(svo);
 		return "redirect:/productform";
 	}
-	// 오원석 상품 스크랩 끝
 
 }

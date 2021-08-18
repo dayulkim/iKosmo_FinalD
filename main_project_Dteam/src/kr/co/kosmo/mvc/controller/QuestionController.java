@@ -12,15 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.co.kosmo.mvc.service.QuestionLogServiceInter;
 import kr.co.kosmo.mvc.service.QuestionServiceInter;
 import kr.co.kosmo.mvc.vo.AnswerVO;
 import kr.co.kosmo.mvc.vo.PageVO;
+import kr.co.kosmo.mvc.vo.QuestionLogVO;
 import kr.co.kosmo.mvc.vo.QuestionVO;
+import kr.co.kosmo.mvc.vo.QuestionWordCloudVO;
 
 @Controller
 public class QuestionController {
@@ -28,17 +36,20 @@ public class QuestionController {
 	@Autowired
 	private QuestionServiceInter questionServiceInter;
 	
+	@Autowired
+	private QuestionLogServiceInter questionLogServiceInter;
+	
+	// 질문 등록 폼
 	@RequestMapping("/questionForm")
 	public String questionForm() {
 		return "question/question_Form";
 	}
 	
-	
+	// 질문 등록
 	@PostMapping("/insertQuestion")
 	public String insertReview(QuestionVO quevo, List<MultipartFile> mfile, HttpServletRequest request) {
 		
 		String writerID = request.getSession().getAttribute("sessionID").toString();
-		//String writerID = "test";
 		System.out.println("작성자ID: "+ writerID);
 		quevo.setMem_id(writerID);
 		
@@ -54,7 +65,7 @@ public class QuestionController {
 		
 		List<String> keylist = new ArrayList<>();
 		
-		// 키워드를 세부 분할 하지 않았기 때문에 리스트 하나에 몰아서 집어넣는다.
+		// 각 항목에 따른 키워드를 keylist에 모두 담아준다.
 		if(kinds != null) {
 			for(String i : kinds) {
 				keylist.add(i);
@@ -71,6 +82,7 @@ public class QuestionController {
 			}
 		}
 		
+		// 문자열로 만들어서 DB에 저장
 		String keywords = String.join(",", keylist);
 		System.out.println(keywords);
 		quevo.setQue_keyword(keywords);
@@ -106,43 +118,7 @@ public class QuestionController {
 		return "redirect:/questionList";
 	}
 	
-	
-	@RequestMapping(value = "/questionList")
-	public ModelAndView QuestionList(
-	         @RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
-	         @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
-	         @RequestParam(value = "sort", required = false, defaultValue = "0") int sort,
-	         PageVO pvo) {
-		
-	      ModelAndView mav = new ModelAndView();
-	      List<QuestionVO> list ;
-	      
-	      String searchType = String.valueOf(sort);
-	      
-	      int total = questionServiceInter.totalQuestionList();
-		  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
-		  
-		  list = questionServiceInter.QuestionList(pvo);
-		  mav.addObject("paging", pvo);
-		  
-		  // 각각의 게시물에 대표이미지 하나씩만 추출하기 위함
-	      List<String> imgList = new ArrayList<>(); // 대표 이미지의 파일 이름을 담을 리스트
-	      for (QuestionVO quevo : list) {
-	         if (quevo.getQue_photo() != null) {
-	            String[] arr = quevo.getQue_photo().split(",");
-	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
-	         } else {
-	            imgList.add("noImage");
-	         }
-	      }
-	      
-	      // 모델에 PageVO 객체와 리스트 객체 담기
-	      mav.addObject("list", list);
-	      mav.addObject("imgList", imgList);
-	      mav.setViewName("question/questionList");
-	      return mav;
-	   }
-	
+	// 마이페이지 적용 테스트, 나의 질문 리스트
 	@RequestMapping(value = "/myquestionList")
 	public ModelAndView MyQuestionList(
 	         @RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
@@ -152,8 +128,8 @@ public class QuestionController {
 		
 	      ModelAndView mav = new ModelAndView();
 	      List<QuestionVO> list ;
-	      String searchType = request.getSession().getAttribute("sessionID").toString();
-	      //String searchType = "test";
+	      //String searchType = request.getSession().getAttribute("sessionID").toString();
+	      String searchType = "test";
 	      int total = questionServiceInter.totalMyQuestionList(searchType);
 		  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
 		  
@@ -178,7 +154,7 @@ public class QuestionController {
 	      return mav;
 	   }
 	
-	// 리뷰글 상세보기
+	// 질문 상세보기
 	@RequestMapping(value="/questionDetail")
 	public ModelAndView getReviewDetail(int que_num, HttpSession session,
 			@RequestParam(value="nowPage",
@@ -191,6 +167,7 @@ public class QuestionController {
 		
 		int spage = Integer.parseInt(nowPage);
 		int total = questionServiceInter.totalAnswer(que_num);
+		mav.addObject("total", total);
 		
 		vo.setSearchType(Integer.toString(que_num));
 		vo = new PageVO(total, spage, Integer.parseInt(cntPerPage), vo.getSearchType());
@@ -200,6 +177,8 @@ public class QuestionController {
 		questionServiceInter.questionHit(que_num);
 		
 		// 댓글이 있는 질문과 없는 질문을 나눠서 조회한다.
+		// 댓글이 없는 질문을 resultMap을 사용해서 List<AnswerVO>를 불러오면 exception이 발생
+		// resultMap을 사용하지 않은 일반적인 select문을 사용한 것을 catch에 적용
 		try {
 			quevo = questionServiceInter.getQuestionDetail2(vo);
 			List<AnswerVO> list = quevo.getAnswer();
@@ -212,18 +191,19 @@ public class QuestionController {
 			mav.addObject("quevo", quevo);
 		}
 		
-		mav.setViewName("question/questionDetail");
+		mav.setViewName("question/questionDetail_ver2");
 		return mav;
 	}
 	
+	// 질문에 대한 답변,댓글 추가
 	@PostMapping("/addans")
 	public ModelAndView answeradd(AnswerVO ansvo, MultipartFile mfile ,HttpServletRequest request) {
 		
 		int que_num = Integer.parseInt(request.getParameter("que_num"));
 		
 		ansvo.setQue_num(que_num);
-		ansvo.setAns_id(request.getParameter("sessionID"));
-		//ansvo.setAns_id("test");
+		//ansvo.setAns_id(request.getParameter("sessionID"));
+		ansvo.setAns_id("test");
 		ansvo.setAns_content(request.getParameter("content"));
 		
 		// 첨부파일 처리 ===========================================================================
@@ -242,99 +222,144 @@ public class QuestionController {
 		} catch (Exception e) {
 			
 		}
-		
+		System.out.println(oriFn);
 		ansvo.setAns_photo(oriFn);
+		questionServiceInter.addAnswer(ansvo,que_num);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setView(new RedirectView("questionDetail?que_num=" + que_num));
-		questionServiceInter.addAnswer(ansvo,que_num);
 		return mav;
 	}
 		
-	@RequestMapping(value = "/questionSearch")
+	// 질문 검색(키워드, 제목+내용 에 따른 질문을 검색)
+	@RequestMapping(value = "/questionList")
 	public ModelAndView SearchQuestionList(
-	         @RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
-	         @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
-	         @RequestParam(value = "search", required = false, defaultValue = "0") int search,
-	         @RequestParam(value = "key", required = false) String key ,
-	         @RequestParam(value = "sort", required = false, defaultValue = "0") int sort,
-	         HttpServletRequest request,
+			@RequestParam(value = "search", required = false, defaultValue = "0") int search,
+	        @RequestParam(value = "key", required = false) String key ,
+	        HttpServletRequest request,
+	        @RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
+	        @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
+	        @RequestParam(value = "sort", required = false, defaultValue = "0") int sort,
 	         PageVO pvo) {
 		
 		ModelAndView mav = new ModelAndView();
 	      List<QuestionVO> list ;
 	      List<String> imgList = new ArrayList<>(); 
 
+	      // 검색된 값 key를 searchValue에 담아준다.
+	      // sort 정렬방식을 searchType에 담아준다.
 	      
 	      String searchValue = "%"+key+"%";
 	      String searchType = String.valueOf(sort);
 	      
 	      System.out.println(searchValue);
 	      
+	      // 조회된 결과의 total이 0일시 나올 메세지 문구
 	      String msg = "해당 검색의 결과가 없습니다.";
 	      
-	      if(search == 0) {
-	    	  System.out.println("키워드 검색");
-	    	  int total = questionServiceInter.totalSearchKeyword(searchValue);
-	    	  System.out.println("total : "+total);
+	      // 로그인 상태에서 내가 자주 검색한 키워드 추천
+	      if (request.getSession().getAttribute("sessionID")==null) {
+	    	  System.out.println("비로그인 상태입니다.");
+	      } else {
 	    	  
-	    	  if(total == 0) {
-	    		  mav.addObject("msg", msg);
-	    	  }
-	    	  
-	    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
-	    	  list = questionServiceInter.SearchKeywordList(pvo);
-	    	  
-	    	  for (QuestionVO quevo : list) {
-	 	         if (quevo.getQue_photo() != null) {
-	 	            String[] arr = quevo.getQue_photo().split(",");
-	 	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
-	 	         } else {
-	 	            imgList.add("noImage");
-	 	         }
-	 	      }
+	      
+	      
+	    	  String mem_id = request.getSession().getAttribute("sessionID").toString();
+		      QuestionLogVO quelogvo = new QuestionLogVO();
+	    	  quelogvo.setMem_id(mem_id);
+	    	  quelogvo.setQue_search(key);
+	    	  quelogvo.setType(search);
+	    	  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
+			  List<String> mkeylist = new ArrayList<>();
+			  			
+			  for(QuestionWordCloudVO e : mklist) {
+				  mkeylist.add(e.getSubject());
+			  }
+			  
+			  mav.addObject("mkeylist",mkeylist );
+
+
+    	  
+    	// 전체 키워드 추천
+		  List<QuestionWordCloudVO> klist = questionLogServiceInter.suggestkeyword();
+		  List<String> keylist = new ArrayList<>();
+		  			
+		  for(QuestionWordCloudVO e : klist) {
+			  keylist.add(e.getSubject());
+		  }
+		  
+		  mav.addObject("keylist",keylist );
+		  
+		  if (key == null) {
+			  int total = questionServiceInter.totalQuestionList();
+			  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
+			  
+			  list = questionServiceInter.QuestionList(pvo);
+			  mav.addObject("paging", pvo);
+
+		      imgList = questionServiceInter.imgList(list);
+		      // 모델에 PageVO 객체와 리스트 객체 담기
 		      mav.addObject("list", list);
-	      }
-	      else if(search == 1) {
-	    	  System.out.println("제목 + 내용 검색");
-	    	  int total = questionServiceInter.totalSearchTitle_Content(searchValue);
-	    	  System.out.println("total : "+total);
-	    	  
-	    	  if(total == 0) {
-	    		  mav.addObject("msg", msg);
-	    	  }
-	    	  
-	    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
-	    	  list = questionServiceInter.SearchTitle_Content(pvo);
-	    	  
-	    	  for (QuestionVO quevo : list) {
-	 	         if (quevo.getQue_photo() != null) {
-	 	            String[] arr = quevo.getQue_photo().split(",");
-	 	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
-	 	         } else {
-	 	            imgList.add("noImage");
-	 	         }
-	 	      }
-		      mav.addObject("list", list);
-	      }
+		  }else {
+			  questionLogServiceInter.insertSearchLog(quelogvo);
+			  
+			// 키워드, 제목/내용 검색에 따라서 search의 값을 다르게 받고 그에 따른 처리를 진행
+		      // 키워드검색 (0), 제목/내용검색(1)
+		      if(search == 0) {
+		    	  System.out.println("키워드 검색");
+		    	  int total = questionServiceInter.totalSearchKeyword(searchValue);
+		    	  System.out.println("total : "+total);
+		    	  
+		    	  if(total == 0) {
+		    		  mav.addObject("msg", msg);
+		    	  }
+		    	  
+		    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
+		    	  list = questionServiceInter.SearchKeywordList(pvo);
+		    	  
+		    	  imgList = questionServiceInter.imgList(list);
+		    	  
+			      mav.addObject("list", list);
+		      }
+		      else if(search == 1) {
+		    	  System.out.println("제목 + 내용 검색");
+		    	  int total = questionServiceInter.totalSearchTitle_Content(searchValue);
+		    	  System.out.println("total : "+total);
+		    	  
+		    	  if(total == 0) {
+		    		  mav.addObject("msg", msg);
+		    	  }
+		    	  
+		    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
+		    	  list = questionServiceInter.SearchTitle_Content(pvo);
+		    	  
+		    	  imgList = questionServiceInter.imgList(list);
+		    	  
+			      mav.addObject("list", list);
+		      }
+		      mav.addObject("paging", pvo);
+		      mav.addObject("type", 1);
+		  }
+	      
 	      
 	      mav.addObject("key",key);
 	      mav.addObject("search", search);
-	      mav.addObject("type", 1);
-	      mav.addObject("paging", pvo);
 	      mav.addObject("imgList", imgList);
 	      mav.setViewName("question/questionList");
+	      }
 	      return mav;
 	   }
 	
 	
+	// 답변(댓글)이 없는 질문 중에 검색
 	@RequestMapping(value = "/naquestionList")
 	public ModelAndView NoAnsQuestionList(
+			 @RequestParam(value = "search", required = false, defaultValue = "0") int search,
+	         @RequestParam(value = "key", required = false) String key,
+	         HttpServletRequest request,
 	         @RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
 	         @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
 	         @RequestParam(value = "sort", required = false, defaultValue = "0") int sort,
-	         @RequestParam(value = "search", required = false, defaultValue = "0") int search,
-	         @RequestParam(value = "key", required = false) String key,
 	         PageVO pvo) {
 		
 	      ModelAndView mav = new ModelAndView();
@@ -344,6 +369,33 @@ public class QuestionController {
 	      String searchValue = "%"+key+"%";
 	      String searchType = String.valueOf(sort);
 		  String msg = "해당 검색의 결과가 없습니다.";
+		  
+		  // 전체 키워드 추천
+		  List<QuestionWordCloudVO> klist = questionLogServiceInter.suggestkeyword();
+		  List<String> keylist = new ArrayList<>();
+		  			
+		  for(QuestionWordCloudVO e : klist) {
+			  keylist.add(e.getSubject());
+		  }
+		  
+		  mav.addObject("keylist",keylist );
+		  
+		  // 로그인 상태에서 내가 자주 검색한 키워드 추천
+		  try {
+			  String mem_id = request.getSession().getAttribute("sessionID").toString();
+			  
+			  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
+			  List<String> mkeylist = new ArrayList<>();
+			  			
+			  for(QuestionWordCloudVO e : mklist) {
+				  mkeylist.add(e.getSubject());
+			  }
+			  
+			  mav.addObject("mkeylist",mkeylist );
+			  
+		  } catch (Exception e) {
+			System.out.println("비로그인 상태입니다.");
+		  }
 	      
 	      if(key == null) {
 	    	  int total = questionServiceInter.totalNAQuestionList();
@@ -354,17 +406,20 @@ public class QuestionController {
 			  
 			  // 각각의 게시물에 대표이미지 하나씩만 추출하기 위함
 		      
-		      for (QuestionVO quevo : list) {
-		         if (quevo.getQue_photo() != null) {
-		            String[] arr = quevo.getQue_photo().split(",");
-		            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
-		         } else {
-		            imgList.add("noImage");
-		         }
-		      }
+			  imgList = questionServiceInter.imgList(list);
+			  
 		      mav.addObject("list", list);
 	      }
 	      else {
+	    	  
+	    	  //String mem_id = request.getSession().getAttribute("sessionID").toString();
+		      QuestionLogVO quelogvo = new QuestionLogVO();
+	    	  //quelogvo.setMem_id(mem_id);
+		      quelogvo.setMem_id("test");
+	    	  quelogvo.setQue_search(key);
+	    	  quelogvo.setType(search);
+	    	  
+	    	  questionLogServiceInter.insertSearchLog(quelogvo);
 	    	  
 	    	  if(search == 0) {
 		    	  System.out.println("키워드 검색");
@@ -379,14 +434,8 @@ public class QuestionController {
 		    	  list = questionServiceInter.SearchNaKeywordList(pvo);
 		    	  mav.addObject("paging", pvo);
 		    	  
-		    	  for (QuestionVO quevo : list) {
-		 	         if (quevo.getQue_photo() != null) {
-		 	            String[] arr = quevo.getQue_photo().split(",");
-		 	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
-		 	         } else {
-		 	            imgList.add("noImage");
-		 	         }
-		 	      }
+		    	  imgList = questionServiceInter.imgList(list);
+		    	  
 			      mav.addObject("list", list);
 		      }
 		      else if(search == 1) {
@@ -402,15 +451,8 @@ public class QuestionController {
 		    	  list = questionServiceInter.SearchNaTitle_Content(pvo);
 		    	  mav.addObject("paging", pvo);
 		    	  
+		    	  imgList = questionServiceInter.imgList(list);
 		    	  
-		    	  for (QuestionVO quevo : list) {
-		 	         if (quevo.getQue_photo() != null) {
-		 	            String[] arr = quevo.getQue_photo().split(",");
-		 	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
-		 	         } else {
-		 	            imgList.add("noImage");
-		 	         }
-		 	      }
 			      mav.addObject("list", list);
 		      }
 	    	  
@@ -424,5 +466,20 @@ public class QuestionController {
 	      mav.setViewName("question/questionList");
 	      return mav;
 	   }
+	
+	@RequestMapping(value="/quesearchwordcloud", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
+	@ResponseBody
+	public String wordcloud(HttpServletRequest request,QuestionWordCloudVO quewcvo) throws Exception{
+			List<QuestionWordCloudVO> list = questionLogServiceInter.quesearchWordcloud();
+			
+			String json = null;
+			try {
+				json = new ObjectMapper().writeValueAsString(list);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+				
+			return json;
+	}
 
 }

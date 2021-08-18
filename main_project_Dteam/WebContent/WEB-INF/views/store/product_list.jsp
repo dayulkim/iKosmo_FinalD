@@ -1,43 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>슬기로운 집콕생활</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon"
-	href="resources/assets/img/store/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="resources/css/store/styles.css" rel="stylesheet" />
-<link href="resources/css/store/shop_styles.css" rel="stylesheet" />
-<!-- OwlCarousel -->
-<link rel="stylesheet"
-	href="resources/css/store/owlCarousel/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="resources/css/store/owlCarousel/owl.theme.default.min.css">
-<link href="resources/css/store/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/store/font-awesome.min.css" rel="stylesheet">
-<link href="resources/css/store/prettyPhoto.css" rel="stylesheet">
-<link href="resources/css/store/price-range.css" rel="stylesheet">
-<link href="resources/css/store/animate.css" rel="stylesheet">
+<!--  <link href="resources/css/store/bootstrap.min.css" rel="stylesheet">-->
 <link href="resources/css/store/main.css" rel="stylesheet">
-<link href="resources/css/store/responsive.css" rel="stylesheet">
-
 <!-- 정렬 방식 관련 CSS & JQuery 시작-->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="eCommerce HTML Template Free Download" name="keywords">
@@ -102,6 +67,10 @@
 	}
 </script>
 <style type="text/css">
+#unit {
+float:left;
+}
+
 #STATICMENU {
 	margin: 0pt;
 	padding: 0pt;
@@ -151,10 +120,9 @@ input {
 
 
 <!-- 사이드배너 끝 -->
-</head>
-<body onload="InitializeStaticMenu();">
 
-	<div id="STATICMENU">
+<body onload="InitializeStaticMenu();">
+	  <div id="STATICMENU">
 		<table>
 			<c:choose>
 				<c:when test="${sessionID !=null}">
@@ -170,7 +138,7 @@ input {
 						<c:forEach var="listc" items="${my_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pro_num=${listc.pro_num}&sel_num=${listc.sel_num}"><img
+									href="detail?pro_num=${listc.pro_num}"><img
 										src="resources/assets/img/store/${listc.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -190,7 +158,7 @@ input {
 						<c:forEach var="listm" items="${their_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pnum=${listm.pro_num}&sel_num=${listm.sel_num}"><img
+									href="detail?pnum=${listm.pro_num}"><img
 										src="resources/assets/img/store/${listm.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -203,7 +171,7 @@ input {
 	<section>
 		<div class="container">
 			<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
-			<div class="bottom-bar">
+			<div class="bottom-bar" id="unit">
 				<div class="user" align="left">
 					<c:choose>
 						<c:when test="${sessionID !=null}">
@@ -372,7 +340,7 @@ input {
 						<h4 class="title text-center">Total ${pro_total}개</h4>
 						<br> <br>
 						<c:forEach var="listv" items="${list}">
-							<div class="col-sm-4">
+							<div class="col-sm-4" id="unit">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
@@ -465,5 +433,4 @@ input {
 					.replace(/\+/g, " "));
 		}
 	</script>
-</body>
-</html>
+

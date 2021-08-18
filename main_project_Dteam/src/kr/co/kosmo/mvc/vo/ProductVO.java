@@ -6,14 +6,6 @@ public class ProductVO {
 	private String pro_name, pro_thumb, pro_photo, pro_detail, sel_name, sel_grade, pro_rdate;
 	private SellerVO seller;
 	
-	private OrderListVO orderListVO; // provo 1개의 상품에 orderListVO N개의 주문 내역이 있으므로 1:N의 관계인 resultMap
-	
-	public OrderListVO getOrderListVO() {
-		return orderListVO;
-	}
-	public void setOrderListVO(OrderListVO orderListVO) {
-		this.orderListVO = orderListVO;
-	}
 	public int getPro_category() {
 		return pro_category;
 	}

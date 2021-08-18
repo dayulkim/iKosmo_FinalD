@@ -1,5 +1,7 @@
 package kr.co.kosmo.mvc.vo;
 
+import java.util.List;
+
 /* 
 type -   1:원룸 / 2:투룸 
 how -    1:셀프 / 2:반셀프 / 3:전문가
@@ -29,7 +31,16 @@ public class HousewarmingVO {
 	private int hou_like; // 좋아요 수
 	private int mem_num; // 회원번호
 	private MemberVO memvo; // MemberVO
+	private List<HousedetailVO> hwdvoList; // 상세내용 리스트
+	private List<HouseCommentVO> hcmvoList; // 집들이 댓글 리스트
+	private HousedetailVO houdvo; // 김세연 : 검색결과 용
 	
+	public HousedetailVO getHoudvo() {
+		return houdvo;
+	}
+	public void setHoudvo(HousedetailVO houdvo) {
+		this.houdvo = houdvo;
+	}
 	public int getHou_num() {
 		return hou_num;
 	}
@@ -132,5 +143,18 @@ public class HousewarmingVO {
 	public void setMemvo(MemberVO memvo) {
 		this.memvo = memvo;
 	}
+	public List<HousedetailVO> getHwdvoList() {
+		return hwdvoList;
+	}
+	public void setHwdvoList(List<HousedetailVO> hwdvoList) {
+		this.hwdvoList = hwdvoList;
+	}
+	public List<HouseCommentVO> getHcmvoList() {
+		return hcmvoList;
+	}
+	public void setHcmvoList(List<HouseCommentVO> hcmvoList) {
+		this.hcmvoList = hcmvoList;
+	}
+	
 	
 }

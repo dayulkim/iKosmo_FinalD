@@ -1,6 +1,8 @@
 package kr.co.kosmo.mvc.controller;
 
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class LoginController {
 	// 로그인
 	@RequestMapping(value = "/loginprocess")
 	@ResponseBody
-	public void login(MemberVO vo, HttpSession session, HttpServletResponse response) {
+	public void login(MemberVO vo, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		MemberVO mvo = loginDaoInter.login(vo);
 		String msg = "";
 		try {
@@ -49,7 +51,7 @@ public class LoginController {
 	
 	// 로그아웃
 	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute("sessionID");
 		session.removeAttribute("sessionNickname");
 		session.removeAttribute("sessionNum");

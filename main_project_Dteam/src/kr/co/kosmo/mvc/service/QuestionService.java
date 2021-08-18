@@ -1,5 +1,6 @@
 package kr.co.kosmo.mvc.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,5 +116,21 @@ public class QuestionService implements QuestionServiceInter{
 	@Override
 	public List<QuestionVO> SearchNaTitle_Content(PageVO pvo) {
 		return questionDao.SearchNaTitle_Content(pvo);
+	}
+	
+	@Override
+	public List<String> imgList(List<QuestionVO> list) {
+		List<String> imgList = new ArrayList<>();
+		
+		for (QuestionVO quevo : list) {
+	         if (quevo.getQue_photo() != null) {
+	            String[] arr = quevo.getQue_photo().split(",");
+	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
+	         } else {
+	            imgList.add("noImage");
+	         }
+	      }
+		
+		return imgList;
 	}
 }

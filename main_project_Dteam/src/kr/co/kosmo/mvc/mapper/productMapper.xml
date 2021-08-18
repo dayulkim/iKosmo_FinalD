@@ -117,14 +117,14 @@
 	</select>
 
 	<!-- 최근 조회상품 불러오기 -->
-	<select id="myclick" parameterType="String" resultType="intvo">
-		select pro_num, pro_thumb from (select rownum, aa.* from (select pro_num, pro_thumb from product where pro_num in (select pro_num from interest where mem_num = (select mem_num from member where mem_id = #{sid})))aa) where 6 > rownum
+	<select id="myclick" parameterType="String" resultType="admvo">
+		select pro_num, pro_thumb from (select rownum, aa.* from (select pro_num, pro_thumb from product where pro_num in (select pro_num from adminhit where mem_id = #{sid}))aa) where 6 > rownum
 
 	</select>
 
 	<!-- 최다 조회상품 불러오기 -->
-	<select id="theirclick" resultType="intvo">
-		select pro_num, pro_thumb, pro_photo, sel_num from product where pro_num in (select pro_num from (select rownum, aa.* from (select pro_num, count(nvl(pro_num,0)) from interest group by pro_num order by 2 desc)aa) where 6 > rownum)
+	<select id="theirclick" resultType="admvo">
+		select pro_num, pro_thumb, pro_photo from product where pro_num in (select pro_num from (select rownum, aa.* from (select pro_num, count(nvl(pro_num,0)) from adminhit group by pro_num order by 2 desc)aa) where 6 > rownum)
 
 	</select>
 	<!--  상품 상세보기  -->
@@ -139,7 +139,7 @@
 	</select>
 	
 	<!--  상품 상세보기 -별점  -->
-	<select id="productstar" parameterType="int" resultType="String">
+	<select id="productstar" parameterType="int" resultType="long">
 		select avg(nvl(rev_star,0)) rev_star from review where pro_num=#{pro_num}
 	</select>
 	
