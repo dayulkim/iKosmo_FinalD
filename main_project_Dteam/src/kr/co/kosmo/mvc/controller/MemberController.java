@@ -128,6 +128,12 @@ public class MemberController {
 
 		return "redirect:/orders";
 	}
+	
+	@RequestMapping(value = "mypage")
+	public String mypage() {
+		System.out.println("mypage 이동");
+		return "mypage/mypage";
+	}
 
 	@RequestMapping(value = "survey")
 	public String survey(HttpSession session, Model m) {
@@ -159,7 +165,7 @@ public class MemberController {
 		System.out.println("mem_session::::::::::::" + mem_session);
 		ModelAndView mav = new ModelAndView();
 		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
-		PurchaseVO purvo = orderListServiceInter.purchaseOrderlist();
+		List<PurchaseVO> purvo = orderListServiceInter.purchaseOrderlist();
 		mav.addObject("ordvo", ordvo);
 		mav.addObject("purvo", purvo);
 		mav.setViewName("mypage/orders");
@@ -199,6 +205,7 @@ public class MemberController {
 		return "mypage/scrapbook";
 	}
 
+	/* -- 주석 풀지마시오 위에 mypage가 있소 --
 	@RequestMapping("/mypage")
 	public String myPage(Model m, HttpSession session) {
 		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
@@ -210,6 +217,8 @@ public class MemberController {
 		m.addAttribute("wtlist", wtlist);
 		return "mypage/mypage";
 	}
+	*/
+	
 
 	@PostMapping("/houseinfoinsert")
 	public String houseInfoInsert(HttpSession session, HouseInfoVO hinvo) {

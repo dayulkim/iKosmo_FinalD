@@ -27,7 +27,7 @@ public class OrderListService implements OrderListServiceInter {
 	}
 
 	@Override
-	public PurchaseVO purchaseOrderlist() {
+	public List<PurchaseVO> purchaseOrderlist() {
 		return orderListDaoInter.purchaseOrderlist();
 	}
 	

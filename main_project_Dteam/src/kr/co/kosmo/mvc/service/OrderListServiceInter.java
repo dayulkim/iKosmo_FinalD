@@ -7,6 +7,6 @@ import kr.co.kosmo.mvc.vo.PurchaseVO;
 
 public interface OrderListServiceInter {
 	public List<OrderListVO> orderList(int mem_num);
-	public PurchaseVO purchaseOrderlist();
+	public List<PurchaseVO> purchaseOrderlist();
 	public List<Integer> ordRecommend();
 }

@@ -21,9 +21,9 @@ public class OrderListDao implements OrderListDaoInter { // ±Ë¥Ÿ¿≤
 	}
 	
 	@Override
-	public PurchaseVO purchaseOrderlist() {
+	public List<PurchaseVO> purchaseOrderlist() {
 		
-		return ss.selectOne("orderList.purchaseOrderlist");
+		return ss.selectList("orderList.purchaseOrderlist");
 	}
 	
 	@Override
