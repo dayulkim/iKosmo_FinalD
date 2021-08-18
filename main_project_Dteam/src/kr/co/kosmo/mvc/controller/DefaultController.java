@@ -48,6 +48,7 @@ public class DefaultController {
 		for (ProductVO vo : prolist) {
 			System.out.println(vo.getPro_name());
 		}
+
 		
 		// 추천상품 (재영)
 //		List<Integer> oderRecommend = orderListServiceInter.ordRecommend();
@@ -73,18 +74,13 @@ public class DefaultController {
 //		
 //		m.addAttribute("recommend", provo);
 
+
 		// 인기검색어 관련 (영의)
 		List<SearchLogVO> top10Search = searchServiceInter.top10Search();
 		m.addAttribute("top10Search", top10Search);
 
 		return "main/index";
 	}
-
-//	@RequestMapping("/login")
-//	public String login() {
-//		return "member/login/login";
-//	}
-
 
 	@GetMapping("/suggest")
 	public String suggestAction(Model m, String key) {

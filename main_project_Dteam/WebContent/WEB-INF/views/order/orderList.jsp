@@ -28,6 +28,7 @@
 												<td>배송중~~~~~~~~12312312</td>
 												<td><button class="productBtn">상품보러가기</button></td>
 												<td><button class="reviewBtn">리뷰쓰러가기</button></td>
+												<td><button class="btn" id="review-add-btn">리뷰작성</button></td>
 											</tr>
 										</c:forEach>
 										<tr>

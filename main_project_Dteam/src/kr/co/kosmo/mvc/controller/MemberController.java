@@ -2,7 +2,7 @@ package kr.co.kosmo.mvc.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,26 +19,32 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.CartDaoInter;
-import kr.co.kosmo.mvc.dao.MemberDaoInter;
+
+import kr.co.kosmo.mvc.service.MemberServiceInter;
+
+import kr.co.kosmo.mvc.vo.HouseInfoVO;
+
 import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
-import kr.co.kosmo.mvc.service.QuestionServiceInter;
+
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
-import kr.co.kosmo.mvc.vo.CartVO;
+
 import kr.co.kosmo.mvc.vo.FriendsVO;
+
 import kr.co.kosmo.mvc.vo.MemberVO;
 import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.PageVO;
-import kr.co.kosmo.mvc.vo.QuestionVO;
+
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private MemberDaoInter memberDaoInter;
+	private MemberServiceInter memberServiceInter;
 	@Autowired
 	private ReviewServiceInter reviewServiceInter;
+
 	@Autowired
 	private CartDaoInter cartDaoInter;
 	@Autowired // 필요한 오브젝트를 인젝션
@@ -69,7 +75,7 @@ public class MemberController {
 		int year = cal.get(Calendar.YEAR);
 		int age = year - birth_y + 1;
 		vo.setMem_age(age);
-		memberDaoInter.addmember(vo);
+		memberServiceInter.addmember(vo);
 		return "index";
 	}
 
@@ -77,7 +83,9 @@ public class MemberController {
 	@PostMapping(value = "/idchk")
 	public String idchk(Model m, @RequestParam("mem_id") String id) {
 		System.out.println("입력받은 아이디 : " + id);
-		int cnt = memberDaoInter.idchk(id);
+
+		int cnt = memberServiceInter.idchk(id);
+
 		String msg = "이미 사용중인 아이디 입니다.";
 		if (cnt == 0) {
 			msg = "사용 가능한 아이디 입니다.";
@@ -95,8 +103,9 @@ public class MemberController {
 
 //	리뷰인서트
 	@RequestMapping("/reviewinsert")
-	public String reviewInsert(ReviewVO revo, HttpServletRequest request, MultipartFile mfile) {
-
+	public String reviewInsert(HttpSession session,HttpServletRequest request, MultipartFile mfile,ReviewVO revo) {
+		
+		int mem_num=Integer.parseInt(session.getAttribute("sessionNum").toString());
 		String r_path = request.getServletContext().getRealPath("/"); // 웹 상 절대경로
 		String img_path = "resources\\uploadFile\\review";
 
@@ -112,21 +121,20 @@ public class MemberController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
+		revo.setMem_num(mem_num);
 		revo.setRev_photo(oriFn);
 		reviewServiceInter.addReview(revo);
 		System.out.println("fileNames: " + oriFn);
 
-		return "redirect:/mypage";
-	}
-
-	@RequestMapping(value = "mypage")
-	public String mypage() {
-		System.out.println("mypage 이동");
-		return "mypage/mypage";
+		return "redirect:/orders";
 	}
 
 	@RequestMapping(value = "survey")
-	public String survey() {
+	public String survey(HttpSession session, Model m) {
+		String mem_id = session.getAttribute("sessionID").toString();
+		List<HouseInfoVO> house_Info = memberServiceInter.getMemberHouseInfo(mem_id);
+		m.addAttribute("house_info", house_Info);
+
 		System.out.println("survey 이동");
 		return "mypage/survey";
 	}
@@ -151,9 +159,11 @@ public class MemberController {
 		System.out.println("mem_session::::::::::::" + mem_session);
 		ModelAndView mav = new ModelAndView();
 		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
+		
 		mav.addObject("ordvo", ordvo);
 		mav.setViewName("mypage/orders");
 		return mav;
+
 	}
 
 	@RequestMapping(value = "friends_queue")
@@ -187,4 +197,33 @@ public class MemberController {
 		System.out.println("scrapbook 이동");
 		return "mypage/scrapbook";
 	}
+
+	/*
+	 * 
+	 * 
+	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
+	 * { int mem_num =
+	 * Integer.parseInt(session.getAttribute("sessionNum").toString());
+	 * System.out.println("sessionNum ::"+mem_num); List<FriendsVO> list =
+	 * friendsServiceInter.getFriednsList(mem_num);
+	 * //System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
+	 * m.addAttribute("frilist", list); List<FriendsVO> wtlist =
+	 * friendsServiceInter.getFriWtList(mem_num); m.addAttribute("wtlist", wtlist);
+	 * return "store/mypage"; }
+	 */
+
+	@PostMapping("/houseinfoinsert")
+	public String houseInfoInsert(HttpSession session, HouseInfoVO hinvo) {
+		hinvo.setMem_id(session.getAttribute("sessionID").toString());
+		memberServiceInter.addMemberHouseInfo(hinvo);
+		return "redirect:/survey";
+	}
+
+	@RequestMapping("/houseinfo_del")
+	public String houseinfoDel(int hinfo_num) {
+		memberServiceInter.delMemberHouseInfo(hinfo_num);
+		return "redirect:/survey";
+
+	}
+
 }

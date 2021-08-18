@@ -79,7 +79,6 @@
 				      <div class="accordion-body">
 				         
 					    	<!-- Item-->
-					    	
 				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
 				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${list.pro_thumb }" alt="Product"></a>
 				                <div class="pt-2">
@@ -90,33 +89,24 @@
 				                </div>
 				              </div>
 				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-warning btn-sm" type="button"><i class="far fa-edit"></i>&nbsp;&nbsp;¸®ºä¾²±â</button>
+				                <button class="btn btn-outline-warning btn-sm" type="button" id="review-add-btn" value="${list.pro_num }"><i class="far fa-edit"></i>&nbsp;&nbsp;¸®ºä¾²±â</button>
+				                	
 				              </div>
 				            </div>
 				            
 				            <!-- Item-->
-				            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">3-Color Sun Stash Hat</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>The North Face</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Pink / Beige / Dark blue</div>
-				                  <div class="fs-lg text-accent pt-2">$22.<small>50</small></div>
-				                </div>
-				              </div>
-				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-warning btn-sm" type="button"><i class="far fa-edit"></i>&nbsp;&nbsp;¸®ºä¾²±â</button>
-				              </div>
-				            </div>
+	
 					    </div>
 				    </div>
 				  </div>
 				  </c:forEach>
+				  <%@include file="form/reviewForm.jsp"%>
 
 				</div>
 			</section>
         </div>
       </div>
+      
     </main>
 
     <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>

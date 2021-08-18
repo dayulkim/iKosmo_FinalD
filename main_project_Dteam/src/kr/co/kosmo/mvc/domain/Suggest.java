@@ -40,7 +40,7 @@ public class Suggest {
 		SAXBuilder sb = new SAXBuilder();
 
 		File path = new File(
-				"D:\\ikosmo\\Final_Git_Dteam\\iKosmo_FinalD\\main_project_Dteam\\WebContent\\resources\\suggest\\suggest.xml");
+				"C:\\Users\\kosmo_02\\git\\iKosmo_FinalD\\main_project_Dteam\\WebContent\\resources\\suggest\\suggest.xml");
 
 		path.delete();
 		List<ProductVO> titleList = productServiceInter.suggestProductList();
@@ -57,7 +57,7 @@ public class Suggest {
 			for (ProductVO e : titleList) {
 				arr = e.getPro_name().split("\\(", 2)[0];
 				category = e.getPro_category();
-				System.out.println("category"+category);
+				System.out.println("category" + category);
 				bw.write("<keyword>" + category + "/ " + arr + "</keyword>");
 				bw.newLine();
 			}
@@ -100,16 +100,12 @@ public class Suggest {
 
 		Iterator<Element> it = list.iterator();
 		key = key.toLowerCase();
-
 		while (it.hasNext()) {
-
 			String result = it.next().getText();
 			System.out.println("keyword ¹®ÀÚ¿­:" + result);
 			String compare = result.toLowerCase();
-
 			if (compare.contains(key) && (key.length() >= 2)) {
 				String category = compare.split("/")[0];
-				
 				setList.add(category);
 			}
 		}

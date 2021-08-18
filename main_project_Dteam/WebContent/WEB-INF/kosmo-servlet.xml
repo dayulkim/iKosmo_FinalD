@@ -11,70 +11,83 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<!-- 어노테이션 기반 aop를 위한 설정 -->
-<aop:aspectj-autoproxy/>
+	<!-- 어노테이션 기반 aop를 위한 설정 -->
+	<aop:aspectj-autoproxy />
 
-<!-- 어노테이션 기반 bean 등록을 위한 설정 -->
-<context:component-scan base-package="kr.co.kosmo.mvc"/>
+	<!-- 어노테이션 기반 bean 등록을 위한 설정 -->
+	<context:component-scan
+		base-package="kr.co.kosmo.mvc" />
 
-<!-- mvc 어노테이션 -->
-<mvc:annotation-driven/>
+	<!-- mvc 어노테이션 -->
+	<mvc:annotation-driven />
 
-<!-- mvc 정적 자원 맵핑 -->
-<mvc:resources location="/resources/" mapping="/resources/**"/>
+	<!-- mvc 정적 자원 맵핑 -->
+	<mvc:resources location="/resources/"
+		mapping="/resources/**" />
 
-<!-- View Resolver -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/"/>
-		<property name="suffix" value=".jsp"/>
-		<property name="order" value="1"/>
-	</bean>
-	
-<!-- Tiles 설정 -->
-<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-	<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
-	<property name="order" value="0"/>
-</bean>
-<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-	<property name="definitions">
-		<list>
-			<value>/WEB-INF/tiles/tiles-definitions.xml</value>
-		</list>	
-	</property>
-</bean>
-
-<!-- context annotation 설정 -->
-<context:annotation-config/>
-
-<!-- DataSource 설정 -->
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/myora"/>
+	<!-- View Resolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
 	</bean>
 
-<!-- Transaction 설정 -->
-	<bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+	<!-- Tiles 설정 -->
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="0" />
 	</bean>
-<!-- transactional AOP를 설정 -->
-	<tx:annotation-driven transaction-manager="tm"/>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-definitions.xml</value>
+			</list>
+		</property>
+	</bean>
 
-<!-- MyBatis설정 start -->
+	<!-- context annotation 설정 -->
+	<context:annotation-config />
+
+	<!-- DataSource 설정 -->
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/myora" />
+	</bean>
+
+	<!-- Transaction 설정 -->
+	<bean id="tm"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- transactional AOP를 설정 -->
+	<tx:annotation-driven transaction-manager="tm" />
+
+	<!-- MyBatis설정 start -->
 	<!-- SqlSessionFactoryBean -->
- 	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
- 		<property name="dataSource" ref="dataSource"/> 
- 		<property name="configLocation" value="classpath:kr/co/kosmo/mvc/config/config.xml"/> 
+	<bean id="factoryBean"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:kr/co/kosmo/mvc/config/config.xml" />
 		<!-- mapper가 하나가 아니기 때문에 *을 붙여줘야 한다. -->
- 		<property name="mapperLocations" value="classpath*:kr/co/kosmo/mvc/mapper/*.xml"/> 
- 	</bean>
+		<property name="mapperLocations"
+			value="classpath*:kr/co/kosmo/mvc/mapper/*.xml" />
+	</bean>
 	<!-- SqlSessionTemplate, 클라이언트 빈 -->
- 	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
 		<!-- SqlSessionTemplatedpsms 기본생성자가 없기 때문에 constructor-arg -->
- 		<constructor-arg ref="factoryBean"/>
- 	</bean>
-<!-- MyBatis설정 end -->
+		<constructor-arg ref="factoryBean" />
+	</bean>
+	<!-- MyBatis설정 end -->
 
-<!-- file upload는 CommonsMultipartResolver를 빈에 추가해야 한다 (common-fileupload.jar 필요)-->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<!-- file upload는 CommonsMultipartResolver를 빈에 추가해야 한다 (common-fileupload.jar 
+		필요) -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 
 </beans>
