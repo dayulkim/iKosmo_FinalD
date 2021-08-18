@@ -36,9 +36,10 @@
 		<result column="pro_dprice" property="pro_dprice" />
 		<association property="orderListVO" javaType="ordvo">
 			<id column="ord_num" property="ord_num" />
-			<result column="mem_num" property="mem_num" />
 			<result column="pro_num" property="pro_num" />
 			<result column="ord_qty" property="ord_qty" />
+			<result column="mem_num" property="mem_num" />
+			<result column="pur_num" property="pur_num" />
 			<result column="ord_date" property="ord_date" />
 		</association>
 	</resultMap>

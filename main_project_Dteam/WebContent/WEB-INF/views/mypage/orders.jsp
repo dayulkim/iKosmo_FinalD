@@ -79,6 +79,7 @@
 				      <div class="accordion-body">
 				         
 					    	<!-- Item-->
+					    	
 				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
 				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${list.pro_thumb }" alt="Product"></a>
 				                <div class="pt-2">
@@ -92,6 +93,7 @@
 				                <button class="btn btn-outline-warning btn-sm" type="button"><i class="far fa-edit"></i>&nbsp;&nbsp;¸®ºä¾²±â</button>
 				              </div>
 				            </div>
+				            
 				            <!-- Item-->
 				            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
 				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>

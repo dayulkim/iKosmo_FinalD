@@ -2,16 +2,39 @@ package kr.co.kosmo.mvc.vo;
 
 public class OrderListVO {
 
-//	ord_num number primary key, -- 구매내역 번호 -- PK
-//	mem_num number, -- 회원번호
-//	pro_num number, -- 상품번호
-//	ord_qty number, -- 수량
-//	ord_date date default sysdate, -- 구매일  -- default : sysdate
+//   ord_num number primary key, -- 상세 구매내역 번호 -- PK
+//   pro_num number, -- 상품번호
+//   ord_qty number, -- 수량
+//   pur_num number, -- 구매내역 번호
 
-	private int ord_num, mem_num, pro_num, ord_qty;
+	private int ord_num, pro_num, ord_qty, mem_num, pur_num;
 	private String ord_date;
-	
+
 	private ProductVO productVO;
+
+	public int getMem_num() {
+		return mem_num;
+	}
+
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
+
+	public String getOrd_date() {
+		return ord_date;
+	}
+
+	public void setOrd_date(String ord_date) {
+		this.ord_date = ord_date;
+	}
+
+	public int getPur_num() {
+		return pur_num;
+	}
+
+	public void setPur_num(int pur_num) {
+		this.pur_num = pur_num;
+	}
 
 	public ProductVO getProductVO() {
 		return productVO;
@@ -29,14 +52,6 @@ public class OrderListVO {
 		this.ord_num = ord_num;
 	}
 
-	public int getMem_num() {
-		return mem_num;
-	}
-
-	public void setMem_num(int mem_num) {
-		this.mem_num = mem_num;
-	}
-
 	public int getPro_num() {
 		return pro_num;
 	}
@@ -51,14 +66,6 @@ public class OrderListVO {
 
 	public void setOrd_qty(int ord_qty) {
 		this.ord_qty = ord_qty;
-	}
-
-	public String getOrd_date() {
-		return ord_date;
-	}
-
-	public void setOrd_date(String ord_date) {
-		this.ord_date = ord_date;
 	}
 
 }
