@@ -45,7 +45,7 @@
 			$.ajax({
 				type : 'post',
 // 				url : "http://ec2-52-78-30-125.ap-northeast-2.compute.amazonaws.com:9000/service/similarityJsonP",
- 				url : "http://192.168.35.53:9000/service/similarityJsonP?category=closet",
+ 				url : "http://192.168.35.53:9000/service/similarityJsonP?category=lighting",
 				processData : false,
 				contentType : false,
 				data : formData,
@@ -54,9 +54,10 @@
 					console.log(e.data)
 					
 					if (e.data!=='None'){
+						
 						for(let i=0;i<e.data.length;i++){
-							var picture="";
-							 picture+="<img alt='' src='resources/data/closet/"+e.data[i]+"' id='"+picture[i]+"' style='width:200px;'>"
+							 let picture="";
+							 picture="<img alt='' src='resources/data/lighting/"+e.data[i]+"' id='"+picture[i]+"' style='width:200px;'>"
 							$("#test").append(picture);
 						
 						}

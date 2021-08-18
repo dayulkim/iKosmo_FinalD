@@ -2,6 +2,7 @@ package kr.co.kosmo.mvc.controller;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.CartDaoInter;
 
@@ -23,11 +25,16 @@ import kr.co.kosmo.mvc.service.MemberServiceInter;
 import kr.co.kosmo.mvc.vo.HouseInfoVO;
 
 import kr.co.kosmo.mvc.service.FriendsServiceInter;
+import kr.co.kosmo.mvc.service.OrderListServiceInter;
+
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
-import kr.co.kosmo.mvc.vo.CartVO;
+
 import kr.co.kosmo.mvc.vo.FriendsVO;
 
 import kr.co.kosmo.mvc.vo.MemberVO;
+import kr.co.kosmo.mvc.vo.OrderListVO;
+import kr.co.kosmo.mvc.vo.PageVO;
+
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
 @Controller
@@ -40,6 +47,8 @@ public class MemberController {
 
 	@Autowired
 	private CartDaoInter cartDaoInter;
+	@Autowired // 필요한 오브젝트를 인젝션
+	private OrderListServiceInter orderListServiceInter;
 	@Autowired
 	private FriendsServiceInter friendsServiceInter;
 
@@ -74,7 +83,9 @@ public class MemberController {
 	@PostMapping(value = "/idchk")
 	public String idchk(Model m, @RequestParam("mem_id") String id) {
 		System.out.println("입력받은 아이디 : " + id);
+
 		int cnt = memberServiceInter.idchk(id);
+
 		String msg = "이미 사용중인 아이디 입니다.";
 		if (cnt == 0) {
 			msg = "사용 가능한 아이디 입니다.";
@@ -92,8 +103,9 @@ public class MemberController {
 
 //	리뷰인서트
 	@RequestMapping("/reviewinsert")
-	public String reviewInsert(ReviewVO revo, HttpServletRequest request, MultipartFile mfile) {
-
+	public String reviewInsert(HttpSession session,HttpServletRequest request, MultipartFile mfile,ReviewVO revo) {
+		
+		int mem_num=Integer.parseInt(session.getAttribute("sessionNum").toString());
 		String r_path = request.getServletContext().getRealPath("/"); // 웹 상 절대경로
 		String img_path = "resources\\uploadFile\\review";
 
@@ -109,15 +121,20 @@ public class MemberController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
+		revo.setMem_num(mem_num);
 		revo.setRev_photo(oriFn);
 		reviewServiceInter.addReview(revo);
 		System.out.println("fileNames: " + oriFn);
 
-		return "redirect:/mypage";
+		return "redirect:/orders";
 	}
 
 	@RequestMapping(value = "survey")
-	public String survey() {
+	public String survey(HttpSession session, Model m) {
+		String mem_id = session.getAttribute("sessionID").toString();
+		List<HouseInfoVO> house_Info = memberServiceInter.getMemberHouseInfo(mem_id);
+		m.addAttribute("house_info", house_Info);
+
 		System.out.println("survey 이동");
 		return "mypage/survey";
 	}
@@ -131,10 +148,22 @@ public class MemberController {
 		return "mypage/cart";
 	}
 
-	@RequestMapping(value = "orders")
-	public String orders() {
-		System.out.println("orders 이동");
-		return "mypage/orders";
+	@RequestMapping("/orders") // 개인의 전체 주문내역 출력
+	public ModelAndView orderList(@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
+			HttpServletRequest request, PageVO pvo, HttpSession session) {
+		System.out.println("전체 주문내역 컨트롤러 시작!");
+		// int mem_num = 1;
+		// int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		int mem_session = (int) session.getAttribute("sessionNum");
+		System.out.println("mem_session::::::::::::" + mem_session);
+		ModelAndView mav = new ModelAndView();
+		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
+		
+		mav.addObject("ordvo", ordvo);
+		mav.setViewName("mypage/orders");
+		return mav;
+
 	}
 
 	@RequestMapping(value = "friends_queue")
@@ -170,7 +199,7 @@ public class MemberController {
 	}
 
 	/*
-	 * <<<<<<< HEAD
+	 * 
 	 * 
 	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
 	 * { int mem_num =
@@ -180,34 +209,20 @@ public class MemberController {
 	 * //System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
 	 * m.addAttribute("frilist", list); List<FriendsVO> wtlist =
 	 * friendsServiceInter.getFriWtList(mem_num); m.addAttribute("wtlist", wtlist);
-	 * return "store/mypage"; } ======= >>>>>>> all_merged_0810
+	 * return "store/mypage"; }
 	 */
 
-	@RequestMapping("/houseinfoform")
-	public String houstInfoForm() {
-
-		return "member/form/houseinfoform";
-	}
-
 	@PostMapping("/houseinfoinsert")
-	public String houseInfoInsert(HouseInfoVO hinvo) {
+	public String houseInfoInsert(HttpSession session, HouseInfoVO hinvo) {
+		hinvo.setMem_id(session.getAttribute("sessionID").toString());
 		memberServiceInter.addMemberHouseInfo(hinvo);
-		return "redirect:/mypage";
-	}
-
-	// 재영:productController에 있는 마이페이지 member테이블로 이동
-	@RequestMapping("/mypage")
-	public String myPage(Model m) {
-		List<HouseInfoVO> house_Info = memberServiceInter.getMemberHouseInfo("좽이");
-		m.addAttribute("house_info", house_Info);
-
-		return "member/mypage";
+		return "redirect:/survey";
 	}
 
 	@RequestMapping("/houseinfo_del")
 	public String houseinfoDel(int hinfo_num) {
 		memberServiceInter.delMemberHouseInfo(hinfo_num);
-		return "redirect:/mypage";
+		return "redirect:/survey";
 
 	}
 

@@ -212,12 +212,6 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
-
-
-
-<body>
-
-
 	<!-- ÆË¾÷¶ã¶§ ¹è°æ -->
 	<div id="mask-review"></div>
 
@@ -233,8 +227,8 @@
 
 					<form action="reviewinsert" method="post"
 						enctype="multipart/form-data">
-						<input type="hidden" id="pro_num" name="pro_num" value="1">
-						<%-- 							 ${pro_num}³Ñ ÀÚ¸® --%>
+						<input type="hidden" id="pro_num" name="pro_num" value="">
+
 						<div id="reviewForm">
 							<table>
 
@@ -338,6 +332,8 @@
 	</div>
 	<script>
 	$('#review-add-btn').click(function() {
+		var num = $(this).val();
+		$('#pro_num').val(num);
 		popupOpenReview();
 		wrapWindowByMaskReview();
 	});

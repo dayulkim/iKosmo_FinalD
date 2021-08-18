@@ -15,8 +15,8 @@ public class OrderListDao implements OrderListDaoInter { // ±Ë¥Ÿ¿≤
 	private SqlSessionTemplate ss;
 
 	@Override
-	public List<OrderListVO> orderListii(int mem_num) {
-		return ss.selectList("orderList.orderListii", mem_num);
+	public List<OrderListVO> orderList(int mem_num) {
+		return ss.selectList("orderList.orderList", mem_num);
 	}
 	@Override
 	public List<Integer> ordRecommend() {

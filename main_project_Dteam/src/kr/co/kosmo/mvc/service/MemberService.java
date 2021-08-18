@@ -21,14 +21,10 @@ public class MemberService implements MemberServiceInter {
 //재영 추가 집정보 널 예외시 핸들링
 	@Override
 	public void addMemberHouseInfo(HouseInfoVO hinvo) {
-		hinvo.setMem_id("좽이");// 아이디테스트용 아이디연결후 삭제해야합니다
-		hinvo.setHinfo_type(Optional.ofNullable(hinvo.getHinfo_type()).orElse("0"));
+		
 		hinvo.setHinfo_size(Optional.ofNullable(hinvo.getHinfo_size()).orElse("0"));
 		hinvo.setHinfo_with(Optional.ofNullable(hinvo.getHinfo_with()).orElse("0"));
-		hinvo.setHinfo_tend(Optional.ofNullable(hinvo.getHinfo_tend()).orElse("0"));
 		hinvo.setHinfo_favour(Optional.ofNullable(hinvo.getHinfo_favour()).orElse("0"));
-		hinvo.setHinfo_buytend(Optional.ofNullable(hinvo.getHinfo_buytend()).orElse("0"));
-		hinvo.setHinfo_style(Optional.ofNullable(hinvo.getHinfo_style()).orElse("0"));
 		hinvo.setHinfo_activity(Optional.ofNullable(hinvo.getHinfo_activity()).orElse("0"));
 		memberDaoInter.addMemberHouseInfo(hinvo);
 	}

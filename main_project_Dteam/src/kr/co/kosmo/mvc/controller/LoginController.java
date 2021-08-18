@@ -30,6 +30,7 @@ public class LoginController {
 	public void login(MemberVO vo, HttpSession session, HttpServletResponse response) {
 		MemberVO mvo = loginDaoInter.login(vo);
 		String msg = "";
+		System.out.println("여긴오냐");
 		try {
 			response.setContentType("text/html; charset=euc-kr");
 			if (mvo != null) {

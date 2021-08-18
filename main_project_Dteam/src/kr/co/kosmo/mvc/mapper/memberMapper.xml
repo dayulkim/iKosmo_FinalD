@@ -29,7 +29,7 @@
 
 	<!-- 이재영: 회원집 정보를 받아서 넣음 -->
 	<insert id="addMemberHouseInfo" parameterType="hinvo">
-	insert into houseinfo values(houseinfo_seq.nextVal,'좽이',#{hinfo_type},#{hinfo_size},#{hinfo_with},#{hinfo_tend},#{hinfo_favour},#{hinfo_buytend},
+	insert into houseinfo values(houseinfo_seq.nextVal,#{mem_id},#{hinfo_type},#{hinfo_size},#{hinfo_with},#{hinfo_tend},#{hinfo_favour},#{hinfo_buytend},
 	#{hinfo_style},#{hinfo_activity},#{hinfo_visible},sysdate)
 	
 	</insert>
@@ -38,7 +38,7 @@
 	
 	</select>
 	<delete id="delMemberHouseInfo" parameterType="int">
-	update houseinfo set hinfo_visible=1 where hinfo_num=#{hinfo_num}
+	update houseinfo set hinfo_visible=1 where hinfo_num=#{hinfo_num} 
 	</delete>
 
 	<!-- 김세연: 회원번호로 회원 정보 반환 받음 -->

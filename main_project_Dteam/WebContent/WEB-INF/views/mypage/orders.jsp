@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Body-->
     
       <!-- Page Title-->
@@ -24,9 +25,9 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><img class="rounded-circle" src="resources/uploadFile/profile/iu.jpg" alt="Susan Gardner"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><img class="rounded-circle" src="resources/uploadFile/profile/${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
-                    <h3 class="fs-base mb-0">이지은</h3><span class="text-accent fs-sm">iu_leejieun</span>
+                    <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
                 </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="fas fa-user-circle"></i>&nbsp;&nbsp;마이페이지 메뉴</a>
               </div>
@@ -68,125 +69,44 @@
 				<div class="accordion" id="accordionExample">
 				
 				  <!-- Item -->
+				  <c:forEach var="list" items="${ordvo}">
+				  
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingOne">
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">구매내역 #1</button>
+				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">구매내역 # ${list.orderListVO.ord_date }</button>
 				    </h2>
 				    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
+				         
 					    	<!-- Item-->
+					    
 				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
+				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${list.pro_thumb }" alt="Product"></a>
 				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">TH Jeans City Backpack</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>Tommy Hilfiger</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Khaki</div>
-				                  <div class="fs-lg text-accent pt-2">$79.<small>50</small></div>
+				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">${list.pro_name }</a></h3>
+				                  <div class="fs-sm"><span class="text-muted me-2">가격:</span>${list.pro_dprice }</div>
+				                  <div class="fs-sm"><span class="text-muted me-2">수량:</span>${list.orderListVO.ord_qty }</div>
+				                  <div class="fs-lg text-accent pt-2">${list.pro_dprice * list.orderListVO.ord_qty }원</div>
 				                </div>
 				              </div>
 				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-warning btn-sm" type="button"><i class="far fa-edit"></i>&nbsp;&nbsp;리뷰쓰기</button>
+				                <button class="btn btn-outline-warning btn-sm" type="button" id="review-add-btn" value="${list.pro_num }"><i class="far fa-edit"></i>&nbsp;&nbsp;리뷰쓰기</button>
+				                	
 				              </div>
 				            </div>
 				            <!-- Item-->
-				            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">3-Color Sun Stash Hat</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>The North Face</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Pink / Beige / Dark blue</div>
-				                  <div class="fs-lg text-accent pt-2">$22.<small>50</small></div>
-				                </div>
-				              </div>
-				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-warning btn-sm" type="button"><i class="far fa-edit"></i>&nbsp;&nbsp;리뷰쓰기</button>
-				              </div>
-				            </div>
+	
 					    </div>
 				    </div>
 				  </div>
-				
-				  <!-- Item -->
-				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingTwo">
-				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">구매내역 #2</button>
-				    </h2>
-				    <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-					    <div class="accordion-body">
-					    	<!-- Item-->
-				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">TH Jeans City Backpack</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>Tommy Hilfiger</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Khaki</div>
-				                  <div class="fs-lg text-accent pt-2">$79.<small>50</small></div>
-				                </div>
-				              </div>
-				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-				              </div>
-				            </div>
-				            <!-- Item-->
-				            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">3-Color Sun Stash Hat</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>The North Face</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Pink / Beige / Dark blue</div>
-				                  <div class="fs-lg text-accent pt-2">$22.<small>50</small></div>
-				                </div>
-				              </div>
-				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-				              </div>
-				            </div>
-					    </div>
-				    </div>
-				  </div>
-				
-				  <!-- Item -->
-				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingThree">
-				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">구매내역 #3</button>
-				    </h2>
-				    <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-				      <div class="accordion-body">
-					    	<!-- Item-->
-				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">TH Jeans City Backpack</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>Tommy Hilfiger</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Khaki</div>
-				                  <div class="fs-lg text-accent pt-2">$79.<small>50</small></div>
-				                </div>
-				              </div>
-				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-				              </div>
-				            </div>
-				            <!-- Item-->
-				            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">3-Color Sun Stash Hat</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>The North Face</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Pink / Beige / Dark blue</div>
-				                  <div class="fs-lg text-accent pt-2">$22.<small>50</small></div>
-				                </div>
-				              </div>
-				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-				              </div>
-				            </div>
-					    </div>
-				    </div>
-				  </div>
+				  </c:forEach>
+				  <%@include file="form/reviewForm.jsp"%>
+
 				</div>
 			</section>
         </div>
       </div>
+      
     </main>
 
     <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
