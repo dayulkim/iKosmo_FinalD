@@ -68,6 +68,10 @@
 	display: block;
 }
 
+.selmap {
+	
+}
+
 #unit {
 float:left;
 }
@@ -241,7 +245,7 @@ float:left;
 					<ul class="tabs">
 						<li class="active" data-panel="panel1">상품정보</li>
 						<li data-panel="panel2">리뷰</li>
-						<li data-panel="panel3">문의</li>
+						<li data-panel="panel3" id="sellertab">문의</li>
 						<li data-panel="panel4">배송/환불</li>
 						<li data-panel="panel5">추천상품</li>
 					</ul>
@@ -295,18 +299,16 @@ float:left;
 
 					<div id="panel3" class="panel">
 						<h5 align="center">Contact Details...</h5>
+						<div class="container">						
 						<hr>
 						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-child" style="color: #F15F5F"></i></div><div>our company<br><font color="#000000">${selvo.sel_name}</font></div><hr style="width: 400px" size="11px"> 
 						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-phone" style="color: #F15F5F"></i></div><div>call us<br><font color="#000000">${selvo.sel_tel}</font></div><hr style="width: 400px" size="11px">
 						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-envelope" style="color: #F15F5F"></i></div><div>email us<br><font color="#000000">hotline@gmail.com</font></div><hr style="width: 400px" size="11px">
 						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-microchip" style="color: #F15F5F"></i></div><div>our grade<br><font color="#000000">${selvo.sel_grade}&nbsp;등급</font></div><hr style="width: 400px" size="11px">
 						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-map-marker" style="color: #F15F5F"></i></div><div>find us<br><font color="#000000">${selvo.sel_addr}</font></div>
-						<input
-							type="hidden" id="selname" value="${selvo.sel_name}"> 
-							<input
-							type="hidden" id="addr" value="${selvo.sel_addr}">
-						<div id="map" style="width: 500px; height: 400px;"></div><hr style="width: 400px" size="11px">
-						<br>
+						<input type="hidden" id="addr" value="${selvo.sel_addr}">
+						<input type="hidden" id="selname" value="${selvo.sel_name}">
+						</div>
 					</div>
 					<div id="panel4" class="panel">
 						<h6>배송 및 환불에 관한 사항</h6>
@@ -357,6 +359,7 @@ float:left;
 			<!-- 탭 끝 -->
 		</div>
 	</div>
+	<div class="selmap" id="map" style="width:500px; height:350px; display:none;"></div>
 	</div>
 	</div>
 	<!-- Back to Top -->
@@ -371,6 +374,65 @@ float:left;
 
 	<!-- Template Javascript -->
 	<script src="resources/js/store/main.js"></script>
+	<!-- kakaomap api -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
+	<script>
+	$('#sellertab').on("click", function(){
+		var container = document.getElementById('map'); //지도 표시 div
+		$('#map').attr('style','width:500px; height:350px; display:block;');
+		var options = {
+			center : new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
+			level : 3
+		//지도의 확대 레벨
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		var addr = document.getElementById('addr').value;
+		console.log("addr : "+addr)
+		var selname = document.getElementById('selname').value;
+
+		geocoder
+				.addressSearch(
+						addr,
+						function(result, status) {
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y,
+										result[0].x);
+
+								// 결과값으로 받은 위치를 마커로 표시
+								var marker = new kakao.maps.Marker({
+									map : map,
+									position : coords
+								});
+
+								// 인포윈도우로 장소에 대한 설명을 표시		        
+								var infowindow = new kakao.maps.InfoWindow(
+										{
+											content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
+													+ selname + '</div>',
+											disableAutoPan: true
+										});
+								infowindow.open(map, marker);
+
+								// 지도의 중심을 결과값으로 받은 위치로 이동
+								var markerPosition = marker.getPosition(); 
+								map.relayout(); 
+								map.setCenter(markerPosition);
+								
+								
+							}
+						});
+	});
+
+	</script>
+	
+	
 	<script type="text/javascript">
 		// 연아님 담당 Detail
 		$(document).ready(function() {
@@ -398,53 +460,8 @@ float:left;
 					});
 
 		};
+		
 	</script>
-	<!-- kakaomap api -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
-	<script>
-		// 세연님 담당 카카오지도 API
-		var container = document.getElementById('map'); //지도 표시 div
-
-		var options = {
-			center : new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
-			level : 3
-		//지도의 확대 레벨
-		};
-
-		var map = new kakao.maps.Map(container, options);
-
-		var geocoder = new kakao.maps.services.Geocoder();
-
-		var addr = document.getElementById('addr').value;
-		var selname = document.getElementById('selname').value;
-
-		geocoder
-				.addressSearch(
-						addr,
-						function(result, status) {
-							// 정상적으로 검색이 완료됐으면 
-							if (status === kakao.maps.services.Status.OK) {
-
-								var coords = new kakao.maps.LatLng(result[0].y,
-										result[0].x);
-
-								// 결과값으로 받은 위치를 마커로 표시
-								var marker = new kakao.maps.Marker({
-									map : map,
-									position : coords
-								});
-
-								// 인포윈도우로 장소에 대한 설명을 표시		        
-								var infowindow = new kakao.maps.InfoWindow(
-										{
-											content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
-													+ selname + '</div>'
-										});
-								infowindow.open(map, marker);
-
-								// 지도의 중심을 결과값으로 받은 위치로 이동
-								map.setCenter(coords);
-							}
-						});
-	</script>
+	
+	
+	
