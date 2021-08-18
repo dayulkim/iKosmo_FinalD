@@ -1,43 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>슬기로운 집콕생활</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon"
-	href="resources/assets/img/store/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="resources/css/store/styles.css" rel="stylesheet" />
-<link href="resources/css/store/shop_styles.css" rel="stylesheet" />
-<!-- OwlCarousel -->
-<link rel="stylesheet"
-	href="resources/css/store/owlCarousel/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="resources/css/store/owlCarousel/owl.theme.default.min.css">
-<link href="resources/css/store/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/store/font-awesome.min.css" rel="stylesheet">
-<link href="resources/css/store/prettyPhoto.css" rel="stylesheet">
-<link href="resources/css/store/price-range.css" rel="stylesheet">
-<link href="resources/css/store/animate.css" rel="stylesheet">
+<!--  <link href="resources/css/store/bootstrap.min.css" rel="stylesheet">-->
 <link href="resources/css/store/main.css" rel="stylesheet">
-<link href="resources/css/store/responsive.css" rel="stylesheet">
-
 <!-- 정렬 방식 관련 CSS & JQuery 시작-->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="eCommerce HTML Template Free Download" name="keywords">
@@ -102,6 +67,10 @@
 	}
 </script>
 <style type="text/css">
+#unit {
+float:left;
+}
+
 #STATICMENU {
 	margin: 0pt;
 	padding: 0pt;
@@ -151,10 +120,9 @@ input {
 
 
 <!-- 사이드배너 끝 -->
-</head>
-<body onload="InitializeStaticMenu();">
 
-	<div id="STATICMENU">
+<body onload="InitializeStaticMenu();">
+	  <div id="STATICMENU">
 		<table>
 			<c:choose>
 				<c:when test="${sessionID !=null}">
@@ -170,7 +138,7 @@ input {
 						<c:forEach var="listc" items="${my_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pro_num=${listc.pro_num}&sel_num=${listc.sel_num}"><img
+									href="detail?pro_num=${listc.pro_num}"><img
 										src="resources/assets/img/store/${listc.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -190,7 +158,7 @@ input {
 						<c:forEach var="listm" items="${their_list}">
 							<tr>
 								<td bgcolor="#FFC6C6" height="90px" width="90px" align="center"><a
-									href="detail?pnum=${listm.pro_num}&sel_num=${listm.sel_num}"><img
+									href="detail?pnum=${listm.pro_num}"><img
 										src="resources/assets/img/store/${listm.pro_thumb}" alt=""
 										style="width: 75px; height: 75px;"></a></td>
 							</tr>
@@ -200,225 +168,225 @@ input {
 			</c:choose>
 		</table>
 	</div>
-	<div class="container">
-		<section>
-				<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
-				<div class="bottom-bar">
-					<div class="user" align="left">
-						<c:choose>
-							<c:when test="${sessionID !=null}">
-								<a href="scraplist" class="btn wishlist"> <i
-									class="fa fa-heart"></i> (${cart_total})
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="login" class="btn wishlist"> <span><i
-										class="fa fa-heart"></i> (0)</span></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<br>
-					<div class="user" align="left">
-						<c:choose>
-							<c:when test="${sessionID !=null}">
-								<a href="cart" class="btn wishlist"> <span><i
-										class="fa fa-shopping-cart"></i> (${scrap_total})</span>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="login" class="btn wishlist"> <span><i
-										class="fa fa-shopping-cart"></i> (0)</span></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
-				<div align="right">
-					<select class="bo_w_select" id="way" name="way">
-						<option value="0" selected="selected">정렬기준</option>
-						<option value="1">최근등록순</option>
-						<option value="2">낮은가격</option>
-						<option value="3">높은가격</option>
-						<option value="4">리뷰많은순</option>
-						<option value="5">할인율순</option>
-					</select>
+	<section>
+		<div class="container">
+			<!-- 나의 스크랩, 나의 장바구니 버튼 시작 -->
+			<div class="bottom-bar" id="unit">
+				<div class="user" align="left">
+					<c:choose>
+						<c:when test="${sessionID !=null}">
+							<a href="scraplist" class="btn wishlist"> <i
+								class="fa fa-heart"></i> (${cart_total})
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="login" class="btn wishlist"> <span><i
+									class="fa fa-heart"></i> (0)</span></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<br>
-				<div align="right">
-					<select class="bo_w_select" id="merit" name="merit">
-						<option value="0" selected="selected">선택사항</option>
-						<option value="1">배송비 무료</option>
-						<option value="2">빠른배송</option>
-						<option value="3">추천 업체</option>
-						<option value="4">대폭 할인</option>
-					</select>
+				<div class="user" align="left">
+					<c:choose>
+						<c:when test="${sessionID !=null}">
+							<a href="cart" class="btn wishlist"> <span><i
+									class="fa fa-shopping-cart"></i> (${scrap_total})</span>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="login" class="btn wishlist"> <span><i
+									class="fa fa-shopping-cart"></i> (0)</span></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<br>
-				<div align="right">
-					<input type="submit" value="검색" class="button"
-						onclick="addcategory()">
+			</div>
+			<div align="right">
+				<select class="bo_w_select" id="way" name="way">
+					<option value="0" selected="selected">정렬기준</option>
+					<option value="1">최근등록순</option>
+					<option value="2">낮은가격</option>
+					<option value="3">높은가격</option>
+					<option value="4">리뷰많은순</option>
+					<option value="5">할인율순</option>
+				</select>
+			</div>
+			<br>
+			<div align="right">
+				<select class="bo_w_select" id="merit" name="merit">
+					<option value="0" selected="selected">선택사항</option>
+					<option value="1">배송비 무료</option>
+					<option value="2">빠른배송</option>
+					<option value="3">추천 업체</option>
+					<option value="4">대폭 할인</option>
+				</select>
+			</div>
+			<br>
+			<div align="right">
+				<input type="submit" value="검색" class="button"
+					onclick="addcategory()">
+			</div>
+			<!--  카테고리 시작 -->
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>카테고리</h2>
+						<div class="panel-group category-products" id="accordian">
+							<!--category-productsr-->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=0">가구</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=1">패브릭</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=2">홈데코/조명</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=3">가전</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=4">수납/정리</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=5">생활</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=6">주방</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=7">생필품</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=8">DIY/공구</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=9">시공/서비스</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=10">반려동물</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=11">캠핑</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=12">홈트레이닝</a>
+									</h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="theme?category=13">유아/아동</a>
+									</h4>
+								</div>
+							</div>
+						</div>
+						<!--/category-products-->
+					</div>
 				</div>
-				<!--  카테고리 시작 -->
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="left-sidebar">
-							<h2>카테고리</h2>
-							<div class="panel-group category-products" id="accordian">
-								<!--category-productsr-->
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=0">가구</a>
-										</h4>
+				<div class="col-sm-9 padding-right">
+					<div class="features_items">
+						<!--features_items-->
+						<h4 class="title text-center">Total ${pro_total}개</h4>
+						<br> <br>
+						<c:forEach var="listv" items="${list}">
+							<div class="col-sm-4" id="unit">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="resources/assets/img/store/${listv.pro_thumb}"
+												alt="" style="width: 250px; height: 250px;">
+											<p>
+												<c:set var="days" value="7" />
+												<c:choose>
+													<c:when test="${listv.pro_age le days}">
+														<img src="resources/assets/img/store/new.jpg" alt=""
+															style="width: 26px; height: 13px;">
+													</c:when>
+												</c:choose>
+												[${listv.seller.sel_name}] <img
+													src="resources/assets/img/store/grade${listv.seller.sel_grade}.jpg"
+													alt="" style="width: 12.5px; height: 13px;"><br>
+												${listv.pro_name}....
+											</p>
+											<h2>
+												<del>${listv.pro_price}원</del>
+												&nbsp;&nbsp;<b>${listv.pro_dprice}원&nbsp; </b>(${listv.pro_discount}%
+												할인)
+											</h2>
+											<font size="1" color="#F361A6">리뷰 -
+												${listv.pro_review}개</font>
+										</div>
 									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=1">패브릭</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=2">홈데코/조명</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=3">가전</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=4">수납/정리</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=5">생활</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=6">주방</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=7">생필품</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=8">DIY/공구</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=9">시공/서비스</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=10">반려동물</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=11">캠핑</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=12">홈트레이닝</a>
-										</h4>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a href="theme?category=13">유아/아동</a>
-										</h4>
+									<div class="choose">
+										<ul>
+											<li><a href="#"><i class="fa fa-plus-square"></i>스크랩하기</a></li>
+											<li><a
+												href="detail?pro_num=${listv.pro_num}"><i
+													class="fa fa-plus-square"></i>상품 상세보기</a></li>
+											<li><a href="#"><i class="fa fa-plus-square"></i>이
+													상품이 포함된 집들이보기</a></li>
+										</ul>
 									</div>
 								</div>
 							</div>
-							<!--/category-products-->
-						</div>
+						</c:forEach>
 					</div>
-					<div class="col-sm-9 padding-right">
-						<div class="features_items">
-							<!--features_items-->
-							<h4 class="title text-center">Total ${pro_total}개</h4>
-							<br> <br>
-							<c:forEach var="listv" items="${list}">
-								<div class="col-sm-4">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="resources/assets/img/store/${listv.pro_thumb}"
-													alt="" style="width: 250px; height: 250px;">
-												<p>
-													<c:set var="days" value="7" />
-													<c:choose>
-														<c:when test="${listv.pro_age le days}">
-															<img src="resources/assets/img/store/new.jpg" alt=""
-																style="width: 26px; height: 13px;">
-														</c:when>
-													</c:choose>
-													[${listv.seller.sel_name}] <img
-														src="resources/assets/img/store/grade${listv.seller.sel_grade}.jpg"
-														alt="" style="width: 12.5px; height: 13px;"><br>
-													${listv.pro_name}....
-												</p>
-												<h2>
-													<del>${listv.pro_price}원</del>
-													&nbsp;&nbsp;<b>${listv.pro_dprice}원&nbsp; </b>(${listv.pro_discount}%
-													할인)
-												</h2>
-												<font size="1" color="#F361A6">리뷰 -
-													${listv.pro_review}개</font>
-											</div>
-										</div>
-										<div class="choose">
-											<ul>
-												<li><a href="#"><i class="fa fa-plus-square"></i>스크랩하기</a></li>
-												<li><a
-													href="detail?pro_num=${listv.pro_num}"><i
-														class="fa fa-plus-square"></i>상품 상세보기</a></li>
-												<li><a href="#"><i class="fa fa-plus-square"></i>이
-														상품이 포함된 집들이보기</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<!--features_items-->
-					</div>
+					<!--features_items-->
 				</div>
-		</section>
-	</div>
+			</div>
+		</div>
+	</section>
 	<!-- Back to Top -->
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 	<!-- Bootstrap core JS-->
@@ -465,5 +433,4 @@ input {
 					.replace(/\+/g, " "));
 		}
 	</script>
-</body>
-</html>
+

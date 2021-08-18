@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
+import kr.co.kosmo.mvc.vo.SellerVO;
 
 @Repository
 public class ReviewDao implements ReviewDaoInter { // 이재영
@@ -35,4 +36,10 @@ public class ReviewDao implements ReviewDaoInter { // 이재영
 	public List<Integer> revRecommend(int recommend) {
 		return ss.selectList("review.revRecommend", recommend);
 	}
+	// 상세보기 리뷰탭2
+	@Override
+	public List<ReviewVO> reviewTab(int pro_num) {
+		return ss.selectList("review.reviewTab", pro_num);
+	}
+
 }

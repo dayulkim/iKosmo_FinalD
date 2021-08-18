@@ -49,8 +49,7 @@ public class QuestionController {
 	@PostMapping("/insertQuestion")
 	public String insertReview(QuestionVO quevo, List<MultipartFile> mfile, HttpServletRequest request) {
 		
-		//String writerID = request.getSession().getAttribute("sessionID").toString();
-		String writerID = "test";
+		String writerID = request.getSession().getAttribute("sessionID").toString();
 		System.out.println("작성자ID: "+ writerID);
 		quevo.setMem_id(writerID);
 		
@@ -258,12 +257,28 @@ public class QuestionController {
 	      // 조회된 결과의 total이 0일시 나올 메세지 문구
 	      String msg = "해당 검색의 결과가 없습니다.";
 	      
-	      //String mem_id = request.getSession().getAttribute("sessionID").toString();
-	      QuestionLogVO quelogvo = new QuestionLogVO();
-    	  //quelogvo.setMem_id(mem_id);
-	      quelogvo.setMem_id("test");
-    	  quelogvo.setQue_search(key);
-    	  quelogvo.setType(search);
+	      // 로그인 상태에서 내가 자주 검색한 키워드 추천
+	      if (request.getSession().getAttribute("sessionID")==null) {
+	    	  System.out.println("비로그인 상태입니다.");
+	      } else {
+	    	  
+	      
+	      
+	    	  String mem_id = request.getSession().getAttribute("sessionID").toString();
+		      QuestionLogVO quelogvo = new QuestionLogVO();
+	    	  quelogvo.setMem_id(mem_id);
+	    	  quelogvo.setQue_search(key);
+	    	  quelogvo.setType(search);
+	    	  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
+			  List<String> mkeylist = new ArrayList<>();
+			  			
+			  for(QuestionWordCloudVO e : mklist) {
+				  mkeylist.add(e.getSubject());
+			  }
+			  
+			  mav.addObject("mkeylist",mkeylist );
+
+
     	  
     	// 전체 키워드 추천
 		  List<QuestionWordCloudVO> klist = questionLogServiceInter.suggestkeyword();
@@ -274,23 +289,6 @@ public class QuestionController {
 		  }
 		  
 		  mav.addObject("keylist",keylist );
-		  
-		  // 로그인 상태에서 내가 자주 검색한 키워드 추천
-		  try {
-			  String mem_id = request.getSession().getAttribute("sessionID").toString();
-			  
-			  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
-			  List<String> mkeylist = new ArrayList<>();
-			  			
-			  for(QuestionWordCloudVO e : mklist) {
-				  mkeylist.add(e.getSubject());
-			  }
-			  
-			  mav.addObject("mkeylist",mkeylist );
-			  
-		  } catch (Exception e) {
-			System.out.println("비로그인 상태입니다.");
-		  }
 		  
 		  if (key == null) {
 			  int total = questionServiceInter.totalQuestionList();
@@ -348,6 +346,7 @@ public class QuestionController {
 	      mav.addObject("search", search);
 	      mav.addObject("imgList", imgList);
 	      mav.setViewName("question/questionList");
+	      }
 	      return mav;
 	   }
 	
