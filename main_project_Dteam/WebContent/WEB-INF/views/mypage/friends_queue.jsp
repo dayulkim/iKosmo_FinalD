@@ -25,7 +25,7 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="resources/uploadFile/profile/${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
                     <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
@@ -70,7 +70,7 @@
 					<c:forEach var="list" items="${frilist}">
 					<div class="card text-center border-0 shadow m-3" style="width: 28%">
 					  <div class="card-body">
-					    <img class="d-inline-block rounded-circle mb-3" width="96" src="${list.memvo.mem_profile}" alt="${list.memvo.mem_id}"/>
+					    <img class="d-inline-block rounded-circle mb-3" width="96" src="resources/uploadFile/profile/${list.memvo.mem_profile}" alt="${list.memvo.mem_id}"/>
 					    <h6 class="pt-1 mb-1">${list.memvo.mem_name}</h6>
 					    <p class="fs-sm text-muted">${list.memvo.mem_nickname}</p>
 					    <ul class="fs-sm list-unstyled mb-4">
@@ -88,44 +88,6 @@
 					  </div>
 					</div>
 					</c:forEach>
-					<!-- 친구 신청 회원 -->
-					<div class="card text-center border-0 shadow m-3" style="width: 28%">
-					  <div class="card-body">
-					    <img class="d-inline-block rounded-circle mb-3" width="96" src="resources/uploadFile/profile/iu.jpg" alt="Richard Williams"/>
-					    <h6 class="pt-1 mb-1">이지은</h6>
-					    <p class="fs-sm text-muted">내추럴, 빈티지&레트로</p>
-					    <ul class="fs-sm list-unstyled mb-4">
-					      <li class="mb-0">
-					        <i class="fas fa-home"></i>
-					        <a class="nav-link-style" href="tel:00331697720">서울특별시 노원구</a>
-					      </li>
-					      <li class="mb-0">
-					        <i class="fas fa-user-friends"></i>
-					        <a class="nav-link-style" href="mailto:r.williams@example.com">싱글라이프</a>
-					      </li>
-					    </ul>
-					    <button type="button" class="btn btn-success btn-shadow rounded-pill">수락하기</button>
-					  </div>
-					</div>
-					<!-- 친구 신청 회원 -->
-					<div class="card text-center border-0 shadow m-3" style="width: 28%">
-					  <div class="card-body">
-					    <img class="d-inline-block rounded-circle mb-3" width="96" src="resources/uploadFile/profile/iu.jpg" alt="Richard Williams"/>
-					    <h6 class="pt-1 mb-1">이지은</h6>
-					    <p class="fs-sm text-muted">내추럴, 빈티지&레트로</p>
-					    <ul class="fs-sm list-unstyled mb-4">
-					      <li class="mb-0">
-					        <i class="fas fa-home"></i>
-					        <a class="nav-link-style" href="tel:00331697720">서울특별시 노원구</a>
-					      </li>
-					      <li class="mb-0">
-					        <i class="fas fa-user-friends"></i>
-					        <a class="nav-link-style" href="mailto:r.williams@example.com">싱글라이프</a>
-					      </li>
-					    </ul>
-					    <button type="button" class="btn btn-success btn-shadow rounded-pill">수락하기</button>
-					  </div>
-					</div>
 					
 				</div>
          	</section>

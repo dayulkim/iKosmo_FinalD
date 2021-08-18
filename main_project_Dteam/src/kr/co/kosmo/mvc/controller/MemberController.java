@@ -133,10 +133,9 @@ public class MemberController {
 
 	@RequestMapping(value = "cart")
 	public String cart2(HttpSession session, Model m) {
-//		System.out.println("cart ¿Ãµø");
-//		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-//		List<CartVO> list = cartDaoInter.getlist(mem_num);
-//		m.addAttribute("clist",list);
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		List<CartVO> list = cartDaoInter.getlist(mem_num);
+		m.addAttribute("clist",list);
 		return "mypage/cart";
 	}
 

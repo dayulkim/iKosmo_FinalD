@@ -37,7 +37,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 .tabs li {
 	list-style-type: none;
 	display: inline-block;
@@ -46,28 +45,23 @@
 	color: #fff;
 	cursor: pointer;
 }
-
 .tabs li:hover {
 	color: #fff;
 	background: #5294de;
 }
-
 .tabs li.active {
 	color: #fff;
 	background: #5294de;
 }
-
 .panel {
 	display: none;
 	background: #fff;
 	border: 1px solid #c7c7c7;
 	padding: 30px;
 }
-
 .panel.active {
 	display: block;
 }
-
 #unit {
 float:left;
 }
@@ -83,43 +77,36 @@ float:left;
 	<br>
 	<br>
 	<!-- Product Detail Start -->
-	<div class="product-detail">
-		<div class="container-fluid">
+	<div class="product-detail" style="margin-left: auto; margin-right: auto;">
+		<div class="container-fluid" style="margin-left: auto; margin-right: auto;">
 			<div class="row">
-				<div class="col-lg-8">
+				<div class="col-lg-8" style="margin-left: auto; margin-right: auto;">
 					<div class="product-detail-top">
-						<div class="row align-items-center">
-							<div class="col-md-5">
+						<div class="row">
+							<div style="width:50%">
 								<div class="product-slider-single normal-slider">
-									<img src="resources/assets/img/store/${provo.pro_thumb}"
+									<img src="${provo.pro_thumb}"
 										alt="Product Image">
 									<c:forEach var="i" items="${plist}">
-										<img src="resources/assets/img/store/${i}" alt="Product Image">
+										<img src="${i}" alt="Product Image">
 									</c:forEach>
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
-										<img src="resources/assets/img/store/${provo.pro_thumb}"
+										<img src="${provo.pro_thumb}"
 											alt="Product Image">
 									</div>
 									<c:forEach var="i" items="${plist}">
 										<div class="slider-nav-img">
-											<img src="resources/assets/img/store/${i}"
+											<img src="${i}"
 												alt="Product Image">
 										</div>
 									</c:forEach>
 
 								</div>
 							</div>
-							<div class="col-md-7"
-								style="line-height: 200%; color: #747474; font-size: 5px">
-								<div class="product-content">
+								<div class="product-content" style="padding: 0; width:50%; padding-left: 2rem;">
 									<div class="title">
-										<div>
-											<a href="wishlist.html" class="btn wishlist"> <i
-												class="fa fa-heart"></i>
-											</a>
-										</div>
 										<br>
 										<c:set var="num0" value="0" />
 										<c:set var="num1" value="1" />
@@ -181,7 +168,7 @@ float:left;
 										</c:choose>
 
 									</div>
-									<div class="price">${provo.pro_name}</div>
+									<h3>${provo.pro_name}</h3>
 									<div id="star_result">
 										<c:forEach var="i" begin="1" end="5" step="1">
 											<c:choose>
@@ -212,22 +199,22 @@ float:left;
 										수량:&nbsp;
 										<div class="qty">
 											<button class="btn-minus">
-												&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-minus"></i>
+												&nbsp;<i class="fa fa-minus"></i>
 											</button>
-											<input type="text" value="1">
+											<input id="ord_qty" name="ord_qty" type="text" value="1">
 											<button class="btn-plus">
-												&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i>
+												&nbsp;<i class="fa fa-plus"></i>
 											</button>
 										</div>
 									</div>
 									<br>
 									<div class="action">
-										<a class="btn" href="#"><i class="fa fa-shopping-cart"></i>장바구니에
-											담기</a> <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>즉시
-											구매</a>
+										<button type="button" class="btn btn-outline-info"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;장바구니</button>
+										<button type="button" id="confirmbtn" class="btn btn-outline-info"><i class="fa fa-shopping-bag"></i>&nbsp;&nbsp;즉시 구매</button>
+										<input type="hidden" id="pro_num" value="${provo.pro_num}">
+										<button type="button" class="btn btn-outline-info"><i class="fas fa-bookmark"></i>&nbsp;&nbsp;스크랩</button>
 									</div>
 								</div>
-							</div>
 						</div>
 					</div>
 
@@ -236,18 +223,19 @@ float:left;
 			</div>
 
 			<!-- 탭 시작 -->
-			<div id="product" style="width: 55%">
+			<div id="product" style="width: 70%; margin-left: auto; margin-right: auto;">
 				<div id="contents">
 					<ul class="tabs">
 						<li class="active" data-panel="panel1">상품정보</li>
 						<li data-panel="panel2">리뷰</li>
-						<li data-panel="panel3">문의</li>
+						<li data-panel="panel3" id="sellertab">문의</li>
 						<li data-panel="panel4">배송/환불</li>
 						<li data-panel="panel5">추천상품</li>
 					</ul>
 					<div id="panel1" class="panel active">
-						상품정보 이미지 <br /> <img src="${provo.pro_detail }" alt="상세 이미지"
-							width="50%" height="50%" align="top" border="0"> <br />
+						<c:forEach var="i" items="${dlist}">
+								<img src="${i}"	alt="상세 이미지" style="margin-left: auto; margin-right: auto;"><br/>
+						</c:forEach>
 					</div>
 					<div id="panel2" class="panel">
                         <div style="width: 90px" align="right">
@@ -294,19 +282,23 @@ float:left;
 </div>
 
 					<div id="panel3" class="panel">
-						<h5 align="center">Contact Details...</h5>
+						<h5 align="left">Contact Details...</h5>
 						<hr>
-						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-child" style="color: #F15F5F"></i></div><div>our company<br><font color="#000000">${selvo.sel_name}</font></div><hr style="width: 400px" size="11px"> 
-						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-phone" style="color: #F15F5F"></i></div><div>call us<br><font color="#000000">${selvo.sel_tel}</font></div><hr style="width: 400px" size="11px">
-						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-envelope" style="color: #F15F5F"></i></div><div>email us<br><font color="#000000">hotline@gmail.com</font></div><hr style="width: 400px" size="11px">
-						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-microchip" style="color: #F15F5F"></i></div><div>our grade<br><font color="#000000">${selvo.sel_grade}&nbsp;등급</font></div><hr style="width: 400px" size="11px">
-						<div id="unit" style="margin-top: 8px; margin-right: 12px; margin-left: 12px"><i class="fa fa-map-marker" style="color: #F15F5F"></i></div><div>find us<br><font color="#000000">${selvo.sel_addr}</font></div>
-						<input
-							type="hidden" id="selname" value="${selvo.sel_name}"> 
-							<input
-							type="hidden" id="addr" value="${selvo.sel_addr}">
-						<div id="map" style="width: 500px; height: 400px;"></div><hr style="width: 400px" size="11px">
-						<br>
+						<div class="row">
+							<div  class="col-5">
+								<div id="unit"><i class="fa fa-child" style="color: #F15F5F"></i></div><div>&nbsp;&nbsp;our company<br><font color="#000000">${selvo.sel_name}</font></div><hr style="width: 400px" size="11px"> 
+								<div id="unit"><i class="fa fa-phone" style="color: #F15F5F"></i></div><div>&nbsp;&nbsp;call us<br><font color="#000000">${selvo.sel_tel}</font></div><hr style="width: 400px" size="11px">
+								<div id="unit"><i class="fa fa-envelope" style="color: #F15F5F"></i></div><div>&nbsp;&nbsp;email us<br><font color="#000000">hotline@gmail.com</font></div><hr style="width: 400px" size="11px">
+								<div id="unit"><i class="fa fa-microchip" style="color: #F15F5F"></i></div><div>&nbsp;&nbsp;our grade<br><font color="#000000">${selvo.sel_grade}&nbsp;등급</font></div><hr style="width: 400px" size="11px">
+								<div id="unit"><i class="fa fa-map-marker" style="color: #F15F5F"></i></div><div>&nbsp;&nbsp;find us<br><font color="#000000">${selvo.sel_addr}</font></div><br>
+								<input type="hidden" id="selname" value="${selvo.sel_name}"> 
+								<input type="hidden" id="addr" value="${selvo.sel_addr}">
+							</div>
+							<div class="col-5">
+								<div id="map" style="width: 500px; height: 400px; margin-top: 1rem; margin-left: 1rem;"></div><hr style="width: 400px" size="11px">
+							</div>
+						</div>
+						
 					</div>
 					<div id="panel4" class="panel">
 						<h6>배송 및 환불에 관한 사항</h6>
@@ -329,31 +321,6 @@ float:left;
 						</table>
 
 					</div>
-					<!--<div id="panel5" class="panel">
-						<div class="footer">
-							<ul class="items">
-								<li><a href="product.html"> <img
-										src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-											68,930원 &nbsp 15% OFF</span> 시어서커 차렵이불 줄누비 여름이불 블루
-								</a></li>
-								<li><a href="product.html"> <img
-										src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-											68,930원 &nbsp 15% OFF</span> 다이아 고밀도 60수 순면 슈퍼싱글 퀸 차렵이불세트
-								</a></li>
-								<li><a href="product.html"> <img
-										src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-											68,930원 &nbsp 15% OFF</span> 대나무 뱀부 시어서커 차렵 사계절침구
-								</a></li>
-								<li><a href="product.html"> <img
-										src="resources/product/images/s.jpg" alt="Img"> <span><del>81,100원</del>&nbsp;
-											68,930원 &nbsp 15% OFF</span> 해미 시어서커 리플 여름이불 그레이
-								</a></li>
-							</ul>
-						</div>
-					</div>
-
-				</div>
-			</div>
 			<!-- 탭 끝 -->
 		</div>
 	</div>
@@ -374,7 +341,6 @@ float:left;
 	<script type="text/javascript">
 		// 연아님 담당 Detail
 		$(document).ready(function() {
-
 			$(".tabs li").on("click", function(e) {
 				var $contents = $(this).closest("#contents");
 				$contents.find(".tabs li.active").removeClass("active");
@@ -385,9 +351,7 @@ float:left;
 				$("#" + panelToShow).show();
 				$("#" + panelToShow).addClass("active");
 			});
-
 		});
-
 		// 재영님 담당 Review
 		function test() {
 			let sort = $('#sortType1').val();
@@ -396,55 +360,73 @@ float:left;
 							+ " #testcenter", function() {
 						$("#sortType1").val(sort);
 					});
-
 		};
+		
+		// 신규철 : 즉시구매 버튼을 눌렀을 때 결제하기 페이지로 넘어가도록 함
+		      
+	      $('#confirmbtn').click(function(){
+	         var ord_qty = $('#ord_qty').val();
+	         var pro_num = $('#pro_num').val();
+	         location.href = "confirm?fromCart=0&pro_num="+pro_num+"&ord_qty="+ord_qty;
+	      });
+      
+		
+		
 	</script>
 	<!-- kakaomap api -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
 	<script>
-		// 세연님 담당 카카오지도 API
-		var container = document.getElementById('map'); //지도 표시 div
+   $('#sellertab').on("click", function(){
+      var container = document.getElementById('map'); //지도 표시 div
+      $('#map').attr('style','width:500px; height:350px; display:block;');
+      var options = {
+         center : new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
+         level : 3
+      //지도의 확대 레벨
+      };
 
-		var options = {
-			center : new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
-			level : 3
-		//지도의 확대 레벨
-		};
+      var map = new kakao.maps.Map(container, options);
 
-		var map = new kakao.maps.Map(container, options);
+      var geocoder = new kakao.maps.services.Geocoder();
 
-		var geocoder = new kakao.maps.services.Geocoder();
+      var addr = document.getElementById('addr').value;
+      console.log("addr : "+addr)
+      var selname = document.getElementById('selname').value;
 
-		var addr = document.getElementById('addr').value;
-		var selname = document.getElementById('selname').value;
+      geocoder
+            .addressSearch(
+                  addr,
+                  function(result, status) {
+                     // 정상적으로 검색이 완료됐으면 
+                     if (status === kakao.maps.services.Status.OK) {
 
-		geocoder
-				.addressSearch(
-						addr,
-						function(result, status) {
-							// 정상적으로 검색이 완료됐으면 
-							if (status === kakao.maps.services.Status.OK) {
+                        var coords = new kakao.maps.LatLng(result[0].y,
+                              result[0].x);
 
-								var coords = new kakao.maps.LatLng(result[0].y,
-										result[0].x);
+                        // 결과값으로 받은 위치를 마커로 표시
+                        var marker = new kakao.maps.Marker({
+                           map : map,
+                           position : coords
+                        });
 
-								// 결과값으로 받은 위치를 마커로 표시
-								var marker = new kakao.maps.Marker({
-									map : map,
-									position : coords
-								});
+                        // 인포윈도우로 장소에 대한 설명을 표시              
+                        var infowindow = new kakao.maps.InfoWindow(
+                              {
+                                 content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
+                                       + selname + '</div>',
+                                 disableAutoPan: true
+                              });
+                        infowindow.open(map, marker);
 
-								// 인포윈도우로 장소에 대한 설명을 표시		        
-								var infowindow = new kakao.maps.InfoWindow(
-										{
-											content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
-													+ selname + '</div>'
-										});
-								infowindow.open(map, marker);
+                        // 지도의 중심을 결과값으로 받은 위치로 이동
+                        var markerPosition = marker.getPosition(); 
+                        map.relayout(); 
+                        map.setCenter(markerPosition);
+                        
+                        
+                     }
+                  });
+   });
 
-								// 지도의 중심을 결과값으로 받은 위치로 이동
-								map.setCenter(coords);
-							}
-						});
-	</script>
+   </script>
