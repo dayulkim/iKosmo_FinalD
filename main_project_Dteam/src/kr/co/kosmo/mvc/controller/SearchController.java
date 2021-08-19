@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ public class SearchController {
 	private SearchServiceInter service;
 	
 	@RequestMapping("/srchRes")
-	public ModelAndView getSrchList(String key) throws UnsupportedEncodingException {
+	public ModelAndView getSrchList(String key, HttpSession session, HttpServletRequest request) throws UnsupportedEncodingException {
 		ModelAndView mav = new ModelAndView();
 		//각각의 검색결과를 vo객체에 담는다.
 		List<ProductVO> proList = service.srchResProList(key);

@@ -33,7 +33,7 @@
             					<c:forEach var="slogvo" items="${top10Search }" varStatus="i">
             						<tr style="vertical-align: middle;">
             							<td style="width: 25%"><em>${i.count }</em></td>
-            							<td style="width: 75%" onclick="location.href='search?search=${slogvo.slog_word }'">${slogvo.slog_word }</td>
+            							<td style="width: 75%" onclick="location.href='srchRes?key=${slogvo.slog_word }'">${slogvo.slog_word }</td>
             						</tr>
             					</c:forEach>
             				</tbody>

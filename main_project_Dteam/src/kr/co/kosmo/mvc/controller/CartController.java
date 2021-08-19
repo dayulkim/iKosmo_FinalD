@@ -43,13 +43,14 @@ public class CartController {
 	
 	// 장바구니 물건 삭제
 	@RequestMapping(value="/delcart")
+	@ResponseBody
 	public String delcart(HttpSession session, int car_num) {
 		CartVO vo = new CartVO();
 		int mem_num = (int) session.getAttribute("sessionNum");
 		vo.setMem_num(mem_num);
 		vo.setCar_num(car_num);
 		cartDaoInter.delcart(vo);
-		return "redirect:/cartform";
+		return "success";
 	}
 	
 }

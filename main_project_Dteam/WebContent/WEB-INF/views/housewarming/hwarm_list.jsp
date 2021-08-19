@@ -36,8 +36,13 @@ select {
 
          <li><select id="hou_type" name="hou_type">
                <option value="0" hidden>주거형태</option>
-               <option value="1">원룸</option>
-               <option value="2">투룸</option>
+               <option value="1">아파트</option>
+               <option value="2">원룸&오피스텔</option>
+			   <option value="3">빌라&연립</option>
+			   <option value="4">단독주택</option>
+			   <option value="5">사무공간</option>
+			   <option value="6">상업공간</option>
+			   <option value="7">기타</option>
          </select></li>
 
          <li><select id="hou_space" name="hou_space">
@@ -69,16 +74,17 @@ select {
 
          <li><select id="hou_style" name=hou_style>
                <option value="0" hidden>스타일</option>
-               <option value="1">모던</option>
-               <option value="2">미니멀&심플</option>
-               <option value="3">내추럴&북유럽</option>
+               <option value="1">내추럴</option>
+               <option value="2">모던</option>
+               <option value="3">미니멀&심플</option>
                <option value="4">빈티지&레트로</option>
-               <option value="5">클래식&앤틱</option>
-               <option value="6">프렌치&프로방스</option>
+               <option value="5">북유럽</option>
+               <option value="6">유니크&믹스매치</option>
                <option value="7">러블리&로맨틱</option>
-               <option value="8">인더스트리얼</option>
-               <option value="9">한국&아시아</option>
-               <option value="10">유니크&믹스매치</option>
+               <option value="8">클래식&앤틱</option>
+               <option value="9">프렌치&프로방스</option>
+               <option value="10">한국&아시아</option>
+               <option value="11">인더스트리얼</option>
          </select></li>
 
          <li><select id="hou_tone" name="hou_tone" onchange='change_background_color(this);'>
@@ -111,13 +117,13 @@ select {
       <div class="row" style="margin-top: 4rem;">
          <c:forEach var="listv" items="${list}">
             <div class="col-md-3" style="padding: 1rem;">
-				<div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;  border-radius: 1rem;">
+				<div style="position: relative; width: 100%; padding-bottom: 70%; overflow: hidden;  ">
                   <a href="hwarm_detail?hou_num=${listv.hou_num}"> <!-- 이미지 클릭시 이동할 상세보기 주소 -->
-                     <img src="resources/uploadFile/hwarm/${listv.hou_thumb}" style="position: absolute; width:100%;">
+                     <img src="${listv.hou_thumb}" style="position: absolute; width:100%; border-radius: 1rem;">
                   </a>
                  </div>
                  <h5 style="margin-top: 1rem;">
-                    <a> ${listv.hou_name} </a>
+                    <a href="hwarm_detail?hou_num=${listv.hou_num}" style="color: #2c2f33;"> ${listv.hou_name} </a>
                  </h5>
                  <span><img class="main-hwarm-img" src="resources/uploadFile/profile/${listv.memvo.mem_profile}"></span>
                  <span class="main-caption-price">${listv.memvo.mem_nickname}</span>

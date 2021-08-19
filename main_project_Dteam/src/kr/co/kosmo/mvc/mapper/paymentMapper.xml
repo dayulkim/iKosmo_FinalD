@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment">
+
+	<!-- 카트에 담긴 상품정보 받아오기 -->
+	<resultMap type="cvo" id="cartResultMap">
+		<result property="pro_num" column="pro_num"/>
+		<result property="car_qty" column="car_qty"/>
+		<association property="productVO" javaType="provo">
+			<id property="pro_num" column="pro_num"/>
+			<result property="pro_name" column="pro_name"/>
+			<result property="pro_price" column="pro_price"/>
+			<result property="pro_thumb" column="pro_thumb"/>
+		</association>
+	</resultMap>
+	<select id="selectCart" parameterType="int" resultMap="cartResultMap">
+		select p.pro_name, p.pro_price, p.pro_thumb, c.pro_num, c.car_qty
+      	from product p, cart c 
+      	where p.pro_num = c.pro_num
+        and c.mem_num = #{mem_num}
+	</select>
+
+	<!-- 즉시구매 시에 상품번호를 기준으로 ProductVO 받아오기 -->
+   <select id="detailConfirm" parameterType="int"
+      resultType="provo">
+      select pro_name, pro_price, pro_thumb
+      from product
+      where
+      pro_num = #{pro_num}
+   </select>
+
+   <select id="memberInfo" parameterType="int" resultType="memvo">
+      select
+      mem_name, mem_tel, mem_addr
+      from member
+      where mem_num = #{mem_num}
+   </select>
+
+   <delete id="deleteCart" parameterType="int">
+      delete from cart where mem_num = #{mem_num}
+   </delete>
+
+   <insert id="insertPurchase" parameterType="purvo">
+      insert into purchase values (purchase_seq.nextVal, #{mem_num}, sysdate, #{rec_name},
+      #{rec_tel}, #{rec_addr}, #{rec_card}, #{rec_cardnum})
+   </insert>
+
+   <insert id="insertOrdList" parameterType="cvo">
+      <selectKey keyProperty="pur_num" resultType="int"
+         order="BEFORE">
+         select purchase_seq.currVal from dual
+      </selectKey>
+      <foreach collection="list" item="cvo" separator=" " index="idx"
+			open="insert all" close="select * from dual">
+			into orderlist values 
+			(${cvo.pro_num}, ${cvo.car_qty}, 
+			${cvo.mem_num}, #{pur_num}, sysdate)
+		</foreach>
+   </insert>
+
+</mapper>
+   

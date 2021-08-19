@@ -69,12 +69,20 @@
 				<div class="accordion" id="accordionExample">
 				
 				  <!-- Item -->
-				  <c:forEach var="purvo" items="${pchvo }">
+				  <c:forEach var="purvo" items="${pchvo }" varStatus="i">
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingOne">
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">구매내역 # ${purvo.pur_date }</button>
+				    	<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">구매내역 # ${purvo.pur_date }</button>
 				    </h2>
-				    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				    <!-- 가장 최근에 구매한 상품의 상세내역만 보이도록 조건 설정 -->
+			    	<c:choose>
+				    	<c:when test="${i.count == 1 }">
+				      		<div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				      	</c:when>
+				      	<c:otherwise>
+			    			<div class="accordion-collapse collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+			    		</c:otherwise>
+			    	</c:choose>
 				      <div class="accordion-body">
 				         
 					    	<!-- Item-->
@@ -83,7 +91,7 @@
 				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${ordvo.productVO.pro_thumb }" alt="Product"></a>
 				                <div class="pt-2">
 				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html"></a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2 commaPrice">가격: ${ordvo.productVO.pro_dprice }</span></div>
+				                  <div class="fs-sm"><span class="text-muted me-2 commaPrice">가격: ${ordvo.productVO.pro_dprice }원</span></div>
 				                  <div class="fs-sm"><span class="text-muted me-2">수량: ${ordvo.ord_qty }개</span></div>
 				                  <div class="fs-lg text-accent pt-2 commaPrice">${ordvo.productVO.pro_dprice * ordvo.ord_qty }원</div>
 				                </div>
@@ -119,4 +127,5 @@
         var price = $(this).text()
         $(this).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));   
      });
-</script>
+	</script>
+

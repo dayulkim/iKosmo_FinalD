@@ -206,6 +206,9 @@ public class ProductController { // 김다율
 		// 사진 리스트 불러오기
 		String[] plist = provo.getPro_photo().split(",");
 		m.addAttribute("plist", plist);
+		// 상세정보 사진 리스트 불러오기
+		String[] dlist = provo.getPro_detail().split(",");
+		m.addAttribute("dlist", dlist);
 		// 리뷰 평점 불러오기
 		long st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);

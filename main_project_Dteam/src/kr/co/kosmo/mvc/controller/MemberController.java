@@ -27,8 +27,6 @@ import kr.co.kosmo.mvc.service.ReviewServiceInter;
 import kr.co.kosmo.mvc.vo.CartVO;
 import kr.co.kosmo.mvc.vo.FriendsVO;
 import kr.co.kosmo.mvc.vo.MemberVO;
-import kr.co.kosmo.mvc.vo.OrderListVO;
-import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.PurchaseVO;
 import kr.co.kosmo.mvc.vo.QuestionVO;
 import kr.co.kosmo.mvc.vo.ReviewVO;
@@ -134,10 +132,9 @@ public class MemberController {
 
 	@RequestMapping(value = "cart")
 	public String cart2(HttpSession session, Model m) {
-//		System.out.println("cart ¿Ãµø");
-//		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-//		List<CartVO> list = cartDaoInter.getlist(mem_num);
-//		m.addAttribute("clist",list);
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		List<CartVO> list = cartDaoInter.getlist(mem_num);
+		m.addAttribute("clist",list);
 		return "mypage/cart";
 	}
 

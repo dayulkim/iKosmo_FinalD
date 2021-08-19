@@ -9,6 +9,7 @@
 		c.pro_thumb 
 		from purchase a, orderlist b, product c 
 		where a.pur_num=b.pur_num and b.pro_num = c.pro_num and b.mem_num=#{mem_num}
+		order by a.pur_date desc
 	</select>
 	
 	<resultMap type="purvo" id="PurOrderMap">

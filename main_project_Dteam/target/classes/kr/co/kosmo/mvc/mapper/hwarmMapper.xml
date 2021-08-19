@@ -72,7 +72,7 @@
 	<select id="filter" resultMap="houvo" parameterType="hashmap">
 		select h.hou_num, h.hou_name, h.hou_thumb, h.hou_type, h.hou_space, h.hou_how,
 		h.hou_sector,
-		h.hou_style, h.hou_period, h.hou_pay, h.hou_tone, hou_rdate,
+		h.hou_style, h.hou_period, h.hou_pay, h.hou_tone, hou_rdate, hou_scrap,
 		h.hou_hit, m.mem_num, m.mem_nickname, m.mem_profile
 		from housewarming h, member m
 		<where>
