@@ -15,6 +15,9 @@ public interface QuestionServiceInter {
 	
 	public void addQuestion(QuestionVO quevo);
 	
+	public int totalMyAnswer(String ans_id);
+	public List<AnswerVO> MyAnswerList(PageVO pvo);
+	
 	public int totalQuestionList();
 	public int totalMyQuestionList(String mem_id);
 	

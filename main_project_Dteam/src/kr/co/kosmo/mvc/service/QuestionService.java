@@ -28,6 +28,15 @@ public class QuestionService implements QuestionServiceInter{
 	public void addQuestion(QuestionVO quevo) {
 		questionDao.addQuestion(quevo);
 	}
+	
+	@Override
+	public List<AnswerVO> MyAnswerList(PageVO pvo) {
+		return questionDao.MyAnswerList(pvo);
+	}
+	@Override
+	public int totalMyAnswer(String ans_id) {
+		return questionDao.totalMyAnswer(ans_id);
+	}
 
 	@Override
 	public int totalQuestionList() {

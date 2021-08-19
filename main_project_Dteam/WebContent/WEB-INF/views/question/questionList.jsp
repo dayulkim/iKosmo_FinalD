@@ -253,7 +253,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="i" items="${mkeylist}">
-								<a href="questionSearch?key=${i }">#${i }</a> &nbsp;
+								<a href="questionList?key=${i }">#${i }</a> &nbsp;
 							</c:forEach>	
 						</c:otherwise>
 					</c:choose>
@@ -303,10 +303,10 @@
 						<tr>
 							<th>
 								<p style="margin: 0;">공간</p><br>
-								<a href="questionSearch?key=단독주택">#단독주택</a> &nbsp; 
-								<a href="questionSearch?key=아파트">#아파트</a> <br>
-								<a href="questionSearch?key=상가">#상가</a> &nbsp; 
-								<a href="questionSearch?key=원룸">#원룸 </a> &nbsp;
+								<a href="questionList?key=단독주택">#단독주택</a> &nbsp; 
+								<a href="questionList?key=아파트">#아파트</a> <br>
+								<a href="questionList?key=상가">#상가</a> &nbsp; 
+								<a href="questionList?key=원룸">#원룸 </a> &nbsp;
 								<hr>
 							</th>
 						</tr>
@@ -322,13 +322,6 @@
 						
 						<div style="padding-bottom: 50px; padding-top: 20px;">
 						<c:choose>
-								<c:when test="${type eq 1}">
-									<select id="searching2" name="sort" onchange="keysort()">
-										<option value="">정렬</option>
-										<option value="0">최신순</option>
-										<option value="1">조회수순</option>
-									</select>&nbsp;
-								</c:when>
 								<c:when test="${type eq 2}">
 									<select id="searching3" name="sort" onchange="anssort()">
 										<option value="">정렬</option>
@@ -337,7 +330,7 @@
 									</select>&nbsp;
 								</c:when>
 								<c:otherwise>
-									<select id="searching1" name="sort" onchange="sort()">
+									<select id="searching2" name="sort" onchange="keysort()">
 										<option value="">정렬</option>
 										<option value="0">최신순</option>
 										<option value="1">조회수순</option>
@@ -565,13 +558,11 @@
 	    url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { params[k] = v; });
 	    let klist = Object.keys(params);
 		let vlist = Object.values(params);
-		for(var i = 0; i< klist.length; i++){
-			console.log(vlist[i] + ":" + klist[i])
-		}
-		if(vlist[0] == null){
-			window.location.href = "questionList?sort="+ sort;
+		
+		if(klist[0] == "key"){
+			window.location.href = "questionList?key=" + vlist[0] + "&" + sortv;
 		}else{
-			window.location.href = "questionList?key=" + vlist[0] + sortv;
+			window.location.href = "questionList?" + sortv;
 		}
   }
   
