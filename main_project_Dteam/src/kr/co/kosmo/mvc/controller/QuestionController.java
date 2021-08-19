@@ -128,8 +128,7 @@ public class QuestionController {
 		
 	      ModelAndView mav = new ModelAndView();
 	      List<QuestionVO> list ;
-	      //String searchType = request.getSession().getAttribute("sessionID").toString();
-	      String searchType = "test";
+	      String searchType = request.getSession().getAttribute("sessionID").toString();
 	      int total = questionServiceInter.totalMyQuestionList(searchType);
 		  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
 		  
@@ -202,8 +201,7 @@ public class QuestionController {
 		int que_num = Integer.parseInt(request.getParameter("que_num"));
 		
 		ansvo.setQue_num(que_num);
-		//ansvo.setAns_id(request.getParameter("sessionID"));
-		ansvo.setAns_id("test");
+		ansvo.setAns_id(request.getParameter("sessionID"));
 		ansvo.setAns_content(request.getParameter("content"));
 		
 		// 梅何颇老 贸府 ===========================================================================
@@ -481,5 +479,8 @@ public class QuestionController {
 				
 			return json;
 	}
+
+	
+	
 
 }
