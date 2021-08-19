@@ -1,0 +1,12 @@
+a.que_keyword {
+	color: #373f50 !important ;
+	text-decoration: none;
+}
+
+a.que_keyword:hover {
+	color: #006666 !important ;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+  
