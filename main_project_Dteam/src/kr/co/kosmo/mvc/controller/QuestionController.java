@@ -128,8 +128,7 @@ public class QuestionController {
 		
 	      ModelAndView mav = new ModelAndView();
 	      List<QuestionVO> list ;
-	      //String searchType = request.getSession().getAttribute("sessionID").toString();
-	      String searchType = "test";
+	      String searchType = request.getSession().getAttribute("sessionID").toString();
 	      int total = questionServiceInter.totalMyQuestionList(searchType);
 		  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
 		  
@@ -150,7 +149,7 @@ public class QuestionController {
 	      // ¸ðµ¨¿¡ PageVO °´Ã¼¿Í ¸®½ºÆ® °´Ã¼ ´ã±â
 	      mav.addObject("list", list);
 	      mav.addObject("imgList", imgList);
-	      mav.setViewName("question/questionList");
+	      mav.setViewName("question/mypage");
 	      return mav;
 	   }
 	
@@ -202,8 +201,7 @@ public class QuestionController {
 		int que_num = Integer.parseInt(request.getParameter("que_num"));
 		
 		ansvo.setQue_num(que_num);
-		//ansvo.setAns_id(request.getParameter("sessionID"));
-		ansvo.setAns_id("test");
+		ansvo.setAns_id(request.getParameter("sessionID"));
 		ansvo.setAns_content(request.getParameter("content"));
 		
 		// Ã·ºÎÆÄÀÏ Ã³¸® ===========================================================================
@@ -345,7 +343,7 @@ public class QuestionController {
 	      mav.addObject("key",key);
 	      mav.addObject("search", search);
 	      mav.addObject("imgList", imgList);
-	      mav.setViewName("question/questionList");
+	      mav.setViewName("question/mypage");
 	      }
 	      return mav;
 	   }
@@ -463,7 +461,7 @@ public class QuestionController {
 	      mav.addObject("type", 2);
 	      // ¸ðµ¨¿¡ PageVO °´Ã¼¿Í ¸®½ºÆ® °´Ã¼ ´ã±â
 	      mav.addObject("imgList", imgList);
-	      mav.setViewName("question/questionList");
+	      mav.setViewName("question/mypage");
 	      return mav;
 	   }
 	

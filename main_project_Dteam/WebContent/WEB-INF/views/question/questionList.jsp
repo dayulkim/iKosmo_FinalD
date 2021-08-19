@@ -322,13 +322,6 @@
 						
 						<div style="padding-bottom: 50px; padding-top: 20px;">
 						<c:choose>
-								<c:when test="${type eq 1}">
-									<select id="searching2" name="sort" onchange="keysort()">
-										<option value="">정렬</option>
-										<option value="0">최신순</option>
-										<option value="1">조회수순</option>
-									</select>&nbsp;
-								</c:when>
 								<c:when test="${type eq 2}">
 									<select id="searching3" name="sort" onchange="anssort()">
 										<option value="">정렬</option>
@@ -337,7 +330,7 @@
 									</select>&nbsp;
 								</c:when>
 								<c:otherwise>
-									<select id="searching1" name="sort" onchange="sort()">
+									<select id="searching2" name="sort" onchange="keysort()">
 										<option value="">정렬</option>
 										<option value="0">최신순</option>
 										<option value="1">조회수순</option>
