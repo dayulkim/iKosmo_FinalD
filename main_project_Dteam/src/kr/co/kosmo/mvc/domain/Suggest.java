@@ -95,15 +95,15 @@ public class Suggest {
 			System.out.println("::::::::::::::::::::::::::::여기는 일단 한번만 작동::::::::::::::::::::::::::::::::::");
 			num = titleList.size();
 		}
-		List<String> sugList = new ArrayList<String>();
-		Set<String> setList = new HashSet<String>();
+		List<String> sugList = new ArrayList<>();
+		Set<String> setList = new HashSet<>();
 		List<Element> list = root.getChildren("keyword");
 
 		Iterator<Element> it = list.iterator();
 		key = key.toLowerCase();
 		while (it.hasNext()) {
 			String result = it.next().getText();
-			System.out.println("keyword 문자열:" + result);
+			
 			String compare = result.toLowerCase();
 			if (compare.contains(key) && (key.length() >= 2)) {
 				String category = compare.split("/")[0];

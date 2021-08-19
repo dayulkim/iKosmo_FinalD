@@ -123,7 +123,9 @@
 		}
 	}
 	var category = null;
-	function viewTable() { //callback 받은 json 데이터를 ui에 표시
+	function viewTable() { 
+		var categoryName={"0":"가구","1":"장식/소품","2":"주방용품","3":"패브릭","4":"가전","5":"반려동물","6":"조명","7":"생활용품",
+				"8":"실내운동","9":"수납/정리","10":"유아/아동","11":"공구/DIY","12":"생필품"}
 		var vD = document.getElementById("view");
 		var htmlTxt = "<ul style='padding-right:16px;padding-left:16px;' >";
 
@@ -140,8 +142,8 @@
 					+ i
 					+ ")'>"
 					+ "<img src='resources/review/img/category_" + category
-					+ ".png' width='50;'>"
-					+ category + "번 카테고리 사진나올예정"
+					+ ".jpg' width='30;'>" 
+					+"&nbsp;" + categoryName[category]
 			htmlTxt += "</li>"
 		}
 		htmlTxt += "</ul>";
