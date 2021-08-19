@@ -55,9 +55,10 @@ public class Suggest {
 			String arr;
 			int category;
 			for (ProductVO e : titleList) {
-				arr = e.getPro_name().split("\\(", 2)[0];
+				arr = e.getPro_name().split("\\(", 2)[0].replace("&", "");
+				
 				category = e.getPro_category();
-				System.out.println("category" + category);
+				
 				bw.write("<keyword>" + category + "/ " + arr + "</keyword>");
 				bw.newLine();
 			}
@@ -81,7 +82,7 @@ public class Suggest {
 			doc = sb.build(new FileInputStream(path));
 			// root element ¸¦ Á¢±Ù
 			root = doc.getRootElement();
-			System.out.println("root :" + root);
+			
 		} catch (JDOMException | IOException e) {
 			e.printStackTrace();
 		}

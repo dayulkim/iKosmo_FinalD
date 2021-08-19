@@ -6,10 +6,20 @@
     },
     "outline": {
       
+    },
+    "node": {
+      
+    },
+    "browser-extension": {
+      
+    },
+    "bootstrap": {
+      
     }
   },
   "libs": [
     "browser",
+    "fetch",
     "jquery"
   ]
 }

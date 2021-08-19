@@ -92,13 +92,12 @@ public class DefaultController {
 
 		List<String> suggests = suggest.getSuggest(key);
 		for (String e : suggests) {
-			System.out.println("컨트롤러" + e);
 		}
 		if (suggests != null) {
 			JSONArray arr = new JSONArray();
 
 			// JSONArray로 변경
-			System.out.println(arr.toJSONString(suggests));
+		
 			m.addAttribute("list", arr.toJSONString(suggests));
 		}
 		return "main/suggest/suggest";

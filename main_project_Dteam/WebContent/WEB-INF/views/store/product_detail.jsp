@@ -329,7 +329,7 @@ float:left;
 						</table>
 
 					</div>
-					<!--<div id="panel5" class="panel">
+					<div id="panel5" class="panel">
 						<div class="footer">
 							<ul class="items">
 								<li><a href="product.html"> <img
@@ -352,14 +352,8 @@ float:left;
 						</div>
 					</div>
 
-				</div>
-			</div>
-			<!-- ÅÇ ³¡ -->
-		</div>
-	</div>
-	</div>
-	</div>
-	<!-- Back to Top -->
+
+
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 	<!-- JavaScript Libraries -->
