@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link href="resources/css/question/question.css" rel="stylesheet" />
 <!-- Body-->
 <!-- 회색 타이틀 영역-->
@@ -30,23 +30,23 @@
 		<!-- 내가 검색한 키워드 -->
 		<div class="row justify-content-center">
 			<div class="col-lg-9 widget">
-			  <a href="#" class="btn-tag me-2 mb-2 btn-light">#리모델링/수리</a>
-			  <a href="#" class="btn-tag me-2 mb-2 btn-light">#셀프인테리어</a>
+				<a href="#" class="btn-tag me-2 mb-2 btn-light">#리모델링/수리</a> <a
+					href="#" class="btn-tag me-2 mb-2 btn-light">#셀프인테리어</a>
 			</div>
 		</div>
 		<c:choose>
 			<c:when test="${mkeylist eq null}">
 				<c:forEach var="i" items="${keylist}">
 					<a class="que_keyword" href="naquestionList?key=${i }">#${i }</a> &nbsp;
-				</c:forEach>	
+				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="i" items="${mkeylist}">
 					<a class="que_keyword" href="naquestionList?key=${i }">#${i }</a> &nbsp;
-				</c:forEach>	
+				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		
+
 		<!-- 키워드 검색 -->
 		<div class="row justify-content-center mb-4">
 			<div class="col-lg-9 accordion accordion-flush border-bottom"
@@ -59,8 +59,8 @@
 							aria-expanded="true" aria-controls="flush-collapseOne">+
 							키워드 검색</button>
 					</h2>
-					<div class="accordion-collapse collapse"
-						id="flush-collapseOne" aria-labelledby="flush-headingOne"
+					<div class="accordion-collapse collapse" id="flush-collapseOne"
+						aria-labelledby="flush-headingOne"
 						data-bs-parent="#accordionFlushExample">
 						<div class="accordion-body">
 							<div class="table-responsive">
@@ -68,39 +68,40 @@
 									<tbody>
 										<tr>
 											<th scope="row" style="width: 10%">일반</th>
-											<td>
-												<a class="que_keyword" href="naquestionList?key=리모델링/수리">#리모델링/수리</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=견적">#견적</a> &nbsp;
-												<a class="que_keyword" href="naquestionList?key=업체추천">#업체추천</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=셀프인테리어">#셀프인테리어</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=신혼">#신혼</a>&nbsp;
-												<a class="que_keyword" href="naquestionList?key=리폼">#리폼</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=디자인추천">#디자인추천</a> &nbsp; 
-											</td>
+											<td><a class="que_keyword"
+												href="naquestionList?key=리모델링/수리">#리모델링/수리</a> &nbsp; <a
+												class="que_keyword" href="naquestionList?key=견적">#견적</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=업체추천">#업체추천</a>
+												&nbsp; <a class="que_keyword"
+												href="naquestionList?key=셀프인테리어">#셀프인테리어</a> &nbsp; <a
+												class="que_keyword" href="naquestionList?key=신혼">#신혼</a>&nbsp;
+												<a class="que_keyword" href="naquestionList?key=리폼">#리폼</a>
+												&nbsp; <a class="que_keyword"
+												href="naquestionList?key=디자인추천">#디자인추천</a> &nbsp;</td>
 										</tr>
 										<tr>
 											<th scope="row" style="width: 10%">가구</th>
-											<td>
-												<a class="que_keyword" href="naquestionList?key=가구배치/이동">#가구배치/이동</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=수전/싱크대">#수전/싱크대</a> &nbsp;
-												<a class="que_keyword" href="naquestionList?key=냉장고">#냉장고</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=소파">#소파</a> &nbsp;
-												<a class="que_keyword" href="naquestionList?key=식탁">#식탁</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=침대">#침대</a> &nbsp;
-												<a class="que_keyword" href="naquestionList?key=에어컨">#에어컨</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=TV">#TV</a> &nbsp;
-												<a class="que_keyword" href="naquestionList?key=유리">#유리</a>&nbsp;
-												<a class="que_keyword" href="naquestionList?key=기타가구">#기타가구</a> &nbsp;
-											</td>
+											<td><a class="que_keyword"
+												href="naquestionList?key=가구배치/이동">#가구배치/이동</a> &nbsp; <a
+												class="que_keyword" href="naquestionList?key=수전/싱크대">#수전/싱크대</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=냉장고">#냉장고</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=소파">#소파</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=식탁">#식탁</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=침대">#침대</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=에어컨">#에어컨</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=TV">#TV</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=유리">#유리</a>&nbsp;
+												<a class="que_keyword" href="naquestionList?key=기타가구">#기타가구</a>
+												&nbsp;</td>
 										</tr>
 										<tr>
 											<th scope="row" style="width: 10%">공간</th>
-											<td>
-												<a class="que_keyword" href="naquestionList?key=단독주택">#단독주택</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=아파트">#아파트</a> 
-												<a class="que_keyword" href="naquestionList?key=상가">#상가</a> &nbsp; 
-												<a class="que_keyword" href="naquestionList?key=원룸">#원룸 </a> &nbsp;
-											</td>
+											<td><a class="que_keyword"
+												href="naquestionList?key=단독주택">#단독주택</a> &nbsp; <a
+												class="que_keyword" href="naquestionList?key=아파트">#아파트</a> <a
+												class="que_keyword" href="naquestionList?key=상가">#상가</a>
+												&nbsp; <a class="que_keyword" href="naquestionList?key=원룸">#원룸
+											</a> &nbsp;</td>
 										</tr>
 									</tbody>
 								</table>
@@ -125,7 +126,7 @@
 					<option value="1">조회수순</option>
 				</select>
 			</div>
-			<div  class="col-lg-3" style="margin-right: 3rem;">
+			<div class="col-lg-3" style="margin-right: 3rem;">
 				<!-- Normal outline button -->
 				<button type="button" class="btn btn-info">답변 대기 질문</button>
 				<button type="button" class="btn btn-info">질문하기</button>
@@ -134,40 +135,44 @@
 		<!-- 워드 클라우드 들어갈 영역 -->
 		<!-- 질문 목록 영역 -->
 		<div class="row d-flex justify-content-center align-items-center mt-0">
-		<section class="row col-lg-10 d-flex justify-content-between align-items-center border-bottom">
-			<c:forEach begin="1" end="5">
-				<!-- 질문 Item-->
-	            <div class=" d-flex mb-4 pb-3 pb-sm-2 col-lg-7 align-items-center">
-	              <div class="d-block d-sm-flex align-items-start text-center text-sm-start ">
-	              	<a class="d-block flex-shrink-0 mx-auto me-sm-4" style="width: 10rem;">
-	              		<img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159002759911888401.jpg?gif=1&w=640&h=640&c=c">
-	              	</a>
-	                <div class="pt-2">
-	                  <h3 class="product-title mb-4"><a href="shop-single-v1.html">질문 제목</a></h3>
-	                  <div>
-	                  	<a class="fs-sm text-accent" href="#">#해시태그</a>
-	                  	<a class="fs-sm text-accent" href="#">#해시태그</a>
-	                  	<a class="fs-sm text-accent" href="#">#해시태그</a>
-	                  </div>
-	                  <div class="fs-6 mt-1">내용 테스트 이 그릇 예쁜가요?</div>
-	                  <div class="fs-sm mt-1">2021-08-18 00:31:42&nbsp; · &nbsp;조회수 3</div>
-	                </div>
-	              </div>
-	            </div>
-	            <div class="col-lg-3">
-	            	<div class="d-flex justify-content-end align-items-center">
-	            		<img src="resources/uploadFile/profile/iu.jpg" class="img-thumbnail rounded-circle" style="width: 3rem;">
-	            		<div class="d-sm-flex justify-content-end">
-	            		&nbsp;&nbsp;iu_leejieun
-	            		</div>
-	            	</div>
-	            	<div class="d-flex justify-content-end mt-3">
-	            		<span class="badge bg-success badge-shadow lead p-2">답변 대기중</span>
-	            	</div>
-	            </div>
-	            <hr class="col-lg-12">
-            </c:forEach>
-		</section>
+			<section
+				class="row col-lg-10 d-flex justify-content-between align-items-center border-bottom">
+				<c:forEach begin="1" end="5">
+					<!-- 질문 Item-->
+					<div class="mb-3 pb-3 pb-sm-2 col-lg-7">
+						<div class="d-block d-flex align-items-start text-center text-sm-start ">
+							<a class="d-block flex-shrink-0 mx-auto me-sm-4"
+								style="width: 10rem;"> <img class="rounded-3" 
+								src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159002759911888401.jpg?gif=1&w=640&h=640&c=c">
+							</a>
+							<div class="pt-2">
+								<h3 class="product-title mb-4">
+									<a href="shop-single-v1.html">질문 제목</a>
+								</h3>
+								<a class="fs-sm text-accent" href="#">#해시태그</a> <a
+									class="fs-sm text-accent" href="#">#해시태그</a> <a
+									class="fs-sm text-accent" href="#">#해시태그</a>
+								<div class="fs-6 mt-1">내용 테스트 이 그릇 예쁜가요?</div>
+								<div class="fs-sm mt-1">2021-08-18 00:31:42&nbsp; ·
+									&nbsp;조회수 3</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="d-flex justify-content-end">
+							<img src="resources/uploadFile/profile/iu.jpg"
+								class="img-thumbnail rounded-circle" style="width: 3rem;">
+							<div class="d-sm-flex justify-content-end">
+								&nbsp;&nbsp;iu_leejieun</div>
+						</div>
+						<div class="d-flex justify-content-end mt-3">
+							<span class="badge bg-success badge-shadow lead p-2">답변
+								대기중</span>
+						</div>
+					</div>
+					<hr class="col-lg-12">
+				</c:forEach>
+			</section>
 		</div>
 	</div>
 </div>
