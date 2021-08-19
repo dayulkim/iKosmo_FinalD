@@ -256,31 +256,8 @@ public class QuestionController {
 	      
 	      // 조회된 결과의 total이 0일시 나올 메세지 문구
 	      String msg = "해당 검색의 결과가 없습니다.";
-	      
-	      // 로그인 상태에서 내가 자주 검색한 키워드 추천
-	      if (request.getSession().getAttribute("sessionID")==null) {
-	    	  System.out.println("비로그인 상태입니다.");
-	      } else {
-	    	  
-	      
-	      
-	    	  String mem_id = request.getSession().getAttribute("sessionID").toString();
-		      QuestionLogVO quelogvo = new QuestionLogVO();
-	    	  quelogvo.setMem_id(mem_id);
-	    	  quelogvo.setQue_search(key);
-	    	  quelogvo.setType(search);
-	    	  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
-			  List<String> mkeylist = new ArrayList<>();
-			  			
-			  for(QuestionWordCloudVO e : mklist) {
-				  mkeylist.add(e.getSubject());
-			  }
-			  
-			  mav.addObject("mkeylist",mkeylist );
-
-
-    	  
-    	// 전체 키워드 추천
+	  	  
+	  	// 전체 키워드 추천
 		  List<QuestionWordCloudVO> klist = questionLogServiceInter.suggestkeyword();
 		  List<String> keylist = new ArrayList<>();
 		  			
@@ -289,6 +266,32 @@ public class QuestionController {
 		  }
 		  
 		  mav.addObject("keylist",keylist );
+		  
+		  // 로그인 상태에서 내가 자주 검색한 키워드 추천
+		  try {
+			  String mem_id = request.getSession().getAttribute("sessionID").toString();
+			  
+			  if(key != null) {
+				  QuestionLogVO quelogvo = new QuestionLogVO();
+			  	  quelogvo.setMem_id(mem_id);
+			  	  quelogvo.setQue_search(key);
+			  	  quelogvo.setType(search);
+			  	  
+			  	  questionLogServiceInter.insertSearchLog(quelogvo);
+			  }
+			  
+			  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
+			  List<String> mkeylist = new ArrayList<>();
+			  			
+			  for(QuestionWordCloudVO e : mklist) {
+				  mkeylist.add(e.getSubject());
+			  }
+			  
+			  mav.addObject("mkeylist",mkeylist );
+			  
+		  } catch (Exception e) {
+			System.out.println("비로그인 상태입니다.");
+		  }
 		  
 		  if (key == null) {
 			  int total = questionServiceInter.totalQuestionList();
@@ -301,9 +304,7 @@ public class QuestionController {
 		      // 모델에 PageVO 객체와 리스트 객체 담기
 		      mav.addObject("list", list);
 		  }else {
-			  questionLogServiceInter.insertSearchLog(quelogvo);
-			  
-			// 키워드, 제목/내용 검색에 따라서 search의 값을 다르게 받고 그에 따른 처리를 진행
+			  // 키워드, 제목/내용 검색에 따라서 search의 값을 다르게 받고 그에 따른 처리를 진행
 		      // 키워드검색 (0), 제목/내용검색(1)
 		      if(search == 0) {
 		    	  System.out.println("키워드 검색");
@@ -346,7 +347,7 @@ public class QuestionController {
 	      mav.addObject("search", search);
 	      mav.addObject("imgList", imgList);
 	      mav.setViewName("question/questionList");
-	      }
+	      
 	      return mav;
 	   }
 	
@@ -384,6 +385,15 @@ public class QuestionController {
 		  try {
 			  String mem_id = request.getSession().getAttribute("sessionID").toString();
 			  
+			  if(key != null) {
+			      QuestionLogVO quelogvo = new QuestionLogVO();
+		    	  quelogvo.setMem_id(mem_id);
+		    	  quelogvo.setQue_search(key);
+		    	  quelogvo.setType(search);
+		    	  
+		    	  questionLogServiceInter.insertSearchLog(quelogvo);
+			  }
+			  
 			  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
 			  List<String> mkeylist = new ArrayList<>();
 			  			
@@ -411,53 +421,44 @@ public class QuestionController {
 		      mav.addObject("list", list);
 	      }
 	      else {
+
+    	  if(search == 0) {
+	    	  System.out.println("키워드 검색");
+	    	  int total = questionServiceInter.totalNaSearchKeyword(searchValue);
+	    	  System.out.println("total : "+total);
 	    	  
-	    	  //String mem_id = request.getSession().getAttribute("sessionID").toString();
-		      QuestionLogVO quelogvo = new QuestionLogVO();
-	    	  //quelogvo.setMem_id(mem_id);
-		      quelogvo.setMem_id("test");
-	    	  quelogvo.setQue_search(key);
-	    	  quelogvo.setType(search);
+	    	  if(total == 0) {
+	    		  mav.addObject("msg", msg);
+	    	  }
 	    	  
-	    	  questionLogServiceInter.insertSearchLog(quelogvo);
+	    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
+	    	  list = questionServiceInter.SearchNaKeywordList(pvo);
+	    	  mav.addObject("paging", pvo);
 	    	  
-	    	  if(search == 0) {
-		    	  System.out.println("키워드 검색");
-		    	  int total = questionServiceInter.totalNaSearchKeyword(searchValue);
-		    	  System.out.println("total : "+total);
-		    	  
-		    	  if(total == 0) {
-		    		  mav.addObject("msg", msg);
-		    	  }
-		    	  
-		    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
-		    	  list = questionServiceInter.SearchNaKeywordList(pvo);
-		    	  mav.addObject("paging", pvo);
-		    	  
-		    	  imgList = questionServiceInter.imgList(list);
-		    	  
-			      mav.addObject("list", list);
-		      }
-		      else if(search == 1) {
-		    	  System.out.println("제목/내용 검색");
-		    	  int total = questionServiceInter.totalNaSearchTitle_Content(searchValue);
-		    	  System.out.println("total : "+total);
-		    	  
-		    	  if(total == 0) {
-		    		  mav.addObject("msg", msg);
-		    	  }
-		    	  
-		    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
-		    	  list = questionServiceInter.SearchNaTitle_Content(pvo);
-		    	  mav.addObject("paging", pvo);
-		    	  
-		    	  imgList = questionServiceInter.imgList(list);
-		    	  
-			      mav.addObject("list", list);
-		      }
+	    	  imgList = questionServiceInter.imgList(list);
 	    	  
+		      mav.addObject("list", list);
 	      }
-	      
+	      else if(search == 1) {
+	    	  System.out.println("제목/내용 검색");
+	    	  int total = questionServiceInter.totalNaSearchTitle_Content(searchValue);
+	    	  System.out.println("total : "+total);
+	    	  
+	    	  if(total == 0) {
+	    		  mav.addObject("msg", msg);
+	    	  }
+	    	  
+	    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
+	    	  list = questionServiceInter.SearchNaTitle_Content(pvo);
+	    	  mav.addObject("paging", pvo);
+	    	  
+	    	  imgList = questionServiceInter.imgList(list);
+	    	  
+		      mav.addObject("list", list);
+	      	}
+    	  
+	      }
+      
 	      mav.addObject("key",key);
 	      mav.addObject("search", search);
 	      mav.addObject("type", 2);
