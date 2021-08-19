@@ -27,6 +27,7 @@
 		<typeAlias type="kr.co.kosmo.mvc.vo.QuestionWordCloudVO" alias="quewcvo"/>
 		<typeAlias type="kr.co.kosmo.mvc.vo.LogVO" alias="logvo"/><!-- 로그인로그아웃로그  -->
 		<typeAlias type="kr.co.kosmo.mvc.vo.AdminHitVO" alias="admvo"/><!-- 상품조회로그  -->
+		<typeAlias type="kr.co.kosmo.mvc.vo.PurchaseVO" alias="purvo"/><!-- 상품 구매 내역  -->
 
 	</typeAliases>
 	<!-- Spring이 environments, environment, transactionManager, dataSource, 

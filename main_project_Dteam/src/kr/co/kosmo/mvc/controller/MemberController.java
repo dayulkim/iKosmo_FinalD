@@ -28,12 +28,13 @@ import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
 
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
-
+import kr.co.kosmo.mvc.vo.CartVO;
 import kr.co.kosmo.mvc.vo.FriendsVO;
 
 import kr.co.kosmo.mvc.vo.MemberVO;
-import kr.co.kosmo.mvc.vo.OrderListVO;
-import kr.co.kosmo.mvc.vo.PageVO;
+
+import kr.co.kosmo.mvc.vo.PurchaseVO;
+import kr.co.kosmo.mvc.vo.QuestionVO;
 
 import kr.co.kosmo.mvc.vo.ReviewVO;
 
@@ -141,26 +142,21 @@ public class MemberController {
 
 	@RequestMapping(value = "cart")
 	public String cart2(HttpSession session, Model m) {
-//		System.out.println("cart 이동");
-//		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-//		List<CartVO> list = cartDaoInter.getlist(mem_num);
-//		m.addAttribute("clist",list);
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		List<CartVO> list = cartDaoInter.getlist(mem_num);
+		m.addAttribute("clist",list);
 		return "mypage/cart";
 	}
 
 	@RequestMapping("/orders") // 개인의 전체 주문내역 출력
-	public ModelAndView orderList(@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
-			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
-			HttpServletRequest request, PageVO pvo, HttpSession session) {
+	public ModelAndView orderList(HttpSession session) {
 		System.out.println("전체 주문내역 컨트롤러 시작!");
-		// int mem_num = 1;
-		// int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-		int mem_session = (int) session.getAttribute("sessionNum");
-		System.out.println("mem_session::::::::::::" + mem_session);
+		int mem_session = Integer.parseInt(session.getAttribute("sessionNum").toString());
 		ModelAndView mav = new ModelAndView();
-		List<OrderListVO> ordvo = orderListServiceInter.orderList(mem_session);
 
-		mav.addObject("ordvo", ordvo);
+		List<PurchaseVO> pchvo = orderListServiceInter.purList(mem_session);
+		mav.addObject("pchvo", pchvo);
+
 		mav.setViewName("mypage/orders");
 		return mav;
 
@@ -198,17 +194,13 @@ public class MemberController {
 		return "mypage/scrapbook";
 	}
 
-	@RequestMapping("/mypage")
-	public String myPage(Model m, HttpSession session) {
-		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-		System.out.println("sessionNum ::" + mem_num);
-		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
-		// System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
-		m.addAttribute("frilist", list);
-		List<FriendsVO> wtlist = friendsServiceInter.getFriWtList(mem_num);
-		m.addAttribute("wtlist", wtlist);
-		return "store/mypage";
+	@RequestMapping(value = "mypage")
+	public String mypage() {
+		System.out.println("mypage 이동");
+		return "mypage/mypage";
 	}
+
+	
 	@PostMapping("/houseinfoinsert")
 	public String houseInfoInsert(HttpSession session, HouseInfoVO hinvo) {
 		hinvo.setMem_id(session.getAttribute("sessionID").toString());

@@ -34,14 +34,13 @@
 						<select id="hou_type" name="hou_type" class="form-select"
 							aria-label="Default select example">
 							<option selected>선택해주세요</option>
-							<option value="1">원룸</option>
-							<option value="2">오피스텔</option>
-							<option value="3">빌라&연립</option>
-							<option value="4">아파트</option>
-							<option value="5">단독주택</option>
-							<option value="6">협소주택</option>
-							<option value="7">상업공간</option>
-							<option value="8">사무공간</option>
+							<option value="1">아파트</option>
+			               <option value="2">원룸&오피스텔</option>
+						   <option value="3">빌라&연립</option>
+						   <option value="4">단독주택</option>
+						   <option value="5">사무공간</option>
+						   <option value="6">상업공간</option>
+						   <option value="7">기타</option>
 						</select>
 					</div>
 				</div>
@@ -95,16 +94,17 @@
 						<select id="hou_style" name="hou_style" class="form-select"
 							aria-label="Default select example">
 							<option selected>선택해주세요</option>
-							<option value="1">모던</option>
-							<option value="2">미니멀&심플</option>
-							<option value="3">내추럴&북유럽</option>
+							<option value="1">내추럴</option>
+							<option value="2">모던</option>
+							<option value="3">미니멀&심플</option>
 							<option value="4">빈티지&레트로</option>
-							<option value="5">클래식&앤틱</option>
-							<option value="6">프렌치&프로방스</option>
+							<option value="5">북유럽</option>
+							<option value="6">유니크&믹스매치</option>
 							<option value="7">러블리&로맨틱</option>
-							<option value="8">인더스트리얼</option>
-							<option value="9">한국&아시아</option>
-							<option value="10">유니크&믹스매치</option>
+							<option value="8">클래식&앤틱</option>
+							<option value="9">프렌치&프로방스</option>
+							<option value="10">한국&아시아</option>
+							<option value="11">인더스트리얼</option>
 						</select>
 					</div>
 				</div>

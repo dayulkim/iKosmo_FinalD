@@ -10,7 +10,7 @@
 <body>
 	<div class="top-element"></div>
 
-	<div id="test">
+	<div id="recommendProduct">
 		</div>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -45,7 +45,7 @@
 						for(let i=0;i<e.data.length;i++){
 							 let picture="";
 							 picture="<img alt='' src='resources/data/chair/"+e.data[i]+"' id='"+picture[i]+"' style='width:200px;'>"
-							$("#test").append(picture);
+							$("#recommendProduct").append(picture);
 						}
 					}
 				},

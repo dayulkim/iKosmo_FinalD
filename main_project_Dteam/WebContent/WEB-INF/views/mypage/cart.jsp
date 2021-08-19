@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Body-->
     
       <!-- Page Title-->
@@ -64,51 +65,26 @@
           </aside>
           <!-- Content  -->
 			<section class="col-lg-8">
-            <!-- Wishlist-->
+            <!-- Cart -->
             <!-- Item-->
-            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-                <div class="pt-2">
-                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">TH Jeans City Backpack</a></h3>
-                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>Tommy Hilfiger</div>
-                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Khaki</div>
-                  <div class="fs-lg text-accent pt-2">$79.<small>50</small></div>
-                </div>
-              </div>
-              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-              </div>
-            </div>
-            <!-- Item-->
-            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
-              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-                <div class="pt-2">
-                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">3-Color Sun Stash Hat</a></h3>
-                  <div class="fs-sm"><span class="text-muted me-2">Brand:</span>The North Face</div>
-                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Pink / Beige / Dark blue</div>
-                  <div class="fs-lg text-accent pt-2">$22.<small>50</small></div>
-                </div>
-              </div>
-              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-              </div>
-            </div>
-            <!-- Item-->
-            <div class="d-sm-flex justify-content-between mt-4">
-              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162705876157488190.jpeg?gif=1&w=640&h=640&c=c" alt="Product"></a>
-                <div class="pt-2">
-                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">Cotton Polo Regular Fit</a></h3>
-                  <div class="fs-sm"><span class="text-muted me-2">Size:</span>42</div>
-                  <div class="fs-sm"><span class="text-muted me-2">Color:</span>Light blue</div>
-                  <div class="fs-lg text-accent pt-2">$9.<small>00</small></div>
-                </div>
-              </div>
-              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                <button class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
-              </div>
-            </div>
+            <c:forEach var="cvo" items="${clist}">
+	            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+	              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;">
+	              <img src="${cvo.productVO.pro_thumb }" alt="Product"></a>
+	                <div class="pt-2">
+	                  <h3 class="product-title fs-base mb-2"><a href="detail?pro_num=${cvo.pro_num }">${cvo.productVO.pro_name }</a></h3>
+	                  <div class="fs-sm"><span class="text-muted me-2">수량:</span>${cvo.car_qty }</div>
+	                  <div class="fs-lg text-accent pt-2 commaPrice">${cvo.productVO.pro_price }원</div>
+	                </div>
+	              </div>
+	              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+	              	<input type="hidden" class="car_num" value="${cvo.car_num }">
+	                <button class="btn btn-outline-danger btn-sm delBtn" type="button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;삭제</button>
+	              </div>
+	            </div>
+            </c:forEach>
             <div class="d-flex justify-content-end">
-            	<button type="button" class="btn btn-primary" style="margin-top: 2rem;">구매하기</button>
+            	<button type="button" class="btn btn-primary" style="margin-top: 2rem;" id="paymentBtn">구매하기</button>
             </div>
           </section>
         </div>
@@ -123,3 +99,39 @@
     <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    
+    <script>
+    
+    $('.commaPrice').each(function() {
+        var price = $(this).text()
+        $(this).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));   
+     });
+     
+    	$('.delBtn').click(function(){
+    		var car_num = $(this).siblings('input').val();
+      		$.ajax({
+      			url:"delcart?car_num="+car_num,
+      			type: 'get',
+      			// 성공하면 jsondata를 받아온다.
+      			success: function(result) {
+      				console.log("AJAX result ::"+result);
+      				if(result == "success") { // 친구해제 성공 ===========================
+      					alert('삭제되었습니다.');
+      					location.reload(); // 페이지 새로 고침
+      				} else { // 정상적으로 처리되지 않은 경우 =========================
+      					alert('삭제 처리 중 에러가 발생하였습니다.');
+      					location.reload(); // 페이지 새로 고침
+      				}
+      			},
+      			error: function(e) {
+      				console.log("error:"+e);
+      				alert('친구해제 처리 중 ajax 에러가 발생하였습니다.');
+      				location.reload(); // 페이지 새로 고침
+      			}
+      		})
+    	});
+    	
+    	$('#paymentBtn').click(function(){
+    		location.href = "confirm?fromCart=1"
+    	});
+    </script>

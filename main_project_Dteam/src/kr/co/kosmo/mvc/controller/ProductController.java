@@ -206,15 +206,28 @@ public class ProductController { // 김다율
 		// 사진 리스트 불러오기
 		String[] plist = provo.getPro_photo().split(",");
 		m.addAttribute("plist", plist);
+		// 상세정보 사진 리스트 불러오기
+		String[] dlist = provo.getPro_detail().split(",");
+		m.addAttribute("dlist", dlist);
 		// 리뷰 평점 불러오기
 		long st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);
-
+		//재영추가 
+		String checkJpg=provo.getPro_thumb();
+		String checkImageForm;
+		if (checkJpg.contains("https")) {
+			checkImageForm="1";
+			System.out.println("여기옴1");
+		}else {
+			checkImageForm="0";
+			System.out.println("여기옴0");
+		}
+		m.addAttribute("checkImageForm",checkImageForm);
 		// 판매자 정보: 카카오 지도 API
 		// int sel_num = Integer.parseInt(request.getParameter(sel_num));
 		SellerVO vo = sellerService.getSellerOne(provo.getSel_num());
 		m.addAttribute("selvo", vo);
-
+		
 		
 		// 리뷰탭 2
 		List<ReviewVO> rlist = reviewServiceInter.reviewTab(pro_num);

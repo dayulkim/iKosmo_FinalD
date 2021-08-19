@@ -69,38 +69,51 @@
 				<div class="accordion" id="accordionExample">
 				
 				  <!-- Item -->
-				  <c:forEach var="list" items="${ordvo}">
-				  
+				  <c:forEach var="purvo" items="${pchvo }" varStatus="i">
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingOne">
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">구매내역 # ${list.orderListVO.ord_date }</button>
+				    	<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">구매내역 # ${purvo.pur_date }</button>
 				    </h2>
-				    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				    <!-- 가장 최근에 구매한 상품의 상세내역만 보이도록 조건 설정 -->
+			    	<c:choose>
+				    	<c:when test="${i.count == 1 }">
+				      		<div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				      	</c:when>
+				      	<c:otherwise>
+			    			<div class="accordion-collapse collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+			    		</c:otherwise>
+			    	</c:choose>
 				      <div class="accordion-body">
 				         
 					    	<!-- Item-->
-					    
+
+					    	<c:forEach var="ordvo" items="${purvo.ordvo_list }">
+
 				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${list.pro_thumb }" alt="Product"></a>
+				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html" style="width: 10rem;"><img src="${ordvo.productVO.pro_thumb }" alt="Product"></a>
 				                <div class="pt-2">
-				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">${list.pro_name }</a></h3>
-				                  <div class="fs-sm"><span class="text-muted me-2">가격:</span>${list.pro_dprice }</div>
-				                  <div class="fs-sm"><span class="text-muted me-2">수량:</span>${list.orderListVO.ord_qty }</div>
-				                  <div class="fs-lg text-accent pt-2">${list.pro_dprice * list.orderListVO.ord_qty }원</div>
+				                  <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html"></a></h3>
+				                  <div class="fs-sm"><span class="text-muted me-2 commaPrice">가격: ${ordvo.productVO.pro_dprice }원</span></div>
+				                  <div class="fs-sm"><span class="text-muted me-2">수량: ${ordvo.ord_qty }개</span></div>
+				                  <div class="fs-lg text-accent pt-2 commaPrice">${ordvo.productVO.pro_dprice * ordvo.ord_qty }원</div>
 				                </div>
 				              </div>
 				              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-				                <button class="btn btn-outline-warning btn-sm" type="button" id="review-add-btn" value="${list.pro_num }"><i class="far fa-edit"></i>&nbsp;&nbsp;리뷰쓰기</button>
-				                	
+
+				                <button class="btn btn-outline-warning btn-sm" type="button" id="review-add-btn" value="${ordvo.productVO.pro_num }"><i class="far fa-edit"></i>&nbsp;&nbsp;리뷰쓰기</button>
+
 				              </div>
 				            </div>
+				            </c:forEach>
+				            <%@include file="form/reviewForm.jsp"%>
 				            <!-- Item-->
-	
+
+							총 구매금액
+
 					    </div>
 				    </div>
-				  </div>
+	
 				  </c:forEach>
-				  <%@include file="form/reviewForm.jsp"%>
 
 				</div>
 			</section>
@@ -117,3 +130,10 @@
     <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <script>
+    $('.commaPrice').each(function() {
+        var price = $(this).text()
+        $(this).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));   
+     });
+	</script>
+

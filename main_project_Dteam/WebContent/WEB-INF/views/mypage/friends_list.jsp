@@ -69,7 +69,7 @@
 					<!-- Horizontal layout: Picture on the left + rounded picture + solid round socials -->
 					<c:forEach var="list" items="${frilist}">
 					<div class="d-flex align-items-start col-6">
-					  <img class="d-inline-block rounded" width="96" height="96" src="${list.memvo.mem_profile}" alt="${list.memvo.mem_id}"/>
+					  <img class="d-inline-block rounded" width="96" height="96" src="resources/uploadFile/profile/${list.memvo.mem_profile}" alt="${list.memvo.mem_id}"/>
 					  <div class="ps-3">
 					    <span class="pt-1 mb-1">${list.memvo.mem_name}</span>
 					    <i class="fas fa-chevron-circle-right"></i>

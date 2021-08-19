@@ -54,7 +54,6 @@
 						<div class="col-md-3 main-item" style="padding: 1rem 2rem 1.5rem 2rem;">
 							<a href="detail?pro_num=${e.pro_num}">
 								<div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
-									<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
 									<img class="img-fluid main_pro_thumb"
 										src="${e.pro_thumb}"
 										style="position: absolute; border-radius: 1rem;" alt="..." />
