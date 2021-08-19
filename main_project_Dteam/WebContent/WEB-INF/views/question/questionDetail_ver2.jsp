@@ -153,7 +153,9 @@
             <!-- Post meta-->
             <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mt-n1">
               <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#">
-                  <i class="far fa-smile"></i> ${quevo.mem_id }</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">${quevo.que_rdate }</a></div>
+					<!-- 프로필 이미지 넣을곳 -->
+					<img src="resources/uploadFile/profile/${que_profile }" class="img-thumbnail rounded-circle" style="width: 3rem;">
+                   ${quevo.mem_id }</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">${quevo.que_rdate }</a></div>
               <div class="fs-sm mb-2"><a class="blog-entry-meta-link text-nowrap" href="#comments" data-scroll><i class="far fa-comment-dots"></i>${total }</a></div>
             </div>
             <!-- Post content-->
@@ -243,9 +245,9 @@
             <div class="pt-2 mt-5" id="comments">
               <h2 class="h4">Comments<span class="badge bg-secondary fs-sm text-body align-middle ms-2">${total }</span></h2>
               <!-- comment-->
-              <c:forEach var="e" items="${list }">
+              <c:forEach var="e" items="${list }" varStatus="i">
            		<div class="d-flex align-items-start py-4">
-           		<i class="far fa-smile-wink"></i>
+           		<img src="resources/uploadFile/profile/${prolist[i.index] }" class="img-thumbnail rounded-circle" style="width: 4rem;">
 	              <div class="ps-3">
 	                <div class="d-flex justify-content-between align-items-center mb-2">
 	                  <h6 class="fs-md mb-0">${e.ans_id }</h6>

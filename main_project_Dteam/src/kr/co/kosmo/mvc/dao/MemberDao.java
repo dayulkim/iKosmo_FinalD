@@ -61,6 +61,13 @@ public class MemberDao implements MemberDaoInter { // 오원석
 	public MemberVO getMemberInfo(int mem_num) {
 		return ss.selectOne("member.getMemberName", mem_num);
 	}
+	
+	// 정재윤 : 질문답변 프로필 사진 사용
+	@Override
+	public MemberVO getMemInfoById(String mem_id) {
+		return ss.selectOne("member.getMemInfoId", mem_id);
+	}
+
 
 
 }

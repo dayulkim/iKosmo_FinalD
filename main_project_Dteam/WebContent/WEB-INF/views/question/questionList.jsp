@@ -271,7 +271,7 @@
 				<h2>${msg }</h2>
 			</c:if>
 			<section class="row d-flex justify-content-center align-items-center" style="padding-top: 5rem;">
-				<c:forEach var="e" items="${list }" varStatus="i">
+				<c:forEach var="e" items="${list }" varStatus="status">
 					<!-- 질문 Item-->
 					<div class="row d-flex align-items-center col-lg-10 justify-content-between border-bottom">
 						<div class="col-lg-7 mt-3 mb-3" style="padding-right: 0rem;">
@@ -279,11 +279,11 @@
 								<a class="d-block flex-shrink-0 me-sm-4"
 									style="width: 10rem;"> 
 									<c:choose>
-										<c:when test="${imgList[i.index] eq 'noImage'}">
+										<c:when test="${imgList[status.index] eq 'noImage'}">
 											<img src="resources/images/no-image-icon.JPG" class="rounded-3">
 										</c:when>
 										<c:otherwise>
-											<img src="resources/uploadFile/${imgList[i.index] }" class="rounded-3">
+											<img src="resources/uploadFile/${imgList[status.index] }" class="rounded-3">
 										</c:otherwise>
 									</c:choose>
 								</a>
@@ -310,7 +310,7 @@
 						</div>
 						<div class="col-lg-3 mt-3 mb-3">
 							<div class="d-flex justify-content-end">
-								<img src="resources/uploadFile/profile/iu.jpg"
+								<img src="resources/uploadFile/profile/${pro_list[status.index] }"
 									class="img-thumbnail rounded-circle" style="width: 3rem;">
 								<div class="d-sm-flex justify-content-end">
 									&nbsp;&nbsp;${e.mem_id }</div>
@@ -376,35 +376,78 @@ $('#questionForm').click(function(){
 	location.href = "questionForm"
 });
 
-function anssort(){
-    const sort = $('#searching3').val();
-    var sortv = "sort=" + sort;
-    var url = document.location.href;
-    var params = {};
-      url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { params[k] = v; });
-      let klist = Object.keys(params);
-     let vlist = Object.values(params);
-     if(klist[0] == "key"){
-        window.location.href = "naquestionList?key=" + vlist[0] + "&" + sortv;
-     }else{
-        window.location.href = "naquestionList?" + sortv;
-     }
-     
+	var wordcloudlist = $.ajax({
+		type: "GET",
+	    url: "quesearchwordcloud",
+	    dataType: "json",
+	    contentType: "application/json; charset:UTF-8", 
+	    async: false
+		}).responseText; 
+	
+	var x = JSON.parse(wordcloudlist);
+	console.log("Json데이터 ",x)
+ 
+
+ var color = d3.scale.linear() //선형적인 스케일로 표준화를 시킨다.
+         .domain([0,1,2,3,4,5,6,10,15,20,100])//데이터의 범위, 입력 크기
+         .range([0.50]);//표시할 범위, 출력 크기
+         //ex)"#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"
+         
+ d3.layout.cloud().size([600, 300]) //[width,height]
+         .words(x)
+         .rotate(0)
+         .fontSize(function(d) { return d.mount; })
+         .on("end", draw)
+         .start();
+ 
+ function draw(words) {
+     d3.select("#wordcloud").append("svg")//wordcloud 테이블에 svg를 붙이고
+             .attr("width", 650)
+             .attr("height", 350)
+             .attr("class", "wordcloud")
+             .append("g")
+             .attr("transform", "translate(320,170)")
+             .selectAll("text")
+             .data(words)
+             .enter().append("text")
+             .style("font-size", function(d) { return d.mount + "px"; })
+             .style("fill", function(d, i) { return color(i); })
+             .attr("transform", function(d) {
+                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+             })
+             .text(function(d) { return d.subject; });
  }
  
- function keysort(){
-    const sort = $('#searching2').val();
-    var sortv = "&sort=" + sort;
-    var url = document.location.href;
-    var params = {};
-      url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { params[k] = v; });
-      let klist = Object.keys(params);
-     let vlist = Object.values(params);
-     
-     if(klist[0] == "key"){
-        window.location.href = "questionList?key=" + vlist[0] + "&" + sortv;
-     }else{
-        window.location.href = "questionList?" + sortv;
-     }
- }
+ function anssort(){
+     const sort = $('#searching3').val();
+     var sortv = "sort=" + sort;
+     var url = document.location.href;
+     var params = {};
+       url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { params[k] = v; });
+       let klist = Object.keys(params);
+      let vlist = Object.values(params);
+      if(klist[0] == "key"){
+         window.location.href = "naquestionList?key=" + vlist[0] + "&" + sortv;
+      }else{
+         window.location.href = "naquestionList?" + sortv;
+      }
+      
+  }
+  
+  function keysort(){
+     const sort = $('#searching2').val();
+     var sortv = "&sort=" + sort;
+     var url = document.location.href;
+     var params = {};
+       url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { params[k] = v; });
+       let klist = Object.keys(params);
+      let vlist = Object.values(params);
+      
+      if(klist[0] == "key"){
+         window.location.href = "questionList?key=" + vlist[0] + "&" + sortv;
+      }else{
+         window.location.href = "questionList?" + sortv;
+      }
+  }
+  
 </script>

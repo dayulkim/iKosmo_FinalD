@@ -15,6 +15,9 @@ public interface QuestionServiceInter {
 	
 	public void addQuestion(QuestionVO quevo);
 	
+	public int totalMyAnswer(String ans_id);
+	public List<AnswerVO> MyAnswerList(PageVO pvo);
+	
 	public int totalQuestionList();
 	public int totalMyQuestionList(String mem_id);
 	
@@ -46,4 +49,9 @@ public interface QuestionServiceInter {
 	public List<QuestionVO> SearchNaTitle_Content(PageVO pvo);
 	
 	public List<String> imgList(List<QuestionVO> list);
+	
+	// 질문 리스트, 질문 디테일에서 사용할 사용자 정보조회
+	public List<String> getmemInfo(List<QuestionVO> list);
+	// 답변 리스트에서 사용할 사용자 정보 조회
+	public List<String> getmemInfoDe(List<AnswerVO> list);
 }

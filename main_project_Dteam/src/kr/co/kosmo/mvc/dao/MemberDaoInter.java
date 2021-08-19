@@ -23,4 +23,6 @@ public interface MemberDaoInter { // 오원석
 	// 김세연 (마이페이지 친구목록에서 사용)
 	public MemberVO getMemberInfo(int mem_num);
 
+	// 정재윤 (질문 리스트에서 사용)
+		public MemberVO getMemInfoById(String mem_id);
 }

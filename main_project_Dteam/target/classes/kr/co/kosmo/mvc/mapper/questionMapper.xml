@@ -19,6 +19,17 @@
 		select count(*) cnt from question where mem_id = #{mem_id}
 	</select>
 	
+	<select id="myAnswerTotal" parameterType="String" resultType="int">
+		select count(*) cnt from answer where ans_id = #{ans_id}
+	</select>
+	
+	<select id="myAnswerList"  parameterType="pvo" resultType="ansvo">
+		select * from (
+		select rownum r_num, a.* from
+		( select ans_num , ans_content ,ans_photo, ans_rdate, que_num , ans_id
+		from answer where ans_id = #{searchType} order by ans_num desc) a ) where r_num between #{start} and #{end}
+	</select>
+	
 	<select id="questionList"  parameterType="pvo" resultType="quevo">
 		select * from (
 		select rownum r_num, a.* from

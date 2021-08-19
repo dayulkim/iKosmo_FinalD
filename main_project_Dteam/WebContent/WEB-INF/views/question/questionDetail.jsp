@@ -239,7 +239,7 @@
 					<a class="qna-detail-author__profile-link" href="/users/13219120">
 						<div class="qna-detail-author__profile-link__image">
 							<!-- 프로필 이미지 넣을곳 -->
-							<img src="resources/uploadFile/no-image-icon.JPG">
+							<img src="resources/uploadFile/profile/${que_profile }" class="img-thumbnail rounded-circle" style="width: 3rem;">
 						</div>
 						<div class="qna-detail-author__profile-link__summary">
 							<div class="qna-detail-author__profile-link__summary-section">
