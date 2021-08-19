@@ -68,7 +68,7 @@ public class LogAdvice {
 			if (session.getAttribute("sessionID") != null) { // 로그인상태
 				request = (HttpServletRequest) fd[1];
 				String sid = request.getSession().getAttribute("sessionID").toString();
-				SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss E요일");
 				Date time = new Date();
 				String sstime = format1.format(time);
 				logvo.setId(session.getAttribute("sessionID").toString());

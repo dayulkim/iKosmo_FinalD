@@ -481,5 +481,14 @@ public class QuestionController {
 				
 			return json;
 	}
+	
+	@RequestMapping(value="/newui")
+	public String newui() {
+			
+				
+			return "question/mypage";
+	}
+	
+	
 
 }
