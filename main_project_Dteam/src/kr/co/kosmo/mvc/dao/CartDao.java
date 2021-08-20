@@ -15,20 +15,17 @@ public class CartDao implements CartDaoInter {
 	private SqlSessionTemplate ss;
 
 	@Override
-	public void addcart(CartVO vo) {
-		System.out.println("장바구니 추가");
+	public void addcart(CartVO vo) { //장바구니 추가
 		ss.insert("cart.in", vo);
 	}
 	
 	@Override
-	public List<CartVO> getlist(int num) {
-		System.out.println("장바구니 출력");
+	public List<CartVO> getlist(int num) { // 장바구니 출력
 		return ss.selectList("cart.getlist", num);
 	}
 
 	@Override
-	public void delcart(CartVO vo) {
-		System.out.println("장바구니 삭제");
+	public void delcart(CartVO vo) { // 장바구니 삭제		
 		ss.delete("cart.delcart", vo);
 	}
 

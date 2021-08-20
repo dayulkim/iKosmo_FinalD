@@ -46,23 +46,23 @@
 
         <!-- 인기 키워드 상품 -->
         <section class="page-section bg-light" id="keyword-section">
-        	<div class="container">
-        		<h4 class="section-heading text-uppercase" style="margin-bottom:2rem;">인기 키워드 상품</h4>
-	        	<div class="row">
-	        		<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
-			        	<div class="col-md-3">
-			               	<div style="position: relative; width: 100%; padding-bottom: 70%; overflow: hidden;  border-radius: 1rem;">
-			               		<a href="">
-			                    	<img class="img-fluid main_pro_thumb keyword-item" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162546070347891451.jpg?gif=1&w=640&h=640&c=c&webp=1"/>
-			                    	<div class="text-center" style="position: absolute; top: 50%; left: 50%; transform: translate( -50%, -50% );">
-			                    		<h5 class="keyword-item">#홈카페</h5>
-			                    	</div>
-			                    </a>
-			                </div>
-		                </div>
-	                </c:forEach>
+           <div class="container">
+              <h4 class="section-heading text-uppercase" style="margin-bottom:2rem;">인기 키워드</h4>
+              <div class="row">
+                 <c:forEach var="i" begin="1" end="4" step="1" varStatus="status"> <!-- 반복문 -->
+                    <div class="col-md-3">
+                           <div style="position: relative; width: 100%; padding-bottom: 70%; overflow: hidden;  border-radius: 1rem;">
+                              <a href="" id="keyword_a_${i}">
+                                <img class="img-fluid main_pro_thumb keyword-item" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162546070347891451.jpg?gif=1&w=640&h=640&c=c&webp=1"/>
+                                <div class="text-center" style="position: absolute; top: 50%; left: 50%; transform: translate( -50%, -50% );">
+                                   <h5 class="keyword-item" id="keyword_h5_${i}"></h5>
+                                </div>
+                             </a>
+                         </div>
+                      </div>
+                   </c:forEach>
                 </div>
-        	</div>
+           </div>
         </section>
         
         <!-- 베스트 상품 섹션 -->
@@ -454,40 +454,41 @@
                 </div> <!-- 유아/아동 카테고리 영역 끝 -->
                 </div> <!-- 탭 컨텐츠 영역 끝 -->
             </div>
-        </section>
-        
-        <!-- 이번 주 인기 집들이글 -->
-        <section class="page-section bg-light" id="main-best-hwarm">
-        	<div class="container">
-        		<h4 class="section-heading text-uppercase" style="margin-bottom:2rem;">이번 주 인기 집들이글</h4>
-	        	<div class="row">
-	        		<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
-						<!-- 베스트 상품 개별 아이템 -->
-                		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
-                                <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162546070347891451.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
-                                </div>
-                            </a>
-                            <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                                	<p class="main-caption-name main-best-hwarm">볕 잘드는 베이지톤 7평 자취방</p>
-                                	<span><img class="main-hwarm-img" src="resources/uploadFile/profile/iu.jpg"></span>
-                                	<span class="main-caption-price">dummy_id</span>
-                                </a>
-                            </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
-			        </c:forEach>
-		        </div>
-		        </h4>
-	        </div>
-        </section>
-
+        </section>        
 
         <!-- owlCarousel JS-->
         <script src="resources/js/owlCarousel/owl.carousel.js"></script>
         <script src="resources/js/owlCarousel/owl.autoplay.js"></script>
         <script>
+        $(document).ready(function() {
+          $.ajaxSetup({cache: false}); 
+          $.ajax({
+             url: 'http://192.168.1.104:8099/housewarming/loadKeywordJsonp?callback', 
+              type:'GET',
+              dataType:'jsonp',
+              jsonp:'callback',
+              success: function(data){
+                  console.log(data.columns);
+                  console.log('***********************************')
+                  console.log(data.data);
+                  var keyword_list = data.data;
+                 for (var i=1; i<5; i++) {
+                    // a href 태그에 경로 넣어주기
+                    console.log(keyword_list[i-1][0])
+                    var a_id = "#keyword_a_"+i
+                    var h5_id = "#keyword_h5_"+i
+                   $(a_id).attr('href','srchRes?key='+keyword_list[i-1][0])
+                   $(h5_id).text('#'+data.data[i-1][0])
+                   // 
+                 }
+              },
+              error:function(data){
+                 console.log("error>>"+data)
+              }
+          })
+        });
+        
+        
 	        var owl = $('.owl-banner');
 	        owl.owlCarousel({
 	            items:1,
@@ -517,7 +518,5 @@
 	            autoplayTimeout:3000,
 	            autoplayHoverPause:true
 	        });
-
-
         </script>
 

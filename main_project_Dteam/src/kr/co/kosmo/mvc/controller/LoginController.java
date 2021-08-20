@@ -21,7 +21,6 @@ public class LoginController {
 	// 로그인페이지 이동
 	@RequestMapping(value="/login")
 	public String gologin() {
-		System.out.println("로그인 폼으로 이동");
 		return "member/login/login";
 	}
 	
@@ -32,7 +31,6 @@ public class LoginController {
 	public void login(MemberVO vo, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		MemberVO mvo = loginDaoInter.login(vo);
 		String msg = "";
-		System.out.println("여긴오냐");
 		try {
 			response.setContentType("text/html; charset=euc-kr");
 			if (mvo != null) {

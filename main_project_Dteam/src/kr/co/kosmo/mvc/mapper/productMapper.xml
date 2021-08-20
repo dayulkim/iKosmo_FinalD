@@ -6,23 +6,19 @@
 	
 	<!-- 카테고리별 상품 목록 불러오기 -->
 	<select id="themelist" parameterType="String" resultMap="bestlistMap">
-		select substr(p.pro_name, 1, 16) pro_name, p.pro_discount pro_discount, 
-		p.pro_thumb pro_thumb,
-		p.pro_price pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
-		p.pro_review pro_review, p.pro_rdate pro_rdate, p.pro_num
-		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num
-		sel_num, s.sel_name sel_name, s.sel_grade sel_grade
+		select substr(p.pro_name, 1, 16) pro_name, p.pro_discount, 
+		p.pro_thumb,p.pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
+		p.pro_review, p.pro_rdate pro_rdate, p.pro_num, 
+		(to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num, s.sel_name, s.sel_grade 
 		from product p, seller s where pro_category=#{category} and p.sel_num = s.sel_num
 	</select>
 
 	<!-- 옵션 추가해서 상품 불러오기 -->
 	<select id="orderlist" parameterType="hashmap" resultMap="bestlistMap">
-		 select substr(p.pro_name, 1, 16) pro_name, p.pro_discount pro_discount, 
-		p.pro_thumb pro_thumb,
-		p.pro_price pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
-		p.pro_review pro_review, p.pro_rdate pro_rdate, p.pro_num
-		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num
-		sel_num, s.sel_name sel_name, s.sel_grade sel_grade, p.pro_delivery pro_delivery, p.pro_period pro_period
+		 select substr(p.pro_name, 1, 16) pro_name, p.pro_discount, 
+		p.pro_thumb, p.pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
+		p.pro_review, p.pro_rdate, p.pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num, 
+		s.sel_name, s.sel_grade, p.pro_delivery, p.pro_period 
 		from product p, seller s where p.sel_num = s.sel_num
 		<if test="merit != null">
 		<choose>
@@ -73,6 +69,7 @@
 <result property="sel_num" column="sel_num" javaType="int"/>
 <result property="pro_price" column="pro_price" javaType="int"/>
 <result property="pro_review" column="pro_review" javaType="int"/>
+<result property="pro_category" column="pro_category"/>
 <result property="pro_thumb" column="pro_thumb"/>
 <result property="pro_photo" column="pro_photo"/>
 <result property="pro_rdate" column="pro_rdate"/>
@@ -86,16 +83,13 @@
 </association>
 </resultMap>
 <select id="bestlist" resultMap="bestlistMap">
-		select substr(p.pro_name, 1, 16) pro_name, p.pro_discount pro_discount, 
-		p.pro_thumb pro_thumb,
-		p.pro_price pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
-		p.pro_review pro_review, p.pro_rdate pro_rdate, p.pro_num
-		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num
-		sel_num, s.sel_name sel_name, s.sel_grade sel_grade
+		select substr(p.pro_name, 1, 16) pro_name, p.pro_discount, 
+		p.pro_thumb, p.pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
+		p.pro_category,p.pro_review, p.pro_rdate, p.pro_num, 
+		(to_number(sysdate - p.pro_rdate)) pro_age, p.sel_num,
+		s.sel_name, s.sel_grade 
 		from product p, seller s where p.sel_num = s.sel_num
 	</select>
-
-
 
 	<!-- 총 상품 갯수 불러오기 -->
 	<select id="totalProduct" resultType="String">
@@ -119,23 +113,28 @@
 
 	<!-- 최근 조회상품 불러오기 -->
 	<select id="myclick" parameterType="String" resultType="admvo">
-		select pro_num, pro_thumb from (select rownum, aa.* from (select pro_num, pro_thumb from product where pro_num in (select pro_num from adminhit where mem_id = #{sid}))aa) where 6 > rownum
-
+		select pro_num, pro_thumb from (select rownum, aa.* from 
+			(select pro_num, pro_thumb from product where pro_num in 
+				(select pro_num from adminhit where mem_id = #{sid}))aa)  
+		where 6 > rownum
 	</select>
 
 	<!-- 최다 조회상품 불러오기 -->
 	<select id="theirclick" resultType="admvo">
-		select pro_num, pro_thumb, pro_photo from product where pro_num in (select pro_num from (select rownum, aa.* from (select pro_num, count(nvl(pro_num,0)) from adminhit group by pro_num order by 2 desc)aa) where 6 > rownum)
+		select pro_num, pro_thumb, pro_photo from product where pro_num in 
+			(select pro_num from 
+				(select rownum, aa.* from 
+					(select pro_num, count(nvl(pro_num,0)) from adminhit group by pro_num order by 2 desc)aa) 
+			where 6 > rownum)
 
 	</select>
 	<!--  상품 상세보기  -->
 	<select id="productdetail" parameterType="int" resultMap="bestlistMap">
-		select p.pro_name pro_name, p.pro_discount pro_discount, p.pro_category pro_category, 
-		p.pro_thumb pro_thumb, p.pro_photo pro_photo,
-		p.pro_price pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
-		p.pro_review pro_review, p.pro_rdate pro_rdate, p.pro_delivery pro_delivery, p.pro_num
-		pro_num, (to_number(sysdate - p.pro_rdate)) pro_age, p.pro_detail, p.sel_num
-		sel_num, s.sel_name sel_name, s.sel_grade sel_grade
+		select p.pro_name, p.pro_discount, p.pro_category, 
+		p.pro_thumb, p.pro_photo,p.pro_price, p.pro_price*(1 - p.pro_discount/100) pro_dprice,
+		p.pro_review, p.pro_rdate, p.pro_delivery, p.pro_num, 
+		(to_number(sysdate - p.pro_rdate)) pro_age, p.pro_detail, p.sel_num, 
+		s.sel_name, s.sel_grade 
 		from product p, seller s where pro_num=#{pro_num} and p.sel_num = s.sel_num 
 	</select>
 	

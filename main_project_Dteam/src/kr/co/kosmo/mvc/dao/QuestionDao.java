@@ -12,7 +12,6 @@ import kr.co.kosmo.mvc.vo.QuestionVO;
 
 @Repository
 public class QuestionDao implements QuestionDaoInter{
-
 	
 	@Autowired
 	private SqlSessionTemplate ss;
@@ -21,7 +20,6 @@ public class QuestionDao implements QuestionDaoInter{
 	public void addQuestion(QuestionVO quevo) {
 		ss.insert("question.insertQuestion",quevo);
 	}
-	
 	@Override
 	public int totalQuestionList() {
 		return ss.selectOne("question.questionTotal");
@@ -30,7 +28,6 @@ public class QuestionDao implements QuestionDaoInter{
 	public int totalMyQuestionList(String mem_id) {
 		return ss.selectOne("question.myquestionTotal", mem_id);
 	}
-	
 	@Override
 	public List<QuestionVO> QuestionList(PageVO pvo) {
 		return ss.selectList("question.questionList",pvo);
@@ -39,12 +36,10 @@ public class QuestionDao implements QuestionDaoInter{
 	public List<QuestionVO> MyQuestionList(PageVO pvo) {
 		return ss.selectList("question.myquestionList",pvo);
 	}
-	
 	@Override
 	public QuestionVO getQuestionDetail(int que_num) {
 		return ss.selectOne("question.questionDetail",que_num);
 	}
-	
 	@Override
 	public void addAnswer(AnswerVO ansvo) {
 		ss.insert("question.insertAnswer", ansvo);

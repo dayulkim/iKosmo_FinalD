@@ -3,14 +3,11 @@ package kr.co.kosmo.mvc.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
-import kr.co.kosmo.mvc.vo.SellerVO;
 
 @Repository
 public class ProductDao implements ProductDaoInter { // 김다율
@@ -50,29 +47,24 @@ public class ProductDao implements ProductDaoInter { // 김다율
 // 스크랩 총 갯수	
 	@Override
 	public String totalScrap(String sid) {
-		System.out.println("아이디 : " + sid);
 		return ss.selectOne("product.totalScrap",sid);
 	}	
 		
 // 카트 총 갯수	
 	@Override
 	public String totalCart(String sid) {
-		System.out.println("아이디 : " + sid);
 		return ss.selectOne("product.totalCart",sid);
 	}	
-	
 	
 // 가격 범위로 불러오기
 	@Override
 	public List<ProductVO> priceList(String range) {
-		System.out.println("Dao 에서 가격범주 : " + range);
 		return ss.selectList("product.pricerange", range);
 	}
 	
 // 최근 조회상품 불러오기 
 	@Override
 	public List<AdminHitVO> myProduct(String sid) {
-		System.out.println("아이디 : " + sid);
 		return ss.selectList("product.myclick",sid);
 	}
 	
@@ -85,14 +77,12 @@ public class ProductDao implements ProductDaoInter { // 김다율
 // 상품 상세보기 페이지
 	@Override
 	public ProductVO productDetail(int pro_num) {
-		System.out.println("Dao 에서 상품번호 : " + pro_num);
 		return ss.selectOne("product.productdetail", pro_num);
 	}
 	
 // 디테일에서 상품 별점 불러오기
 	@Override
 	public long productStar(int pro_num) {
-		System.out.println("Dao 에서 상품번호 : " + pro_num);
 		return ss.selectOne("product.productstar", pro_num);
 	}
 	
@@ -107,7 +97,5 @@ public class ProductDao implements ProductDaoInter { // 김다율
 	public ProductVO recommendPro(int result) {
 		return ss.selectOne("product.recommendProduct", result);
 	}
-
-	
 
 }

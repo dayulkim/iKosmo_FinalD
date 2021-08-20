@@ -37,16 +37,9 @@ public class HwarmController {
 			@RequestParam(value = "hou_style", required = false, defaultValue = "0") String hstyle, 
 			@RequestParam(value = "hou_tone", required = false, defaultValue = "0") String htone) {
 
-		System.out.println("filter \n" + horder + "\n" + htype + "\n" + hspace + "\n" + hpay + "\n" + hhow + "\n"
-				+ hstyle + "\n" + htone);
-
 		List<HousewarmingVO> vo = hwarmServiceInter.filter(horder, htype, hspace, hpay, hhow, hstyle, htone);
-
-//		for (int i = 0; i < vo.size(); i++) {
-//			System.out.println(vo.get(i).getHou_name());
-//		}
 		
-		m.addAttribute("list", hwarmServiceInter.filter(horder, htype, hspace, hpay, hhow, hstyle, htone));
+		m.addAttribute("list", vo);
 				
 		return "housewarming/hwarm_list";
 	}
@@ -68,9 +61,6 @@ public class HwarmController {
 	@RequestMapping("/insertHwarm")
 	public String insertHwarm(HttpSession session, HttpServletRequest request, HousewarmingVO houvo, HousedetailVO hwdvo,
 			MultipartFile[] imgfile, String[] hwd_content_list) {
-		
-		// 추후 삭제 필요 =============================================================================================
-		// session.setAttribute("sessionNum", 1);
 
 		// HousewarmingVO값 셋팅 (
 		houvo.setMem_num(Integer.parseInt(session.getAttribute("sessionNum").toString()));// 회원번호
@@ -85,9 +75,6 @@ public class HwarmController {
 		if (hwdvo.getHwd_tag() != null) { // 태그된 상품이 있다면
 			hwd_tag_array = hwdvo.getHwd_tag().split(",");
 		}
-		// 상세 내용 개수 파악
-		int num = hwd_content_list.length;
-		System.out.println("상세 내용 개수: " + num);
 		// 각각의 상세내용 vo에 사진, 내용, 태그된 상품 저장
 		for (int i = 0; i < hwd_photo_array.size(); i++) {
 			HousedetailVO vo = new HousedetailVO();
@@ -106,9 +93,6 @@ public class HwarmController {
 	
 	@RequestMapping("/hwarm_detail")
 	public ModelAndView hwarm_detail(int hou_num, HttpSession session) {
-		
-		// 추후 삭제 필요 =============================================================================================
-		//session.setAttribute("sessionNum", 1);
 
 		// ModelAndView 생성
 		ModelAndView mav = new ModelAndView();
@@ -129,7 +113,6 @@ public class HwarmController {
 			} else { // 태그된 상품이 있는 경우
 				String[] hwd_tag_list = hwd_tag.split("-");
 				for (String pro_num : hwd_tag_list) {
-					System.out.println("pro_num :: " + Integer.parseInt(pro_num));
 					String photo = hwarmServiceInter.taggedProduct(Integer.parseInt(pro_num));
 					pro_thumb.add(photo);
 				}
@@ -139,9 +122,5 @@ public class HwarmController {
 		mav.setViewName("housewarming/hwarm_detail");
 		return mav;
 	}
-	
-
-
-
 
 };

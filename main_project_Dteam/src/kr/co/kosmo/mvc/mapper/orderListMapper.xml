@@ -45,6 +45,5 @@
 		select pro_num from(select pro_num from orderlist where ord_date > (sysdate-30) 
 		GROUP by pro_num order by count(pro_num) desc )where rownum between 1 and 4 
 	</select>
-	
-	
+
 </mapper>

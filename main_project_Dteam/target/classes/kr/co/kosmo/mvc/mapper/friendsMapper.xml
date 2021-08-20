@@ -65,9 +65,7 @@
 		and req_stat = 0 
 		and f.req_mem_num= #{mem_num}
 	</select>
-	
-	
-	
+
 	<!-- 친구관계상태값 가져오기 -->
 	<select id="req_stat" parameterType="hashmap" resultType="frivo">
 		select mem_num,req_mem_num,req_stat from friends where mem_num = #{mem_num} 

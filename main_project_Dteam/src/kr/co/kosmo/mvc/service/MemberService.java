@@ -32,13 +32,11 @@ public class MemberService implements MemberServiceInter {
 	@Override
 	public void delMemberHouseInfo(int hinfo_num) {
 		memberDaoInter.delMemberHouseInfo(hinfo_num);
-
 	}
 
 	@Override
 	public void addmember(MemberVO vo) {
 		memberDaoInter.addmember(vo);
-
 	}
 
 	@Override

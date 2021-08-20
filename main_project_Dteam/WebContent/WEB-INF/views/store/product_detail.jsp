@@ -129,52 +129,47 @@
 									<c:set var="num10" value="10" />
 									<c:set var="num11" value="11" />
 									<c:set var="num12" value="12" />
-									<c:set var="num13" value="13" />
 									<c:choose>
-										<c:when test="${provo.pro_category eq num0 }">
-											<p>분류 &nbsp; :&nbsp;가구 &nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num1 }">
-											<p>분류 &nbsp; :&nbsp;패브릭 &nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num2 }">
-											<p>분류 &nbsp; :&nbsp;홈데코/조명 &nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num3 }">
-											<p>분류 &nbsp; :&nbsp;가전&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num4 }">
-											<p>분류 &nbsp; :&nbsp;수납/정리&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num5 }">
-											<p>분류 &nbsp; :&nbsp;생활&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num6 }">
-											<p>분류 &nbsp; :&nbsp;주방&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num7 }">
-											<p>분류 &nbsp; :&nbsp;생필품&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num8 }">
-											<p>분류 &nbsp; :&nbsp;DIY/공구&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num9 }">
-											<p>분류 &nbsp; :&nbsp;시공/서비스&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num10 }">
-											<p>분류 &nbsp; :&nbsp;반려동물&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num11 }">
-											<p>분류 &nbsp; :&nbsp;캠핑&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num12 }">
-											<p>분류 &nbsp; :&nbsp;홈트레이닝&nbsp;></p>
-										</c:when>
-										<c:when test="${provo.pro_category eq num13 }">
-											<p>분류 &nbsp; : &nbsp;유아/아동&nbsp;></p>
-										</c:when>
-									</c:choose>
-
+                                 <c:when test="${provo.pro_category eq num0 }">
+                                    <p>분류 &nbsp; :&nbsp;가구 &nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num1 }">
+                                    <p>분류 &nbsp; :&nbsp;장식/소품 &nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num2 }">
+                                    <p>분류 &nbsp; :&nbsp;주방용품 &nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num3 }">
+                                    <p>분류 &nbsp; :&nbsp;패브릭&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num4 }">
+                                    <p>분류 &nbsp; :&nbsp;가전&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num5 }">
+                                    <p>분류 &nbsp; :&nbsp;반려동물&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num6 }">
+                                    <p>분류 &nbsp; :&nbsp;조명&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num7 }">
+                                    <p>분류 &nbsp; :&nbsp;생활용품&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num8 }">
+                                    <p>분류 &nbsp; :&nbsp;실내운동&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num9 }">
+                                    <p>분류 &nbsp; :&nbsp;수납/정리&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num10 }">
+                                    <p>분류 &nbsp; :&nbsp;유아/아동&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num11 }">
+                                    <p>분류 &nbsp; :&nbsp;공구/DIY&nbsp;></p>
+                                 </c:when>
+                                 <c:when test="${provo.pro_category eq num12 }">
+                                    <p>분류 &nbsp; :&nbsp;생필품&nbsp;></p>
+                                 </c:when>
+                              </c:choose>
 								</div>
 								<h3>${provo.pro_name}</h3>
 								<div id="star_result">

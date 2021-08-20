@@ -104,8 +104,6 @@ public class HwarmDao implements HwarmDaoInter {
 	@Override
 	public List<HousewarmingVO> filter(String horder, String htype, String hspace, String hpay, String hhow,
 			String hstyle, String htone) {
-		System.out.println("Dao \n" + horder + "\n" + htype + "\n" + hspace + "\n" + hpay + "\n" + hhow + "\n" + hstyle
-				+ "\n" + htone);
 		Map<String, String> map = new HashMap<>();
 		map.put("hou_order", horder);
 		map.put("hou_type", htype);
@@ -114,18 +112,7 @@ public class HwarmDao implements HwarmDaoInter {
 		map.put("hou_how", hhow);
 		map.put("hou_style", hstyle);
 		map.put("hou_tone", htone);
-		/*
-		 * Iterator<String> keys = map.keySet().iterator(); while(keys.hasNext()){
-		 * String key = keys.next(); String value = map.get(key);
-		 * System.out.println("Å° : "+key+" /// °ª : "+value); }
-		 */
 		return ss.selectList("housewarming.filter", map);
 	}
-
-
-
-
-
-
 
 }
