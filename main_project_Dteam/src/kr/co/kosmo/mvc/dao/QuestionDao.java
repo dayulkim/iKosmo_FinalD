@@ -118,4 +118,13 @@ public class QuestionDao implements QuestionDaoInter{
 		return ss.selectList("question.naquestionSearchTitle_ContentList",pvo);
 	}
 	
+	@Override
+	public List<AnswerVO> MyAnswerList(PageVO pvo) {
+		return ss.selectList("question.myAnswerList",pvo);
+	}
+	
+	@Override
+	public int totalMyAnswer(String ans_id) {
+		return ss.selectOne("question.myAnswerTotal", ans_id);
+	}
 }

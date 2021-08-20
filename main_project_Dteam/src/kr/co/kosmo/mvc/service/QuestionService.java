@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.kosmo.mvc.dao.MemberDaoInter;
 import kr.co.kosmo.mvc.dao.QuestionDao;
 import kr.co.kosmo.mvc.vo.AnswerVO;
+import kr.co.kosmo.mvc.vo.MemberVO;
 import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.QuestionVO;
 
@@ -17,6 +19,9 @@ public class QuestionService implements QuestionServiceInter{
 	
 	@Autowired
 	private QuestionDao questionDao;
+	
+	@Autowired
+	private MemberDaoInter memberDaoInter;
 
 	@Transactional
 	public void addAnswer(AnswerVO ansvo, int que_num) {
@@ -27,6 +32,15 @@ public class QuestionService implements QuestionServiceInter{
 	@Override
 	public void addQuestion(QuestionVO quevo) {
 		questionDao.addQuestion(quevo);
+	}
+	
+	@Override
+	public List<AnswerVO> MyAnswerList(PageVO pvo) {
+		return questionDao.MyAnswerList(pvo);
+	}
+	@Override
+	public int totalMyAnswer(String ans_id) {
+		return questionDao.totalMyAnswer(ans_id);
 	}
 
 	@Override
@@ -133,4 +147,29 @@ public class QuestionService implements QuestionServiceInter{
 		
 		return imgList;
 	}
+	
+	@Override
+	public List<String> getmemInfo(List<QuestionVO> list) {
+		
+		List<String> prolist = new ArrayList<>();
+	      for(QuestionVO e : list) {
+	    	  MemberVO memvo = memberDaoInter.getMemInfoById(e.getMem_id());
+	    	  prolist.add(memvo.getMem_profile());
+	      }
+	      
+		return prolist;
+	}
+	
+	@Override
+	public List<String> getmemInfoDe(List<AnswerVO> list) {
+		
+		List<String> prolist = new ArrayList<>();
+	      for(AnswerVO e : list) {
+	    	  MemberVO memvo = memberDaoInter.getMemInfoById(e.getAns_id());
+	    	  prolist.add(memvo.getMem_profile());
+	      }
+	      
+		return prolist;
+	}
+
 }

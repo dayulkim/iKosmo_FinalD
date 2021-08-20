@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- Body-->
     
       <!-- Page Title-->
@@ -24,9 +26,9 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><img class="rounded-circle" src="resources/uploadFile/profile/iu.jpg" alt="Susan Gardner"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
-                    <h3 class="fs-base mb-0">이지은</h3><span class="text-accent fs-sm">iu_leejieun</span>
+                    <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
                 </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="fas fa-user-circle"></i>&nbsp;&nbsp;마이페이지 메뉴</a>
               </div>
@@ -63,16 +65,142 @@
             </div>
           </aside>
           <!-- Content  -->
+          
           <section class="col-lg-8">
-			<ul class="nav nav-tabs justify-content-center" role="tablist">
-			  <li class="nav-item">
-			    <a href="#" class="nav-link" data-bs-toggle="tab" role="tab"><i class="fas fa-question-circle"></i>&nbsp;&nbsp;나의 질문</a>
-			  </li>
-			  <li class="nav-item">
-			    <a href="#" class="nav-link" data-bs-toggle="tab" role="tab"><i class="fas fa-comment-dots"></i>&nbsp;&nbsp;나의 답변</a>
-			  </li>
-			</ul>
-		  </section>
+				<div class="accordion" id="accordionExample">
+				
+				  <!-- Item -->
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingOne">
+				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">나의 질문</button>
+				    </h2>
+				    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+					    	<!-- Item-->
+					    	<c:forEach var="e" items="${list }" varStatus="i">
+				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+				              <div>
+								<table>
+										<tr>
+											<th rowspan="4" style="padding-top: 30px;">
+												<c:choose>
+													<c:when test="${imgList[i.index] eq 'noImage'}">
+														<img src="resources/images/no-image-icon.JPG" style="width: 120px; height: 100px; padding-right: 20px;">
+													</c:when>
+													<c:otherwise>
+														<img src="resources/uploadFile/${imgList[i.index] }" style="width: 120px; height: 100px; padding-right: 20px;">
+													</c:otherwise>
+												</c:choose>
+											</th>
+											<td style="padding-top: 30px;">
+												<h3>
+													<a href="questionDetail?que_num=${e.que_num }">
+													${e.que_title }
+													</a>
+												</h3>
+												<c:choose>
+													<c:when test="${e.que_ans eq 0}">
+														<p><span id="que_ans">답변 대기중</span></p>
+													</c:when>
+													<c:otherwise>
+														<!-- <p><span id="que_ans"></span></p> -->
+													</c:otherwise>
+												</c:choose> 
+												<br>
+											</td>
+										</tr>
+										<tr>
+											<td>
+											<c:set var="keyword" value="${fn:split(e.que_keyword, ',')}"/>
+													<c:forEach var="i" items="${keyword }">
+											<a href="questionList?key=${i}">#${i}</a>	
+												</c:forEach>		
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<p>${e.que_content }</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="td-right-align">
+												<span class="regdate">${e.que_rdate }</span>	
+												<span class="author"> / ${e.mem_id }</span>	
+												<span class="author"> /조회수 ${e.que_hit }</span>	
+											</td>
+										</tr>
+										<!-- 추가적인 내용물이 발생시 
+										
+										<tr>
+											<td>
+											</td>
+										</tr>
+										
+										-->
+								</table>
+							</div>
+				            </div>
+				            </c:forEach>
+				            <!-- Item-->
+				            <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
+				              <div style="height: 80px; padding-top: 20px;margin: auto;">
+								<%@include file="MyPageProcess.jsp" %>
+							</div>
+				            </div>
+					    </div>
+				    </div>
+				  </div>
+				
+				  <!-- Item -->
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingTwo">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">나의 답변</button>
+				    </h2>
+				    <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+					    <div class="accordion-body">
+					    	<!-- Item-->
+					    	<c:forEach var="e" items="${anslist }" varStatus="i">
+					    	<h5>질문 번호 : ${e.que_num }</h5>
+					    	<h5>질문 제목 : ${tlist[i.index]}</h5>
+				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+				               <div class="pt-2 mt-5" id="comments">
+						              <!-- comment-->
+						           		<div class="d-flex align-items-start py-4">
+						           		<i class="far fa-smile-wink"></i>
+							              <div class="ps-3">
+							                <div class="d-flex justify-content-between align-items-center mb-2">
+							                  <h6 class="fs-md mb-0">${e.ans_id }</h6>
+							                </div>
+							                <p class="fs-md mb-1">${e.ans_content }<br>
+							                <c:choose>
+												<c:when test="${e.ans_photo eq null}">
+						
+												</c:when>
+												<c:otherwise>
+													<c:set var="rmfile" value="${fn:split(e.ans_photo, ',')}" />
+													<c:forEach var="file" items="${rmfile }">
+														<img src="resources/uploadFile/${file }" />
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+							                </p>
+							                <span class="fs-ms text-muted"><i class="far fa-clock"></i>${e.ans_rdate }</span>
+							              </div>
+							            </div>
+						        </div>
+				            </div>
+					    </div>
+					    </c:forEach>
+					    <div class="d-sm-flex justify-content-between my-4 pb-3 pb-sm-2 border-bottom">
+			              <div style="height: 80px; padding-top: 20px;margin: auto;">
+							<%@include file="MyPageProcess2.jsp"%>
+						</div>
+	            	</div>
+				    </div>
+				  </div>
+				</div>
+			</section>
         </div>
       </div>
     </main>

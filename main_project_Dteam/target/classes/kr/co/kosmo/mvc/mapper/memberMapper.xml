@@ -45,5 +45,10 @@
 	<select id="getMemberName" parameterType="int" resultType="memvo">
 		select mem_id,mem_pwd,mem_name,mem_nickname,mem_age,mem_gender,mem_birth,mem_tel,mem_addr,mem_profile from member where mem_num=#{mem_num}
 	</select>
+	
+	<!-- 정재윤: 회원아이디로 회원 정보 반환 받음 -->
+	<select id="getMemInfoId" parameterType="String" resultType="memvo">
+		select mem_id,mem_pwd,mem_name,mem_nickname,mem_age,mem_gender,mem_birth,mem_tel,mem_addr,mem_profile from member where mem_id=#{mem_id}
+	</select>
 
 </mapper>

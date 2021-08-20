@@ -2,7 +2,7 @@ package kr.co.kosmo.mvc.controller;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import kr.co.kosmo.mvc.dao.CartDaoInter;
 
 import kr.co.kosmo.mvc.service.MemberServiceInter;
@@ -26,13 +27,14 @@ import kr.co.kosmo.mvc.vo.HouseInfoVO;
 
 import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
-
+import kr.co.kosmo.mvc.service.QuestionServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
+import kr.co.kosmo.mvc.vo.AnswerVO;
 import kr.co.kosmo.mvc.vo.CartVO;
 import kr.co.kosmo.mvc.vo.FriendsVO;
 
 import kr.co.kosmo.mvc.vo.MemberVO;
-
+import kr.co.kosmo.mvc.vo.PageVO;
 import kr.co.kosmo.mvc.vo.PurchaseVO;
 import kr.co.kosmo.mvc.vo.QuestionVO;
 
@@ -52,6 +54,8 @@ public class MemberController {
 	private OrderListServiceInter orderListServiceInter;
 	@Autowired
 	private FriendsServiceInter friendsServiceInter;
+	@Autowired
+	private QuestionServiceInter questionServiceInter;
 
 	// 회원가입 페이지로 이동
 	@RequestMapping(value = "join")
@@ -123,8 +127,22 @@ public class MemberController {
 		return "redirect:/orders";
 	}
 
-	@RequestMapping(value = "survey")
+	@RequestMapping(value="mypage")
+	public String mypage(HttpSession session, Model m) {
+		System.out.println("mypage 이동");
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		m.addAttribute("memvo", memvo);
+		return "mypage/mypage";
+	}
+
+	@RequestMapping(value="survey")
 	public String survey(HttpSession session, Model m) {
+		// 회원정보
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		m.addAttribute("memvo", memvo);
+		// 추가정보
 		String mem_id = session.getAttribute("sessionID").toString();
 		List<HouseInfoVO> house_Info = memberServiceInter.getMemberHouseInfo(mem_id);
 		m.addAttribute("house_info", house_Info);
@@ -132,11 +150,15 @@ public class MemberController {
 		return "mypage/survey";
 	}
 
-	@RequestMapping(value = "cart")
+	@RequestMapping(value="cart")
 	public String cart2(HttpSession session, Model m) {
+		System.out.println("cart 이동");
 		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
 		List<CartVO> list = cartDaoInter.getlist(mem_num);
 		m.addAttribute("clist",list);
+
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		m.addAttribute("memvo", memvo);
 		return "mypage/cart";
 	}
 
@@ -147,6 +169,11 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 
 		List<PurchaseVO> pchvo = orderListServiceInter.purList(mem_session);
+		
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		mav.addObject("memvo", memvo);
+		
 		mav.addObject("pchvo", pchvo);
 
 		mav.setViewName("mypage/orders");
@@ -174,29 +201,76 @@ public class MemberController {
 		return "mypage/friends_list";
 	}
 
-	@RequestMapping(value = "myqna")
-	public String myqna() {
+	@RequestMapping(value="myqna")
+	public ModelAndView myqna(@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
+	         @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") String cntPerPage,
+	         @RequestParam(value = "ansnowPage", required = false, defaultValue = "1") String ansnowPage,
+	         @RequestParam(value = "anscntPerPage", required = false, defaultValue = "10") String anscntPerPage,
+	         HttpServletRequest request,
+	         PageVO pvo) {
+		
 		System.out.println("myqna 이동");
-		return "mypage/myqna";
+		
+		ModelAndView mav = new ModelAndView();
+	      List<QuestionVO> list ;
+	      String searchType = request.getSession().getAttribute("sessionID").toString();
+	      //String searchType = "test";
+	      int total = questionServiceInter.totalMyQuestionList(searchType);
+		  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
+		  
+		  list = questionServiceInter.MyQuestionList(pvo);
+		  mav.addObject("paging", pvo);
+		  
+		  // 각각의 게시물에 대표이미지 하나씩만 추출하기 위함
+	      List<String> imgList = new ArrayList<>(); // 대표 이미지의 파일 이름을 담을 리스트
+	      for (QuestionVO quevo : list) {
+	         if (quevo.getQue_photo() != null) {
+	            String[] arr = quevo.getQue_photo().split(",");
+	            imgList.add(arr[0]); // 첫번째 이미지의 이름을 리스트에 저장
+	         } else {
+	            imgList.add("noImage");
+	         }
+	      }
+	      
+	      List<AnswerVO> anslist;
+	      total = questionServiceInter.totalMyAnswer(searchType);
+	      pvo = new PageVO(total, Integer.parseInt(ansnowPage), Integer.parseInt(anscntPerPage), searchType);
+	      
+	      mav.addObject("paging2", pvo);
+	      
+	      anslist = questionServiceInter.MyAnswerList(pvo);
+	      mav.addObject("anslist",anslist);
+	      
+	      List<String> tlist = new ArrayList<>();
+	      for(AnswerVO ansvo : anslist) {
+	    	  QuestionVO quevo = questionServiceInter.getQuestionDetail(ansvo.getQue_num());
+	    	  String que_title = quevo.getQue_title();
+	    	  tlist.add(que_title);
+	      }
+	      
+	      mav.addObject("tlist", tlist);
+	      
+	      int mem_num = Integer.parseInt(request.getSession().getAttribute("sessionNum").toString());
+	      MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+	      mav.addObject("memvo", memvo);
+	      
+	      // 모델에 PageVO 객체와 리스트 객체 담기
+	      mav.addObject("list", list);
+	      mav.addObject("imgList", imgList);
+	      mav.setViewName("mypage/myqna");
+	      return mav;
 	}
 
-	@RequestMapping(value = "scrapbook")
-	public String scrapbook() {
+	@RequestMapping(value="scrapbook")
+	public String scrapbook(HttpSession session, Model m) {
 		System.out.println("scrapbook 이동");
+		
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
+		m.addAttribute("memvo", memvo);
 		return "mypage/scrapbook";
 	}
 
-	@RequestMapping("/mypage")
-	public String myPage(Model m, HttpSession session) {
-		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-		System.out.println("sessionNum ::" + mem_num);
-		List<FriendsVO> list = friendsServiceInter.getFriednsList(mem_num);
-		// System.out.println("이름 ::"+list.get(0).getMemvo().getMem_name());
-		m.addAttribute("frilist", list);
-		List<FriendsVO> wtlist = friendsServiceInter.getFriWtList(mem_num);
-		m.addAttribute("wtlist", wtlist);
-		return "mypage/mypage";
-	}
 	@PostMapping("/houseinfoinsert")
 	public String houseInfoInsert(HttpSession session, HouseInfoVO hinvo) {
 		hinvo.setMem_id(session.getAttribute("sessionID").toString());
