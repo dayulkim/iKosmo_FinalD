@@ -200,9 +200,8 @@ public class ProductController { // 김다율
 
 		// 해당 번호의 상품 정보 불러오기
 		ProductVO provo = productServiceInter.productDetail(pro_num);
+		System.out.println("테스트 :: 카테고리 :: " + provo.getPro_category());
 		m.addAttribute("provo", provo);
-		System.out.println("상품명 :" + provo.getPro_name());
-		System.out.println("상품명 :" + provo.getPro_photo());
 		// 사진 리스트 불러오기
 		String[] plist = provo.getPro_photo().split(",");
 		m.addAttribute("plist", plist);

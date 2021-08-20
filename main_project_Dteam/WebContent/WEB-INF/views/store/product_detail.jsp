@@ -124,46 +124,46 @@ float:left;
 										<c:set var="num12" value="12" />
 										<c:set var="num13" value="13" />
 										<c:choose>
-											<c:when test="${provo.pro_category eq num0 }">
+											<c:when test="${provo.pro_category eq 0 }">
 												<p>분류 &nbsp; :&nbsp;가구 &nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num1 }">
+											<c:when test="${provo.pro_category eq 1 }">
 												<p>분류 &nbsp; :&nbsp;패브릭 &nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num2 }">
+											<c:when test="${provo.pro_category eq 2 }">
 												<p>분류 &nbsp; :&nbsp;홈데코/조명 &nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num3 }">
+											<c:when test="${provo.pro_category eq 3 }">
 												<p>분류 &nbsp; :&nbsp;가전&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num4 }">
+											<c:when test="${provo.pro_category eq 4 }">
 												<p>분류 &nbsp; :&nbsp;수납/정리&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num5 }">
+											<c:when test="${provo.pro_category eq 5 }">
 												<p>분류 &nbsp; :&nbsp;생활&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num6 }">
+											<c:when test="${provo.pro_category eq 6 }">
 												<p>분류 &nbsp; :&nbsp;주방&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num7 }">
+											<c:when test="${provo.pro_category eq 7 }">
 												<p>분류 &nbsp; :&nbsp;생필품&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num8 }">
+											<c:when test="${provo.pro_category eq 8 }">
 												<p>분류 &nbsp; :&nbsp;DIY/공구&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num9 }">
+											<c:when test="${provo.pro_category eq 9 }">
 												<p>분류 &nbsp; :&nbsp;시공/서비스&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num10 }">
+											<c:when test="${provo.pro_category eq 10 }">
 												<p>분류 &nbsp; :&nbsp;반려동물&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num11 }">
+											<c:when test="${provo.pro_category eq 11 }">
 												<p>분류 &nbsp; :&nbsp;캠핑&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num12 }">
+											<c:when test="${provo.pro_category eq 12 }">
 												<p>분류 &nbsp; :&nbsp;홈트레이닝&nbsp;></p>
 											</c:when>
-											<c:when test="${provo.pro_category eq num13 }">
+											<c:when test="${provo.pro_category eq 13 }">
 												<p>분류 &nbsp; : &nbsp;유아/아동&nbsp;></p>
 											</c:when>
 										</c:choose>

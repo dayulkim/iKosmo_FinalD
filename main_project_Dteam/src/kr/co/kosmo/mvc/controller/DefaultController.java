@@ -3,7 +3,10 @@ package kr.co.kosmo.mvc.controller;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,16 @@ public class DefaultController {
 
 	@RequestMapping("/")
 	public String homepage(Model m) {
+		
+		Map<String, String> map = new HashMap<String, String>(){{
+			put("1","감성");
+			put("2","침대");
+			put("3","마약");
+			put("4","카페");
+		}};
+		Collection<String> collection = map.values();
+		List<String> keywords = new ArrayList<>(collection);
+		m.addAttribute("keywords", keywords);
 
 		List<ProductVO> prolist = prductDao.productList();
 		m.addAttribute("prolist", prolist);

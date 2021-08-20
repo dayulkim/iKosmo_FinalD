@@ -70,6 +70,7 @@
 <id property="pro_num" column="pro_num" javaType="int"/>
 <result property="pro_name" column="pro_name"/>
 <result property="pro_discount" column="pro_discount"/>
+<result property="pro_category" column="pro_category"/>
 <result property="sel_num" column="sel_num" javaType="int"/>
 <result property="pro_price" column="pro_price" javaType="int"/>
 <result property="pro_review" column="pro_review" javaType="int"/>

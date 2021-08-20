@@ -42,8 +42,9 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                     	
-                                        <h1 class="h4 text-gray-900 mb-4">슬기로운 집콕생활</h1>
-                                    </div>
+                                        <a class="navbar-brand" href="/main_project_Dteam">
+                                        <img style="width: 20rem;" src="resources/assets/img/logo_s.jpg" alt="메인페이지" /></a>
+                                    </div><br>
                                     <div class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"

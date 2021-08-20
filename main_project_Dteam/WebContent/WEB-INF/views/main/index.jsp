@@ -47,15 +47,15 @@
         <!-- 인기 키워드 상품 -->
         <section class="page-section bg-light" id="keyword-section">
         	<div class="container">
-        		<h4 class="section-heading text-uppercase" style="margin-bottom:2rem;">인기 키워드 상품</h4>
+        		<h4 class="section-heading text-uppercase" style="margin-bottom:2rem;">인기 키워드</h4>
 	        	<div class="row">
-	        		<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+	        		<c:forEach var="kword" items="${keywords}" varStatus="status"> <!-- 반복문 -->
 			        	<div class="col-md-3">
 			               	<div style="position: relative; width: 100%; padding-bottom: 70%; overflow: hidden;  border-radius: 1rem;">
-			               		<a href="">
+			               		<a href="srchRes?key='${kword}'">
 			                    	<img class="img-fluid main_pro_thumb keyword-item" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162546070347891451.jpg?gif=1&w=640&h=640&c=c&webp=1"/>
 			                    	<div class="text-center" style="position: absolute; top: 50%; left: 50%; transform: translate( -50%, -50% );">
-			                    		<h5 class="keyword-item">#홈카페</h5>
+			                    		<h5 class="keyword-item">${kword}</h5>
 			                    	</div>
 			                    </a>
 			                </div>
@@ -517,7 +517,25 @@
 	            autoplayTimeout:3000,
 	            autoplayHoverPause:true
 	        });
-
+	        
+	        $(document).ready(function(){
+                //alert('클릭')
+                $.ajax({
+                   url: 'http://192.168.0.105:8099/housewarming/loadKeywordJsonp?callback', // 우분투 연동
+                    type:'GET',
+                    dataType:'jsonp',
+                    jsonp:'callback',
+                    success: function(data){
+                        console.log(data);
+                        console.log(data.columns);
+                        console.log('***********************************')
+                        console.log(data.data);
+                    },
+                    error:function(data){
+                       console.log("error>>"+$('#target').text())
+                    }
+                })
+            }); // click func end!
 
         </script>
 

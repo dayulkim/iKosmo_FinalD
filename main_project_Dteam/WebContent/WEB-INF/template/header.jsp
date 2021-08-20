@@ -57,7 +57,7 @@
 					</div>
 				</c:when>
 				<c:when test="${sessionScope.sessionID != null}">
-                    <span style="font-family: NANUMSQUARE; font-size: 0.95rem; color: #777777; margin-left: 1rem;">¹Ý°©½À´Ï´Ù. ${sessionScope.sessionNickname}´Ô</span>
+                    <span style="font-family: NANUMSQUARE; font-size: 0.95rem; color: #777777; margin-left: 1rem;"></span>
 					<div class="login-out-btn">
 						<a href="logout" class="login-out-a">·Î±×¾Æ¿ô</a>
 					</div>

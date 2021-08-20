@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link href="resources/css/housewarming/housewarming.css" rel="stylesheet" />
 <!-- Body-->
     
       <!-- Page Title-->
@@ -35,8 +37,8 @@
                   <h3 class="fs-sm mb-0 text-muted">MY정보</h3>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="mypage"><i class="fas fa-info-circle opacity-60"></i>&nbsp;&nbsp;기본정보</a></li>
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="survey"><i class="fas fa-poll opacity-60"></i>&nbsp;&nbsp;추가정보</a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="mypage"><i class="fas fa-info-circle opacity-60"></i>&nbsp;&nbsp;기본정보 수정</a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="survey"><i class="fas fa-poll opacity-60"></i>&nbsp;&nbsp;추가정보 입력</a></li>
                 </ul>
                 <div class="bg-secondary px-4 py-3">
                   <h3 class="fs-sm mb-0 text-muted">MY쇼핑</h3>
@@ -66,41 +68,60 @@
 			<section class="col-lg-8">
 			<!-- Shipping address-->
             <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">기본정보 수정</h2>
+            <form id="updateForm" name="updateForm" method="post" action="mem_update">
             <div class="row">
               <div class="col-sm-6">
                 <div class="mb-3">
                   <label class="form-label" for="nickname">별명</label>
-                  <input class="form-control" type="text" id="nickname">
+                  <input class="form-control" type="text" id="mem_nickname" name="mem_nickname" value="${memvo.mem_nickname}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
                   <label class="form-label" for="checkout-phone">전화번호</label>
-                  <input class="form-control" type="text" id="checkout-phone">
+                  <input class="form-control" type="text" id="mem_tel" name="mem_tel" value="${memvo.mem_tel}">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-label" for="password">비밀번호</label>
-                  <input class="form-control" type="password" id="password">
+                  <label class="form-label" for="password">현재 비밀번호</label>
+                  <input class="form-control" type="password" id="crrPwd" value="${memvo.mem_pwd}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-label" for="password_check">비밀번호 확인</label>
-                  <input class="form-control" type="password" id="password_check">
+                  <label class="form-label" for="password_change">변경 비밀번호</label>
+                  <input class="form-control" type="password" id="mem_pwd" name="mem_pwd">
                 </div>
+              </div>  
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="addr">주소</label>
+                  <input class="form-control" type="text" id="mem_addr" name="mem_addr" value="${memvo.mem_addr}">
+                </div>
+              </div>
+              <div class="image-container col-md-6">
+              	<!-- 이미지 -->
+              	<img class="img-thumbnail rounded" style="width: 7rem;" src="resources/uploadFile/profile/${memvo.mem_profile}">
+              	
+				<!-- 파일 업로드 버튼 -->
+				<a class="upload-file-btn upload-file-btn-span"	style="background-color: #66b2b2;"> 
+					<span class="upload-file-btn-span"><i class="fas fa-file-upload"></i></span>
+					<span class="upload-file-btn-span">파일업로드</span>
+				</a> 
+				<input type="file" class="imgfile" id="mem_profile" name="mem_profile" style="display: none;">
               </div>
             </div>
 
             <div class="col-12">
                <hr class="mt-3 mb-3">
                <div class="d-flex flex-wrap justify-content-end align-items-end mt-4">
-                 <button class="btn btn-success mt-3 mt-sm-0 house_info_add-btn" href="#signin-modal" data-bs-toggle="modal" type="button">회원정보 수정</button>
+                 <button class="btn btn-success mt-3 mt-sm-0 house_info_add-btn" id="mem_update_btn" href="#signin-modal" data-bs-toggle="modal" type="button">회원정보 수정</button>
                </div>
-             </div>
+            </div>
+            </form>
 			</section>
         </div>
       </div>
@@ -114,3 +135,78 @@
     <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <script>
+    
+ 	// css가 적용되어 있는 a 태그를 눌렀을 때 파일업로드 버튼이 클릭되도록 하는 자바스크립트
+    $(document).on("click", ".upload-file-btn", function() {
+    	$(this).parent().children('input').click();
+    });
+ 	
+ 	// 이미지 파일의 변화를 감지하는 스크립트
+    document.addEventListener('change',function(e){
+    	if(e.target.className == 'imgfile') {
+    		readImage(e.target)
+    	}
+    })
+
+    // 이미지를 업로드했을 때 읽어와서 미리보기 사진을 띄워주는 함수
+    function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if(input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+    			const previewImage = input.parentNode.querySelectorAll('.preview-image')[0]
+                previewImage.src = e.target.result
+            }
+            // reader가 이미지 읽도록 하기
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+ 	
+ 	$('#mem_update_btn').on("click", function(){
+ 		var crrPwd = $('#crrPwd').val();
+ 		var newPwd = $('#mem_pwd').val();
+ 		var mem_nickname = $('#mem_nickname').val();
+ 		var mem_tel = $('#mem_tel').val();
+ 		var mem_addr = $('#mem_addr').val();
+ 		var mem_profile = $('#mem_profile').val();
+ 		if (mem_nickname.trim() ==''||mem_tel.trim() == ''||
+ 				mem_addr.trim() ==''||mem_profile.trim()==''){
+ 			alert("정보를 입력해 주세요.")
+ 		}
+ 		if (crrPwd == newPwd){
+ 			alert("현재 비밀번호와 동일 합니다. 변경해 주세요.")
+ 			$('#password_change').focus();
+ 		}else if(newPwd == " "){
+ 			alert("신규 비밀번호를 입력해 주시기 바랍니다.")
+ 		}else{
+ 			var map = {
+ 					"mem_nickname" : mem_nickname,
+ 					"mem_tel" : mem_tel,
+ 					"mem_pwd" : newPwd,
+ 					"mem_addr" : mem_addr,
+ 					"mem_profile" : mem_profile
+ 			};
+ 			
+ 			$.ajax({
+ 				type: "post",
+ 				url: "mem_update",
+ 				dataType: "json",
+ 				contentType : "application/json",
+ 				data: JSON.stringify(map),
+ 				success: function(result){
+ 					console.log("result ::"+result);
+ 					alert("정보 수정이 완료 되었습니다.");
+ 					location.reload(); 
+ 				},
+ 				error: function(xhr, status, error){
+ 					alert("회원정보 수정 중 에러가 발생했습니다."+error);
+ 					location.reload(); 
+ 				}
+ 			});
+ 		}
+ 	});
+    </script>

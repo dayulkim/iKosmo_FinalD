@@ -30,4 +30,10 @@
 	<select id="getMemberName" parameterType="int" resultType="memvo">
 		select mem_id,mem_pwd,mem_name,mem_nickname,mem_age,mem_gender,mem_birth,mem_tel,mem_addr,mem_profile from member where mem_num=#{mem_num}
 	</select>
+	<!-- 김세연: 마이페이지 회원정보 업데이트 -->
+	<update id="memUpdate" parameterType="memvo">
+		update member set mem_nickname=#{mem_nickname}, mem_tel=#{mem_tel}, mem_pwd=#{mem_pwd}, 
+		mem_addr=#{mem_addr}, mem_profile=#{mem_profile} where mem_num=#{mem_num}
+	</update>
+	
 </mapper>

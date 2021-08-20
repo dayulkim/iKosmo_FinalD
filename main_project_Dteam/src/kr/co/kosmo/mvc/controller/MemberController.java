@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.kosmo.mvc.dao.CartDaoInter;
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
 import kr.co.kosmo.mvc.service.FriendsServiceInter;
+import kr.co.kosmo.mvc.service.MemberServiceInter;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
 import kr.co.kosmo.mvc.service.QuestionServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
@@ -117,10 +118,11 @@ public class MemberController {
 
 		return "redirect:/mypage";
 	}
-
+	// 김세연 마이페이지 회원정보 가져오기
 	@RequestMapping(value = "mypage")
-	public String mypage() {
-		System.out.println("mypage 이동");
+	public String mypage(HttpSession session, Model m) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		m.addAttribute("memvo", memberDaoInter.getMemberInfo(mem_num));
 		return "mypage/mypage";
 	}
 
@@ -180,4 +182,6 @@ public class MemberController {
 		System.out.println("scrapbook 이동");
 		return "mypage/scrapbook";
 	}
+	
+	
 }
