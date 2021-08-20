@@ -26,8 +26,8 @@ public class OrderListService implements OrderListServiceInter {
 	}
 	
 	@Override
-	public List<Integer> ordRecommend(){
-		return orderListDaoInter.ordRecommend();
+	public List<Integer> ordRecommend(int cateNum){
+		return orderListDaoInter.ordRecommend(cateNum);
 	}
 
 	

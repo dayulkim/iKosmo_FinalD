@@ -100,7 +100,7 @@
 			document.getElementById("view").style.display = 'none';
 		} else if (key !== lastkey) {// 검색값이 다를 경우 서버로 전송한다. 
 			lastkey = key;
-			console.log("param" + key);
+		
 			sendRequest("suggest?key=" + key, null, res, "get");
 		}
 		setTimeout("sendKeyword();", 300);
@@ -112,8 +112,7 @@
 				var response = xhr.responseText;
 				jsonObj = JSON.parse(response);
 
-				console.log("-----------------");
-				console.log(jsonObj);
+
 				viewTable();
 			} else {
 				document.getElementById("view").style.display = 'none';
@@ -132,7 +131,7 @@
 
 			category = jsonObj[i].split("/", 1);
 
-			console.log(category)
+	
 			htmlTxt += "<li  style='cursor:pointer;padding:4px;list-style:none;' ";
 			htmlTxt += "onmouseover='this.style.background=\"#f2f2f2\"' ";
 			htmlTxt += "onmouseout='this.style.background=\"white\"' ";
@@ -152,10 +151,9 @@
 	function select(index) { //리스트 중에서 선택한 단어를 폼필드 에 출력 및 나머지 초기화
 
 		sendCategory = jsonObj[index].split("/", 1);
-		console.log(sendCategory);
+
 		let keyword = word.value;
-		location.href = "detailreviewform?category=" + sendCategory
-				+ "&keyword=" + keyword
+		location.href = "srchRes?&key="+ keyword
 		//detailreviewform검색결과창으로 변경하시면 되요
 
 		// 		검색후 아래 그림 클릭했을경우) send카테고리가 카테고리 숫자 숫자 넘어갈거구요 키워드는 이사람이 검색창에 작성해논 검색어

@@ -1,17 +1,14 @@
 package kr.co.kosmo.mvc.controller;
 
 import static java.util.stream.Collectors.toList;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import kr.co.kosmo.mvc.dao.ProductDao;
 import kr.co.kosmo.mvc.domain.Suggest;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
@@ -45,36 +42,28 @@ public class DefaultController {
 
 		List<ProductVO> prolist = prductDao.productList();
 		m.addAttribute("prolist", prolist);
-		for (ProductVO vo : prolist) {
-			System.out.println(vo.getPro_name());
+		// 카테고리별 추천상품 (재영)
+		for (int cs = 0; 5 > cs; cs++) {
+			List<Integer> orderRecommend = orderListServiceInter.ordRecommend(cs);
+			List<Integer> revRecommend = reviewServiceInter.revRecommend1(cs);
+			List<Integer> revStarRecommend = reviewServiceInter.revRecommend2(cs);
+			List<Integer> scr_proRecommend = scrap_ProductServiceInter.scrap_ProRecommend(cs);
+			List<int[]> result = orderRecommend.stream()
+					.flatMap(i -> revRecommend.stream()
+							.flatMap(j -> revStarRecommend.stream().flatMap(k -> scr_proRecommend.stream()
+									.filter(t -> !i.equals(j) && !i.equals(k) && !i.equals(t) && !j.equals(k)
+											&& !j.equals(t) && !k.equals(t))
+									.map(t -> new int[] { i, j, k, t }))))
+					.limit(1).collect(toList());
+			List<ProductVO> provo = new ArrayList<>();
+			int[] sendResult = result.get(0);
+			int sendResultLength = sendResult.length;
+
+			for (int i = 0; i < sendResultLength; i++) {
+				provo.add(productServiceInter.productDetail(sendResult[i]));
+			}
+			m.addAttribute("recommend" + cs, provo);
 		}
-
-		
-		// 추천상품 (재영)
-//		List<Integer> oderRecommend = orderListServiceInter.ordRecommend();
-//		List<Integer> revRecommend = reviewServiceInter.revRecommend(0);
-//		List<Integer> revStarRecommend = reviewServiceInter.revRecommend(1);
-//		List<Integer> scr_proRecommend = scrap_ProductServiceInter.scrap_ProRecommend();
-//
-//		List<int[]> result = oderRecommend.stream()
-//				.flatMap(i -> revRecommend.stream()
-//						.flatMap(j -> revStarRecommend.stream()
-//								.flatMap(k -> scr_proRecommend.stream()
-//										.filter(t -> i != j && j != k && k != t && t != j && t != i && i != k)
-//										.map(t -> new int[] { i, j, k, t }))))
-//				.limit(1).collect(toList());
-//		List<ProductVO> provo = new ArrayList<>();
-//		int[] sendResult = result.get(0);
-//
-//		int sendResultLength = sendResult.length;
-//
-//		for (int i = 0; i < sendResultLength; i++) {
-//			provo.add(productServiceInter.recommendPro(sendResult[i]));
-//		}
-//		
-//		m.addAttribute("recommend", provo);
-
-
 		// 인기검색어 관련 (영의)
 		List<SearchLogVO> top10Search = searchServiceInter.top10Search();
 		m.addAttribute("top10Search", top10Search);
@@ -97,7 +86,7 @@ public class DefaultController {
 			JSONArray arr = new JSONArray();
 
 			// JSONArray로 변경
-		
+
 			m.addAttribute("list", arr.toJSONString(suggests));
 		}
 		return "main/suggest/suggest";

@@ -16,9 +16,9 @@ public class Scrap_ProductDao implements Scrap_ProductDaoInter {
 	private SqlSessionTemplate ss;
 
 	@Override
-	public List<Integer> scrap_ProRecommend() {
+	public List<Integer> scrap_ProRecommend(int cateNum) {
 
-		return ss.selectList("scarp_Product.recommend");
+		return ss.selectList("scarp_Product.recommend",cateNum);
 	}
 	
 	@Override

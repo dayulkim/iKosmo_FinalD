@@ -20,8 +20,8 @@ public class OrderListDao implements OrderListDaoInter { // ±Ë¥Ÿ¿≤
 		return ss.selectList("orderList.orderList", mem_num);
 	}
 	@Override
-	public List<Integer> ordRecommend() {
-		return ss.selectList("orderList.ordRecommend");
+	public List<Integer> ordRecommend(int cateNum) {
+		return ss.selectList("orderList.ordRecommend",cateNum);
 	}
 	@Override
 	public List<PurchaseVO> purList(int mem_num) {

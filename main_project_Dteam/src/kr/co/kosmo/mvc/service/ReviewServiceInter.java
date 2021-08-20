@@ -8,6 +8,7 @@ import kr.co.kosmo.mvc.vo.SellerVO;
 public interface ReviewServiceInter {
 	
 	public void addReview(ReviewVO revvo);
-	public List<Integer> revRecommend(int recommend);
+	public List<Integer> revRecommend1(int cateNum);
+	public List<Integer> revRecommend2(int cateNum);
 	public List<ReviewVO> reviewTab(int pro_num);
 }

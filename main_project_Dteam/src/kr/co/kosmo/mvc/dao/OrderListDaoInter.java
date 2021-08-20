@@ -11,6 +11,6 @@ public interface OrderListDaoInter {
 	public List<OrderListVO> orderList(int mem_num);
 	public List<PurchaseVO> purList(int mem_num);
 	// 이재영: 주문 수에 의한 추천
-	public List<Integer> ordRecommend();
+	public List<Integer> ordRecommend(int cateNum);
 	
 }

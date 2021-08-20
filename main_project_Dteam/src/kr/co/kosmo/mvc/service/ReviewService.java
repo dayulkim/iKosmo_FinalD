@@ -15,13 +15,18 @@ public class ReviewService implements ReviewServiceInter {
 	@Autowired
 	private ReviewDaoInter reviewDaoInter;
 
-
 	public void addReview(ReviewVO revvo) {
 		reviewDaoInter.addReview(revvo);
 	}
-	public List<Integer> revRecommend(int recommend) {
-		return reviewDaoInter.revRecommend(recommend);
+
+	public List<Integer> revRecommend1( int cateNum) {
+		return reviewDaoInter.revRecommend1(cateNum);
 	}
+
+	public List<Integer> revRecommend2(int cateNum) {
+		return reviewDaoInter.revRecommend2( cateNum);
+	}
+
 	@Override
 	public List<ReviewVO> reviewTab(int pro_num) {
 		return reviewDaoInter.reviewTab(pro_num);

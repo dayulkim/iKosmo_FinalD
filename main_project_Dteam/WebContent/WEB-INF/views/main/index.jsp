@@ -119,21 +119,21 @@
 				<!-- 가구 카테고리 영역 시작 -->
                 <div class="tab-pane active" id="furniture" role="tabpanel" aria-labelledby="furniture-tab"> 
                		<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend0 }"> <!-- 반복문 -->
                 	<!-- 베스트 상품 개별 아이템-->
                         <div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="">
+                            <a href="detail?pro_num=${i.pro_num }">
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
-                                	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162425849265128705.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+
+                               		<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />
                                 </div>
                             </a>
                             <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount" >${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
                         </div>
@@ -143,144 +143,144 @@
    				<!-- 패브릭 카테고리 영역 시작 -->
                 <div class="tab-pane" id="fabric" role="tabpanel">
                 	<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend1 }" > <!-- 반복문 -->
 						<!-- 베스트 상품 개별 아이템 -->
                 		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
+                          <a href="detail?pro_num=${i.pro_num }" >
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
                                 	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162546070347891451.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+                               		<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />>
                                 </div>
                             </a>
-                            <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                             <div class="main-caption">
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount">${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
+                        </div>
                     </c:forEach> 
                     </div>       
                 </div> <!-- 패브릭 카테고리 영역 끝 -->
                 <!-- 홈데코/조명 카테고리 영역 시작 -->
                 <div class="tab-pane" id="deco" role="tabpanel">
                 	<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend2 }" >  <!-- 반복문 -->
 						<!-- 베스트 상품 개별 아이템 -->
                 		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
+                           <a href="detail?pro_num=${i.pro_num }" >
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
                                 	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/deals/161067890612870477.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+                               		<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />>
                                 </div>
                             </a>
-                            <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                             <div class="main-caption">
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount">${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
+                        </div>
                     </c:forEach> 
                     </div>       
                 </div> <!-- 홈데코/조명 카테고리 영역 끝 -->
                 <!-- 가전 카테고리 영역 시작 -->
                 <div class="tab-pane" id="elect" role="tabpanel">
                 	<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend3 }" >  <!-- 반복문 -->
 						<!-- 베스트 상품 개별 아이템 -->
                 		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
+                            <a href="detail?pro_num=${i.pro_num }" >
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
                                 	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162573632997246373.png?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+                               			<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />>
                                 </div>
                             </a>
-                            <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                             <div class="main-caption">
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount">${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
+                        </div>
                     </c:forEach> 
                     </div>       
                 </div> <!-- 가전 카테고리 영역 끝 -->
                 <!-- 수납/정리 카테고리 영역 시작 -->
                 <div class="tab-pane" id="clean" role="tabpanel">
                 	<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend4 }" >  <!-- 반복문 -->
 						<!-- 베스트 상품 개별 아이템 -->
                 		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
+                           <a href="detail?pro_num=${i.pro_num }" >
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
                                 	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162570734656859146.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+                               			<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />>
                                 </div>
                             </a>
                             <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount">${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
+                        </div>
                     </c:forEach> 
                     </div>       
                 </div> <!-- 수납/정리 카테고리 영역 끝 -->
                 <!-- 생활 카테고리 영역 시작 -->
                 <div class="tab-pane" id="living" role="tabpanel">
                 	<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend5 }" >  <!-- 반복문 -->
 						<!-- 베스트 상품 개별 아이템 -->
                 		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
+                             <a href="detail?pro_num=${i.pro_num }" >
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
                                 	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162518683719338204.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+                               			<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />>
                                 </div>
                             </a>
                             <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount">${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
+                        </div>
                     </c:forEach> 
                     </div>       
                 </div> <!-- 생활 카테고리 영역 끝 -->
                 <!-- 주방 카테고리 영역 시작 -->
                 <div class="tab-pane" id="kitchen" role="tabpanel">
                 	<div class="row">
-                	<c:forEach var="i" begin="0" end="3" step="1" varStatus="status"> <!-- 반복문 -->
+                	<c:forEach var="i" items="${recommend6 }" >  <!-- 반복문 -->
 						<!-- 베스트 상품 개별 아이템 -->
                 		<div class="col-md-3 main-item" style="padding: 2rem;">
-                            <a href="#mainModal4">
+                             <a href="detail?pro_num=${i.pro_num }" >
                                 <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
                                 	<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
-                               		<img class="img-fluid main_pro_thumb" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/deals/162630891896015873.jpg?gif=1&w=640&h=640&c=c&webp=1" style="position: absolute; border-radius: 1rem;" alt="..." />
+                               			<img class="img-fluid main_pro_thumb" src="${i.pro_thumb }" style="position: absolute; border-radius: 1rem;" alt="..." />>
                                 </div>
                             </a>
                             <div class="main-caption">
-                            	<a href="" style="text-decoration: none">
-                            		<p class="main-caption-seller">듀커소파</p>
-                                	<p class="main-caption-name">베스트 풀커버 패브릭 발수 소파 기간한정특가 (3인~5인)</p>
-                                	<span class="main-caption-discount">30%</span>
-                                	<span class="main-caption-price">30,000원</span>
+                            	<a href="detail?pro_num=${i.pro_num }" style="text-decoration: none">
+                            		<p class="main-caption-seller">${i.seller.sel_name }</p>
+                                	<p class="main-caption-name">${i.pro_name }</p>
+                                	<span class="main-caption-discount">${i.pro_discount }%</span>
+                                	<span class="main-caption-price">${i.pro_price}원</span>
                                 </a>
                             </div>
-                        </div><!-- 베스트 상품 개별 아이템 영역 끝 -->
+                        </div>
                     </c:forEach> 
                     </div>       
                 </div> <!-- 주방 카테고리 영역 끝 -->

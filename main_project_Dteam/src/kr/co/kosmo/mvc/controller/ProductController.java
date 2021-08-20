@@ -200,6 +200,7 @@ public class ProductController { // 김다율
 
 		// 해당 번호의 상품 정보 불러오기
 		ProductVO provo = productServiceInter.productDetail(pro_num);
+		System.out.println(provo.getPro_category()+"하이하이");
 		m.addAttribute("provo", provo);
 		System.out.println("상품명 :" + provo.getPro_name());
 		System.out.println("상품명 :" + provo.getPro_photo());
@@ -212,17 +213,7 @@ public class ProductController { // 김다율
 		// 리뷰 평점 불러오기
 		long st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);
-		//재영추가 
-		String checkJpg=provo.getPro_thumb();
-		String checkImageForm;
-		if (checkJpg.contains("https")) {
-			checkImageForm="1";
-			System.out.println("여기옴1");
-		}else {
-			checkImageForm="0";
-			System.out.println("여기옴0");
-		}
-		m.addAttribute("checkImageForm",checkImageForm);
+
 		// 판매자 정보: 카카오 지도 API
 		// int sel_num = Integer.parseInt(request.getParameter(sel_num));
 		SellerVO vo = sellerService.getSellerOne(provo.getSel_num());

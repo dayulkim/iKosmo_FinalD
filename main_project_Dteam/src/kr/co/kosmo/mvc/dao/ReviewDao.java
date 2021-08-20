@@ -33,8 +33,12 @@ public class ReviewDao implements ReviewDaoInter { // ¿Ã¿Áøµ
 	}
 
 	@Override
-	public List<Integer> revRecommend(int recommend) {
-		return ss.selectList("review.revRecommend", recommend);
+	public List<Integer> revRecommend1(int cateNum) {
+		return ss.selectList("review.revRecommend1", cateNum);
+	}
+	@Override
+	public List<Integer> revRecommend2(int cateNum) {
+		return ss.selectList("review.revRecommend2",cateNum);
 	}
 	// ªÛºº∫∏±‚ ∏Æ∫‰≈«2
 	@Override

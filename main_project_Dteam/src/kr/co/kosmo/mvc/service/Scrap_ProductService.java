@@ -13,8 +13,8 @@ public class Scrap_ProductService implements Scrap_ProductServiceInter {
 	@Autowired
 	private Scrap_ProductDaoInter scrap_ProductDaoInter;
 
-	public List<Integer> scrap_ProRecommend() {
-		return scrap_ProductDaoInter.scrap_ProRecommend();
+	public List<Integer> scrap_ProRecommend(int cateNum) {
+		return scrap_ProductDaoInter.scrap_ProRecommend(cateNum);
 	}
 
 }

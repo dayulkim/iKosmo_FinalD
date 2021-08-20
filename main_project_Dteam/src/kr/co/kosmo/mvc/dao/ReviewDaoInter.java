@@ -14,8 +14,8 @@ public interface ReviewDaoInter {
 
 	public void addReview(ReviewVO revvo);
 	
-	public List<Integer> revRecommend(int recommend);
-
+	public List<Integer> revRecommend1(int cateNum);
+	public List<Integer> revRecommend2(int cateNum);
 	// ªÛºº∫∏±‚ ∏Æ∫‰≈«2
 	public List<ReviewVO> reviewTab(int pro_num);
 }

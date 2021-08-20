@@ -49,36 +49,40 @@
 	<!-- 회원번호 상품번호 아직 미적용 -->
 	<!-- 회원번호 상품번호 아직 미적용 -->
 	<select parameterType="revvo" id="addReview">insert into
-		review values(review_seq.nextVal,#{rev_content},#{rev_photo},#{rev_period},#{rev_color},#{rev_star},sysdate,#{mem_num},#{pro_num})
+		review
+		values(review_seq.nextVal,#{rev_content},#{rev_photo},#{rev_period},#{rev_color},#{rev_star},sysdate,#{mem_num},#{pro_num})
 	</select>
-	<!-- 회원번호 상품번호 아직 미적용 -->
-	<!-- 회원번호 상품번호 아직 미적용 -->
-	<!-- 회원번호 상품번호 아직 미적용 -->
-	<!-- 리뷰작성 Insert 쿼리 -->
-	<!-- 최근 제일 7일동안 리뷰가 제일 많은 상품 -->
-	<select parameterType="int" resultType="int" id="revRecommend">
-		select pro_num from(select pro_num, count(pro_num)from review
-		<where>
-			rev_rdate > (sysdate-30) group by pro_num order by
-			<if test="recommend==0">count(pro_num) </if>
-			<if test="recommend==1">avg(pro_num) </if>
-		</where>
-		desc )where rownum between 1 and 4
+<!--  리뷰가 많은순 -->
+	<select parameterType="int" resultType="int" id="revRecommend1">
+		select pro_num from 
+			(select r.pro_num, count(r.pro_num)from review r,product p where 
+				r.pro_num=p.pro_num and r.rev_rdate > (sysdate-30) and 
+				p.pro_category=#{cateNum} 
+				group by r.pro_num order by count(r.pro_num) desc ) 
+		where rownum between 1 and 4
 	</select>
-
+<!-- 	리뷰평점평균이 높은순 -->
+	<select parameterType="int" resultType="int" id="revRecommend2">
+		select pro_num from 
+			(select r.pro_num, count(r.pro_num)from review r,product p where 
+				r.pro_num=p.pro_num and r.rev_rdate > (sysdate-30) and 
+				p.pro_category=#{cateNum} 
+				group by r.pro_num order by avg(r.pro_num) desc ) 
+		where rownum between 1 and 4
+	</select>
 
 	<!-- 상세보기 페이지 리뷰탭2 -->
 	<resultMap type="revvo" id="rMap">
 		<result property="rev_content" column="rev_content" />
 		<result property="rev_star" column="rev_star" />
 		<result property="rev_color" column="rev_color" />
-		<result property="rev_period" column="rev_period"/>
+		<result property="rev_period" column="rev_period" />
 		<result property="rev_photo" column="rev_photo" />
 		<result property="rev_rdate" column="rev_rdate" />
 		<result property="mem_num" column="mem_num" />
 		<result property="pro_num" column="pro_num" />
 		<association property="member" javaType="memvo">
-			<id property="mem_num" column="mem_num"  />
+			<id property="mem_num" column="mem_num" />
 			<result property="mem_id" column="mem_id" />
 			<result property="mem_profile" column="mem_profile" />
 		</association>

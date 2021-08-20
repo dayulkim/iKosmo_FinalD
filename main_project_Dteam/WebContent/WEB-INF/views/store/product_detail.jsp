@@ -100,9 +100,7 @@
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
-
 										<img src="${provo.pro_thumb}" alt="Product Image">
-
 									</div>
 									<c:forEach var="i" items="${plist}">
 										<div class="slider-nav-img">
@@ -324,40 +322,35 @@
 									<i class="fa fa-child" style="color: #F15F5F"></i>
 								</div>
 								<div>
-									&nbsp;&nbsp;our company<br>
-									<font color="#000000">${selvo.sel_name}</font>
+									&nbsp;&nbsp;our company<br> <font color="#000000">${selvo.sel_name}</font>
 								</div>
 								<hr style="width: 400px" size="11px">
 								<div id="unit">
 									<i class="fa fa-phone" style="color: #F15F5F"></i>
 								</div>
 								<div>
-									&nbsp;&nbsp;call us<br>
-									<font color="#000000">${selvo.sel_tel}</font>
+									&nbsp;&nbsp;call us<br> <font color="#000000">${selvo.sel_tel}</font>
 								</div>
 								<hr style="width: 400px" size="11px">
 								<div id="unit">
 									<i class="fa fa-envelope" style="color: #F15F5F"></i>
 								</div>
 								<div>
-									&nbsp;&nbsp;email us<br>
-									<font color="#000000">hotline@gmail.com</font>
+									&nbsp;&nbsp;email us<br> <font color="#000000">hotline@gmail.com</font>
 								</div>
 								<hr style="width: 400px" size="11px">
 								<div id="unit">
 									<i class="fa fa-microchip" style="color: #F15F5F"></i>
 								</div>
 								<div>
-									&nbsp;&nbsp;our grade<br>
-									<font color="#000000">${selvo.sel_grade}&nbsp;등급</font>
+									&nbsp;&nbsp;our grade<br> <font color="#000000">${selvo.sel_grade}&nbsp;등급</font>
 								</div>
 								<hr style="width: 400px" size="11px">
 								<div id="unit">
 									<i class="fa fa-map-marker" style="color: #F15F5F"></i>
 								</div>
 								<div>
-									&nbsp;&nbsp;find us<br>
-									<font color="#000000">${selvo.sel_addr}</font>
+									&nbsp;&nbsp;find us<br> <font color="#000000">${selvo.sel_addr}</font>
 								</div>
 								<br> <input type="hidden" id="selname"
 									value="${selvo.sel_name}"> <input type="hidden"
@@ -413,104 +406,155 @@
 		<!-- Template Javascript -->
 		<script src="resources/js/store/main.js"></script>
 		<script type="text/javascript">
-			// 연아님 담당 Detail
-			$(document).ready(function() {
-				$(".tabs li").on("click", function(e) {
-					var $contents = $(this).closest("#contents");
-					$contents.find(".tabs li.active").removeClass("active");
-					$(this).addClass("active");
-					$contents.find(".panel.active").hide();
-					$contents.find(".panel.active").removeClass("active");
-					var panelToShow = $(this).data("panel");
-					$("#" + panelToShow).show();
-					$("#" + panelToShow).addClass("active");
-				});
+		// 연아님 담당 Detail
+		$(document).ready(function() {
+			$(".tabs li").on("click", function(e) {
+				var $contents = $(this).closest("#contents");
+				$contents.find(".tabs li.active").removeClass("active");
+				$(this).addClass("active");
+				$contents.find(".panel.active").hide();
+				$contents.find(".panel.active").removeClass("active");
+				var panelToShow = $(this).data("panel");
+				$("#" + panelToShow).show();
+				$("#" + panelToShow).addClass("active");
 			});
-			// 재영님 담당 Review
-			function test() {
-				let sort = $('#sortType1').val();
-				$('#testcenter').load(
-						"productDetail?pro_num=${paging.pro_num}&sortType1="
-								+ sort + " #testcenter", function() {
-							$("#sortType1").val(sort);
-						});
-			};
-
-			// 신규철 : 즉시구매 버튼을 눌렀을 때 결제하기 페이지로 넘어가도록 함
-
-			$('#confirmbtn').click(
-					function() {
-						var ord_qty = $('#ord_qty').val();
-						var pro_num = $('#pro_num').val();
-						location.href = "confirm?fromCart=0&pro_num=" + pro_num
-								+ "&ord_qty=" + ord_qty;
+		});
+		// 재영님 담당 Review
+		function test() {
+			let sort = $('#sortType1').val();
+			$('#testcenter').load(
+					"productDetail?pro_num=${paging.pro_num}&sortType1=" + sort
+							+ " #testcenter", function() {
+						$("#sortType1").val(sort);
 					});
-		</script>
+		};
+		
+		// 신규철 : 즉시구매 버튼을 눌렀을 때 결제하기 페이지로 넘어가도록 함
+		      
+	      $('#confirmbtn').click(function(){
+	         var ord_qty = $('#ord_qty').val();
+	         var pro_num = $('#pro_num').val();
+	         location.href = "confirm?fromCart=0&pro_num="+pro_num+"&ord_qty="+ord_qty;
+	      });
+      
+		
+		
+	</script>
 		<!-- kakaomap api -->
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
 		<script>
-			$('#sellertab')
-					.on(
-							"click",
-							function() {
-								var container = document.getElementById('map'); //지도 표시 div
-								$('#map')
-										.attr('style',
-												'width:500px; height:350px; display:block;');
-								var options = {
-									center : new kakao.maps.LatLng(36.300442,
-											127.574917), //지도의 중심좌표
-									level : 3
-								//지도의 확대 레벨
-								};
+   $('#sellertab').on("click", function(){
+      var container = document.getElementById('map'); //지도 표시 div
+      $('#map').attr('style','width:500px; height:350px; display:block;');
+      var options = {
+         center : new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
+         level : 3
+      //지도의 확대 레벨
+      };
 
-								var map = new kakao.maps.Map(container, options);
+      var map = new kakao.maps.Map(container, options);
 
-								var geocoder = new kakao.maps.services.Geocoder();
+      var geocoder = new kakao.maps.services.Geocoder();
 
-								var addr = document.getElementById('addr').value;
-								console.log("addr : " + addr)
-								var selname = document
-										.getElementById('selname').value;
+      var addr = document.getElementById('addr').value;
+      console.log("addr : "+addr)
+      var selname = document.getElementById('selname').value;
 
-								geocoder
-										.addressSearch(
-												addr,
-												function(result, status) {
-													// 정상적으로 검색이 완료됐으면 
-													if (status === kakao.maps.services.Status.OK) {
+      geocoder
+            .addressSearch(
+                  addr,
+                  function(result, status) {
+                     // 정상적으로 검색이 완료됐으면 
+                     if (status === kakao.maps.services.Status.OK) {
 
-														var coords = new kakao.maps.LatLng(
-																result[0].y,
-																result[0].x);
+                        var coords = new kakao.maps.LatLng(result[0].y,
+                              result[0].x);
 
-														// 결과값으로 받은 위치를 마커로 표시
-														var marker = new kakao.maps.Marker(
-																{
-																	map : map,
-																	position : coords
-																});
+                        // 결과값으로 받은 위치를 마커로 표시
+                        var marker = new kakao.maps.Marker({
+                           map : map,
+                           position : coords
+                        });
 
-														// 인포윈도우로 장소에 대한 설명을 표시              
-														var infowindow = new kakao.maps.InfoWindow(
-																{
-																	content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
-																			+ selname
-																			+ '</div>',
-																	disableAutoPan : true
-																});
-														infowindow.open(map,
-																marker);
+                        // 인포윈도우로 장소에 대한 설명을 표시              
+                        var infowindow = new kakao.maps.InfoWindow(
+                              {
+                                 content : "<div style='width:100px;margin:auto;text-align:center;font-size:15px;'>"
+                                       + selname + '</div>',
+                                 disableAutoPan: true
+                              });
+                        infowindow.open(map, marker);
 
-														// 지도의 중심을 결과값으로 받은 위치로 이동
-														var markerPosition = marker
-																.getPosition();
-														map.relayout();
-														map
-																.setCenter(markerPosition);
+                        // 지도의 중심을 결과값으로 받은 위치로 이동
+                        var markerPosition = marker.getPosition(); 
+                        map.relayout(); 
+                        map.setCenter(markerPosition);
+                        
+                        
+                     }
+                  });
+   });
 
-													}
-												});
-							});
-		</script>
+   </script>
+		<script>
+// 		이미지 유사도 비교 -> AWS서버로 이미지 전송 및 유사 이미지 콜백
+	$(document).ready(function() {
+		
+			var productName="${provo.pro_name}"
+		 	var categoryName=${provo.pro_category}
+			
+			switch (categoryName) {
+				case 0:
+					if(productName.indexOf("수납장")!==-1){
+			 		categoryName="closet";}
+				 	else if (productName.indexOf("체어")!==-1 || productName.indexOf("의자")!==-1) {
+				 	categoryName="chair";	}
+				 	
+					break;
+				case 9:
+					categoryName="lighting";
+					break;
+				default:
+					break;
+			}
+
+		
+			var formData = new FormData();
+			var url="resources/data/jpgImage/"+${provo.pro_num}+".jpg"
+			var fileName=url.split("/")[3];
+// 			alert(categoryName)
+			fetch(url).then(response => response.blob()).then(blob =>{
+				const file=new File([blob],fileName)
+				console.log(file);
+				formData.append("file",file)
+			
+			
+			$.ajax({
+				type : 'post',
+
+ 				url : "http://192.168.35.53:9000/service/similarityJsonP?category="+categoryName,
+				processData : false,
+				contentType : false,
+				data : formData,
+
+				success : function(e) {
+					
+					
+					if (e.data!=='None'){
+						
+						for(let i=0;i<e.data.length;i++){
+							 let picture="";
+							 picture="<img alt='' src='resources/data/"+categoryName+"/"+e.data[i]+"' id='"+picture[i]+"' style='width:120px;'>"
+							$("#recommendProduct").append(picture);
+						}
+					}
+				},
+				error : function(e) {
+
+				}
+			});
+		});
+
+	});
+</script>
