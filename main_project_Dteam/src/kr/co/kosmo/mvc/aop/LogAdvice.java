@@ -11,8 +11,11 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import kr.co.kosmo.mvc.service.LogServiceInter;
+import kr.co.kosmo.mvc.service.QuestionLogServiceInter;
+import kr.co.kosmo.mvc.service.QuestionServiceInter;
 import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.LogVO;
+import kr.co.kosmo.mvc.vo.QuestionLogVO;
 import kr.co.kosmo.mvc.vo.SearchLogVO;
 
 @Component
@@ -21,6 +24,12 @@ public class LogAdvice {
 
 	@Autowired
 	private LogServiceInter logServiceInter;
+	
+	@Autowired
+	private QuestionLogServiceInter questionLogServiceInter;
+	
+	@Autowired
+	private QuestionServiceInter questionServiceInter;
 
 	@Before("execution(* kr.co.kosmo.mvc.controller.*.getSrchList(..))")
 	public void searchLog(JoinPoint jp) {
@@ -121,6 +130,44 @@ public class LogAdvice {
 	      vo.setInt_time(ctime);
 	      // 상품번호와 아이디를 담은 vo를 인자로 하여 insert 메서드 실행
 	      logServiceInter.productHitLog(vo);
+	   }
+	   
+	// 질문 상세보기 페이지 조회수 증가
+	   @After("execution(* kr.co.kosmo.mvc.controller.*.getQuestionDetail(..))")
+	   public void questionHit(JoinPoint jp) {
+		   Object[] fd=jp.getArgs();
+	      if(fd[0] instanceof Integer) {
+	         int que_num = (int)fd[0];
+	         questionServiceInter.questionHit(que_num);
+	      }
+	   }
+	   
+	   // 질문 리스트 검색 로그 남기기
+	   @After("execution(* kr.co.kosmo.mvc.controller.*.*QuestionList(..))")
+	   public void queSearchLog(JoinPoint jp) {
+		   QuestionLogVO quelogvo = new QuestionLogVO();
+		   Object[] fd=jp.getArgs();
+		   if(fd[1] instanceof String) {
+		    	 String key = (String)fd[1];
+		    	 quelogvo.setQue_search(key);
+		         if(key != null) {
+		        	 if(fd[2] instanceof HttpServletRequest) {
+						  HttpServletRequest request = (HttpServletRequest) fd[2];
+						  try {
+							  String mem_id = request.getSession().getAttribute("sessionID").toString();
+							  quelogvo.setMem_id(mem_id);
+						} catch (Exception e) {
+							String mem_id = "None";
+							quelogvo.setMem_id(mem_id);
+						}
+						  if(fd[0] instanceof Integer) {
+							  int search = (int)fd[0];
+			   			  	  quelogvo.setType(search);
+				   			  } 
+		        	 }	
+		        	 questionLogServiceInter.insertSearchLog(quelogvo);
+		      }
+		  }
 	   }
 
 }
