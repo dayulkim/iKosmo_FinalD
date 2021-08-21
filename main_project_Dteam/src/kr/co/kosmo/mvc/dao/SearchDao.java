@@ -1,12 +1,9 @@
 package kr.co.kosmo.mvc.dao;
 
 import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import kr.co.kosmo.mvc.vo.HousewarmingVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.QuestionVO;
@@ -23,17 +20,17 @@ public class SearchDao implements SearchDaoInter{
 		return ss.selectList("search.top10Search");
 	}
 	
-	// 김세연 : 검색결과 상품리스트
+	// 검색결과 상품리스트
 	@Override
 	public List<ProductVO> getSrchProList(String key) {
 		return ss.selectList("search.productList", key);
 	}
-	// 김세연 : 검색결과 질문리스트
+	// 검색결과 질문리스트
 	@Override
 	public List<QuestionVO> getSrchQueList(String key) {
 		return ss.selectList("search.queList", key);
 	}
-	// 김세연 : 검색결과 집들이리스트
+	// 검색결과 집들이리스트
 	@Override
 	public List<HousewarmingVO> getSrchHouList(String key) {
 		return ss.selectList("search.houList", key);

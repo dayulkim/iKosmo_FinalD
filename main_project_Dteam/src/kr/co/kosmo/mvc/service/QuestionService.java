@@ -68,7 +68,6 @@ public class QuestionService implements QuestionServiceInter{
 		return questionDao.getQuestionDetail(que_num);
 	}
 
-
 	@Override
 	public int totalAnswer(int que_num) {
 		return questionDao.totalAnswer(que_num);
@@ -135,7 +134,6 @@ public class QuestionService implements QuestionServiceInter{
 	@Override
 	public List<String> imgList(List<QuestionVO> list) {
 		List<String> imgList = new ArrayList<>();
-		
 		for (QuestionVO quevo : list) {
 	         if (quevo.getQue_photo() != null) {
 	            String[] arr = quevo.getQue_photo().split(",");
@@ -149,26 +147,22 @@ public class QuestionService implements QuestionServiceInter{
 	}
 	
 	@Override
-	public List<String> getmemInfo(List<QuestionVO> list) {
-		
+	public List<String> getmemInfo(List<QuestionVO> list) {		
 		List<String> prolist = new ArrayList<>();
 	      for(QuestionVO e : list) {
 	    	  MemberVO memvo = memberDaoInter.getMemInfoById(e.getMem_id());
 	    	  prolist.add(memvo.getMem_profile());
-	      }
-	      
+	      }	      
 		return prolist;
 	}
 	
 	@Override
-	public List<String> getmemInfoDe(List<AnswerVO> list) {
-		
+	public List<String> getmemInfoDe(List<AnswerVO> list) {		
 		List<String> prolist = new ArrayList<>();
 	      for(AnswerVO e : list) {
 	    	  MemberVO memvo = memberDaoInter.getMemInfoById(e.getAns_id());
 	    	  prolist.add(memvo.getMem_profile());
-	      }
-	      
+	      }	      
 		return prolist;
 	}
 

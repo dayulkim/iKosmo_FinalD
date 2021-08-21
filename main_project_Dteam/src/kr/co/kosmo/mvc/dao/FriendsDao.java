@@ -2,13 +2,10 @@ package kr.co.kosmo.mvc.dao;
 
 import java.util.List;
 import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import kr.co.kosmo.mvc.vo.FriendsVO;
-import kr.co.kosmo.mvc.vo.MemberVO;
 
 @Repository
 public class FriendsDao implements FriendsDaoInter{
@@ -29,8 +26,6 @@ public class FriendsDao implements FriendsDaoInter{
 	// 내친구목록 가져오기 (stat=1)
 	@Override
 	public List<FriendsVO> friendsList(int mem_num) {
-		List<FriendsVO> list = ss.selectList("friends.friList", mem_num);
-		
 		return ss.selectList("friends.friList", mem_num);
 	}
 	// 나에게 친구요청한 리스트 가져오기
@@ -56,9 +51,5 @@ public class FriendsDao implements FriendsDaoInter{
 	public void unfollow(Map<String, Integer> num_map) {
 		ss.update("friends.unfollow", num_map);
 	}
-	
-	
-
-	
 
 }

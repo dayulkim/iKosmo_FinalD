@@ -52,14 +52,13 @@ public class HwarmService implements HwarmServiceInter {
 	// 업로드된 파일을 복사하고 파일 이름의 리스트를 반환하는 메서드
 	@Override
 	public List<String> copyandGetFileNames(HttpServletRequest request, MultipartFile[] mfile) {
-		String r_path = request.getRealPath("/"); // 웹 상 절대경로
+		String r_path = request.getSession().getServletContext().getRealPath("/"); // 웹 상 절대경로
 		String img_path = "resources\\uploadFile\\hwarm";
 		List<String> imglist = new ArrayList<>();
 		for (MultipartFile mf : mfile) {
 			String oriFn = mf.getOriginalFilename(); // 업로드할 때의 파일명을 가져옴
 			StringBuffer path = new StringBuffer();
 			path.append(r_path).append(img_path).append("\\").append(oriFn);
-			System.out.println("File FullPath: " + path);
 			// -- 파일 복사
 			File f = new File(path.toString());
 			try {

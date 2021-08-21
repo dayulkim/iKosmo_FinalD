@@ -2,20 +2,13 @@ package kr.co.kosmo.mvc.service;
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import kr.co.kosmo.mvc.dao.FriendsDaoInter;
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
-import kr.co.kosmo.mvc.dao.SearchDaoInter;
 import kr.co.kosmo.mvc.vo.FriendsVO;
-import kr.co.kosmo.mvc.vo.HousewarmingVO;
 import kr.co.kosmo.mvc.vo.MemberVO;
-import kr.co.kosmo.mvc.vo.ProductVO;
-import kr.co.kosmo.mvc.vo.QuestionVO;
-import kr.co.kosmo.mvc.vo.SearchLogVO;
 
 @Service
 public class FriendsService implements FriendsServiceInter{
@@ -66,6 +59,5 @@ public class FriendsService implements FriendsServiceInter{
 	public MemberVO getMemberInfo(int mem_num) {
 		return memberDaoInter.getMemberInfo(mem_num);
 	}
-
 
 }

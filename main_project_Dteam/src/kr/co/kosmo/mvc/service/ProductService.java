@@ -16,31 +16,26 @@ public class ProductService implements ProductServiceInter{
 	private ProductDaoInter productDaoInter;
 
 	public List<ProductVO> productList() {
-
 		return productDaoInter.productList();
 	}
 
 	@Override
-	public List<ProductVO> productList2(String category) {
-		
+	public List<ProductVO> productList2(String category) {		
 		return productDaoInter.productList2(category);
 	}
 
 	@Override
-	public List<ProductVO> productOrder(String way, String merit, String category) {
-		
+	public List<ProductVO> productOrder(String way, String merit, String category) {		
 		return productDaoInter.productOrder(way, merit, category);
 	}
 
 	@Override
-	public String totalProduct() {
-		
+	public String totalProduct() {		
 		return productDaoInter.totalProduct();
 	}
 
 	@Override
-	public List<ProductVO> priceList(String range) {
-		
+	public List<ProductVO> priceList(String range) {		
 		return productDaoInter.priceList(range);
 	}
 
@@ -83,7 +78,5 @@ public class ProductService implements ProductServiceInter{
 	public ProductVO recommendPro(int result) {
 		return productDaoInter.recommendPro(result);
 	}
-
-
 
 }

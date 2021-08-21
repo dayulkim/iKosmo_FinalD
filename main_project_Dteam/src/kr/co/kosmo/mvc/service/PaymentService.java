@@ -1,16 +1,12 @@
 package kr.co.kosmo.mvc.service;
 
 import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import kr.co.kosmo.mvc.dao.PaymentDaoInter;
 import kr.co.kosmo.mvc.vo.CartVO;
 import kr.co.kosmo.mvc.vo.MemberVO;
-import kr.co.kosmo.mvc.vo.OrderListVO;
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.PurchaseVO;
 

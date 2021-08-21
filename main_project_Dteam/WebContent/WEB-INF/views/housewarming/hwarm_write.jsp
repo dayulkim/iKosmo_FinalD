@@ -12,7 +12,7 @@
 
 	<!-- 집들이 제목 입력 -->
 	<div class="editor-title-section hwarm_title">
-		<input id="hou_name" name="hou_name" type="text" placeholder="제목을 입력해주세요" style="width: 100%">
+		<input id="hou_name" name="hou_name" type="text" placeholder="제목을 입력해주세요" style="width: 100%" required>
 	</div>
 
 	<!-- 필수정보 입력 -->
@@ -32,7 +32,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<select id="hou_type" name="hou_type" class="form-select"
-							aria-label="Default select example">
+							aria-label="Default select example" required>
 							<option selected>선택해주세요</option>
 							<option value="1">아파트</option>
 			               <option value="2">원룸&오피스텔</option>
@@ -51,7 +51,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<input type="text" id="hou_space" name="hou_space"
-							class="form-control">
+							class="form-control" required>
 					</div>
 				</div>
 				<!-- 설문 3: 작업방식 -->
@@ -61,7 +61,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<select id="hou_how" name="hou_how" class="form-select"
-							aria-label="Default select example">
+							aria-label="Default select example" required>
 							<option selected>선택해주세요</option>
 							<option value="1">셀프</option>
 							<option value="2">반셀프</option>
@@ -76,7 +76,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<select id="hou_sector" name="hou_sector" class="form-select"
-							aria-label="Default select example">
+							aria-label="Default select example" required>
 							<option selected>선택해주세요</option>
 							<option value="1">리모델링</option>
 							<option value="2">홈스타일링</option>
@@ -92,7 +92,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<select id="hou_style" name="hou_style" class="form-select"
-							aria-label="Default select example">
+							aria-label="Default select example" required>
 							<option selected>선택해주세요</option>
 							<option value="1">내추럴</option>
 							<option value="2">모던</option>
@@ -115,7 +115,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<input type="text" id="hou_period" name="hou_period"
-							class="form-control">
+							class="form-control" required>
 					</div>
 				</div>
 				<!-- 설문 7: 예산 -->
@@ -125,7 +125,7 @@
 					</div>
 					<div class="editor-form-group__content">
 						<input type="text" id="hou_pay" name="hou_pay"
-							class="form-control">
+							class="form-control" required>
 					</div>
 				</div>
 				<!-- 설문 8: 컬러톤 -->
@@ -137,7 +137,7 @@
 						<div class="custom-radios">
 							<div>
 								<input type="radio" id="color-1" name="hou_tone" value="1"
-									checked> <label for="color-1"> <span
+									checked required> <label for="color-1"> <span
 									style="background-color: #fff4e6"> <img
 										src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg"
 										alt="Checked Icon" />

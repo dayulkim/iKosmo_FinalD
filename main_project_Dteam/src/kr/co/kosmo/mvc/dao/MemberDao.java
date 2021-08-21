@@ -17,19 +17,15 @@ public class MemberDao implements MemberDaoInter { // 오원석
 
 	@Override
 	public void addmember(MemberVO vo) {
-		System.out.println("회원가입 시도");
 		ss.insert("member.in", vo);
-		System.out.println("회원가입 성공");
 	}
 
 	@Override
-	public int idchk(String id) {
-		System.out.println("아이디 중복확인");
+	public int idchk(String id) { // 아이디 중복확인
 		return ss.selectOne("member.idchk", id);
 	}
 
 	// 홍영의 : 집들이 부분에서 사용되는 코드 ---------------------------------
-	
 	@Override
 	public String getMemberID(int mem_num) {
 		return ss.selectOne("member.getMemberID", mem_num);
@@ -48,7 +44,6 @@ public class MemberDao implements MemberDaoInter { // 오원석
 	// 재영  : 회원 집 정보 출력 코드 ---------------------------------
 	@Override
 	public List<HouseInfoVO> getMemberHouseInfo(String mem_id) {
-		
 		return ss.selectList("member.getMemberHouseInfo",mem_id);
 	}
 	@Override
@@ -66,6 +61,11 @@ public class MemberDao implements MemberDaoInter { // 오원석
 	@Override
 	public MemberVO getMemInfoById(String mem_id) {
 		return ss.selectOne("member.getMemInfoId", mem_id);
+	}
+	// 김세연 : 마이페이지, 회원정보 수정
+	@Override
+	public void updateOne(MemberVO memvo) {
+		ss.update("member.memUpdate", memvo);
 	}
 
 

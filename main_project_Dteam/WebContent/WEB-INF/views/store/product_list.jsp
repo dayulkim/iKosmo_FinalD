@@ -242,91 +242,84 @@ input {
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=1">패브릭</a>
+                              <a href="theme?category=1">장식/소품</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=2">홈데코/조명</a>
+                              <a href="theme?category=2">주방용품</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=3">가전</a>
+                              <a href="theme?category=3">패브릭</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=4">수납/정리</a>
+                              <a href="theme?category=4">가전</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=5">생활</a>
+                              <a href="theme?category=5">반려동물</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=6">주방</a>
+                              <a href="theme?category=6">조명</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=7">생필품</a>
+                              <a href="theme?category=7">생활용품</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=8">DIY/공구</a>
+                              <a href="theme?category=8">실내운동</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=9">시공/서비스</a>
+                              <a href="theme?category=9">수납/정리</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=10">반려동물</a>
+                              <a href="theme?category=10">유아/아동</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=11">캠핑</a>
+                              <a href="theme?category=11">공구/DIY</a>
                            </h4>
                         </div>
                      </div>
                      <div class="panel panel-default">
                         <div class="panel-heading">
                            <h4 class="panel-title">
-                              <a href="theme?category=12">홈트레이닝</a>
-                           </h4>
-                        </div>
-                     </div>
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                           <h4 class="panel-title">
-                              <a href="theme?category=13">유아/아동</a>
+                              <a href="theme?category=12">생필품</a>
                            </h4>
                         </div>
                      </div>

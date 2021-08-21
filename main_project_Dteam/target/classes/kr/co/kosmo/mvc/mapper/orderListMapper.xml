@@ -45,6 +45,5 @@
 		select pro_num from(select o.pro_num from orderlist o,product p where o.pro_num=p.pro_num and o.ord_date > (sysdate-30) and p.pro_category=#{cateNum}
 		GROUP by o.pro_num order by count(o.pro_num) desc )where rownum between 1 and 4 
 	</select>
-	
-	
+
 </mapper>

@@ -1,11 +1,8 @@
 package kr.co.kosmo.mvc.service;
 
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import kr.co.kosmo.mvc.dao.SearchDaoInter;
 import kr.co.kosmo.mvc.vo.HousewarmingVO;
 import kr.co.kosmo.mvc.vo.ProductVO;

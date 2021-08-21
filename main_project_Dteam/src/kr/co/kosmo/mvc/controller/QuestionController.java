@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
 import kr.co.kosmo.mvc.service.QuestionLogServiceInter;
 import kr.co.kosmo.mvc.service.QuestionServiceInter;
@@ -37,10 +33,8 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionServiceInter questionServiceInter;
-	
 	@Autowired
 	private QuestionLogServiceInter questionLogServiceInter;
-	
 	@Autowired
 	private MemberDaoInter memberDaoInter;
 	
@@ -53,15 +47,10 @@ public class QuestionController {
 	// 질문 등록
 	@PostMapping("/insertQuestion")
 	public String insertReview(QuestionVO quevo, List<MultipartFile> mfile, HttpServletRequest request) {
-		
 		String writerID = request.getSession().getAttribute("sessionID").toString();
-		System.out.println("작성자ID: "+ writerID);
-		quevo.setMem_id(writerID);
-		
+		quevo.setMem_id(writerID);	
 		quevo.setQue_title(request.getParameter("title"));
 		quevo.setQue_content(request.getParameter("content"));
-		System.out.println(request.getParameter("title"));
-		System.out.println(request.getParameter("content"));
 		
 		//선택했던 체크박스 항목을 String 배열로 받는다.
 		String[] kinds = request.getParameterValues("kinds");
@@ -69,7 +58,6 @@ public class QuestionController {
 		String[] space = request.getParameterValues("space");
 		
 		List<String> keylist = new ArrayList<>();
-		
 		// 각 항목에 따른 키워드를 keylist에 모두 담아준다.
 		if(kinds != null) {
 			for(String i : kinds) {
@@ -89,20 +77,17 @@ public class QuestionController {
 		
 		// 문자열로 만들어서 DB에 저장
 		String keywords = String.join(",", keylist);
-		System.out.println(keywords);
 		quevo.setQue_keyword(keywords);
 				
 		// 첨부파일 처리 ===========================================================================
 		// -- 파일 복사경로 설정
-		String r_path = request.getRealPath("/"); // 웹 상 절대경로
+		String r_path = request.getSession().getServletContext().getRealPath("/"); // 웹 상 절대경로
 		String img_path = "resources\\uploadFile";
 		List<String> imglist = new ArrayList<>();
 		for(MultipartFile mf : mfile) {
 			String oriFn = mf.getOriginalFilename(); // 업로드할 때의 파일명을 가져옴
 			StringBuffer path = new StringBuffer();
 			path.append(r_path).append(img_path).append("\\").append(oriFn);
-			System.out.println("절대경로 : " + r_path);
-			System.out.println("File FullPath: "+path);
 			// -- 파일 복사
 			File f = new File(path.toString());
 			try {
@@ -112,9 +97,8 @@ public class QuestionController {
 				e.printStackTrace();
 			}
 		}
-		// 파일 이름의 리스트를 String으로 만들고 이거를 DB에 저장
+		// 파일 이름의 리스트를 String으로 만들고  DB에 저장
 		String fileNames = String.join(",", imglist);
-		System.out.println(fileNames);
 		
 		// -- DB에 파일 이름 저장
 		quevo.setQue_photo(fileNames);
@@ -186,27 +170,19 @@ public class QuestionController {
 		try {
 			quevo = questionServiceInter.getQuestionDetail2(vo);
 			List<AnswerVO> list = quevo.getAnswer();
-			System.out.println("상세보기 댓글 있음");
 			mav.addObject("quevo",quevo);
 			mav.addObject("list",list);
 			
 			MemberVO memvo = memberDaoInter.getMemInfoById(quevo.getMem_id());
 			mav.addObject("que_profile", memvo.getMem_profile());
-			
 			List<String> prolist = questionServiceInter.getmemInfoDe(list);
-			for (String e : prolist) {
-				System.out.println(e);
-			}
 			mav.addObject("prolist", prolist);
-		} catch (Exception e) {
+		} catch (Exception e) { // 댓글 없는 경우
 			quevo = questionServiceInter.getQuestionDetail(que_num);
-			System.out.println("상세보기 댓글 없음");
-			
 			MemberVO memvo = memberDaoInter.getMemInfoById(quevo.getMem_id());
 			mav.addObject("que_profile", memvo.getMem_profile());
 			mav.addObject("quevo", quevo);
 		}
-		
 		mav.setViewName("question/questionDetail_ver2");
 		return mav;
 	}
@@ -216,7 +192,6 @@ public class QuestionController {
 	public ModelAndView answeradd(AnswerVO ansvo, MultipartFile mfile ,HttpServletRequest request) {
 		
 		int que_num = Integer.parseInt(request.getParameter("que_num"));
-		
 		ansvo.setQue_num(que_num);
 		ansvo.setAns_id(request.getParameter("sessionID"));
 		ansvo.setAns_content(request.getParameter("content"));
@@ -237,7 +212,6 @@ public class QuestionController {
 		} catch (Exception e) {
 			
 		}
-		System.out.println(oriFn);
 		ansvo.setAns_photo(oriFn);
 		questionServiceInter.addAnswer(ansvo,que_num);
 		
@@ -267,8 +241,6 @@ public class QuestionController {
 	      String searchValue = "%"+key+"%";
 	      String searchType = String.valueOf(sort);
 	      
-	      System.out.println(searchValue);
-	      
 	      // 조회된 결과의 total이 0일시 나올 메세지 문구
 	      String msg = "해당 검색의 결과가 없습니다.";
 	  	  
@@ -291,7 +263,6 @@ public class QuestionController {
 			  	  quelogvo.setMem_id(mem_id);
 			  	  quelogvo.setQue_search(key);
 			  	  quelogvo.setType(search);
-			  	  
 			  	  questionLogServiceInter.insertSearchLog(quelogvo);
 			  }
 			  
@@ -301,7 +272,6 @@ public class QuestionController {
 			  for(QuestionWordCloudVO e : mklist) {
 				  mkeylist.add(e.getSubject());
 			  }
-			  
 			  mav.addObject("mkeylist",mkeylist );
 			  
 		  } catch (Exception e) {
@@ -320,61 +290,40 @@ public class QuestionController {
 		      mav.addObject("list", list);
 		      
 		      List<String> prolist = questionServiceInter.getmemInfo(list);
-				for (String e : prolist) {
-					System.out.println(e);
-				}
 		      mav.addObject("pro_list", prolist);
 		  }else {
 			  // 키워드, 제목/내용 검색에 따라서 search의 값을 다르게 받고 그에 따른 처리를 진행
 		      // 키워드검색 (0), 제목/내용검색(1)
 		      if(search == 0) {
-		    	  System.out.println("키워드 검색");
 		    	  int total = questionServiceInter.totalSearchKeyword(searchValue);
-		    	  System.out.println("total : "+total);
-		    	  
 		    	  if(total == 0) {
 		    		  mav.addObject("msg", msg);
-		    	  }
-		    	  
+		    	  }		    	  
 		    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
-		    	  list = questionServiceInter.SearchKeywordList(pvo);
-		    	  
-		    	  imgList = questionServiceInter.imgList(list);
-		    	  
+		    	  list = questionServiceInter.SearchKeywordList(pvo);		    	  
+		    	  imgList = questionServiceInter.imgList(list);		    	  
 			      mav.addObject("list", list);
 			      
-			      List<String> prolist = questionServiceInter.getmemInfo(list);
-					for (String e : prolist) {
-						System.out.println(e);
-					}
+			      List<String> prolist = questionServiceInter.getmemInfo(list);		
 			      mav.addObject("prolist", prolist);
 		      }
 		      else if(search == 1) {
 		    	  System.out.println("제목 + 내용 검색");
-		    	  int total = questionServiceInter.totalSearchTitle_Content(searchValue);
-		    	  System.out.println("total : "+total);
-		    	  
+		    	  int total = questionServiceInter.totalSearchTitle_Content(searchValue);		    	  		    	  
 		    	  if(total == 0) {
 		    		  mav.addObject("msg", msg);
-		    	  }
-		    	  
+		    	  }		    	  
 		    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
-		    	  list = questionServiceInter.SearchTitle_Content(pvo);
-		    	  
-		    	  imgList = questionServiceInter.imgList(list);
-		    	  
+		    	  list = questionServiceInter.SearchTitle_Content(pvo);		    	  
+		    	  imgList = questionServiceInter.imgList(list);		    	  
 			      mav.addObject("list", list);
 			      
 			      List<String> prolist = questionServiceInter.getmemInfo(list);
-					for (String e : prolist) {
-						System.out.println(e);
-					}
 			      mav.addObject("prolist", prolist);
 		      }
 		      mav.addObject("paging", pvo);
 		      mav.addObject("type", 1);
-		  }
-	      
+		  }	      
 	      
 	      mav.addObject("key",key);
 	      mav.addObject("search", search);
@@ -410,8 +359,7 @@ public class QuestionController {
 		  			
 		  for(QuestionWordCloudVO e : klist) {
 			  keylist.add(e.getSubject());
-		  }
-		  
+		  }		  
 		  mav.addObject("keylist",keylist );
 		  
 		  // 로그인 상태에서 내가 자주 검색한 키워드 추천
@@ -422,18 +370,15 @@ public class QuestionController {
 			      QuestionLogVO quelogvo = new QuestionLogVO();
 		    	  quelogvo.setMem_id(mem_id);
 		    	  quelogvo.setQue_search(key);
-		    	  quelogvo.setType(search);
-		    	  
+		    	  quelogvo.setType(search);		    	  
 		    	  questionLogServiceInter.insertSearchLog(quelogvo);
-			  }
-			  
+			  }			  
 			  List<QuestionWordCloudVO> mklist = questionLogServiceInter.mysearchkeyword(mem_id);
 			  List<String> mkeylist = new ArrayList<>();
 			  			
 			  for(QuestionWordCloudVO e : mklist) {
 				  mkeylist.add(e.getSubject());
-			  }
-			  
+			  }			  
 			  mav.addObject("mkeylist",mkeylist );
 			  
 		  } catch (Exception e) {
@@ -442,52 +387,35 @@ public class QuestionController {
 	      
 	      if(key == null) {
 	    	  int total = questionServiceInter.totalNAQuestionList();
-			  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);
-			  
+			  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType);			  
 			  list = questionServiceInter.NAQuestionList(pvo);
 			  mav.addObject("paging", pvo);
 			  
-			  // 각각의 게시물에 대표이미지 하나씩만 추출하기 위함
-		      
-			  imgList = questionServiceInter.imgList(list);
-			  
+			  // 각각의 게시물에 대표이미지 하나씩만 추출하기 위함		      
+			  imgList = questionServiceInter.imgList(list);			  
 		      mav.addObject("list", list);
 		      
-		      List<String> prolist = questionServiceInter.getmemInfo(list);
-				for (String e : prolist) {
-					System.out.println(e);
-				}
+		      List<String> prolist = questionServiceInter.getmemInfo(list);				
 		      mav.addObject("prolist", prolist);
 	      }
 	      else {
 
     	  if(search == 0) {
-	    	  System.out.println("키워드 검색");
-	    	  int total = questionServiceInter.totalNaSearchKeyword(searchValue);
-	    	  System.out.println("total : "+total);
-	    	  
+	    	  int total = questionServiceInter.totalNaSearchKeyword(searchValue);   	  
 	    	  if(total == 0) {
 	    		  mav.addObject("msg", msg);
-	    	  }
-	    	  
+	    	  }	    	  
 	    	  pvo = new PageVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), searchType, searchValue);
 	    	  list = questionServiceInter.SearchNaKeywordList(pvo);
-	    	  mav.addObject("paging", pvo);
-	    	  
-	    	  imgList = questionServiceInter.imgList(list);
-	    	  
+	    	  mav.addObject("paging", pvo);	    	  
+	    	  imgList = questionServiceInter.imgList(list);	    	  
 		      mav.addObject("list", list);
 		      
-		      List<String> prolist = questionServiceInter.getmemInfo(list);
-				for (String e : prolist) {
-					System.out.println(e);
-				}
+		      List<String> prolist = questionServiceInter.getmemInfo(list);				
 		      mav.addObject("prolist", prolist);
 	      }
-	      else if(search == 1) {
-	    	  System.out.println("제목/내용 검색");
-	    	  int total = questionServiceInter.totalNaSearchTitle_Content(searchValue);
-	    	  System.out.println("total : "+total);
+	      else if(search == 1) { // 제목/내용 검색
+	    	  int total = questionServiceInter.totalNaSearchTitle_Content(searchValue);	    	  
 	    	  
 	    	  if(total == 0) {
 	    		  mav.addObject("msg", msg);
@@ -497,19 +425,13 @@ public class QuestionController {
 	    	  list = questionServiceInter.SearchNaTitle_Content(pvo);
 	    	  mav.addObject("paging", pvo);
 	    	  
-	    	  imgList = questionServiceInter.imgList(list);
-	    	  
+	    	  imgList = questionServiceInter.imgList(list);	    	  
 		      mav.addObject("list", list);
 		      
 		      List<String> prolist = questionServiceInter.getmemInfo(list);
-				for (String e : prolist) {
-					System.out.println(e);
-				}
 		      mav.addObject("prolist", prolist);
-	      	}
-    	  
-	      }
-      
+	      	}    	  
+	      }      
 	      mav.addObject("key",key);
 	      mav.addObject("search", search);
 	      mav.addObject("type", 2);
@@ -522,19 +444,14 @@ public class QuestionController {
 	@RequestMapping(value="/quesearchwordcloud", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
 	@ResponseBody
 	public String wordcloud(HttpServletRequest request,QuestionWordCloudVO quewcvo) throws Exception{
-			List<QuestionWordCloudVO> list = questionLogServiceInter.quesearchWordcloud();
-			
+			List<QuestionWordCloudVO> list = questionLogServiceInter.quesearchWordcloud();			
 			String json = null;
 			try {
 				json = new ObjectMapper().writeValueAsString(list);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
-			}
-				
+			}				
 			return json;
-	}
-
-	
-	
+	}	
 
 }

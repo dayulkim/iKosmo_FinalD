@@ -1,12 +1,9 @@
 package kr.co.kosmo.mvc.dao;
 
 import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.Scrap_ProductVO;
 
@@ -16,20 +13,19 @@ public class Scrap_ProductDao implements Scrap_ProductDaoInter {
 	private SqlSessionTemplate ss;
 
 	@Override
+
 	public List<Integer> scrap_ProRecommend(int cateNum) {
 
 		return ss.selectList("scarp_Product.recommend",cateNum);
 	}
 	
 	@Override
-	public List<ProductVO> getproductlist() {
-		System.out.println("상품 리스트");
+	public List<ProductVO> getproductlist() { // 상품리스트
 		return ss.selectList("scarp_Product.getlist");
 	}
 
 	@Override
-	public void doscrap(Scrap_ProductVO vo) {
-		System.out.println("상품 스크랩");
+	public void doscrap(Scrap_ProductVO vo) { // 상품 스크랩
 		ss.insert("scarp_Product.scrap", vo);
 	}
 	
@@ -39,8 +35,7 @@ public class Scrap_ProductDao implements Scrap_ProductDaoInter {
 	}
 	
 	@Override
-	public void scrapdel(Scrap_ProductVO vo) {
-		System.out.println("스크랩 삭제");
+	public void scrapdel(Scrap_ProductVO vo) { // 스크랩 삭제
 		ss.delete("scarp_Product.scrapdel", vo);
 	}
 

@@ -50,5 +50,20 @@
 	<select id="getMemInfoId" parameterType="String" resultType="memvo">
 		select mem_id,mem_pwd,mem_name,mem_nickname,mem_age,mem_gender,mem_birth,mem_tel,mem_addr,mem_profile from member where mem_id=#{mem_id}
 	</select>
+	
+	<!-- 김세연: 마이페이지 회원정보 업데이트 -->
+	<update id="memUpdate" parameterType="memvo">
+		<choose>
+			<when test="mem_profile == null">
+				update member set mem_nickname=#{mem_nickname}, mem_tel=#{mem_tel}, mem_pwd=#{mem_pwd}, 
+				mem_addr=#{mem_addr} where mem_num=#{mem_num}
+			</when>
+			<otherwise>
+				update member set mem_nickname=#{mem_nickname}, mem_tel=#{mem_tel}, mem_pwd=#{mem_pwd}, 
+				mem_addr=#{mem_addr}, 
+				mem_profile=#{mem_profile} where mem_num=#{mem_num}
+			</otherwise>
+		</choose>
+	</update>
 
 </mapper>
