@@ -113,13 +113,13 @@ public class LogAdvice {
 	      // 매개변수를 배열로 받아오기
 	      Object[] fd=jp.getArgs();
 	      // 조회한 상품의 번호를 받아오기
-	      if(fd[1] instanceof Integer) {
-	         System.out.println("조회한 상품 번호:"+fd[1]);
-	         vo.setPro_num((int)fd[1]);
+	      if(fd[2] instanceof Integer) {
+	         System.out.println("조회한 상품 번호:"+fd[2]);
+	         vo.setPro_num((int)fd[2]);
 	      }
 	      // 세션 아이디를 받아오기
-	      if(fd[2] instanceof HttpSession) {
-	         HttpSession session = (HttpSession) fd[2];
+	      if(fd[1] instanceof HttpSession) {
+	         HttpSession session = (HttpSession) fd[1];
 	         if(session.getAttribute("sessionID")==null) {
 	            vo.setMem_id("nonmember");
 	         } else {
