@@ -100,27 +100,43 @@
 
 		<!-- 추가정보 내용 시작  -->
 		<section class="col-lg-8">
-<c:forEach var="house_info" items="${house_info }" varStatus="i" >
-			<!-- 추가정보 아코디언 시작 -->
-			<div class="accordion" id="accordionExample">
+			<c:forEach var="house_info" items="${house_info }" varStatus="i">
+				<!-- 추가정보 아코디언 시작 -->
+				<div class="accordion" id="accordionExample${i.index }">
 
-				<!-- 아코디언 아이템 1 제목 : 내가 사는 집 1 -->
-				
+					<!-- 아코디언 아이템 1 제목 : 내가 사는 집 1 -->
+
 					<div class="accordion-item">
 						<!-- 내가 사는 집 이름 -->
 
-						<h2 class="accordion-header" id="headingOne">
+						<h2 class="accordion-header" id="headingOne${i.index }">
 							<button class="accordion-button" type="button"
-								data-bs-toggle="collapse" data-bs-target="#collapseOne${i.index }"
-								aria-expanded="true" aria-controls="collapseOne">
-								<i class="fas fa-home opacity-60"></i>&nbsp;&nbsp;나의 서울 자취방 
-								&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill bg-success">Main</span>
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseOne${i.index }" aria-expanded="true"
+								aria-controls="collapseOne${i.index }">
+								<i class="fas fa-home opacity-60"></i>&nbsp;&nbsp;${house_info.hinfo_title }
+								&nbsp;&nbsp;&nbsp;
+								<c:if test="${house_info.hinfo_main==1 }">
+									<span class="badge rounded-pill bg-success">Main</span>
+								</c:if>
+
 							</button>
 						</h2>
+						<c:choose>
+							<c:when test="${i.index == 0 }">
+								<div class="accordion-collapse collapse show" id="collapseOne${i.index }"
+									aria-labelledby="headingOne${i.index }" data-bs-parent="#accordionExample${i.index }">
+							</c:when>
+							<c:otherwise>
+								<div class="accordion-collapse collapse" id="collapseOne${i.index }"
+									aria-labelledby="headingOne${i.index }" data-bs-parent="#accordionExample${i.index }">
+							</c:otherwise>
+						</c:choose>
 						<!-- 아코디언 아이템 1 내용: 내가 사는 집 1의 상세 내용 -->
 
-						<div class="accordion-collapse collapse show" id="collapseOne${i.index }"
-							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<div class="accordion-collapse collapse show"
+							id="collapseOne${i.index }" aria-labelledby="headingOne${i.index }"
+							data-bs-parent="#accordionExample${i.index }">
 							<div class="accordion-body">
 								<!-- Description list alignment -->
 								<dl class="row">
@@ -167,14 +183,13 @@
 								</dl>
 							</div>
 							<button class="btn btn-accent mt-3 mt-sm-0 hinf_del-btn"
-								value="${house_info.hinfo_num }" style="text-align: right;">삭제</button>
+								value="${house_info.hinfo_num }" style="margin-left: 15%;">삭제</button>
 
 						</div>
-		
-			</div>
-			
+					</div>
+				</div>
 	</div>
-		</c:forEach>
+	</c:forEach>
 
 
 	<!-- 추가정보 입력 버튼  -->
@@ -202,8 +217,30 @@
 					aria-label="Close"></button>
 			</div>
 
+
 			<div class="modal-body tab-content py-4">
 				<form action="houseinfoinsert" method="post">
+					<div class="col-sm-12">
+						<div class="mb-3">
+							<div>
+								<label class="form-label" for="hinfo_main"
+									style="padding-left: 73%">메인으로 저장 <input
+									type="checkbox" id="hinfo_main" name="hinfo_main" value="1"></label>
+							</div>
+							<label class="form-label" for="hinfo_title">집 명칭 </label>
+
+							<div class="input-group">
+								<input id="hinfo_title" name="hinfo_title" type="text"
+									class="form-control" placeholder="나의 편안한 집" value="나의 편안한 집">
+
+							</div>
+
+						</div>
+					</div>
+					<div class="col-sm-12" style="font-size: 6px;">
+						<div class="mb-3"></div>
+					</div>
+
 					<div class="col-sm-12">
 						<div class="mb-3">
 							<label class="form-label" for="hinfo_type">주거형태</label> <select

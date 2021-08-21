@@ -18,10 +18,27 @@ purpose(용도) /1:단순주거/ 2:홈카페/3: 홈키친/4: 홈짐
 
 public class HouseInfoVO {
 
-	private String mem_id, hinfo_type, hinfo_size, hinfo_tend, hinfo_style, hinfo_with, hinfo_favour, hinfo_buytend,
-			hinfo_activity;
-	private int hinfo_num, hinfo_visible;
 
+
+
+
+	private String mem_id, hinfo_type, hinfo_size, hinfo_tend, hinfo_style, hinfo_with, hinfo_favour, hinfo_buytend,
+			hinfo_activity,hinfo_title;
+	private int hinfo_num, hinfo_visible,hinfo_main;
+	public int getHinfo_main() {
+		return hinfo_main;
+	}
+
+	public void setHinfo_main(int hinfo_main) {
+		this.hinfo_main = hinfo_main;
+	}
+	public String getHinfo_title() {
+		return hinfo_title;
+	}
+
+	public void setHinfo_title(String hinfo_title) {
+		this.hinfo_title = hinfo_title;
+	}
 	public int getHinfo_num() {
 		return hinfo_num;
 	}

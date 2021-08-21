@@ -30,11 +30,11 @@
 	<!-- 이재영: 회원집 정보를 받아서 넣음 -->
 	<insert id="addMemberHouseInfo" parameterType="hinvo">
 	insert into houseinfo values(houseinfo_seq.nextVal,#{mem_id},#{hinfo_type},#{hinfo_size},#{hinfo_with},#{hinfo_tend},#{hinfo_favour},#{hinfo_buytend},
-	#{hinfo_style},#{hinfo_activity},#{hinfo_visible},sysdate)
+	#{hinfo_style},#{hinfo_activity},#{hinfo_visible},sysdate,#{hinfo_main},#{hinfo_title})
 	
 	</insert>
 	<select id="getMemberHouseInfo" parameterType="string" resultType="hinvo">
-	select * from houseinfo where  mem_id=#{mem_id} and hinfo_visible=0 order by hinfo_date desc
+	select * from houseinfo where  mem_id=#{mem_id} and hinfo_visible=0 order by hinfo_main desc,hinfo_date desc
 	
 	</select>
 	<delete id="delMemberHouseInfo" parameterType="int">

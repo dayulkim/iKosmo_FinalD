@@ -212,128 +212,130 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
-	<!-- 팝업뜰때 배경 -->
-	<div id="mask-review"></div>
+<!-- 팝업뜰때 배경 -->
+<div id="mask-review"></div>
 
-	<!--Popup Start -->
-	<div id="layerbox-review" class="layerpop-review" style="width: 55%; height: 80%;">
-		<article class="layerpop_area-review">
-			<div class="layer_title-review">상품평</div>
+<!--Popup Start -->
+<div id="layerbox-review" class="layerpop-review"
+	style="width: 55%; height: 80%;">
+	<article class="layerpop_area-review">
+		<div class="layer_title-review">상품평</div>
 
-			<a href="#" class="layerpop_close-review"
-				id="layerbox_close-review"><img alt="" src="resources/review/img/x.png"></a><br>
-			<div class="content-review">
-				<div id="body-review" align="center">
+		<a href="#" class="layerpop_close-review" id="layerbox_close-review"><img
+			alt="" src="resources/review/img/x.png"></a><br>
+		<div class="content-review">
+			<div id="body-review" align="center">
 
-					<form action="reviewinsert" method="post"
-						enctype="multipart/form-data">
-						<input type="hidden" id="pro_num" name="pro_num" value="">
+				<form action="reviewinsert" method="post"
+					enctype="multipart/form-data">
+					<input type="hidden" id="pro_num" name="pro_num" value="">
 
-						<div id="reviewForm">
-							<table>
+					<div id="reviewForm">
+						<table>
 
-								<tr>
-									<td><textarea placeholder="내용을 입력하세요" id="rev_content"
-											name="rev_content"
-											class=" u-border-black u-border-no-left u-border-no-right u-border-no-top   u-input-2"
-											required="required"></textarea></td>
-								</tr>
+							<tr>
+								<td><textarea placeholder="내용을 입력하세요" id="rev_content"
+										name="rev_content"
+										class=" u-border-black u-border-no-left u-border-no-right u-border-no-top   u-input-2"
+										required="required"></textarea></td>
+							</tr>
 
-								<tr>
-									<td><div class="filebox bs3-primary preview-image">
-											<input class="upload-name" value="파일선택" disabled="disabled"
-												style="width: 200px;"> <label for="mfile">업로드</label>
-											<input type="file" id="mfile" name="mfile"
-												class="upload-hidden">
-										</div>
-										<hr></td>
-								</tr>
+							<tr>
+								<td><div class="filebox bs3-primary preview-image">
+										<input class="upload-name" value="파일선택" disabled="disabled"
+											style="width: 200px;"> <label for="mfile">업로드</label>
+										<input type="file" id="mfile" name="mfile"
+											class="upload-hidden">
+									</div>
+									<hr></td>
+							</tr>
 
-								<tr>
-									<th>
-										<div class="star-box0">
+							<tr>
+								<th>
+									<div class="star-box0">
 
-											<div id="star_target0">
-												<p>전체 평점</p>
-											</div>
-
-											<input type="hidden" id="rev_star" name="rev_star">
-											<div class="span0" align="center"
-												onclick="autoFinder('전체 평점')">
-												<span class="star star_one" title="1"></span> <span
-													class="star star_one" title="2"></span> <span
-													class="star star_one" title="3"></span> <span
-													class="star star_one" title="4"></span> <span
-													class="star star_one" title="5"></span>
-											</div>
-											<hr>
-										</div>
-									</th>
-								</tr>
-								<tr>
-									<th>
-										<div class="star-box1">
-
-											<div id="star_target1">
-												<p>색상 평점</p>
-											</div>
-											<input type="hidden" id="rev_color" name="rev_color">
-											<div class="span1" align="center"
-												onclick="autoFinder('색상 평점')">
-												<span class="star star_one" title="1"></span> <span
-													class="star star_one" title="2"></span> <span
-													class="star star_one" title="3"></span> <span
-													class="star star_one" title="4"></span> <span
-													class="star star_one" title="5"></span>
-											</div>
-											<hr>
+										<div id="star_target0">
+											<p>전체 평점</p>
 										</div>
 
-									</th>
-								</tr>
-								<tr>
-									<th>
-										<div class="star-box2">
-
-											<div id="star_target2">
-												<p>배송 평점</p>
-											</div>
-											<input type="hidden" id="rev_period" name="rev_period">
-											<div class="span1" align="center"
-												onclick=" autoFinder('배송 평점')">
-												<span class="star star_one" title="1"></span> <span
-													class="star star_one" title="2"></span> <span
-													class="star star_one" title="3"></span> <span
-													class="star star_one" title="4"></span> <span
-													class="star star_one" title="5"></span>
-											</div>
-											<hr>
+										<input type="hidden" id="rev_star" name="rev_star">
+										<div class="span0" align="center"
+											onclick="autoFinder('전체 평점')">
+											<span class="star star_one" title="1"></span> <span
+												class="star star_one" title="2"></span> <span
+												class="star star_one" title="3"></span> <span
+												class="star star_one" title="4"></span> <span
+												class="star star_one" title="5"></span>
 										</div>
+										<hr>
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="star-box1">
 
-									</th>
-								</tr>
+										<div id="star_target1">
+											<p>색상 평점</p>
+										</div>
+										<input type="hidden" id="rev_color" name="rev_color">
+										<div class="span1" align="center"
+											onclick="autoFinder('색상 평점')">
+											<span class="star star_one" title="1"></span> <span
+												class="star star_one" title="2"></span> <span
+												class="star star_one" title="3"></span> <span
+												class="star star_one" title="4"></span> <span
+												class="star star_one" title="5"></span>
+										</div>
+										<hr>
+									</div>
+
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="star-box2">
+
+										<div id="star_target2">
+											<p>배송 평점</p>
+										</div>
+										<input type="hidden" id="rev_period" name="rev_period">
+										<div class="span1" align="center"
+											onclick=" autoFinder('배송 평점')">
+											<span class="star star_one" title="1"></span> <span
+												class="star star_one" title="2"></span> <span
+												class="star star_one" title="3"></span> <span
+												class="star star_one" title="4"></span> <span
+												class="star star_one" title="5"></span>
+										</div>
+										<hr>
+									</div>
+
+								</th>
+							</tr>
 
 
 
 
 
-								<tr>
-									<th colspan="2"><br> <input type="submit" value="작성">
-										<input type="reset" value="취소"></th>
-								</tr>
-							</table>
+							<tr>
+								<th colspan="2"><br> <input type="submit" value="작성">
+									<input type="reset" value="취소"></th>
+							</tr>
+						</table>
 
-						</div>
-					</form>
-				</div>
-
+					</div>
+				</form>
 			</div>
-		</article>
-	</div>
-	<script>
-	$('#review-add-btn').click(function() {
-		var num = $(this).val();
-		$('#pro_num').val(num);
+
+		</div>
+	</article>
+</div>
+<script>
+	
+	$('.review-btn').click(function() {
+		
+		$('#pro_num').val($(this).val());
 		popupOpenReview();
 		wrapWindowByMaskReview();
 	});
@@ -431,7 +433,7 @@ function autoFinder(category) {
 		//별점----------------------------------------------------------------------------------------------------
 	</script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
 	   var fileTarget = $('.filebox .upload-hidden');
 

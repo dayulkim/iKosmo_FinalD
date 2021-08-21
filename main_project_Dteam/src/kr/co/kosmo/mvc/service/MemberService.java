@@ -31,6 +31,7 @@ public class MemberService implements MemberServiceInter {
 		hinvo.setHinfo_with(Optional.ofNullable(hinvo.getHinfo_with()).orElse("0"));
 		hinvo.setHinfo_favour(Optional.ofNullable(hinvo.getHinfo_favour()).orElse("0"));
 		hinvo.setHinfo_activity(Optional.ofNullable(hinvo.getHinfo_activity()).orElse("0"));
+		hinvo.setHinfo_main(Optional.ofNullable(hinvo.getHinfo_main()).orElse(0));
 		memberDaoInter.addMemberHouseInfo(hinvo);
 	}
 //재영 집정도 삭제
