@@ -246,6 +246,7 @@
 						<li data-panel="panel4">배송/환불</li>
 						<li data-panel="panel5">추천상품</li>
 					</ul>
+		
 					<div id="panel1" class="panel active">
 						<c:forEach var="i" items="${dlist}">
 							<img src="${i}" alt="상세 이미지"
@@ -255,9 +256,9 @@
 					</div>
 					<div id="panel2" class="panel">
 						<div id="reviewSelector">
-											
+
 							<div id="sortType" align="right">
-								<select id="sortType1" name="sortType1" onchange="test()" style="width:15%;"  >
+								<select id="sortType1" name="sortType1" style="width: 15%;" onchange="sort()">
 									<option value="0">최신순</option>
 									<option value="1">별점순</option>
 									<option value="2">★★★★★</option>
@@ -267,60 +268,75 @@
 									<option value="6">★</option>
 
 								</select>
-						</div>
+							</div>
+							
+							<div id="review-content" style="width: 75%;margin-left: 13%;">
 							<hr>
-							<c:forEach var="list" items="${reviewList}">
-								<!-- 								<div> -->
-								<!-- 									<img -->
-								<%-- 										src="resources/assets/img/store/${list.member.mem_profile}" --%>
-								<!-- 										style="width: 2.6rem; border-radius: 10rem; float: left; margin-top: 8px; margin-right: 14px; margin-left: 12px"> -->
-								<!-- 								</div> -->
-								<div style="line-height: 200%; font-size: 12px">
-									by ${list.mem_num} &nbsp;<span>(${list.rev_rdate})</span>
-								</div>
-								<!-- 								<div id="star_result" -->
-								<!-- 									style="font-size: 10px; margin-bottom: 5px"> -->
-								<%-- 									<c:forEach varStatus="i" begin="1" end="5" step="1"> --%>
-								<%-- 										<c:choose> --%>
-								<%-- 											<c:when test="${i.count <= list.rev_star }"> --%>
-								<!-- 												<i class="fa fa-star" style="color: #F15F5F"></i> -->
-								<%-- 											</c:when> --%>
-								<%-- 											<c:otherwise> --%>
-								<!-- 												<i class="fa fa-star"></i> -->
-								<%-- 											</c:otherwise> --%>
-								<%-- 										</c:choose> --%>
-								<%-- 									</c:forEach> --%>
-								<!-- 								</div> -->
-								<!-- 								<div style="font-size: 12px"> -->
-								<!-- 									[배송] -->
-								<%-- 									<c:if test="${list.rev_period eq 0}"> --%>
-								<!-- 										<span>느려요</span> -->
-								<%-- 									</c:if> --%>
-								<%-- 									<c:if test="${list.rev_period eq 1}"> --%>
-								<!-- 										<span>적당해요</span> -->
-								<%-- 									</c:if> --%>
-								<%-- 									<c:if test="${list.rev_period eq 2}"> --%>
-								<!-- 										<span>빨라요</span> -->
-								<%-- 									</c:if> --%>
-								<!-- 									&nbsp;&nbsp; [칼라] -->
-								<%-- 									<c:if test="${list.rev_color eq 0}"> --%>
-								<!-- 										<span>화면보다 어두워요</span> -->
-								<%-- 									</c:if> --%>
-								<%-- 									<c:if test="${list.rev_color eq 1}"> --%>
-								<!-- 										<span>화면과 같아요</span> -->
-								<%-- 									</c:if> --%>
-								<%-- 									<c:if test="${list.rev_color eq 2}"> --%>
-								<!-- 										<span>화면보다 밝아요</span> -->
-								<%-- 									</c:if> --%>
-								<!-- 								</div> -->
-								<br>
-								<p style="font-size: 13px">${list.rev_content}</p>
-								<img src="resources/assets/img/store/${list.rev_photo}"
-									style="width: 90px; border-radius: 5px; margin-bottom: 8px; margin-right: 12px; margin-left: 12px">
+								<c:forEach var="list" items="${reviewList}">
+									<div>
+										<img
+											src="resources/assets/img/store/${list.member.mem_profile}"
+											style="width: 2.6rem; border-radius: 10rem; float: left; margin-top: 8px; margin-right: 14px; margin-left: 12px">
+									</div>
+									<div style="line-height: 200%; font-size: 12px">
+										by ${list.member.mem_id} &nbsp;<span>(${list.rev_rdate})</span>
+									</div>
+									<div id="star_result"
+										style="font-size: 10px; margin-bottom: 5px">
+										<c:forEach varStatus="i" begin="1" end="5" step="1">
+											<c:choose>
+												<c:when test="${i.count <= list.rev_star }">
+													<i class="fa fa-star" style="color: #F15F5F"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="fa fa-star"></i>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
+									<div style="font-size: 12px">
+										[배송]
+										<c:if test="${list.rev_period eq 1}">
+											<span>느려요</span>
+										</c:if>
+										<c:if test="${list.rev_period eq 2}">
+											<span>조금 느려요</span>
+										</c:if>
+										<c:if test="${list.rev_period eq 3}">
+											<span>적당해요</span>
+										</c:if>
+										<c:if test="${list.rev_period eq 4}">
+											<span>빨라요</span>
+										</c:if>
+										<c:if test="${list.rev_period eq 5}">
+											<span>엄청 빨라요</span>
+										</c:if>
+										&nbsp;&nbsp; [칼라]
+										<c:if test="${list.rev_color eq 1}">
+											<span>화면과 색상이 완전 달라요</span>
+										</c:if>
+										<c:if test="${list.rev_color eq 2}">
+											<span>화면과 색상이 많이 달라요</span>
+										</c:if>
+										<c:if test="${list.rev_color eq 3}">
+											<span>화면과 색상이 조금 달라요</span>
+										</c:if>
+										<c:if test="${list.rev_color eq 4}">
+											<span>화면과 색상이 비슷해요</span>
+										</c:if>
+										<c:if test="${list.rev_color eq 5}">
+											<span>화면과 색상이 같아요</span>
+										</c:if>
+									</div>
+									<br>
+									<p style="font-size: 13px">${list.rev_content}</p>
+									<img src="resources/assets/img/store/${list.rev_photo}"
+										style="width: 90px; border-radius: 5px; margin-bottom: 8px; margin-right: 12px; margin-left: 12px">
 
-								<hr>
-							</c:forEach>
-							<%@include file="reviewPageProcess.jsp"%>
+									<hr>
+								</c:forEach>
+								<%@include file="reviewPageProcess.jsp"%>
+							</div>
 						</div>
 					</div>
 
@@ -429,8 +445,20 @@
 				$("#" + panelToShow).show();
 				$("#" + panelToShow).addClass("active");
 			});
+			
+			
+
 		});
 		// 재영님 담당 Review
+		function sort() {
+	let sort = $('#sortType1').val();
+	$('#reviewSelector').load(
+			"detail?pro_num=${paging.pro_num}&sortType1=" + sort
+					+ " #reviewSelector", function() {
+				$("#sortType1").val(sort);
+			});
+};
+		
 	
 		
 		// 신규철 : 즉시구매 버튼을 눌렀을 때 결제하기 페이지로 넘어가도록 함
@@ -561,14 +589,4 @@
 		});
 
 	});
-</script>
-		<script type="text/javascript">
-function test() {
-	let sort = $('#sortType1').val();
-	$('#reviewSelector').load(
-			"detail?pro_num=${paging.pro_num}&sortType1=" + sort
-					+ " #reviewSelector", function() {
-				$("#sortType1").val(sort);
-			});
-};
 </script>

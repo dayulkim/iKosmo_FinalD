@@ -196,7 +196,7 @@ public class ProductController { // ±Ë¥Ÿ¿≤
 	public String interest(Model m, HttpSession session, 
 			@RequestParam(value = "pro_num", required = false) int pro_num,
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") int nowPage,
-			@RequestParam(value = "cntPerPage", required = false, defaultValue = "5") int cntPerPage,
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "8") int cntPerPage,
 			@RequestParam(value = "sortType1", required = false, defaultValue = "0", name = "sortType1") int sortType1,
 			PageVO pvo)  {
 
@@ -223,19 +223,12 @@ public class ProductController { // ±Ë¥Ÿ¿≤
 		// ∏Æ∫‰≈« 2
 		pvo.setPro_num(pro_num);
 		int total = reviewServiceInter.getTotalReviewCount(pvo);
-		System.out.println(total);
+
 		pvo = new PageVO(total, nowPage, cntPerPage, pro_num, sortType1);
-		List<ReviewVO> list = reviewServiceInter.getReviewList(pvo);
+		List<ReviewVO> list = reviewServiceInter.reviewTab(pvo);
 		m.addAttribute("paging", pvo);
 		m.addAttribute("reviewList", list);
-		
-//		m.addAttribute("rList", rlist);
-//		for (int i = 0; i < rlist.size(); i++) {
-//			System.out.println("∏Æ∫‰∏ÆΩ∫∆Æ¿« ∏‚πˆæ∆¿Ãµ:" + rlist.get(i).getMember().getMem_id());
-//		}
-//		for (int i = 0; i < rlist.size(); i++) {
-//			System.out.println("∏Æ∫‰∏ÆΩ∫∆Æ¿« ∫∞¡°:" + rlist.get(i).getRev_star());
-//		}
+
 		
 		return "store/product_detail";
 

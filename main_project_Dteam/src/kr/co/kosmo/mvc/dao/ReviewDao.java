@@ -22,10 +22,6 @@ public class ReviewDao implements ReviewDaoInter { // 이재영
 		return ss.selectOne("review.totalCnt", pvo);
 	}
 
-	@Override
-	public List<ReviewVO> getReviewList(PageVO pvo) {
-		return ss.selectList("review.reviewList", pvo);
-	}
 
 	@Override
 	public void addReview(ReviewVO revvo) {
@@ -42,8 +38,8 @@ public class ReviewDao implements ReviewDaoInter { // 이재영
 	}
 	// 상세보기 리뷰탭2
 	@Override
-	public List<ReviewVO> reviewTab(int pro_num) {
-		return ss.selectList("review.reviewTab", pro_num);
+	public List<ReviewVO> reviewTab(PageVO pvo) {
+		return ss.selectList("review.reviewTab", pvo);
 	}
 
 }

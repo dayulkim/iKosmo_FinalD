@@ -28,8 +28,8 @@ public class ReviewService implements ReviewServiceInter {
 	}
 
 	@Override
-	public List<ReviewVO> reviewTab(int pro_num) {
-		return reviewDaoInter.reviewTab(pro_num);
+	public List<ReviewVO> reviewTab(PageVO pvo) {
+		return reviewDaoInter.reviewTab(pvo);
 	}
 
 	@Override
@@ -38,9 +38,5 @@ public class ReviewService implements ReviewServiceInter {
 		return reviewDaoInter.getTotalReviewCount(pvo);
 	}
 
-	@Override
-	public List<ReviewVO> getReviewList(PageVO pvo) {
-		
-		return reviewDaoInter.getReviewList(pvo);
-	}
+
 }

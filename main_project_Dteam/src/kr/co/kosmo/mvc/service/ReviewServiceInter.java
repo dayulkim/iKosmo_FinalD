@@ -10,8 +10,8 @@ public interface ReviewServiceInter {
 	
 	public void addReview(ReviewVO revvo);
 	public int getTotalReviewCount(PageVO pvo);
-	public List<ReviewVO> getReviewList(PageVO pvo);
+	
 	public List<Integer> revRecommend1(int cateNum);
 	public List<Integer> revRecommend2(int cateNum);
-	public List<ReviewVO> reviewTab(int pro_num);
+	public List<ReviewVO> reviewTab(PageVO pvo);
 }

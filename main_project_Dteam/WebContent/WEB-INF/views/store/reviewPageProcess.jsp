@@ -17,7 +17,7 @@
 			</c:when>
 			<c:when test="${p != paging.nowPage }">
 				<%-- 다른페이지 링크  --%>
-				<a href=#reviewSelector
+				<a href="#reviewSelector"
 					onclick="$('#reviewSelector').load('detail?nowPage=${p }&cntPerPage=${paging.cntPerPage}&pro_num=${paging.pro_num}&sortType1=${paging.sortType1 } #reviewSelector', function( ){			
 					    $( '#sortType1' ).val(${paging.sortType1 } );
 					});">${p }</a>
