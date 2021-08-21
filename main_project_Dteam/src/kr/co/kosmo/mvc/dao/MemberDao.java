@@ -62,6 +62,11 @@ public class MemberDao implements MemberDaoInter { // 오원석
 	public MemberVO getMemInfoById(String mem_id) {
 		return ss.selectOne("member.getMemInfoId", mem_id);
 	}
+	// 김세연 : 마이페이지, 회원정보 수정
+	@Override
+	public void updateOne(MemberVO memvo) {
+		ss.update("member.memUpdate", memvo);
+	}
 
 
 

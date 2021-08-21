@@ -3,6 +3,10 @@ package kr.co.kosmo.mvc.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.co.kosmo.mvc.vo.HouseInfoVO;
 import kr.co.kosmo.mvc.vo.MemberVO;
 
@@ -20,5 +24,8 @@ public interface MemberServiceInter {
 	public String getMemberID(int mem_num);
 	public String getMemberProfile(int mem_num);
 	
-
+	// 김세연 (회원정보 업데이트)
+	public void updateOne(MemberVO memvo);
+	// 김세연 회원정보 업데이트 & 이미지 복사
+	public String copyAndGetFileName(HttpServletRequest request, MultipartFile mf);
 }

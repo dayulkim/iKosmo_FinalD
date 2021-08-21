@@ -1,17 +1,12 @@
 package kr.co.kosmo.mvc.controller;
 
-import static java.util.stream.Collectors.toList;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import kr.co.kosmo.mvc.dao.ProductDao;
 import kr.co.kosmo.mvc.domain.Suggest;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
@@ -32,10 +27,6 @@ public class DefaultController {
 	@Autowired
 	private SearchServiceInter searchServiceInter;
 	@Autowired
-	private OrderListServiceInter orderListServiceInter;
-	@Autowired
-	private ReviewServiceInter reviewServiceInter;
-	@Autowired
 	private ProductServiceInter productServiceInter;
 	@Autowired
 	private Scrap_ProductServiceInter scrap_ProductServiceInter;
@@ -45,9 +36,6 @@ public class DefaultController {
 
 		List<ProductVO> prolist = prductDao.productList();
 		m.addAttribute("prolist", prolist);
-		for (ProductVO vo : prolist) {
-			System.out.println(vo.getPro_name());
-		}
 
 		
 		// 추천상품 (재영)
@@ -91,8 +79,7 @@ public class DefaultController {
 	public String suggestAction(Model m, String key) {
 
 		List<String> suggests = suggest.getSuggest(key);
-		for (String e : suggests) {
-		}
+		
 		if (suggests != null) {
 			JSONArray arr = new JSONArray();
 

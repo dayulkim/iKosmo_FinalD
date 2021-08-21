@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link href="resources/css/housewarming/housewarming.css" rel="stylesheet" />
 <!-- Body-->
     
       <!-- Page Title-->
@@ -64,43 +66,62 @@
           </aside>
           <!-- Content  -->
 			<section class="col-lg-8">
-			<!-- Shipping address-->
+			<!-- 기본정보 수정-->
             <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">기본정보 수정</h2>
+            <form id="updateForm" name="updateForm" method="post" action="mem_update" enctype="multipart/form-data">
             <div class="row">
               <div class="col-sm-6">
                 <div class="mb-3">
                   <label class="form-label" for="nickname">별명</label>
-                  <input class="form-control" type="text" id="nickname">
+                  <input class="form-control" type="text" id="mem_nickname" name="mem_nickname" value="${memvo.mem_nickname}" required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
                   <label class="form-label" for="checkout-phone">전화번호</label>
-                  <input class="form-control" type="text" id="checkout-phone">
+                  <input class="form-control" type="text" id="mem_tel" name="mem_tel" value="${memvo.mem_tel}" required>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-label" for="password">비밀번호</label>
-                  <input class="form-control" type="password" id="password">
+                  <label class="form-label" for="password">현재 비밀번호</label>
+                  <input class="form-control" type="password" id="crrPwd" value="${memvo.mem_pwd}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-label" for="password_check">비밀번호 확인</label>
-                  <input class="form-control" type="password" id="password_check">
+                  <label class="form-label" for="password_change">변경 비밀번호</label>
+                  <input class="form-control" type="password" id="mem_pwd" name="mem_pwd" required>
                 </div>
+              </div>  
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="addr">주소</label>
+                  <input class="form-control" type="text" id="mem_addr" name="mem_addr" value="${memvo.mem_addr}" required>
+                </div>
+              </div>
+              <div class="image-container col-md-6">
+              	<!-- 이미지 -->
+              	<img class="img-thumbnail rounded" id="thumb_img" style="width: 7rem;" src="resources/uploadFile/profile/${memvo.mem_profile}">
+              	
+				<!-- 파일 업로드 버튼 -->
+				<a class="upload-file-btn upload-file-btn-span"	style="background-color: #66b2b2;"> 
+					<span class="upload-file-btn-span"><i class="fas fa-file-upload"></i></span>
+					<span class="upload-file-btn-span">파일업로드</span>
+				</a> 
+				<input type="file" class="imgfile" id="profile" name="profile" style="display: none;">
               </div>
             </div>
 
             <div class="col-12">
                <hr class="mt-3 mb-3">
                <div class="d-flex flex-wrap justify-content-end align-items-end mt-4">
-                 <button class="btn btn-success mt-3 mt-sm-0 house_info_add-btn" href="#signin-modal" data-bs-toggle="modal" type="button">회원정보 수정</button>
+                 <button class="btn btn-success mt-3 mt-sm-0 house_info_add-btn" id="mem_update_btn" type="submit">회원정보 수정</button>
                </div>
-             </div>
+            </div>
+            </form>
 			</section>
         </div>
       </div>
@@ -112,6 +133,38 @@
     <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/simplebar/dist/simplebar.min.js"></script>
     <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+ 
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <script>
+    
+ 	// css가 적용되어 있는 a 태그를 눌렀을 때 파일업로드 버튼이 클릭되도록 하는 자바스크립트
+    $(document).on("click", ".upload-file-btn", function() {
+    	$(this).parent().children('input').click();
+    });
+ 	
+ 	// 이미지 파일의 변화를 감지하는 스크립트
+    document.addEventListener('change',function(e){
+    	if(e.target.className == 'imgfile') {
+    		readImage(e.target)
+    	}
+    })
+
+    // 이미지를 업로드했을 때 읽어와서 미리보기 사진을 띄워주는 함수
+    function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if(input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+    			const previewImage = input.parentNode.querySelectorAll('#thumb_img')[0]
+                previewImage.src = e.target.result;
+            }
+            // reader가 이미지 읽도록 하기
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+ 	
+    </script>

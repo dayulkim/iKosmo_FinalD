@@ -248,5 +248,23 @@ public class MemberController {
 		memberServiceInter.delMemberHouseInfo(hinfo_num);
 		return "redirect:/survey";
 	}
+	
+	@RequestMapping("/mem_update")
+	public String updateOne(HttpSession session,HttpServletRequest request, 
+			MemberVO memvo, @RequestParam("profile") MultipartFile mf ) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		// 파일 업로드 처리
+		if(mf.isEmpty()) {
+			memvo.setMem_num(mem_num);
+		}else {
+			String mem_profile = memberServiceInter.copyAndGetFileName(request, mf);
+			memvo.setMem_profile(mem_profile);
+			memvo.setMem_num(mem_num);
+		}
+		memberServiceInter.updateOne(memvo);
+		session.setAttribute("sessionNickname", memvo.getMem_nickname());
+		return "redirect:/mypage";
+	}
+	
 
 }
