@@ -574,10 +574,11 @@
 					
 					
 					if (e.data!=='None'){
-						
+					
 						for(let i=0;i<e.data.length;i++){
 							 let picture="";
-							 picture="<img alt='' src='resources/data/"+categoryName+"/"+e.data[i]+"' id='"+picture[i]+"' style='width:120px;'>"
+							 picture="<a href='detail?pro_num=' style='text-decoration: none'> <img class='img-fluid main_pro_thumb' alt='' src='resources/data/"+categoryName+"/"+e.data[i]+".jpg' id='"+picture[i]+"'  style='border-radius: 1rem;width:18%'></a>"
+							 
 							$("#recommendProduct").append(picture);
 						}
 					}
