@@ -256,8 +256,8 @@
 					<div id="panel2" class="panel">
 						<div id="reviewSelector">
 											
-
-								<select id="sortType1" name="sortType1" onchange="test()">
+							<div id="sortType" align="right">
+								<select id="sortType1" name="sortType1" onchange="test()" style="width:15%;"  >
 									<option value="0">최신순</option>
 									<option value="1">별점순</option>
 									<option value="2">★★★★★</option>
@@ -267,7 +267,7 @@
 									<option value="6">★</option>
 
 								</select>
-						
+						</div>
 							<hr>
 							<c:forEach var="list" items="${reviewList}">
 								<!-- 								<div> -->
