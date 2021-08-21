@@ -31,4 +31,16 @@ public class ReviewService implements ReviewServiceInter {
 	public List<ReviewVO> reviewTab(int pro_num) {
 		return reviewDaoInter.reviewTab(pro_num);
 	}
+
+	@Override
+	public int getTotalReviewCount(PageVO pvo) {
+		
+		return reviewDaoInter.getTotalReviewCount(pvo);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(PageVO pvo) {
+		
+		return reviewDaoInter.getReviewList(pvo);
+	}
 }

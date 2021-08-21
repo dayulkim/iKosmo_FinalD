@@ -193,17 +193,17 @@ public class ProductController { // 김다율
 
 	// 상품 디테일 페이지 -김다율, 신연아
 	@RequestMapping("/detail")
-	public String interest(Model m, 
+	public String interest(Model m, HttpSession session, 
 			@RequestParam(value = "pro_num", required = false) int pro_num,
-			HttpSession session,
-			HttpServletRequest request) {
+			@RequestParam(value = "nowPage", required = false, defaultValue = "1") int nowPage,
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "5") int cntPerPage,
+			@RequestParam(value = "sortType1", required = false, defaultValue = "0", name = "sortType1") int sortType1,
+			PageVO pvo)  {
 
 		// 해당 번호의 상품 정보 불러오기
 		ProductVO provo = productServiceInter.productDetail(pro_num);
-		System.out.println(provo.getPro_category()+"하이하이");
+		
 		m.addAttribute("provo", provo);
-		System.out.println("상품명 :" + provo.getPro_name());
-		System.out.println("상품명 :" + provo.getPro_photo());
 		// 사진 리스트 불러오기
 		String[] plist = provo.getPro_photo().split(",");
 		m.addAttribute("plist", plist);
@@ -221,15 +221,21 @@ public class ProductController { // 김다율
 		
 		
 		// 리뷰탭 2
-		List<ReviewVO> rlist = reviewServiceInter.reviewTab(pro_num);
-		System.out.println("리뷰 목록 :" + rlist);
-		m.addAttribute("rList", rlist);
-		for (int i = 0; i < rlist.size(); i++) {
-			System.out.println("리뷰리스트의 멤버아이디:" + rlist.get(i).getMember().getMem_id());
-		}
-		for (int i = 0; i < rlist.size(); i++) {
-			System.out.println("리뷰리스트의 별점:" + rlist.get(i).getRev_star());
-		}
+		pvo.setPro_num(pro_num);
+		int total = reviewServiceInter.getTotalReviewCount(pvo);
+		System.out.println(total);
+		pvo = new PageVO(total, nowPage, cntPerPage, pro_num, sortType1);
+		List<ReviewVO> list = reviewServiceInter.getReviewList(pvo);
+		m.addAttribute("paging", pvo);
+		m.addAttribute("reviewList", list);
+		
+//		m.addAttribute("rList", rlist);
+//		for (int i = 0; i < rlist.size(); i++) {
+//			System.out.println("리뷰리스트의 멤버아이디:" + rlist.get(i).getMember().getMem_id());
+//		}
+//		for (int i = 0; i < rlist.size(); i++) {
+//			System.out.println("리뷰리스트의 별점:" + rlist.get(i).getRev_star());
+//		}
 		
 		return "store/product_detail";
 
