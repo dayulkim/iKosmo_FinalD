@@ -45,27 +45,27 @@ public class DefaultController {
 		m.addAttribute("prolist", prolist);
 
 		// 카테고리별 추천상품 (재영)
-		for (int cs = 0; 5 > cs; cs++) {
-			List<Integer> orderRecommend = orderListServiceInter.ordRecommend(cs);
-			List<Integer> revRecommend = reviewServiceInter.revRecommend1(cs);
-			List<Integer> revStarRecommend = reviewServiceInter.revRecommend2(cs);
-			List<Integer> scr_proRecommend = scrap_ProductServiceInter.scrap_ProRecommend(cs);
-			List<int[]> result = orderRecommend.stream()
-					.flatMap(i -> revRecommend.stream()
-							.flatMap(j -> revStarRecommend.stream().flatMap(k -> scr_proRecommend.stream()
-									.filter(t -> !i.equals(j) && !i.equals(k) && !i.equals(t) && !j.equals(k)
-											&& !j.equals(t) && !k.equals(t))
-									.map(t -> new int[] { i, j, k, t }))))
-					.limit(1).collect(toList());
-			List<ProductVO> provo = new ArrayList<>();
-			int[] sendResult = result.get(0);
-			int sendResultLength = sendResult.length;
-
-			for (int i = 0; i < sendResultLength; i++) {
-				provo.add(productServiceInter.productDetail(sendResult[i]));
-			}
-			m.addAttribute("recommend" + cs, provo);
-		}
+//		for (int cs = 0; 5 > cs; cs++) {
+//			List<Integer> orderRecommend = orderListServiceInter.ordRecommend(cs);
+//			List<Integer> revRecommend = reviewServiceInter.revRecommend1(cs);
+//			List<Integer> revStarRecommend = reviewServiceInter.revRecommend2(cs);
+//			List<Integer> scr_proRecommend = scrap_ProductServiceInter.scrap_ProRecommend(cs);
+//			List<int[]> result = orderRecommend.stream()
+//					.flatMap(i -> revRecommend.stream()
+//							.flatMap(j -> revStarRecommend.stream().flatMap(k -> scr_proRecommend.stream()
+//									.filter(t -> !i.equals(j) && !i.equals(k) && !i.equals(t) && !j.equals(k)
+//											&& !j.equals(t) && !k.equals(t))
+//									.map(t -> new int[] { i, j, k, t }))))
+//					.limit(1).collect(toList());
+//			List<ProductVO> provo = new ArrayList<>();
+//			int[] sendResult = result.get(0);
+//			int sendResultLength = sendResult.length;
+//
+//			for (int i = 0; i < sendResultLength; i++) {
+//				provo.add(productServiceInter.productDetail(sendResult[i]));
+//			}
+//			m.addAttribute("recommend" + cs, provo);
+//		}
 
 		// 인기검색어 관련 (영의)
 		List<SearchLogVO> top10Search = searchServiceInter.top10Search();

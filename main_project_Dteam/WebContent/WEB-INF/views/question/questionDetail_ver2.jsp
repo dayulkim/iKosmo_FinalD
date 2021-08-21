@@ -220,26 +220,51 @@
             <!-- Post navigation-->
             <nav class="entry-navigation" aria-label="Post navigation"><a class="entry-navigation-link" href="questionDetail?que_num=${quevo.que_num -1}" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex align-items-center&quot;&gt;&lt;img src=&quot;img/blog/navigation/01.jpg&quot; width=&quot;60&quot; class=&quot;rounded&quot; alt=&quot;Post thumb&quot;&gt;&lt;div class=&quot;ps-3&quot;&gt;&lt;h6 class=&quot;fs-sm fw-semibold mb-0&quot;&gt;How to choose perfect shoes for running&lt;/h6&gt;&lt;span class=&quot;d-block fs-xs text-muted&quot;&gt;by Susan Mayer&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><i class="fas fa-chevron-left"></i><span class="d-none d-sm-inline">Prev post</span></a><a class="entry-navigation-link" href="questionList"><span class="d-none d-sm-inline">All posts</span></a><a class="entry-navigation-link" href="questionDetail?que_num=${quevo.que_num +1}" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex align-items-center&quot;&gt;&lt;img src=&quot;img/blog/navigation/02.jpg&quot; width=&quot;60&quot; class=&quot;rounded&quot; alt=&quot;Post thumb&quot;&gt;&lt;div class=&quot;ps-3&quot;&gt;&lt;h6  class=&quot;fs-sm fw-semibold mb-0&quot;&gt;Factors behind smart watches popularity&lt;/h6&gt;&lt;span class=&quot;d-block fs-xs text-muted&quot;&gt;by Logan Coleman&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><span class="d-none d-sm-inline">Next post</span><i class="fas fa-chevron-right"></i></a></nav>
               <div class="card border-0 shadow mt-2 mb-4">
-                <div class="card-body">
-                  <div class="d-flex align-items-start"><i class="far fa-grin-beam"></i> ${quevo.mem_id }
-                    <form action="addans" method="post" class="bd_wrt cmt_wrt clear" enctype="multipart/form-data">
-						<input type="hidden" id="que_num" name="que_num" value="${quevo.que_num }"> 
-						<input type="hidden" id="sessionID" name="sessionID" value="${sessionScope.sessionID }">		
-						<div class="simple_wrt">	
-						<div class="text">	
-						<textarea id="content" name="content" cols="50" rows="4" style="background: rgb(255, 255, 255); overflow: hidden; min-height: 4em; height: 72px; width: 600px; margin: 0px 11px 0px 3px;" placeholder="댓글을 남겨주세요!"></textarea>
-						<input type="submit" value="등록" class="bd_btn keyup_alt">
-						</div>		
-						</div>
-						<div class="filebox bs3-primary preview-image">
-			              <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-			
-			              <label for="input_file">업로드</label> 
-			              <input type="file" id="input_file" name="mfile" class="upload-hidden"> 
-			            </div>
-						</form>
-                  </div>
-                </div>
+              <c:choose>
+					<c:when test="${sessionScope.sessionID eq null}">
+						<div class="card-body">
+		                  <div class="d-flex align-items-start">
+		                    <form action="addans" method="post" class="bd_wrt cmt_wrt clear" enctype="multipart/form-data">	
+								<div class="simple_wrt">	
+								<div class="text">	
+								<textarea id="content" name="content" cols="50" rows="4" style="background: rgb(255, 255, 255); overflow: hidden; min-height: 4em; height: 72px; width: 600px; margin: 0px 11px 0px 3px;" placeholder="로그인을 해주세요!" disabled="disabled"></textarea>
+								</div>		
+								</div>
+								<div class="filebox bs3-primary preview-image">
+					              <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+					
+					              <label for="input_file">업로드</label> 
+					              <input type="file" id="input_file" name="mfile" class="upload-hidden"> 
+					            </div>
+								</form>
+		                  </div>
+		                </div>
+					</c:when>
+					<c:otherwise>
+						<div class="card-body">
+		                  <div class="d-flex align-items-start">
+		                  <img src="resources/uploadFile/profile/${myprofile }" class="img-thumbnail rounded-circle" style="width: 4rem;">
+		                   ${quevo.mem_id }
+		                    <form action="addans" method="post" class="bd_wrt cmt_wrt clear" enctype="multipart/form-data">
+								<input type="hidden" id="que_num" name="que_num" value="${quevo.que_num }"> 
+								<input type="hidden" id="sessionID" name="sessionID" value="${sessionScope.sessionID }">		
+								<div class="simple_wrt">	
+								<div class="text">	
+								<textarea id="content" name="content" cols="50" rows="4" style="background: rgb(255, 255, 255); overflow: hidden; min-height: 4em; height: 72px; width: 600px; margin: 0px 11px 0px 3px;" placeholder="댓글을 남겨주세요!"></textarea>
+								<input type="submit" value="등록" class="bd_btn keyup_alt">
+								</div>		
+								</div>
+								<div class="filebox bs3-primary preview-image">
+					              <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+					
+					              <label for="input_file">업로드</label> 
+					              <input type="file" id="input_file" name="mfile" class="upload-hidden"> 
+					            </div>
+								</form>
+		                  </div>
+		                </div>
+					</c:otherwise>
+				</c:choose>
               </div>
             <!-- Comments-->
             <div class="pt-2 mt-5" id="comments">
@@ -269,30 +294,6 @@
 	              </div>
 	            </div>
 				</c:forEach>
-				<!--
-              <div class="d-flex align-items-start py-4 border-bottom"><img class="rounded-circle" src="resources/images/no-image-icon.JPG" width="50" alt="Laura Willson">
-                <div class="ps-3">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fs-md mb-0">${e.ans_id }</h6>
-                     	대댓글 기능 일단 지움
-                    	<a class="nav-link-style fs-sm fw-medium" href="#"><i class="ci-reply me-2"></i>Reply</a>
-                  </div>
-                  <p class="fs-md mb-1">${e.ans_content }</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>${e.ans_rdate }</span>
-                  <!-- comment reply-->
-                  <!-- 
-                  <div class="d-flex align-items-start border-top pt-4 mt-4"><img class="rounded-circle" src="img/testimonials/03.jpg" width="50" alt="Michael Davis">
-                    <div class="ps-3">
-                      <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="fs-md mb-0">Michael Davis</h6>
-                      </div>
-                      <p class="fs-md mb-1">Egestas sed sed risus pretium quam vulputate dignissim. A diam sollicitudin tempor id eu nisl. Ut porttitor leo a diam. Bibendum at varius vel pharetra vel turpis nunc.</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>Sep 13, 2019</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          -->
           <%@include file="detailpageProcess.jsp"%>
         </div>
       </div>

@@ -226,7 +226,7 @@
 		<div class="content-review">
 			<div id="body-review" align="center">
 
-				<form action="reviewinsert" method="post"
+				<form action="reviewinsert" method="post" id="review_post_insert"
 					enctype="multipart/form-data">
 					<input type="hidden" id="pro_num" name="pro_num" value="">
 
@@ -319,8 +319,10 @@
 
 
 							<tr>
-								<th colspan="2"><br> <input type="submit" value="작성">
-									<input type="reset" value="취소"></th>
+								<th style="padding-left: 30%">
+									<button class="btn btn-primary  w-20 " id="hinf_add-btn">작성하기</button>
+									<button class="btn btn-accent mt-3 mt-sm-0" id="hinf_cancel-btn"">취소하기</button>
+								</th>
 							</tr>
 						</table>
 
@@ -332,6 +334,15 @@
 	</article>
 </div>
 <script>
+$('#hinf_add-btn').click(function() {
+	$('#review_post_insert').submit();
+});
+$('#hinf_cancel-btn').click(function () {
+	$('#layerbox-review').hide();
+	$('#mask-review').hide();
+	
+});
+
 	
 	$('.review-btn').click(function() {
 		
