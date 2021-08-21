@@ -1,0 +1,1284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.14" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="kr.co.kosmo.mvc.controller.MemberRestController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/MemberRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="265" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="kr.co.kosmo.mvc.controller.FreindsRestController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/FreindsRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="579" y="218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="kr.co.kosmo.mvc.controller.HwarmController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/HwarmController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1054" y="231"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="kr.co.kosmo.mvc.controller.CartController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/CartController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1323" y="695"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="kr.co.kosmo.mvc.controller.LoginController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/LoginController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="395" x="1586" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="kr.co.kosmo.mvc.controller.SearchController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/SearchController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="351" x="2021" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="kr.co.kosmo.mvc.controller.ProductController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/ProductController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="290" x="2412" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="kr.co.kosmo.mvc.controller.DefaultController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/DefaultController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="261" width="291" x="2742" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="kr.co.kosmo.mvc.controller.MemberController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="403" x="3073" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="kr.co.kosmo.mvc.controller.OrderListController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/OrderListController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="236" x="3516" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="kr.co.kosmo.mvc.controller.PaymentController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/PaymentController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="398" x="3792" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="kr.co.kosmo.mvc.controller.HwarmRestController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/HwarmRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="298" x="4230" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="kr.co.kosmo.mvc.controller.QuestionController" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/controller/QuestionController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="261" width="468" x="4568" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" name="kr.co.kosmo.mvc.dao.HwarmDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/HwarmDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="390" x="2760" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="15" language="java" name="kr.co.kosmo.mvc.dao.CartDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/CartDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1099" y="738"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="16" language="java" name="kr.co.kosmo.mvc.dao.SellerDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/SellerDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="153" x="1210" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="17" language="java" name="kr.co.kosmo.mvc.dao.QuestionDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/QuestionDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="223" y="909"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="kr.co.kosmo.mvc.dao.LogDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/LogDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="500" y="1125"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="19" language="java" name="kr.co.kosmo.mvc.dao.QuestionLogDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/QuestionLogDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="297" x="3996" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="20" language="java" name="kr.co.kosmo.mvc.dao.PaymentDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/PaymentDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="878" y="725"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="21" language="java" name="kr.co.kosmo.mvc.dao.PaymentDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/PaymentDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="194" x="795" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="22" language="java" name="kr.co.kosmo.mvc.dao.CartDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/CartDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="895" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="kr.co.kosmo.mvc.dao.SellerDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/SellerDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="153" x="1210" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="24" language="java" name="kr.co.kosmo.mvc.dao.MemberDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/MemberDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="261" x="1924" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="25" language="java" name="kr.co.kosmo.mvc.dao.SearchDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/SearchDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="257" x="3449" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="26" language="java" name="kr.co.kosmo.mvc.dao.FriendsDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/FriendsDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="270" x="2450" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="27" language="java" name="kr.co.kosmo.mvc.dao.ProductDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/ProductDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="274" x="1403" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="28" language="java" name="kr.co.kosmo.mvc.dao.Scrap_ProductDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/Scrap_ProductDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="219" x="3190" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="29" language="java" name="kr.co.kosmo.mvc.dao.LoginDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/LoginDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="167" x="1717" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="kr.co.kosmo.mvc.dao.MemberDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="261" x="1924" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="31" language="java" name="kr.co.kosmo.mvc.dao.OrderListDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/OrderListDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="185" x="2225" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="32" language="java" name="kr.co.kosmo.mvc.dao.ProductDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/ProductDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="274" x="1403" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="33" language="java" name="kr.co.kosmo.mvc.dao.OrderListDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/OrderListDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="185" x="2225" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="34" language="java" name="kr.co.kosmo.mvc.dao.ReviewDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/ReviewDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="210" x="3746" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="35" language="java" name="kr.co.kosmo.mvc.dao.FriendsDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/FriendsDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="270" x="2450" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="kr.co.kosmo.mvc.dao.HwarmDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/HwarmDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="390" x="2760" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="kr.co.kosmo.mvc.dao.Scrap_ProductDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/Scrap_ProductDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="219" x="3190" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="kr.co.kosmo.mvc.dao.SearchDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/SearchDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="257" x="3449" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="39" language="java" name="kr.co.kosmo.mvc.dao.LoginDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/LoginDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="167" x="1717" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="40" language="java" name="kr.co.kosmo.mvc.dao.LogDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/LogDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="526" y="1304"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="41" language="java" name="kr.co.kosmo.mvc.dao.ReviewDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/ReviewDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="210" x="3746" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="kr.co.kosmo.mvc.dao.QuestionLogDao" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/QuestionLogDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="297" x="3996" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="43" language="java" name="kr.co.kosmo.mvc.dao.QuestionDaoInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/dao/QuestionDaoInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="215" y="1444"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="44" language="java" name="kr.co.kosmo.mvc.service.MemberService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="571" y="752"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="45" language="java" name="kr.co.kosmo.mvc.service.FriendsServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/FriendsServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="612" y="485"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="46" language="java" name="kr.co.kosmo.mvc.service.ReviewService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/ReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1347" y="1112"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="47" language="java" name="kr.co.kosmo.mvc.service.ReviewServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/ReviewServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1481" y="1322"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="48" language="java" name="kr.co.kosmo.mvc.service.Scrap_ProductService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/Scrap_ProductService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1107" y="602"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="49" language="java" name="kr.co.kosmo.mvc.service.Scrap_ProductServiceInter" 
+    project="main_project_Dteam" file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/Scrap_ProductServiceInter.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="219" x="1140" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="50" language="java" name="kr.co.kosmo.mvc.service.QuestionServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/QuestionServiceInter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="513" width="275" x="2182" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="51" language="java" name="kr.co.kosmo.mvc.service.SellerServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/SellerServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="153" x="3878" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="52" language="java" name="kr.co.kosmo.mvc.service.OrderListService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/OrderListService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="185" x="1399" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="kr.co.kosmo.mvc.service.LogService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/LogService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="825" y="1252"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="54" language="java" name="kr.co.kosmo.mvc.service.PaymentServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/PaymentServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="242" x="4071" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="55" language="java" name="kr.co.kosmo.mvc.service.FriendsService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/FriendsService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="272" x="1870" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="56" language="java" name="kr.co.kosmo.mvc.service.MemberServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/MemberServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="227" y="504"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="57" language="java" name="kr.co.kosmo.mvc.service.ProductServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/ProductServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="274" x="3564" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="58" language="java" name="kr.co.kosmo.mvc.service.SearchServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/SearchServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="260" x="3264" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="59" language="java" name="kr.co.kosmo.mvc.service.LogServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/LogServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1163" y="1270"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="60" language="java" name="kr.co.kosmo.mvc.service.QuestionService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/QuestionService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="531" width="275" x="2182" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="kr.co.kosmo.mvc.service.QuestionLogService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/QuestionLogService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="297" x="2497" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="kr.co.kosmo.mvc.service.HwarmService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/HwarmService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="390" x="2834" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="kr.co.kosmo.mvc.service.SearchService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/SearchService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="260" x="3264" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="kr.co.kosmo.mvc.service.ProductService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/ProductService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="274" x="3564" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="kr.co.kosmo.mvc.service.SellerService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/SellerService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="153" x="3878" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="66" language="java" name="kr.co.kosmo.mvc.service.QuestionLogServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/QuestionLogServiceInter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="297" x="2497" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="67" language="java" name="kr.co.kosmo.mvc.service.PaymentService" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/PaymentService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="242" x="4071" y="387"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="68" language="java" name="kr.co.kosmo.mvc.service.HwarmServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/HwarmServiceInter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="390" x="2834" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="69" language="java" name="kr.co.kosmo.mvc.service.OrderListServiceInter" project="main_project_Dteam" 
+    file="/main_project_Dteam/src/kr/co/kosmo/mvc/service/OrderListServiceInter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="185" x="1399" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <realization id="70">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="71">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="72" name="cartDaoInter">        
+        <position height="0" width="0" x="0" y="-240"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="-240"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="75" name="memberDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="78" name="service">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="79" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="58" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="80">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <association id="81">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="82" name="scrap_ProductDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="83" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="84">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="85" name="hwarmServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="86" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="87">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="88" name="memberDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="89" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="91" name="memberDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="93">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="32"/>  
+  </realization>  
+  <association id="94">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="95" name="logDaoInter">        
+        <position height="0" width="0" x="-126" y="326"/>      
+      </attribute>      
+      <multiplicity id="96" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-126" y="326"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="97">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="98" name="reviewServiceInter">        
+        <position height="0" width="0" x="486" y="288"/>      
+      </attribute>      
+      <multiplicity id="99" minimum="0" maximum="1">        
+        <position height="0" width="0" x="486" y="288"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="101" name="hwarmDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="102" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="104" name="reviewServiceInter">        
+        <position height="0" width="0" x="486" y="288"/>      
+      </attribute>      
+      <multiplicity id="105" minimum="0" maximum="1">        
+        <position height="0" width="0" x="486" y="288"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="106">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="107" name="cartDaoInter">        
+        <position height="0" width="0" x="0" y="-240"/>      
+      </attribute>      
+      <multiplicity id="108" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="-240"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="109">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <association id="110">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="111" name="memberServiceInter">        
+        <position height="0" width="0" x="-462" y="-566"/>      
+      </attribute>      
+      <multiplicity id="112" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-462" y="-566"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="56" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="114" name="prductDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="115" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="117" name="memberDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="118" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="120" name="questionServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="121" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="123" name="memberDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="124" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="126" name="orderListServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="127" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="128">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="47"/>  
+  </realization>  
+  <association id="129">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="130" name="reviewServiceInter">        
+        <position height="0" width="0" x="486" y="288"/>      
+      </attribute>      
+      <multiplicity id="131" minimum="0" maximum="1">        
+        <position height="0" width="0" x="486" y="288"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="132">    
+    <end type="SOURCE" refId="53"/>    
+    <end type="TARGET" refId="59"/>  
+  </realization>  
+  <association id="133">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="134" name="service">        
+        <position height="0" width="0" x="-1394" y="-576"/>      
+      </attribute>      
+      <multiplicity id="135" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1394" y="-576"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="136">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <association id="137">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="138" name="orderListServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="139" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="141" name="questionDao">        
+        <position height="0" width="0" x="-148" y="286"/>      
+      </attribute>      
+      <multiplicity id="142" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-148" y="286"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="143">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="144" name="questionLogDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="145" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="146">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <association id="147">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="148" name="questionServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="149" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="150">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="39"/>  
+  </realization>  
+  <realization id="151">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="49"/>  
+  </realization>  
+  <association id="152">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="153" name="friendsServiceInter">        
+        <position height="0" width="0" x="-1394" y="-576"/>      
+      </attribute>      
+      <multiplicity id="154" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1394" y="-576"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="155">    
+    <end type="SOURCE" refId="48" navigable="false">      
+      <attribute id="156" name="scrap_ProductDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="157" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="158">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="34"/>  
+  </realization>  
+  <realization id="159">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <association id="160">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="161" name="loginDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="162" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="163">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="40"/>  
+  </realization>  
+  <realization id="164">    
+    <end type="SOURCE" refId="62"/>    
+    <end type="TARGET" refId="68"/>  
+  </realization>  
+  <realization id="165">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="166">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="167" name="paymentServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="168" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="169">    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="54"/>  
+  </realization>  
+  <association id="170">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="171" name="scrap_ProductServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="172" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="173">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="174" name="productServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="175" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="176">    
+    <end type="SOURCE" refId="61"/>    
+    <end type="TARGET" refId="66"/>  
+  </realization>  
+  <realization id="177">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="56"/>  
+  </realization>  
+  <association id="178">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="179" name="sellerService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="180" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="181">    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="182" name="paymentDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="183" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="184">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="185" name="friendsDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="186" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="187">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <realization id="188">    
+    <end type="SOURCE" refId="55"/>    
+    <end type="TARGET" refId="45"/>  
+  </realization>  
+  <association id="189">    
+    <end type="SOURCE" refId="63" navigable="false">      
+      <attribute id="190" name="searchDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="191" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="192">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="193" name="sellerDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="194" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="195">    
+    <end type="SOURCE" refId="65"/>    
+    <end type="TARGET" refId="51"/>  
+  </realization>  
+  <realization id="196">    
+    <end type="SOURCE" refId="60"/>    
+    <end type="TARGET" refId="50"/>  
+  </realization>  
+  <realization id="197">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <realization id="198">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <realization id="199">    
+    <end type="SOURCE" refId="52"/>    
+    <end type="TARGET" refId="69"/>  
+  </realization>  
+  <association id="200">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="201" name="questionLogServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="202" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="66" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="203">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="204" name="productDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="205" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="206">    
+    <end type="SOURCE" refId="63"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="207">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="208" name="hwarmServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="209" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="210">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="211" name="orderListServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="212" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="213">    
+    <end type="SOURCE" refId="64"/>    
+    <end type="TARGET" refId="57"/>  
+  </realization>  
+  <association id="214">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="215" name="searchServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="216" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="58" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="217">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="218" name="reviewDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="219" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="220">    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="221" name="orderListDaoInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="222" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="223">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="224" name="productServiceInter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="225" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="226">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="31"/>  
+  </realization>  
+  <association id="227">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="228" name="memberServiceInter">        
+        <position height="0" width="0" x="-462" y="-566"/>      
+      </attribute>      
+      <multiplicity id="229" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-462" y="-566"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="56" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

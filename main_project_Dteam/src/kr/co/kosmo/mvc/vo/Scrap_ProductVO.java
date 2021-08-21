@@ -1,11 +1,21 @@
 package kr.co.kosmo.mvc.vo;
 
+
 public class Scrap_ProductVO {
 
 	// scr_num NUMBER,
 //	mem_num NUMBER,
 //	pro_num NUMBER,
 	private int scr_num, mem_num, pro_num;
+	private ProductVO productVO;
+
+	public ProductVO getProductVO() {
+		return productVO;
+	}
+
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
+	}
 
 	public int getScr_num() {
 		return scr_num;

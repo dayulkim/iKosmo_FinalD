@@ -2,9 +2,16 @@ package kr.co.kosmo.mvc.vo;
 
 // 조회 기록 로그 VO
 public class AdminHitVO {
-	private int pro_num; 
+	private int pro_num, pro_category; 
 	private String mem_id, int_time, pro_thumb;
 	
+	
+	public int getPro_category() {
+		return pro_category;
+	}
+	public void setPro_category(int pro_category) {
+		this.pro_category = pro_category;
+	}
 	public String getPro_thumb() {
 		return pro_thumb;
 	}

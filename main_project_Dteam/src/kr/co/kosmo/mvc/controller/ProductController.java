@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.kosmo.mvc.dao.Scrap_ProductDaoInter;
 import kr.co.kosmo.mvc.service.ProductServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
+import kr.co.kosmo.mvc.service.Scrap_ProductServiceInter;
 import kr.co.kosmo.mvc.service.SellerService;
 import kr.co.kosmo.mvc.vo.AdminHitVO;
 import kr.co.kosmo.mvc.vo.PageVO;
@@ -30,7 +31,7 @@ public class ProductController { // 김다율
 	private ProductServiceInter productServiceInter;
 
 	@Autowired
-	private Scrap_ProductDaoInter scrap_ProductDaoInter;
+	private Scrap_ProductServiceInter scrap_ProductServiceInter;
 	
 	@Autowired
 	private ReviewServiceInter reviewServiceInter;
@@ -57,7 +58,6 @@ public class ProductController { // 김다율
 			// 최근 조회상품 불러오기 (사이드 배너)
 			List<AdminHitVO> mylist = productServiceInter.myProduct(sid);
 			m.addAttribute("my_list", mylist);
-
 			// sessionID 존재 x
 		} else {
 			// 상품 총 갯수
@@ -167,7 +167,7 @@ public class ProductController { // 김다율
 		String[] dlist = provo.getPro_detail().split(",");
 		m.addAttribute("dlist", dlist);
 		// 리뷰 평점 불러오기
-		long st = productServiceInter.productStar(pro_num);
+		Integer st = productServiceInter.productStar(pro_num);
 		m.addAttribute("pro_star", st);
 
 		// 판매자 정보: 카카오 지도 API
@@ -184,7 +184,14 @@ public class ProductController { // 김다율
 		List<ReviewVO> list = reviewServiceInter.reviewTab(pvo);
 		m.addAttribute("paging", pvo);
 		m.addAttribute("reviewList", list);
-
+		
+		// 스크랩 여부 확인
+		Scrap_ProductVO svo = new Scrap_ProductVO();
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
+		svo.setMem_num(mem_num);
+		svo.setPro_num(pro_num);
+		int cnt = scrap_ProductServiceInter.countscrap(svo);
+		m.addAttribute("cnt", cnt);
 		
 		return "store/product_detail";
 
@@ -199,32 +206,27 @@ public class ProductController { // 김다율
 		int mem_num = (int) session.getAttribute("sessionNum");
 		svo.setMem_num(mem_num);
 		svo.setPro_num(pro_num);
-		scrap_ProductDaoInter.doscrap(svo);
-		return "redirect:/productform";
-	}
-
-	// 스크랩 여부 확인 (추후 상세페이지로 이동)
-	@RequestMapping(value = "/scrapchk")
-	public ModelAndView scrapcheck(int pro_num, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		Scrap_ProductVO svo = new Scrap_ProductVO();
-		int mem_num = (int) session.getAttribute("sessionNum");
-		svo.setMem_num(mem_num);
-		svo.setPro_num(pro_num);
-	
-		mav.setViewName("redirect:/productform");
-		return mav;
+		scrap_ProductServiceInter.doscrap(svo);
+		System.out.println(svo.getPro_num() + "번 스크랩 하기");
+		return "redirect:/detail?pro_num="+svo.getPro_num();
 	}
 
 	// 스크랩 삭제
 	@RequestMapping(value = "/scrapdel")
-	public String scrapdel(int pro_num, HttpSession session) {
-		int mem_num = (int) session.getAttribute("sessionNum");
+	public String scrapdel(int pro_num, HttpSession session, boolean flag) {
+		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
 		Scrap_ProductVO svo = new Scrap_ProductVO();
 		svo.setMem_num(mem_num);
 		svo.setPro_num(pro_num);
-		scrap_ProductDaoInter.scrapdel(svo);
-		return "redirect:/productform";
+		scrap_ProductServiceInter.scrapdel(svo);
+		System.out.println(svo.getPro_num() + "번 스크랩 삭제");
+		String path = "";
+		if (flag) {
+			path = "redirect:/detail?pro_num="+svo.getPro_num();
+		} else {
+			path = "redirect:/scrapbook";
+		}
+		return path;
 	}
 
 }

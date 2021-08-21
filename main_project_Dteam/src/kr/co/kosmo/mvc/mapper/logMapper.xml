@@ -17,6 +17,6 @@
 	
 	<!-- 상품 조회 테이블에 영화 번호와 조회자의 ID를 insert -->
    <insert id="producthit" parameterType="admvo">
-      insert into adminhit values (#{mem_id}, #{pro_num}, #{int_time})
+      insert into adminhit values (#{mem_id}, #{pro_num}, #{pro_category}, #{int_time})
    </insert>
 </mapper>

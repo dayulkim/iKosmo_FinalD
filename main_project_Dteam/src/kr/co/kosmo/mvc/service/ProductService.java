@@ -65,7 +65,7 @@ public class ProductService implements ProductServiceInter{
 	}
 
 	@Override
-	public long productStar(int pro_num) {
+	public Integer productStar(int pro_num) {
 		return productDaoInter.productStar(pro_num);
 	}
 	

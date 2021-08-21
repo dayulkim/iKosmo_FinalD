@@ -82,7 +82,7 @@ public class ProductDao implements ProductDaoInter { // 김다율
 	
 // 디테일에서 상품 별점 불러오기
 	@Override
-	public long productStar(int pro_num) {
+	public Integer productStar(int pro_num) {
 		return ss.selectOne("product.productstar", pro_num);
 	}
 	

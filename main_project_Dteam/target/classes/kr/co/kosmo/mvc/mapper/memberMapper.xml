@@ -7,7 +7,7 @@
 		insert into member values (member_seq.nextVal, #{mem_id}, #{mem_pwd},
 		#{mem_name},
 		#{mem_nickname}, #{mem_age}, #{mem_gender}, #{mem_birth}, #{mem_tel}, #{mem_addr},
-		'None', sysdate)
+		'None.png', sysdate)
 	</insert>
 
 	<select id="login" parameterType="memvo" resultType="memvo">

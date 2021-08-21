@@ -29,7 +29,7 @@ public interface ProductDaoInter { // 김다율
 // 상품 상세보기 페이지	
 	public ProductVO productDetail(int pro_num);
 // 디테일에서 상품 별점 불러오기
-	public long productStar(int pro_num);
+	public Integer productStar(int pro_num);
 // suggest 리스트를 위한 출력
 	public List<ProductVO> suggestProductList();
 // 상품 추천

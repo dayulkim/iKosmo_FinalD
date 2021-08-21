@@ -24,11 +24,12 @@ import kr.co.kosmo.mvc.dao.CartDaoInter;
 import kr.co.kosmo.mvc.service.MemberServiceInter;
 
 import kr.co.kosmo.mvc.vo.HouseInfoVO;
-
+import kr.co.kosmo.mvc.service.CartServiceInter;
 import kr.co.kosmo.mvc.service.FriendsServiceInter;
 import kr.co.kosmo.mvc.service.OrderListServiceInter;
 import kr.co.kosmo.mvc.service.QuestionServiceInter;
 import kr.co.kosmo.mvc.service.ReviewServiceInter;
+import kr.co.kosmo.mvc.service.Scrap_ProductServiceInter;
 import kr.co.kosmo.mvc.vo.AnswerVO;
 import kr.co.kosmo.mvc.vo.CartVO;
 import kr.co.kosmo.mvc.vo.FriendsVO;
@@ -39,6 +40,7 @@ import kr.co.kosmo.mvc.vo.PurchaseVO;
 import kr.co.kosmo.mvc.vo.QuestionVO;
 
 import kr.co.kosmo.mvc.vo.ReviewVO;
+import kr.co.kosmo.mvc.vo.Scrap_ProductVO;
 
 @Controller
 public class MemberController {
@@ -48,13 +50,15 @@ public class MemberController {
 	@Autowired
 	private ReviewServiceInter reviewServiceInter;
 	@Autowired
-	private CartDaoInter cartDaoInter;
+	private CartServiceInter cartServiceInter;
 	@Autowired // 필요한 오브젝트를 인젝션
 	private OrderListServiceInter orderListServiceInter;
 	@Autowired
 	private FriendsServiceInter friendsServiceInter;
 	@Autowired
 	private QuestionServiceInter questionServiceInter;
+	@Autowired
+	private Scrap_ProductServiceInter scrap_ProductServiceInter;
 
 	// 회원가입 페이지로 이동
 	@RequestMapping(value = "join")
@@ -72,7 +76,7 @@ public class MemberController {
 		int age = year - birth_y + 1;
 		vo.setMem_age(age);
 		memberServiceInter.addmember(vo);
-		return "index";
+		return "main/index";
 	}
 
 	// 회원가입시 아이디 중복확인
@@ -84,7 +88,7 @@ public class MemberController {
 			msg = "사용 가능한 아이디 입니다.";
 		}
 		m.addAttribute("msg", msg);
-		return "member/idchk";
+		return "member/login/idchk/idchk";
 	}
 
 //	리뷰인서트
@@ -136,7 +140,7 @@ public class MemberController {
 	@RequestMapping(value = "cart")
 	public String cart2(HttpSession session, Model m) {
 		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
-		List<CartVO> list = cartDaoInter.getlist(mem_num);
+		List<CartVO> list = cartServiceInter.getlist(mem_num);
 		m.addAttribute("clist", list);
 		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
 		m.addAttribute("memvo", memvo);
@@ -233,6 +237,8 @@ public class MemberController {
 		int mem_num = Integer.parseInt(session.getAttribute("sessionNum").toString());
 		MemberVO memvo = friendsServiceInter.getMemberInfo(mem_num);
 		m.addAttribute("memvo", memvo);
+		List<Scrap_ProductVO> plist = scrap_ProductServiceInter.getproductlist(mem_num);
+		m.addAttribute("plist", plist);
 		return "mypage/scrapbook";
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Body-->
     
       <!-- Page Title-->
@@ -24,7 +25,7 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="resources/uploadFile/profile/${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
                     <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
@@ -74,66 +75,20 @@
 			</ul>
 			
                 <!-- Product-->
-                <div class="d-block d-sm-flex align-items-center py-4 border-bottom"><a class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="marketplace-single.html" style="width: 12.5rem;"><img class="rounded-3" src="img/marketplace/products/th02.jpg" alt="Product"><span class="btn btn-icon btn-danger position-absolute top-0 end-0 py-0 px-1 m-2" data-bs-toggle="tooltip" title="Remove from Favorites"><i class="ci-trash"></i></span></a>
+                <c:forEach var="e" items="${plist }">
+                <div class="d-block d-sm-flex align-items-center py-4 border-bottom"><a class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="detail?pro_num=${e.pro_num }" style="width: 12.5rem;"><img class="rounded-3" src="${e.productVO.pro_thumb }" alt="Product"></a>
                   <div class="text-center text-sm-start">
-                    <h3 class="h6 product-title mb-2"><a href="marketplace-single.html">UI Isometric Devices Pack (PSD)</a></h3>
-                    <div class="d-inline-block text-accent">$23.<small>00</small></div><a class="d-inline-block text-accent fs-ms border-start ms-2 ps-2" href="marketplace-vendor.html">by uidesigner</a>
+                    <h3 class="h6 product-title mb-2"><a href="marketplace-single.html">${e.productVO.pro_name }</a></h3>
+                    <div class="d-inline-block text-accent">${e.productVO.pro_price * (1 - e.productVO.pro_discount/100) }</div><a class="d-inline-block text-accent fs-ms border-start ms-2 ps-2" href="marketplace-vendor.html"></a>
                     <div class="d-sm-flex align-items-center pt-2">
-                      <select class="form-select form-select-sm my-1 me-2">
-                        <option>Standard license</option>
-                        <option>Extended license</option>
-                      </select>
-                      <button class="btn btn-primary btn-sm mx-auto mx-sm-0 my-2" type="button"><i class="ci-cart me-1"></i>Add to Cart</button>
+                      <button class="btn btn-primary btn-sm mx-auto mx-sm-0 my-2" type="button" onclick="location='scrapdel?pro_num=${e.pro_num }&flag=false'"><i class="ci-cart me-1"></i>Ω∫≈©∑¶ ªË¡¶</button>
                     </div>
                   </div>
                 </div>
-                <!-- Product-->
-                <div class="d-block d-sm-flex align-items-center py-4 border-bottom"><a class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="marketplace-single.html" style="width: 12.5rem;"><img class="rounded-3" src="img/marketplace/products/th06.jpg" alt="Product"><span class="btn btn-icon btn-danger position-absolute top-0 end-0 py-0 px-1 m-2" data-bs-toggle="tooltip" title="Remove from Favorites"><i class="ci-trash"></i></span></a>
-                  <div class="text-center text-sm-start">
-                    <h3 class="h6 product-title mb-2"><a href="marketplace-single.html">Project Devices Showcase (PSD)</a></h3>
-                    <div class="d-inline-block text-accent">$18.<small>00</small></div><a class="d-inline-block text-accent fs-ms border-start ms-2 ps-2" href="marketplace-vendor.html">by pixels</a>
-                    <div class="d-sm-flex align-items-center pt-2">
-                      <select class="form-select form-select-sm my-1 me-2">
-                        <option>Standard license</option>
-                        <option>Extended license</option>
-                      </select>
-                      <button class="btn btn-primary btn-sm mx-auto mx-sm-0 my-2" type="button"><i class="ci-cart me-1"></i>Add to Cart</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product-->
-                <div class="d-block d-sm-flex align-items-center py-4 border-bottom"><a class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="marketplace-single.html" style="width: 12.5rem;"><img class="rounded-3" src="img/marketplace/products/th01.jpg" alt="Product"><span class="btn btn-icon btn-danger position-absolute top-0 end-0 py-0 px-1 m-2" data-bs-toggle="tooltip" title="Remove from Favorites"><i class="ci-trash"></i></span></a>
-                  <div class="text-center text-sm-start">
-                    <h3 class="h6 product-title mb-2"><a href="marketplace-single.html">Top View Smartwatch 3D Render</a></h3>
-                    <div class="d-inline-block text-accent">$19.<small>00</small></div><a class="d-inline-block text-accent fs-ms border-start ms-2 ps-2" href="marketplace-vendor.html">by modello</a>
-                    <div class="d-sm-flex align-items-center pt-2">
-                      <select class="form-select form-select-sm my-1 me-2">
-                        <option>Standard license</option>
-                        <option>Extended license</option>
-                      </select>
-                      <button class="btn btn-primary btn-sm mx-auto mx-sm-0 my-2" type="button"><i class="ci-cart me-1"></i>Add to Cart</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product-->
-                <div class="d-block d-sm-flex align-items-center pt-4 pb-2"><a class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="marketplace-single.html" style="width: 12.5rem;"><img class="rounded-3" src="img/marketplace/products/th07.jpg" alt="Product"><span class="btn btn-icon btn-danger position-absolute top-0 end-0 py-0 px-1 m-2" data-bs-toggle="tooltip" title="Remove from Favorites"><i class="ci-trash"></i></span></a>
-                  <div class="text-center text-sm-start">
-                    <h3 class="h6 product-title mb-2"><a href="marketplace-single.html">Gravity Devices UI Mockup (PSD)</a></h3>
-                    <div class="d-inline-block text-accent">$15.<small>00</small></div><a class="d-inline-block text-accent fs-ms border-start ms-2 ps-2" href="marketplace-vendor.html">by pixels</a>
-                    <div class="d-sm-flex align-items-center pt-2">
-                      <select class="form-select form-select-sm my-1 me-2">
-                        <option>Standard license</option>
-                        <option>Extended license</option>
-                      </select>
-                      <button class="btn btn-primary btn-sm mx-auto mx-sm-0 my-2" type="button"><i class="ci-cart me-1"></i>Add to Cart</button>
-                    </div>
-                  </div>
-                </div>
-			
+                </c:forEach>
 		  </section>
         </div>
       </div>
-    </main>
 
     <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->

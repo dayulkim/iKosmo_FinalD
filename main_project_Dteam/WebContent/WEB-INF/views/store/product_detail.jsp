@@ -128,59 +128,70 @@
 									<c:set var="num11" value="11" />
 									<c:set var="num12" value="12" />
 									<c:choose>
-                                 <c:when test="${provo.pro_category eq num0 }">
-                                    <p>분류 &nbsp; :&nbsp;가구 &nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num1 }">
-                                    <p>분류 &nbsp; :&nbsp;장식/소품 &nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num2 }">
-                                    <p>분류 &nbsp; :&nbsp;주방용품 &nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num3 }">
-                                    <p>분류 &nbsp; :&nbsp;패브릭&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num4 }">
-                                    <p>분류 &nbsp; :&nbsp;가전&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num5 }">
-                                    <p>분류 &nbsp; :&nbsp;반려동물&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num6 }">
-                                    <p>분류 &nbsp; :&nbsp;조명&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num7 }">
-                                    <p>분류 &nbsp; :&nbsp;생활용품&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num8 }">
-                                    <p>분류 &nbsp; :&nbsp;실내운동&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num9 }">
-                                    <p>분류 &nbsp; :&nbsp;수납/정리&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num10 }">
-                                    <p>분류 &nbsp; :&nbsp;유아/아동&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num11 }">
-                                    <p>분류 &nbsp; :&nbsp;공구/DIY&nbsp;></p>
-                                 </c:when>
-                                 <c:when test="${provo.pro_category eq num12 }">
-                                    <p>분류 &nbsp; :&nbsp;생필품&nbsp;></p>
-                                 </c:when>
-                              </c:choose>
+										<c:when test="${provo.pro_category eq num0 }">
+											<p>분류 &nbsp; :&nbsp;가구 &nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num1 }">
+											<p>분류 &nbsp; :&nbsp;장식/소품 &nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num2 }">
+											<p>분류 &nbsp; :&nbsp;주방용품 &nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num3 }">
+											<p>분류 &nbsp; :&nbsp;패브릭&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num4 }">
+											<p>분류 &nbsp; :&nbsp;가전&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num5 }">
+											<p>분류 &nbsp; :&nbsp;반려동물&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num6 }">
+											<p>분류 &nbsp; :&nbsp;조명&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num7 }">
+											<p>분류 &nbsp; :&nbsp;생활용품&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num8 }">
+											<p>분류 &nbsp; :&nbsp;실내운동&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num9 }">
+											<p>분류 &nbsp; :&nbsp;수납/정리&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num10 }">
+											<p>분류 &nbsp; :&nbsp;유아/아동&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num11 }">
+											<p>분류 &nbsp; :&nbsp;공구/DIY&nbsp;></p>
+										</c:when>
+										<c:when test="${provo.pro_category eq num12 }">
+											<p>분류 &nbsp; :&nbsp;생필품&nbsp;></p>
+										</c:when>
+									</c:choose>
 								</div>
 								<h3>${provo.pro_name}</h3>
 								<div id="star_result">
-									<c:forEach var="i" begin="1" end="5" step="1">
-										<c:choose>
-											<c:when test="${i <= pro_star }">
-												<i class="fa fa-star" style="color: #F15F5F"></i>
-											</c:when>
-											<c:otherwise>
-												<i class="fa fa-star"></i>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
+									<c:choose>
+										<c:when test="${pro_star eq null}">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="i" begin="1" end="5" step="1">
+												<c:choose>
+													<c:when test="${i <= pro_star }">
+														<i class="fa fa-star" style="color: #F15F5F"></i>
+													</c:when>
+													<c:otherwise>
+														<i class="fa fa-star"></i>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<br>
 								<div class="price">
@@ -202,7 +213,7 @@
 										<button class="btn-minus">
 											&nbsp;<i class="fa fa-minus"></i>
 										</button>
-										<input id="ord_qty" name="ord_qty" type="text" value="1">
+										<input id="ord_qty" name="ord_qty" type="text" value=1>
 										<button class="btn-plus">
 											&nbsp;<i class="fa fa-plus"></i>
 										</button>
@@ -210,7 +221,7 @@
 								</div>
 								<br>
 								<div class="action">
-									<button type="button" class="btn btn-outline-info">
+									<button type="button" class="btn btn-outline-info" id="cartBtn">
 										<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;장바구니
 									</button>
 									<button type="button" id="confirmbtn"
@@ -218,9 +229,16 @@
 										<i class="fa fa-shopping-bag"></i>&nbsp;&nbsp;즉시 구매
 									</button>
 									<input type="hidden" id="pro_num" value="${provo.pro_num}">
-									<button type="button" class="btn btn-outline-info">
+									<c:if test="${cnt eq 0 }">
+									<button type="button" class="btn btn-outline-info" id="scrap">
 										<i class="fas fa-bookmark"></i>&nbsp;&nbsp;스크랩
 									</button>
+									</c:if>
+									<c:if test="${cnt eq 1 }">
+									<button type="button" class="btn btn-outline-info" id="delscrap">
+										<i class="fas fa-bookmark"></i>&nbsp;&nbsp;스크랩취소
+									</button>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -241,7 +259,7 @@
 						<li data-panel="panel4">배송/환불</li>
 						<li data-panel="panel5">추천상품</li>
 					</ul>
-		
+
 					<div id="panel1" class="panel active">
 						<c:forEach var="i" items="${dlist}">
 							<img src="${i}" alt="상세 이미지"
@@ -253,7 +271,8 @@
 						<div id="reviewSelector">
 
 							<div id="sortType" align="right">
-								<select id="sortType1" name="sortType1" style="width: 15%;" onchange="sort()">
+								<select id="sortType1" name="sortType1" style="width: 15%;"
+									onchange="sort()">
 									<option value="0">최신순</option>
 									<option value="1">별점순</option>
 									<option value="2">★★★★★</option>
@@ -264,170 +283,177 @@
 
 								</select>
 							</div>
-							
-							<div id="review-content" style="width: 75%;margin-left: 13%;">
+
+							<div id="review-content" style="width: 75%; margin-left: 13%;">
+								<hr>
+								<c:choose>
+									<c:when test="${empty reviewList}">
+										<p style="margin-top: 150px; margin-left: 280px; margin-bottom: 150px">이 상품에 등록된 리뷰가 없습니다.</p>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="list" items="${reviewList}">
+											<div>
+												<img
+													src="resources/assets/img/store/${list.member.mem_profile}"
+													style="width: 2.6rem; border-radius: 10rem; float: left; margin-top: 8px; margin-right: 14px; margin-left: 12px">
+											</div>
+											<div style="line-height: 200%; font-size: 12px">
+												by ${list.member.mem_id} &nbsp;<span>(${list.rev_rdate})</span>
+											</div>
+											<div id="star_result"
+												style="font-size: 10px; margin-bottom: 5px">
+												<c:forEach varStatus="i" begin="1" end="5" step="1">
+													<c:choose>
+														<c:when test="${i.count <= list.rev_star }">
+															<i class="fa fa-star" style="color: #F15F5F"></i>
+														</c:when>
+														<c:otherwise>
+															<i class="fa fa-star"></i>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</div>
+							<div style="font-size: 12px">
+								[배송]
+								<c:if test="${list.rev_period eq 1}">
+									<span>느려요</span>
+								</c:if>
+								<c:if test="${list.rev_period eq 2}">
+									<span>조금 느려요</span>
+								</c:if>
+								<c:if test="${list.rev_period eq 3}">
+									<span>적당해요</span>
+								</c:if>
+								<c:if test="${list.rev_period eq 4}">
+									<span>빨라요</span>
+								</c:if>
+								<c:if test="${list.rev_period eq 5}">
+									<span>엄청 빨라요</span>
+								</c:if>
+								&nbsp;&nbsp; [칼라]
+								<c:if test="${list.rev_color eq 1}">
+									<span>화면과 색상이 완전 달라요</span>
+								</c:if>
+								<c:if test="${list.rev_color eq 2}">
+									<span>화면과 색상이 많이 달라요</span>
+								</c:if>
+								<c:if test="${list.rev_color eq 3}">
+									<span>화면과 색상이 조금 달라요</span>
+								</c:if>
+								<c:if test="${list.rev_color eq 4}">
+									<span>화면과 색상이 비슷해요</span>
+								</c:if>
+								<c:if test="${list.rev_color eq 5}">
+									<span>화면과 색상이 같아요</span>
+								</c:if>
+							</div>
+							<br>
+							<p style="font-size: 13px">${list.rev_content}</p>
+							<img src="resources/assets/img/store/${list.rev_photo}"
+								style="width: 90px; border-radius: 5px; margin-bottom: 8px; margin-right: 12px; margin-left: 12px">
+
 							<hr>
-								<c:forEach var="list" items="${reviewList}">
-									<div>
-										<img
-											src="resources/assets/img/store/${list.member.mem_profile}"
-											style="width: 2.6rem; border-radius: 10rem; float: left; margin-top: 8px; margin-right: 14px; margin-left: 12px">
-									</div>
-									<div style="line-height: 200%; font-size: 12px">
-										by ${list.member.mem_id} &nbsp;<span>(${list.rev_rdate})</span>
-									</div>
-									<div id="star_result"
-										style="font-size: 10px; margin-bottom: 5px">
-										<c:forEach varStatus="i" begin="1" end="5" step="1">
-											<c:choose>
-												<c:when test="${i.count <= list.rev_star }">
-													<i class="fa fa-star" style="color: #F15F5F"></i>
-												</c:when>
-												<c:otherwise>
-													<i class="fa fa-star"></i>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-									</div>
-									<div style="font-size: 12px">
-										[배송]
-										<c:if test="${list.rev_period eq 1}">
-											<span>느려요</span>
-										</c:if>
-										<c:if test="${list.rev_period eq 2}">
-											<span>조금 느려요</span>
-										</c:if>
-										<c:if test="${list.rev_period eq 3}">
-											<span>적당해요</span>
-										</c:if>
-										<c:if test="${list.rev_period eq 4}">
-											<span>빨라요</span>
-										</c:if>
-										<c:if test="${list.rev_period eq 5}">
-											<span>엄청 빨라요</span>
-										</c:if>
-										&nbsp;&nbsp; [칼라]
-										<c:if test="${list.rev_color eq 1}">
-											<span>화면과 색상이 완전 달라요</span>
-										</c:if>
-										<c:if test="${list.rev_color eq 2}">
-											<span>화면과 색상이 많이 달라요</span>
-										</c:if>
-										<c:if test="${list.rev_color eq 3}">
-											<span>화면과 색상이 조금 달라요</span>
-										</c:if>
-										<c:if test="${list.rev_color eq 4}">
-											<span>화면과 색상이 비슷해요</span>
-										</c:if>
-										<c:if test="${list.rev_color eq 5}">
-											<span>화면과 색상이 같아요</span>
-										</c:if>
-									</div>
-									<br>
-									<p style="font-size: 13px">${list.rev_content}</p>
-									<img src="resources/assets/img/store/${list.rev_photo}"
-										style="width: 90px; border-radius: 5px; margin-bottom: 8px; margin-right: 12px; margin-left: 12px">
-
-									<hr>
-								</c:forEach>
-								<%@include file="reviewPageProcess.jsp"%>
-							</div>
+							</c:forEach>
+							</c:otherwise>
+							</c:choose>
+							<%@include file="reviewPageProcess.jsp"%>
 						</div>
 					</div>
+				</div>
 
-					<div id="panel3" class="panel">
-						<h5 align="left">Contact Details...</h5>
-						<hr>
-						<div class="row">
-							<div class="col-5">
-								<div id="unit">
-									<i class="fa fa-child" style="color: #F15F5F"></i>
-								</div>
-								<div>
-									&nbsp;&nbsp;our company<br> <font color="#000000">${selvo.sel_name}</font>
-								</div>
-								<hr style="width: 400px" size="11px">
-								<div id="unit">
-									<i class="fa fa-phone" style="color: #F15F5F"></i>
-								</div>
-								<div>
-									&nbsp;&nbsp;call us<br> <font color="#000000">${selvo.sel_tel}</font>
-								</div>
-								<hr style="width: 400px" size="11px">
-								<div id="unit">
-									<i class="fa fa-envelope" style="color: #F15F5F"></i>
-								</div>
-								<div>
-									&nbsp;&nbsp;email us<br> <font color="#000000">hotline@gmail.com</font>
-								</div>
-								<hr style="width: 400px" size="11px">
-								<div id="unit">
-									<i class="fa fa-microchip" style="color: #F15F5F"></i>
-								</div>
-								<div>
-									&nbsp;&nbsp;our grade<br> <font color="#000000">${selvo.sel_grade}&nbsp;등급</font>
-								</div>
-								<hr style="width: 400px" size="11px">
-								<div id="unit">
-									<i class="fa fa-map-marker" style="color: #F15F5F"></i>
-								</div>
-								<div>
-									&nbsp;&nbsp;find us<br> <font color="#000000">${selvo.sel_addr}</font>
-								</div>
-								<br> <input type="hidden" id="selname"
-									value="${selvo.sel_name}"> <input type="hidden"
-									id="addr" value="${selvo.sel_addr}">
+				<div id="panel3" class="panel">
+					<h5 align="left">Contact Details...</h5>
+					<hr>
+					<div class="row">
+						<div class="col-5">
+							<div id="unit">
+								<i class="fa fa-child" style="color: #F15F5F"></i>
 							</div>
-							<div class="col-5">
-								<div id="map"
-									style="width: 500px; height: 400px; margin-top: 1rem; margin-left: 1rem;"></div>
-								<hr style="width: 400px" size="11px">
+							<div>
+								&nbsp;&nbsp;our company<br> <font color="#000000">${selvo.sel_name}</font>
 							</div>
+							<hr style="width: 400px" size="11px">
+							<div id="unit">
+								<i class="fa fa-phone" style="color: #F15F5F"></i>
+							</div>
+							<div>
+								&nbsp;&nbsp;call us<br> <font color="#000000">${selvo.sel_tel}</font>
+							</div>
+							<hr style="width: 400px" size="11px">
+							<div id="unit">
+								<i class="fa fa-envelope" style="color: #F15F5F"></i>
+							</div>
+							<div>
+								&nbsp;&nbsp;email us<br> <font color="#000000">hotline@gmail.com</font>
+							</div>
+							<hr style="width: 400px" size="11px">
+							<div id="unit">
+								<i class="fa fa-microchip" style="color: #F15F5F"></i>
+							</div>
+							<div>
+								&nbsp;&nbsp;our grade<br> <font color="#000000">${selvo.sel_grade}&nbsp;등급</font>
+							</div>
+							<hr style="width: 400px" size="11px">
+							<div id="unit">
+								<i class="fa fa-map-marker" style="color: #F15F5F"></i>
+							</div>
+							<div>
+								&nbsp;&nbsp;find us<br> <font color="#000000">${selvo.sel_addr}</font>
+							</div>
+							<br> <input type="hidden" id="selname"
+								value="${selvo.sel_name}"> <input type="hidden"
+								id="addr" value="${selvo.sel_addr}">
+						</div>
+						<div class="col-5">
+							<div id="map"
+								style="width: 500px; height: 400px; margin-top: 1rem; margin-left: 1rem;"></div>
+							<hr style="width: 400px" size="11px">
 						</div>
 					</div>
-					<div id="panel4" class="panel">
-						<h6>배송 및 환불에 관한 사항</h6>
-						<br />배송비는 ${provo.pro_delivery }원이며, 50,000원 이상 구매 시 무료입니다.<br />
-						예상 배송기간은 ${provo.pro_period }일 입니다. <br /> 환불에 관한 사항은 문의자에게
-						연락주세요. <br /> <br />
-						<table style="text-align: left;" border="1">
-							<tr>
-								<td>업체명 :</td>
-								<td>&nbsp;&nbsp;${selvo.sel_name}</td>
-							</tr>
-							<tr>
-								<td>문의전화 :</td>
-								<td>&nbsp;&nbsp;${selvo.sel_tel}</td>
-							</tr>
-							<tr>
-								<td>주소 :</td>
-								<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
-							</tr>
-						</table>
+				</div>
+				<div id="panel4" class="panel">
+					<h6>배송 및 환불에 관한 사항</h6>
+					<br />배송비는 ${provo.pro_delivery }원이며, 50,000원 이상 구매 시 무료입니다.<br />
+					예상 배송기간은 ${provo.pro_period }일 입니다. <br /> 환불에 관한 사항은 문의자에게 연락주세요.
+					<br /> <br />
+					<table style="text-align: left;" border="1">
+						<tr>
+							<td>업체명 :</td>
+							<td>&nbsp;&nbsp;${selvo.sel_name}</td>
+						</tr>
+						<tr>
+							<td>문의전화 :</td>
+							<td>&nbsp;&nbsp;${selvo.sel_tel}</td>
+						</tr>
+						<tr>
+							<td>주소 :</td>
+							<td>&nbsp;&nbsp;${selvo.sel_addr}</td>
+						</tr>
+					</table>
 
-					</div>
-					<div id="panel5" class="panel">
-						<div id="recommendProduct"></div>
+				</div>
+				<div id="panel5" class="panel">
+					<div id="recommendProduct"></div>
 
-						<!-- 탭 끝 -->
-					</div>
+					<!-- 탭 끝 -->
 				</div>
 			</div>
 		</div>
-		<!-- Back to Top -->
+	</div>
+	<!-- Back to Top -->
 
-		<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-		<script src="resources/lib/easing/easing.min.js"></script>
-		<script src="resources/lib/slick/slick.min.js"></script>
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/lib/easing/easing.min.js"></script>
+	<script src="resources/lib/slick/slick.min.js"></script>
 
-		<!-- Template Javascript -->
-		<script src="resources/js/store/main.js"></script>
-		<script type="text/javascript">
+	<!-- Template Javascript -->
+	<script src="resources/js/store/main.js"></script>
+	<script type="text/javascript">
 		// 연아님 담당 Detail
 		$(document).ready(function() {
 			$(".tabs li").on("click", function(e) {
@@ -467,10 +493,10 @@
 		
 		
 	</script>
-		<!-- kakaomap api -->
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
-		<script>
+	<!-- kakaomap api -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41aaad31a6786708d7abba81ccc02d&libraries=services"></script>
+	<script>
    $('#sellertab').on("click", function(){
       var container = document.getElementById('map'); //지도 표시 div
       $('#map').attr('style','width:500px; height:350px; display:block;');
@@ -524,7 +550,7 @@
    });
 
    </script>
-		<script>
+	<script>
 // 		이미지 유사도 비교 -> AWS서버로 이미지 전송 및 유사 이미지 콜백
 	$(document).ready(function() {
 		
@@ -551,7 +577,7 @@
 			var url="resources/data/jpgImage/"+${provo.pro_num}+".jpg"
 			var fileName=url.split("/")[3];
 
-			fetch(url).then(response => response.blob()).then(blob =>{
+			fetch(url).then(response => response.blob()).then(blob => {
 				const file=new File([blob],fileName)
 				console.log(file);
 				formData.append("file",file)
@@ -585,4 +611,49 @@
 		});
 
 	});
+</script>
+<script>
+var number = document.getElementById("pro_num").value;
+
+$(document).ready(function() {
+	$('#scrap').click(function() {
+		window.location.href = 'productscrap?pro_num='+number;
+	});
+	$('#delscrap').click(function() {
+		window.location.href = 'scrapdel?pro_num='+number+'flag='+true;
+	});
+});
+</script>
+<script>
+
+var car_qty = $('#ord_qty').val();
+var number = document.getElementById("pro_num").value;
+
+$(document).ready(function() {
+	$('#cartBtn').on('click', function() {
+		window.location.href = 'addcart?pro_num='+number+"&car_qty="+count;
+		var msg = confirm('장바구니로 이동합니까?');
+		if (msg) {
+			location.replace('cart');
+		} else {
+			location.replace('detail?pro_num='+number);
+		}
+	});
+});
+</script>
+<script>
+var ord = document.getElementById("ord_qty");
+var count = document.getElementById("ord_qty").value;
+
+$('.btn-plus').click(function() {
+	count++;
+	ord.value = count; 
+	});
+
+$('.btn-minus').click(function() {
+	if (count > 1) {
+		count--;
+		ord.value = count;
+	}
+});
 </script>

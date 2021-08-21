@@ -4,7 +4,6 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import kr.co.kosmo.mvc.vo.ProductVO;
 import kr.co.kosmo.mvc.vo.Scrap_ProductVO;
 
 @Repository
@@ -15,13 +14,12 @@ public class Scrap_ProductDao implements Scrap_ProductDaoInter {
 	@Override
 
 	public List<Integer> scrap_ProRecommend(int cateNum) {
-
 		return ss.selectList("scarp_Product.recommend",cateNum);
 	}
 	
 	@Override
-	public List<ProductVO> getproductlist() { // 상품리스트
-		return ss.selectList("scarp_Product.getlist");
+	public List<Scrap_ProductVO> getproductlist(int mem_num) { // 상품리스트
+		return ss.selectList("scarp_Product.getlist", mem_num);
 	}
 
 	@Override

@@ -363,9 +363,7 @@ input {
                            </div>
                            <div class="choose">
                               <ul>
-                                 <li><a href="#"><i class="fa fa-plus-square"></i>스크랩하기</a></li>
-                                 <li><a
-                                    href="detail?pro_num=${listv.pro_num}"><i
+                                 <li><a href="detail?pro_num=${listv.pro_num}"><i
                                        class="fa fa-plus-square"></i>상품 상세보기</a></li>
                                  <li><a href="#"><i class="fa fa-plus-square"></i>이
                                        상품이 포함된 집들이보기</a></li>

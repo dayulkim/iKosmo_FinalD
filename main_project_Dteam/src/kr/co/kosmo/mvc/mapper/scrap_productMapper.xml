@@ -13,10 +13,23 @@
 	</select>
 	
 	<!-- 오원석 상품스크랩 -->
-	<select id="getlist" resultType="pvo">
-		select * from product
+	<select id="getlist" parameterType="int" resultMap="ScrapProductMap">
+		select * from scrap_product s,product p where s.mem_num = #{mem_num} and p.pro_num = s.pro_num
 	</select>
-
+	
+	<resultMap type="scrprovo" id="ScrapProductMap">
+		<id property="scr_num" column="scr_num"/>
+		<result property="pro_num" column="pro_num"/>
+		<result property="mem_num" column="mem_num"/>
+		<association property="productVO" column="provo">
+			<id property="pro_num" column="pro_num"/>
+			<result property="pro_name" column="pro_name"/>
+			<result property="pro_price" column="pro_price"/>
+			<result property="pro_discount" column="pro_discount"/>
+			<result property="pro_thumb" column="pro_thumb"/>
+		</association>
+	</resultMap>
+	
 	<insert id="scrap" parameterType="scrprovo">
 		insert into scrap_product values(SCRAP_SEQ.nextval, #{mem_num}, #{pro_num})
 	</insert>

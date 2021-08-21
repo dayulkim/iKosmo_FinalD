@@ -140,9 +140,9 @@
 	</select>
 	
 	<!--  상품 상세보기 -별점  -->
-	<select id="productstar" parameterType="int" resultType="long">
-		select avg(nvl(rev_star,0)) rev_star from review where pro_num=#{pro_num}
-	</select>
+   <select id="productstar" parameterType="int" resultType="int">
+      select round(avg(nvl(rev_star,0)),0) rev_star from review where pro_num=#{pro_num}
+   </select>
 	
 	<!-- 이재영: 서제스트용 -->
 	<select id="suggestProductList" resultType="provo">
@@ -153,5 +153,22 @@
 	<select parameterType="int" id="recommendProduct" resultType="provo">
 		select pro_num,pro_name , PRO_THUMB from product where pro_num=${result} 
 	</select>
+	
+	<!-- 오원석 : 상품 스크랩 -->
+	<select id="getlist" resultType="provo">
+		select * from product
+	</select>
+
+	<insert id="scrap" parameterType="scrprovo">
+		insert into scrap_product values(SCRAP_SEQ.nextval, #{mem_num}, #{pro_num})
+	</insert>
+
+	<select id="scrapchk" parameterType="scrprovo" resultType="int">
+		select count(*) cnt from scrap_product where mem_num=#{mem_num} and pro_num=#{pro_num}
+	</select>
+
+	<delete id="scrapdel" parameterType="scrprovo">
+		delete from scrap_product where mem_num=#{mem_num} and pro_num=#{pro_num}
+	</delete>
 	
 </mapper>

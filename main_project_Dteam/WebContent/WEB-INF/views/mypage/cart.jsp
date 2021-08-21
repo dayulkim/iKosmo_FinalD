@@ -25,7 +25,7 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
               <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                 <div class="d-md-flex align-items-center">
-                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
+                  <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 3rem;"><img class="rounded-circle" src="resources/uploadFile/profile/${memvo.mem_profile}" alt="${memvo.mem_id}"></div>
                   <div class="ps-md-3">
                     <h3 class="fs-base mb-0">${memvo.mem_name}</h3><span class="text-accent fs-sm">${memvo.mem_id}</span>
                   </div>
@@ -74,7 +74,7 @@
 	                <div class="pt-2">
 	                  <h3 class="product-title fs-base mb-2"><a href="detail?pro_num=${cvo.pro_num }">${cvo.productVO.pro_name }</a></h3>
 	                  <div class="fs-sm"><span class="text-muted me-2">수량:</span>${cvo.car_qty }</div>
-	                  <div class="fs-lg text-accent pt-2 commaPrice">${cvo.productVO.pro_price }원</div>
+	                  <div class="fs-lg text-accent pt-2 commaPrice">${cvo.productVO.pro_price * cvo.car_qty }원</div>
 	                </div>
 	              </div>
 	              <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
