@@ -168,15 +168,14 @@
 					</c:when>
 					<c:otherwise>
 						<c:set var="rmfile" value="${fn:split(quevo.que_photo, ',')}" />
-						<c:forEach var="file" items="${rmfile }">
-							<img src="resources/uploadFile/${file }" />
+						<img src="resources/uploadFile/${rmfile[0] }" />
 				              <div class="col-sm-4">
+						<c:forEach var="file" items="${rmfile }">
 				              <a class="gallery-item rounded-3 mb-grid-gutter" href="resources/uploadFile/${file }" data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption #2&lt;/h6&gt;">
 				              <img src="resources/uploadFile/${file }">
-				              <span class="gallery-item-caption"></span>
 				              </a>
-				              </div>
 						</c:forEach>
+						</div>
 					</c:otherwise>
 				</c:choose>
             </div>
