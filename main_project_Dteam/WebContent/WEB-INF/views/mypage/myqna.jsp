@@ -82,28 +82,28 @@
 				              <div>
 								<table>
 										<tr>
-											<th rowspan="4" style="padding-top: 30px;">
+											<th rowspan="4">
 												<c:choose>
 													<c:when test="${imgList[i.index] eq 'noImage'}">
 														<img src="resources/images/no-image-icon.JPG" style="width: 120px; height: 100px; padding-right: 20px;">
 													</c:when>
 													<c:otherwise>
-														<img src="resources/uploadFile/${imgList[i.index] }" style="width: 120px; height: 100px; padding-right: 20px;">
+														<img src="resources/uploadFile/${imgList[i.index] }" style="width: 10rem; margin-right: 3rem;">
 													</c:otherwise>
 												</c:choose>
 											</th>
-											<td style="padding-top: 30px;">
-												<h3>
-													<a href="questionDetail?que_num=${e.que_num }">
+											<td>
+												<h5>
+													<a href="questionDetail?que_num=${e.que_num }" style="color: #333333 !important; font-weight: 700;">
 													${e.que_title }
 													</a>
-												</h3>
+												</h5>
 												<c:choose>
 													<c:when test="${e.que_ans eq 0}">
-														<p><span id="que_ans">답변 대기중</span></p>
+														<span id="que_ans" class="badge bg-success lead p-1 mb-2">답변 대기 중</span>
 													</c:when>
 													<c:otherwise>
-														<!-- <p><span id="que_ans"></span></p> -->
+														<span id="que_ans" class="badge bg-info lead p-1 mb-2">답변 완료</span>
 													</c:otherwise>
 												</c:choose> 
 												<br>
@@ -113,7 +113,7 @@
 											<td>
 											<c:set var="keyword" value="${fn:split(e.que_keyword, ',')}"/>
 													<c:forEach var="i" items="${keyword }">
-											<a href="questionList?key=${i}">#${i}</a>	
+											<a href="questionList?key=${i}" style="color: #3b5998 !important">#${i}</a>	
 												</c:forEach>		
 											</td>
 										</tr>
@@ -129,14 +129,6 @@
 												<span class="author"> /조회수 ${e.que_hit }</span>	
 											</td>
 										</tr>
-										<!-- 추가적인 내용물이 발생시 
-										
-										<tr>
-											<td>
-											</td>
-										</tr>
-										
-										-->
 								</table>
 							</div>
 				            </div>
@@ -160,16 +152,16 @@
 					    <div class="accordion-body">
 					    	<!-- Item-->
 					    	<c:forEach var="e" items="${anslist }" varStatus="i">
-					    	<h5>질문 번호 : ${e.que_num }</h5>
-					    	<h5>질문 제목 : ${tlist[i.index]}</h5>
-				            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+					    	<h6 class="mt-2">질문 번호 : ${e.que_num }</h6>
+					    	<h6>질문 제목 : ${tlist[i.index]}</h6>
+				            <div class="d-sm-flex justify-content-between mt-lg-4 border-bottom">
 				              <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
-				               <div class="pt-2 mt-5" id="comments">
+				               <div id="comments">
 						              <!-- comment-->
-						           		<div class="d-flex align-items-start py-4">
+						           		<div class="d-flex align-items-start mb-3">
 						           		<i class="far fa-smile-wink"></i>
 							              <div class="ps-3">
-							                <div class="d-flex justify-content-between align-items-center mb-2">
+							                <div class="d-flex justify-content-between align-items-center mb-2 p-1">
 							                  <h6 class="fs-md mb-0">${e.ans_id }</h6>
 							                </div>
 							                <p class="fs-md mb-1">${e.ans_content }<br>

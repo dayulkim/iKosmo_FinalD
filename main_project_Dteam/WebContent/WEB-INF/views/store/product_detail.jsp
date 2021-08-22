@@ -349,7 +349,7 @@
 							</div>
 							<br>
 							<p style="font-size: 13px">${list.rev_content}</p>
-							<img src="resources/assets/img/store/${list.rev_photo}"
+							<img src="resources/uploadFile/review/${list.rev_photo}"
 								style="width: 90px; border-radius: 5px; margin-bottom: 8px; margin-right: 12px; margin-left: 12px">
 
 							<hr>

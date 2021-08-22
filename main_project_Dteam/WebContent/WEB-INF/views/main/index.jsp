@@ -455,11 +455,46 @@
                 </div> <!-- 탭 컨텐츠 영역 끝 -->
             </div>
         </section>        
-
+		<c:if test="${sessionScope.sessionID != null}">
+			<input type="hidden" id="mem_num" name="mem_num" value="${mem_num }">
+			<!-- 이번 주 인기 집들이글 -->
+			<section class="page-section" id="main-best-hwarm"
+				style="background-color: #f7f7f7">
+				<div class="container">
+					<h4 class="section-heading text-uppercase"
+						style="margin-bottom: 2rem;">당신을 위한 맞춤 상품 추천</h4>
+					<div class="row">
+						<c:forEach var="i" begin="0" end="3" step="1" varStatus="status">
+							<!-- 반복문 -->
+							<!-- 베스트 상품 개별 아이템 -->
+							<div class="col-md-3 main-item" style="padding: 2rem;">
+								<a href="#mainModal4">
+									<div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden;">
+										<div class="rank-badge bg-blue text-white position-absolute">${status.count }</div>
+										<img class="img-fluid main_pro_thumb" id="recommend_img_${status.count }"
+											src="https://image.ohou.se/i/bucketplace-v2-development/uploads/deals/161423989750732950.jpg?gif=1&w=640&h=640&c=c&webp=1"
+											style="position: absolute; border-radius: 1rem;" alt="..." />
+									</div>
+								</a>
+								<div class="main-caption">
+									<a href="" style="text-decoration: none">
+										<p class="main-caption-name" id="recommend_pro_name_${status.count }">듀커소파</p>
+										<span class="main-caption-price" id="recommend_pro_price_${status.count }">30,000원</span>
+									</a>
+								</div>
+							</div>
+							<!-- 베스트 상품 개별 아이템 영역 끝 -->
+						</c:forEach>
+					</div>
+				</div>
+			</section>
+		</c:if>
         <!-- owlCarousel JS-->
         <script src="resources/js/owlCarousel/owl.carousel.js"></script>
         <script src="resources/js/owlCarousel/owl.autoplay.js"></script>
         <script>
+        
+        // 인기 키워드 상품 (디장고 크로스 통신)
         $(document).ready(function() {
           $.ajaxSetup({cache: false}); 
           $.ajax({
@@ -488,35 +523,46 @@
           })
         });
         
+        // 개인 맞춤 상품 추천 (디장고 크로스 통신)
+       	$(document).ready(
+			function() {
+				var mem_num = $('#mem_num').val()
+				console.log(mem_num)
+				$.ajaxSetup({
+					cache : false
+				});
+				$.ajax({
+					url : 'http://192.168.0.105:8099/review/recommend?mem_num='
+							+ mem_num + '&callback=callback',
+					type : 'GET',
+					dataType : 'jsonp',
+					jsonp : 'callback',
+					success : function(data) {
+						console.log(data);
+						for (var i=1; i<5; i++) {
+							$('#recommend_img_'+i).attr('src',data.data[i-1][2])
+							$('#recommend_pro_name_'+i).text(data.data[i-1][3])
+							$('#recommend_pro_price_'+i).text(data.data[i-1][4]+"원")
+						}
+					},
+					error : function(data) {
+						console.log("error>>" + data)
+					}
+				})
+
+			})
+		
+		// 상단 슬라이더바
+        var owl = $('.owl-banner');
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            margin:10,
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true
+        });
         
-	        var owl = $('.owl-banner');
-	        owl.owlCarousel({
-	            items:1,
-	            loop:true,
-	            margin:10,
-	            autoplay:true,
-	            autoplayTimeout:3000,
-	            autoplayHoverPause:true
-	        });
 	        
-	        var owl2 = $('.owl_group_buying');
-	        owl2.owlCarousel({
-	            items:4,
-	            loop:true,
-	            margin:10,
-	            navigation: true,
-	            autoplayTimeout:3000,
-	            autoplayHoverPause:true
-	        });
-	        
-	        var owl_best_item = $('.owl_best_hwarm');
-	        owl_best_hwarm.owlCarousel({
-	            items:4,
-	            loop:true,
-	            margin: 10,
-	            navigation: true,
-	            autoplayTimeout:3000,
-	            autoplayHoverPause:true
-	        });
         </script>
 

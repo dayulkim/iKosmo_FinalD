@@ -42,8 +42,8 @@
 	                         	<!-- 태그된 상품 사진 -->
 	                         	<c:forEach var="pro_thumb" items="${e.hwd_tag_photo }" varStatus="i">
 	                         		<c:if test="${pro_thumb ne 'none'}">
-	                         			<a href="">
-	                         				<img class="img-fluid rounded tagged_pro_thumb" src="resources/assets/img/product/${pro_thumb }" alt="..." style="width:20%;"/>
+	                         			<a href="detail?pro_num=${e.hwd_tag_pro_num[i.index] }">
+	                         				<img class="img-fluid rounded tagged_pro_thumb" src="${pro_thumb }" alt="..." style="width:20%;"/>
 	                         			</a>
 	                         		</c:if>
 	                         	</c:forEach>
@@ -56,7 +56,14 @@
                             <div class="card-body">
                                 <!-- 댓글 입력창 -->
                                 <form class="mb-4">
-                                	<textarea id="comment_textarea" class="form-control" rows="3" placeholder="댓글을 남겨보세요." style="resize: none;"></textarea>
+                                <c:choose>
+									<c:when test="${sessionScope.sessionID == null}">
+                                		<textarea id="comment_textarea" class="form-control" rows="3" placeholder="로그인 후 작성하실 수 있습니다." style="resize: none;" disabled="disabled"></textarea>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<textarea id="comment_textarea" class="form-control" rows="3" placeholder="댓글을 남겨보세요." style="resize: none;"></textarea>
+                                	</c:otherwise>
+                                </c:choose>
                                 </form>
                                 <button id="comm_input_btn" style="width: 100%; border-radius: 1rem; border: none; height: 3rem; background-color: #b2d8d8; margin-bottom: 2rem;">등록</button> 
                                 <!-- 댓글 목록 -->

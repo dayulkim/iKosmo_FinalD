@@ -8,6 +8,7 @@ public class HousedetailVO {
 	private String hwd_content; // 집들이 내용
 	private String hwd_photo; // 집들이 이미지
 	private String hwd_tag; // 태그된 상품의 번호
+	private String[] hwd_tag_pro_num; // 태그된 상품의 상품번호 리스트
 	private List<String> hwd_tag_photo; // 태그된 상품의 사진 리스트
 
 	
@@ -46,6 +47,12 @@ public class HousedetailVO {
 	}
 	public void setHwd_tag_photo(List<String> hwd_tag_photo) {
 		this.hwd_tag_photo = hwd_tag_photo;
+	}
+	public String[] getHwd_tag_pro_num() {
+		return hwd_tag_pro_num;
+	}
+	public void setHwd_tag_pro_num(String[] hwd_tag_pro_num) {
+		this.hwd_tag_pro_num = hwd_tag_pro_num;
 	}
 	
 	

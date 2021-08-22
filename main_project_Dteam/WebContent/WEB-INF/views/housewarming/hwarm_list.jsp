@@ -103,11 +103,13 @@ select {
 
          <li><input type="submit" onclick="getParameter()" value="검색하기"
             class="button"></li>
-         <li>
-			<button type="button" id="hwarm_write_btn" class="btn btn-primary rounded-pill" style="margin-left: 6rem;">
-				집들이글 작성하기
-			</button>
-         </li>
+         <c:if test="${sessionScope.sessionID != null}">
+	         <li>
+				<button type="button" id="hwarm_write_btn" class="btn btn-primary rounded-pill" style="margin-left: 6rem;">
+					집들이글 작성하기
+				</button>
+	         </li>
+         </c:if>
 
       </ul>
    </form>
@@ -119,7 +121,7 @@ select {
             <div class="col-md-3" style="padding: 1rem;">
 				<div style="position: relative; width: 100%; padding-bottom: 70%; overflow: hidden;  ">
                   <a href="hwarm_detail?hou_num=${listv.hou_num}"> <!-- 이미지 클릭시 이동할 상세보기 주소 -->
-                     <img src="${listv.hou_thumb}" style="position: absolute; width:100%; border-radius: 1rem;">
+                     <img src="resources/uploadFile/hwarm/${listv.hou_thumb}" style="position: absolute; width:100%; border-radius: 1rem;">
                   </a>
                  </div>
                  <h5 style="margin-top: 1rem;">

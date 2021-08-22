@@ -112,6 +112,7 @@ public class HwarmController {
 				pro_thumb.add("none");
 			} else { // 태그된 상품이 있는 경우
 				String[] hwd_tag_list = hwd_tag.split("-");
+				hdvo.setHwd_tag_pro_num(hwd_tag_list);
 				for (String pro_num : hwd_tag_list) {
 					String photo = hwarmServiceInter.taggedProduct(Integer.parseInt(pro_num));
 					pro_thumb.add(photo);
