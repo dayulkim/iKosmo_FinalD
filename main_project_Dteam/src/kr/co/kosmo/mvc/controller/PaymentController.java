@@ -81,9 +81,16 @@ public class PaymentController {
 			carvo_list.add(carvo);
 		} else if (fromcart == 1) { // fromcart == 1 -> 장바구니에서 구매하기 눌렀을 때
 			carvo_list = paymentServiceInter.selectCart(mem_num);
-			m.addAttribute("carvo_list", carvo_list);
+
 		}
+		m.addAttribute("purunum",purvo.getPur_num());
+		purvo.setMem_num(mem_num);
 		paymentServiceInter.payment(mem_num, carvo_list, purvo); 
-		return "redirect:/"; // 구매내역 페이지로 이동
+		return "redirect:/paycomplete"; // 구매내역 페이지로 이동
 	}
+	@RequestMapping("/paycomplete")
+	public String payComplete() {
+		return("payment/complete");
+	}
+	
 }

@@ -19064,3 +19064,17 @@ html:not([dir=rtl]) .range-slider-ui.noUi-horizontal .noUi-handle {
     width: 16.66%;
   }
 }
+
+.title{
+	margin-top: 0;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+	font-weight: bold;
+	font-size: 2rem;
+	color: GRAY;
+}
+.pay-pernum{
+	font-weight: 500 !important;
+	font-size: 1.2rem;
+	color: #9966ff;
+}
