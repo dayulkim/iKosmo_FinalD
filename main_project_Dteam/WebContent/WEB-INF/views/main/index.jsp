@@ -53,7 +53,7 @@
                     <div class="col-md-3">
                            <div style="position: relative; width: 100%; padding-bottom: 70%; overflow: hidden;  border-radius: 1rem;">
                               <a href="" id="keyword_a_${i}">
-                                <img class="img-fluid main_pro_thumb keyword-item" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162546070347891451.jpg?gif=1&w=640&h=640&c=c&webp=1"/>
+                                <img class="img-fluid main_pro_thumb keyword-item" src="resources/assets/img/keyword/keyword${i }.JPG"/>
                                 <div class="text-center" style="position: absolute; top: 50%; left: 50%; transform: translate( -50%, -50% );">
                                    <h5 class="keyword-item" id="keyword_h5_${i}"></h5>
                                 </div>
